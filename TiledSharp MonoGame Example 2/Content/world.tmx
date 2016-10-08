@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="12">
+ <tileset firstgid="1" source="G:/Temp/LPC_Terrain/Terrain.tsx"/>
+ <layer name="Tile Layer 1" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2kkKQjEQhOE2t3A6iNNB9OnmgRvPod7UQziBtRRBiANYLf/iWwaqSCA0dNuJaBPaloid7OVgkOcb6OGFHl6e9dgYZOM+8qIHkMfaIAN8OL8H52wAgP9zlJOc5SJXg0yPav7GbonoSV8GMiy/z/2OkXKPZSJTmSXtMVfuhTSylFXSHgAAAADwqgxzdg3mbC/M2Z+73xGrPXMDwCPOig==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzsERQFAUBEECRCSIBEkJRSBeAk5f2YPuqrlP1wF/daYHXnKlBz4wVGM1pUcazdVSremRRlu1V0d6BAAAAAAAAABC+vTAgxsIeQWI
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="8" x="192.5" y="196" width="31" height="28" visible="0"/>
+  <object id="10" x="192" y="196" width="32" height="28"/>
+ </objectgroup>
+</map>
