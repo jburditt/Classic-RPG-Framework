@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using MonoGame.Extended.Shapes;
 
 namespace TiledSharp_MonoGame_Example_2
 {
@@ -61,7 +62,7 @@ namespace TiledSharp_MonoGame_Example_2
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            Content.Unload();
         }
 
         /// <summary>
@@ -98,8 +99,6 @@ namespace TiledSharp_MonoGame_Example_2
         protected override void Draw(GameTime gameTime)
         {
             var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            GraphicsDevice.Clear(Color.TransparentBlack);
 
             spriteBatch.Begin();
 

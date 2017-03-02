@@ -8,11 +8,10 @@
  </layer>
  <layer name="Tile Layer 2" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztzsERQFAUBEECRCSIBEkJRSBeAk5f2YPuqrlP1wF/daYHXnKlBz4wVGM1pUcazdVSremRRlu1V0d6BAAAAAAAAABC+vTAgxsIeQWI
+   eJzt1UEOQDAQheFyPxzBCXASXMpRHMRYCBFWrb5M/F/y0u2btJOGAOCvFnWBRFZ1gQwqS21p1EUidZbeMqiLRBotk2VWF8mkLdUNgG/wtgEAOB3/4n5e481TZ69z3O/A4xxPPM5x3wuv+wEAAAAAAJBaoS7wYgP2cA0c
   </data>
  </layer>
  <objectgroup name="Object Layer 1">
-  <object id="8" x="192.5" y="196" width="31" height="28" visible="0"/>
   <object id="10" x="192" y="196" width="32" height="28"/>
  </objectgroup>
 </map>

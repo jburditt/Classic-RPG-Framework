@@ -2,15 +2,17 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.Shapes;
 
 namespace TiledSharp_MonoGame_Example_2
 {
     public class Player
     {
-        public float x = 800, y = 1200;
+        public float x = 520, y = 610;
         public int step;
         public int speedX = 150, speedY = 150;
         public Direction direction;
+        public RectangleF Bounds => new RectangleF(x, y, x + spriteWidth, y + spriteHeight);
 
         private int spriteWidth = 24, spriteHeight = 32;
         
@@ -54,44 +56,57 @@ namespace TiledSharp_MonoGame_Example_2
 
             Rectangle rect = new Rectangle(frameX, frameY, spriteWidth, spriteHeight);
 
-            int xPos = Screen.HalfWidth - 12;
-            if (x < Screen.HalfWidth - 12) xPos = (int)x;
+            int xPos = Screen.HalfWidth;
+            if (x < Screen.HalfWidth) xPos = (int)x;
             if (x > Map.Width - Screen.HalfWidth)
-                xPos = (int)x - Screen.Width - Screen.HalfWidth - 12;
+                xPos = (int)x - Screen.Width - Screen.HalfWidth;
 
-            int yPos = Screen.HalfHeight - 16;
-            if (y < Screen.HalfHeight - 16) yPos = (int)y;
+            int yPos = Screen.HalfHeight;
+            if (y < Screen.HalfHeight) yPos = (int)y;
             if (y > Map.Height - Screen.HalfHeight)
-                yPos = (int)y - Map.Height + Screen.Height - 16;
+                yPos = (int)y - Map.Height + Screen.Height;
              
             spriteBatch.Draw(sprite, new Rectangle(xPos, yPos, spriteWidth, spriteHeight), rect, Color.White);
+            spriteBatch.DrawRectangle(new Rectangle(xPos, yPos, spriteWidth, spriteHeight), Color.White);
         }
 
         public void MoveUp(Map map, float deltaTime)
         {
             direction = Direction.Up;
-            y -= deltaTime * speedY;
+
+            if (!map.IsCollision((int)x, (int)(y - deltaTime * speedX)))
+                y -= deltaTime * speedY;
+
             if (y < 0) y = 0;
         }
 
         public void MoveDown(Map map, float deltaTime)
         {
             direction = Direction.Down;
-            y += deltaTime * speedY;
+
+            if (!map.IsCollision((int)x, (int)(y + deltaTime * speedX)))
+                y += deltaTime * speedY;
+
             if (y > Map.Height) y = Map.Height;
         }
 
         public void MoveLeft(Map map, float deltaTime)
         {
             direction = Direction.Left;
-            x -= deltaTime * speedX;
+
+            if (!map.IsCollision((int)(x - deltaTime * speedX), (int)y))
+                x -= deltaTime * speedX;
+
             if (x < 0) x = 0;
         }
 
         public void MoveRight(Map map, float deltaTime)
         {
             direction = Direction.Right;
-            x += deltaTime * speedX;
+
+            if (!map.IsCollision((int)(x + deltaTime * speedX), (int)y))
+                x += deltaTime * speedX;
+
             if (x > Map.Width) x = Map.Width;
         }
     }

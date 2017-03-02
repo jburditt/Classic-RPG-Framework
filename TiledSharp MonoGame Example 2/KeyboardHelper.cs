@@ -20,7 +20,8 @@ namespace TiledSharp_MonoGame_Example_2
 
         public static bool ShiftDown()
         {
-            return (Keyboard.GetState().IsKeyDown(Keys.LeftShift) || Keyboard.GetState().IsKeyDown(Keys.RightShift));
+            var state = Keyboard.GetState();
+            return (state.IsKeyDown(Keys.LeftShift) || state.IsKeyDown(Keys.RightShift));
         }
 
         public static bool Press(KeyboardState previousState, Keys key)
@@ -30,8 +31,9 @@ namespace TiledSharp_MonoGame_Example_2
 
         public static bool AltPress(KeyboardState previousState, Keys key)
         {
-            return (Keyboard.GetState().IsKeyDown(Keys.LeftAlt) || Keyboard.GetState().IsKeyDown(Keys.RightAlt))
-                && Keyboard.GetState().IsKeyDown(key) && !previousState.IsKeyDown(key);
+            var state = Keyboard.GetState();
+            return (state.IsKeyDown(Keys.LeftAlt) || state.IsKeyDown(Keys.RightAlt))
+                && state.IsKeyDown(key) && !previousState.IsKeyDown(key);
         }
     }
 }

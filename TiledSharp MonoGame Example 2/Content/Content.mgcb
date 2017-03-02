@@ -24,6 +24,28 @@
 /processorParam:TextureFormat=Color
 /build:terrain.png
 
+#begin fsm-road01_a.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:fsm-road01_a.png
+
+#begin fsm-castle01_a.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:fsm-castle01_a.png
+
 #begin Menu.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
