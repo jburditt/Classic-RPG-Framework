@@ -7,7 +7,8 @@ namespace TiledSharp_MonoGame_Example_2
 {
     public class Map
     {
-        TmxMap map;
+        TmxMap tiledMap;
+        Tile[,,] tiles;
         Texture2D[] tileset;
 
         int tileWidth, tileHeight;
@@ -19,15 +20,15 @@ namespace TiledSharp_MonoGame_Example_2
 
         public Map(ContentManager Content, GameWindow Window)
         {
-            map = new TmxMap("Content/world2.tmx");
+            tiledMap = new TmxMap("Content/world2.tmx");
 
-            tileset = new Texture2D[map.Tilesets.Count];
-            for (var i = 0; i < map.Tilesets.Count; i++) 
-                tileset[i] = Content.Load<Texture2D>(map.Tilesets[i].Name);
+            tileset = new Texture2D[tiledMap.Tilesets.Count];
+            for (var i = 0; i < tiledMap.Tilesets.Count; i++) 
+                tileset[i] = Content.Load<Texture2D>(tiledMap.Tilesets[i].Name);
 
             // TODO
-            tileWidth = map.Tilesets[0].TileWidth;              // width of tile in pixels
-            tileHeight = map.Tilesets[0].TileHeight;            // height of tile
+            tileWidth = tiledMap.Tilesets[0].TileWidth;              // width of tile in pixels
+            tileHeight = tiledMap.Tilesets[0].TileHeight;            // height of tile
 
             tilesetTilesWide = tileset[0].Width / tileWidth;       // number of columns in tileset
             tilesetTilesHigh = tileset[0].Height / tileHeight;     // number of rows in tileset
@@ -35,8 +36,54 @@ namespace TiledSharp_MonoGame_Example_2
             windowTilesWide = Screen.Width / tileWidth;         // number of columns in window
             windowTilesHigh = Screen.Height / tileHeight;       // number of rows in window
 
-            Width = map.Width * tileWidth;                      // width of map in pixels
-            Height = map.Height * tileHeight;                   // height of map
+            Width = tiledMap.Width * tileWidth;                      // width of map in pixels
+            Height = tiledMap.Height * tileHeight;                   // height of map
+
+            tiles = LoadFromTiledMap(tiledMap);
+        }
+
+        private Tile[,,] LoadFromTiledMap(TmxMap tmxMap)
+        {
+            tiles = new Tile[tmxMap.Width, tmxMap.Width, tmxMap.Layers.Count];
+
+            for (var x = 0; x < tmxMap.TileWidth; x++)
+                for (var y = 0; y < tmxMap.TileHeight; y++)
+                    for (var layer = 0; layer < tmxMap.Layers.Count; layer++)
+                    {
+                        int tileIndex = x + y * tmxMap.Width;
+                        var tile = tmxMap.Layers[layer].Tiles[tileIndex];
+
+                        int gid = tile.Gid;
+                        if (gid == 0)
+                            continue;
+
+                        int tilesetIndex = 0;
+                        int tileCount = 1;
+                        int row = 0, column = 0;
+
+                        for (var i = 0; i < tmxMap.Tilesets.Count; i++)
+                        {
+                            if (gid < tmxMap.Tilesets[i].TileCount + tileCount)
+                            {
+                                tilesetIndex = i;
+                                int tileFrame = gid - tileCount;
+                                column = tileFrame % tilesetTilesWide;
+                                row = (tileFrame) / tilesetTilesWide;
+                                break;
+                            }
+
+                            // make sure we tally the tile count, so we know what to subtract from gid
+                            tileCount += tmxMap.Tilesets[i].TileCount ?? 0;
+                        }
+
+                        tiles[x, y, layer] = new Tile
+                        {
+                            SpriteRect = new Rectangle(tileWidth*column, tileHeight*row, tileWidth, tileHeight),
+                            Tileset = tilesetIndex
+                        };
+                    }
+
+            return tiles;
         }
 
         // TODO Optimize by adding direction
@@ -49,13 +96,13 @@ namespace TiledSharp_MonoGame_Example_2
             for (int i = -1; i < 2; i++)
                 for (int j = -1; j < 2; j++)
                 {
-                    var tileIndex = x / tileWidth + i + (y / tileHeight + j) * map.Width;
+                    var tileIndex = x / tileWidth + i + (y / tileHeight + j) * tiledMap.Width;
 
-                    for (int layerIndex = 0; layerIndex < map.Layers.Count; layerIndex++)
+                    for (int layerIndex = 0; layerIndex < tiledMap.Layers.Count; layerIndex++)
                     {
-                        var tileId = map.Layers[layerIndex].Tiles[tileIndex].Gid - 1;
+                        var tileId = tiledMap.Layers[layerIndex].Tiles[tileIndex].Gid - 1;
 
-                        foreach (var tile in map.Tilesets[0].Tiles)
+                        foreach (var tile in tiledMap.Tilesets[0].Tiles)
                         {
                             if (tileId == tile.Id && tile.ObjectGroups != null && tile.ObjectGroups.Count > 0)
                             {
@@ -113,25 +160,17 @@ namespace TiledSharp_MonoGame_Example_2
                         offsetY = (playerY + 16) % tileHeight;
                     }
 
-                    // calculate tile index
-                    int tileIndex = x + playerTileX + (y + playerTileY) * map.Width;
-
                     // draw all tile layers
-                    for (int z = 0; z < map.Layers.Count; z++)
+                    for (var layer = 0; layer < tiledMap.Layers.Count; layer++)
                     {
-                        var tile = map.Layers[z].Tiles[tileIndex];
+                        var tile = tiles[x + playerTileX, y + playerTileY, layer];
 
-                        int gid = tile.Gid;
-                        if (gid == 0)
-                            continue;
+                        if (tile != null)
+                        {
+                            var drawRect = new Rectangle(x * tileWidth - offsetX, y * tileHeight - offsetY, tileWidth, tileHeight);
 
-                        int tileFrame = gid - 1;
-                        int column = tileFrame % tilesetTilesWide;
-                        int row = (tileFrame) / tilesetTilesWide;
-
-                        Rectangle tilesetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
-                        
-                        spriteBatch.Draw(tileset[0], new Rectangle(x * tileWidth - offsetX, y * tileHeight - offsetY, tileWidth, tileHeight), tilesetRec, Color.White);
+                            spriteBatch.Draw(tileset[tile.Tileset], drawRect, tile.SpriteRect, Color.White);
+                        }
                     }
                 }
         }

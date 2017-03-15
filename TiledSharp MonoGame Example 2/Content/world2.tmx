@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="13">
- <tileset firstgid="1" name="terrain" tilewidth="32" tileheight="32" tilecount="1024">
+ <tileset firstgid="1" name="terrain" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
   <image source="terrain.png" trans="ffffff" width="1024" height="1024"/>
   <tile id="227">
    <objectgroup draworder="index">
@@ -13,23 +13,20 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="1025" name="fsm-castle01_a" tilewidth="32" tileheight="32" tilecount="120">
+ <tileset firstgid="1025" name="fsm-castle01_a" tilewidth="32" tileheight="32" tilecount="120" columns="15">
   <image source="fsm-castle01_a.png" trans="007575" width="480" height="256"/>
  </tileset>
- <tileset firstgid="1145" name="fsm-road01_a" tilewidth="32" tileheight="32" tilecount="120">
+ <tileset firstgid="1145" name="fsm-road01_a" tilewidth="32" tileheight="32" tilecount="120" columns="15">
   <image source="fsm-road01_a.png" trans="007575" width="480" height="256"/>
  </tileset>
  <layer name="Tile Layer 1" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztzzEOQEAURVESBdvQqiSoKaZmCxILUFnhLMwvNCYZI6bwJ7nF6V7xri2yzAIAoESd3/39hw46NEm9w/2fagcAAAAAIM72YtMo+BnSiT6wGRT8DNmvn+2DlDpKUXmk0LEK43QcTodR8POLUUwKfsSaxaLgBwAAAPxOZ0J6HQ==
+   eJzt1T0OgkAUReExocBt0FKZoLUDoZYtoC7Ayn5k49yEhhB+7OBNTvF1U9yTvGS8c66USrKTXa32P+VlvCNo/0864x2euzqUEMldAcASz79zKIF/BwAAAACw4p1sv8n/eLO3QhuvGztvBjo+ybDzssJSRyrnBRY6Wm2sJx3fSUdtoGPOXbu90e1jDzU0EXQAAADErAcJQF75
   </data>
  </layer>
  <layer name="Tile Layer 2" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt1MEJwjAYxfG03tQlxJu6RNubuoOok6iruYkO4rsUqiTFJiVp4P+DByVt4XsNqTEA8K1SaqVJPUigs3JRrqkHCXRT7sqj55miMKb8yayINOCIVpaZ1wl7PD3fm1qPt+d7U+vhK/ce7fl+We7l1MO2D62celSatXakyagHMMSptOcfc52LhbJMcD58Z7bZaP6tsovco2/udn1It73mPyjHBD261659CdmjGPq+eXctlx4+a1Pi+jeNefYBAAAAAAAA5OkDYYgbhg==
+   eJzt19EJgDAMhGGrHUBHUCdRN+n+Q3gPLhDBcrX/B3kLtAcJpSUNQ3mqZYUcVnrNkdQ3qiaz3NEcq/o21W6WI+rQ/U/V1XiOVkTnP2X15zpnRUTnf1aG5WWOL3et5vw77Fqv746rv+QAAAC+/9wo/rnoDbvrhd0FAAAAAKCuG2jqEM0=
   </data>
  </layer>
- <objectgroup name="Objects">
-  <object id="12" name="Lady" type="NPC" gid="225" x="256" y="352" width="32" height="32"/>
- </objectgroup>
 </map>
