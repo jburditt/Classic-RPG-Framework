@@ -102,6 +102,8 @@ namespace TiledSharp_MonoGame_Example_2
 
             spriteBatch.Begin();
 
+            GraphicsDevice.Clear(Color.Black);
+
             map.Draw(spriteBatch, (int)player.x, (int)player.y);
 
             player.Draw(spriteBatch);

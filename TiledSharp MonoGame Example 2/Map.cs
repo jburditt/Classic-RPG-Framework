@@ -51,9 +51,8 @@ namespace TiledSharp_MonoGame_Example_2
                     for (var layer = 0; layer < tmxMap.Layers.Count; layer++)
                     {
                         int tileIndex = x + y * tmxMap.Width;
-                        var tile = tmxMap.Layers[layer].Tiles[tileIndex];
 
-                        int gid = tile.Gid;
+                        int gid = tmxMap.Layers[layer].Tiles[tileIndex].Gid;
                         if (gid == 0)
                             continue;
 
@@ -61,6 +60,17 @@ namespace TiledSharp_MonoGame_Example_2
                         int tileCount = 1;
                         int row = 0, column = 0;
 
+                        // get objects
+                        var passable = false;
+                        foreach (var tile in tiledMap.Tilesets[0].Tiles)
+                        {
+                            if (gid - 1 == tile.Id && tile.ObjectGroups != null && tile.ObjectGroups.Count > 0)
+                            {
+                                passable = true;
+                            }
+                        }
+
+                        // get tilesetIndex and position in tileset from gid
                         for (var i = 0; i < tmxMap.Tilesets.Count; i++)
                         {
                             if (gid < tmxMap.Tilesets[i].TileCount + tileCount)
@@ -79,7 +89,8 @@ namespace TiledSharp_MonoGame_Example_2
                         tiles[x, y, layer] = new Tile
                         {
                             SpriteRect = new Rectangle(tileWidth*column, tileHeight*row, tileWidth, tileHeight),
-                            Tileset = tilesetIndex
+                            Tileset = tilesetIndex,
+                            IsPassable = passable
                         };
                     }
 
@@ -95,24 +106,15 @@ namespace TiledSharp_MonoGame_Example_2
             // check 4 adjacent tiles around player
             for (int i = -1; i < 2; i++)
                 for (int j = -1; j < 2; j++)
-                {
-                    var tileIndex = x / tileWidth + i + (y / tileHeight + j) * tiledMap.Width;
-
                     for (int layerIndex = 0; layerIndex < tiledMap.Layers.Count; layerIndex++)
                     {
-                        var tileId = tiledMap.Layers[layerIndex].Tiles[tileIndex].Gid - 1;
-
-                        foreach (var tile in tiledMap.Tilesets[0].Tiles)
+                        if (!tiles[x + i, y + j, layerIndex].IsPassable)
                         {
-                            if (tileId == tile.Id && tile.ObjectGroups != null && tile.ObjectGroups.Count > 0)
-                            {
-                                tileRect = new Rectangle(x + i * tileWidth, y + j * tileHeight, tileWidth, tileHeight);
-                                if (playerRect.Intersects(tileRect))
-                                    return true;
-                            }
+                            tileRect = new Rectangle(x + i * tileWidth, y + j * tileHeight, tileWidth, tileHeight);
+                            if (playerRect.Intersects(tileRect))
+                                return true;
                         }
                     }
-                }
 
             return false;
         }

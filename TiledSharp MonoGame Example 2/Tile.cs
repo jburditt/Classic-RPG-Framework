@@ -6,5 +6,6 @@ namespace TiledSharp_MonoGame_Example_2
     {
         public Rectangle SpriteRect { get; set; }
         public int Tileset { get; set; }
+        public bool IsPassable { get; set; }
     }
 }
