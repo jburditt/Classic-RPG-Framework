@@ -44,10 +44,10 @@ namespace TiledSharp_MonoGame_Example_2
 
         private Tile[,,] LoadFromTiledMap(TmxMap tmxMap)
         {
-            tiles = new Tile[tmxMap.Width, tmxMap.Width, tmxMap.Layers.Count];
+            tiles = new Tile[tmxMap.Width, tmxMap.Height, tmxMap.Layers.Count];
 
-            for (var x = 0; x < tmxMap.TileWidth; x++)
-                for (var y = 0; y < tmxMap.TileHeight; y++)
+            for (var x = 0; x < tmxMap.Width; x++)
+                for (var y = 0; y < tmxMap.Height; y++)
                     for (var layer = 0; layer < tmxMap.Layers.Count; layer++)
                     {
                         int tileIndex = x + y * tmxMap.Width;
