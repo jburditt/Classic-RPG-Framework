@@ -12,7 +12,7 @@ namespace TiledSharp_MonoGame_Example_2
         Texture2D[] tileset;
 
         int tileWidth, tileHeight;
-        int tilesetTilesWide, tilesetTilesHigh;
+        int mapTilesWide, mapTilesHigh;
         int windowTilesWide, windowTilesHigh;
 
         public static int Width;
@@ -30,8 +30,8 @@ namespace TiledSharp_MonoGame_Example_2
             tileWidth = tiledMap.Tilesets[0].TileWidth;              // width of tile in pixels
             tileHeight = tiledMap.Tilesets[0].TileHeight;            // height of tile
 
-            tilesetTilesWide = tileset[0].Width / tileWidth;       // number of columns in tileset
-            tilesetTilesHigh = tileset[0].Height / tileHeight;     // number of rows in tileset
+            mapTilesWide = tileset[0].Width / tileWidth;       // number of columns in tileset
+            mapTilesHigh = tileset[0].Height / tileHeight;     // number of rows in tileset
 
             windowTilesWide = Screen.Width / tileWidth;         // number of columns in window
             windowTilesHigh = Screen.Height / tileHeight;       // number of rows in window
@@ -61,12 +61,12 @@ namespace TiledSharp_MonoGame_Example_2
                         int row = 0, column = 0;
 
                         // get objects
-                        var passable = false;
+                        var passable = true;
                         foreach (var tile in tiledMap.Tilesets[0].Tiles)
                         {
                             if (gid - 1 == tile.Id && tile.ObjectGroups != null && tile.ObjectGroups.Count > 0)
                             {
-                                passable = true;
+                                passable = false;
                             }
                         }
 
@@ -77,8 +77,8 @@ namespace TiledSharp_MonoGame_Example_2
                             {
                                 tilesetIndex = i;
                                 int tileFrame = gid - tileCount;
-                                column = tileFrame % tilesetTilesWide;
-                                row = (tileFrame) / tilesetTilesWide;
+                                column = tileFrame % mapTilesWide;
+                                row = (tileFrame) / mapTilesWide;
                                 break;
                             }
 
@@ -98,23 +98,34 @@ namespace TiledSharp_MonoGame_Example_2
         }
 
         // TODO Optimize by adding direction
-        public bool IsCollision(int x, int y)
+        public bool IsCollision(int playerX, int playerY)
         {
-            Rectangle playerRect = new Rectangle(x, y, 24, 32);
+            var playerRect = new Rectangle(playerX, playerY, 24, 32);
             Rectangle tileRect;
+            var x = playerX / tileWidth;
+            var y = playerY / tileHeight;
 
             // check 4 adjacent tiles around player
-            for (int i = -1; i < 2; i++)
-                for (int j = -1; j < 2; j++)
+            for (int i = -1; i <= 1; i++)
+                for (int j = -1; j <= 1; j++)
+                {
+                    // don't check tiles out of bounds
+                    if (x + i < 0 || x + i > mapTilesWide || y + j < 0 || y + j > mapTilesHigh)
+                        continue;
+
                     for (int layerIndex = 0; layerIndex < tiledMap.Layers.Count; layerIndex++)
                     {
-                        if (!tiles[x + i, y + j, layerIndex].IsPassable)
+                        var tile = tiles[x + i, y + j, layerIndex];
+
+                        if (tile != null && !tile.IsPassable)
                         {
-                            tileRect = new Rectangle(x + i * tileWidth, y + j * tileHeight, tileWidth, tileHeight);
+                            tileRect = new Rectangle(playerX + i*tileWidth, playerY + j*tileHeight, tileWidth,
+                                tileHeight);
                             if (playerRect.Intersects(tileRect))
                                 return true;
                         }
                     }
+                }
 
             return false;
         }

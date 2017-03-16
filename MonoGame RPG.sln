@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame RPG", "TiledSharp MonoGame Example 2\MonoGame RPG.csproj", "{5336DDE4-3EDC-43A1-8D89-52F0DF8B4159}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame RPG", "Classic RPG Framework\MonoGame RPG.csproj", "{5336DDE4-3EDC-43A1-8D89-52F0DF8B4159}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
