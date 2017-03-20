@@ -62,13 +62,13 @@ namespace TiledSharp_MonoGame_Example_2
 
                         // get objects
                         var passable = true;
-                        foreach (var tile in tiledMap.Tilesets[0].Tiles)
-                        {
-                            if (gid - 1 == tile.Id && tile.ObjectGroups != null && tile.ObjectGroups.Count > 0)
-                            {
-                                passable = false;
-                            }
-                        }
+                        //foreach (var tile in tiledMap.Tilesets[0].Tiles)
+                        //{
+                        //    if (gid - 1 == tile.Id && tile.ObjectGroups != null && tile.ObjectGroups.Count > 0)
+                        //    {
+                        //        passable = false;
+                        //    }
+                        //}
 
                         // get tilesetIndex and position in tileset from gid
                         for (var i = 0; i < tmxMap.Tilesets.Count; i++)
