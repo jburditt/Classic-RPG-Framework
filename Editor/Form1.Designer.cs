@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.debugLabel = new System.Windows.Forms.Label();
             this.filePanel = new System.Windows.Forms.Panel();
             this.filePictureBox = new System.Windows.Forms.PictureBox();
             this.fileRemoveButton = new System.Windows.Forms.Button();
@@ -43,7 +44,8 @@
             this.tilesetAddButton = new System.Windows.Forms.Button();
             this.tilesetsListBox = new System.Windows.Forms.ListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.debugLabel = new System.Windows.Forms.Label();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.filePanel.SuspendLayout();
@@ -80,6 +82,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tilesets";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // debugLabel
+            // 
+            this.debugLabel.AutoSize = true;
+            this.debugLabel.Location = new System.Drawing.Point(380, 466);
+            this.debugLabel.Name = "debugLabel";
+            this.debugLabel.Size = new System.Drawing.Size(37, 13);
+            this.debugLabel.TabIndex = 12;
+            this.debugLabel.Text = "debug";
             // 
             // filePanel
             // 
@@ -125,6 +136,7 @@
             this.filesListBox.Name = "filesListBox";
             this.filesListBox.Size = new System.Drawing.Size(154, 342);
             this.filesListBox.TabIndex = 7;
+            this.filesListBox.SelectedIndexChanged += new System.EventHandler(this.filesListBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -188,20 +200,32 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog";
             // 
-            // debugLabel
+            // cancelButton
             // 
-            this.debugLabel.AutoSize = true;
-            this.debugLabel.Location = new System.Drawing.Point(380, 466);
-            this.debugLabel.Name = "debugLabel";
-            this.debugLabel.Size = new System.Drawing.Size(37, 13);
-            this.debugLabel.TabIndex = 12;
-            this.debugLabel.Text = "debug";
+            this.cancelButton.Location = new System.Drawing.Point(796, 526);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 1;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(709, 526);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 2;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // editorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.tabControl1);
             this.Name = "editorForm";
             this.Text = "RPG Editor";
@@ -233,6 +257,8 @@
         private System.Windows.Forms.PictureBox filePictureBox;
         private System.Windows.Forms.Panel filePanel;
         private System.Windows.Forms.Label debugLabel;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }
 
