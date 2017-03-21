@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using Common;
 using TiledSharp;
 
 namespace Editor
@@ -12,7 +14,7 @@ namespace Editor
         private List<Image> filesImages = new List<Image>();
         private Bitmap _x = (Bitmap)Image.FromFile("../../x.png");
         private Bitmap _passable;
-        private bool[][,] passable;
+        private bool[][][] passable;
 
         public editorForm()
         {
@@ -21,16 +23,22 @@ namespace Editor
             _x.MakeTransparent(Color.White);
 
             tiledMap = new TmxMap("../../../Classic RPG Framework/Content/world2.tmx");
-            passable = new bool[tiledMap.Tilesets.Count][,];
+
+            passable = new bool[tiledMap.Tilesets.Count][][];
             
             for (var i = 0; i < tiledMap.Tilesets.Count; i++)
             {
                 filesListBox.Items.Add(tiledMap.Tilesets[i].Name);
                 filesImages.Add(Image.FromFile(tiledMap.Tilesets[i].Image.Source));
-                passable[i] = new bool[tiledMap.Tilesets[i].Columns.Value, (tiledMap.Tilesets[i].TileCount ?? 0) / tiledMap.Tilesets[i].Columns.Value];
-                for (var x = 0; x < passable[i].GetLength(0); x++)
-                    for (var y = 0; y < passable[i].GetLength(1); y++)
-                        passable[i][x, y] = true;
+                //passable[i] = new bool[tiledMap.Tilesets[i].Columns.Value][(tiledMap.Tilesets[i].TileCount ?? 0) / tiledMap.Tilesets[i].Columns.Value];
+                passable[i] = new bool[tiledMap.Tilesets[i].Columns.Value][];
+
+                for (var x = 0; x < tiledMap.Tilesets[i].Columns.Value; x++)
+                {
+                    passable[i][x] = new bool[(tiledMap.Tilesets[i].TileCount ?? 0) / tiledMap.Tilesets[i].Columns.Value];
+                    for (var y = 0; y < (tiledMap.Tilesets[i].TileCount ?? 0)/tiledMap.Tilesets[i].Columns.Value; y++)
+                        passable[i][x][y] = true;
+                }
             }
 
             filePictureBox.Image = filesImages[0];
@@ -45,9 +53,9 @@ namespace Editor
 
             var x = coordinates.X/32;
             var y = coordinates.Y/32;
-            passable[fileIndex][x, y] = !passable[fileIndex][x, y];
+            passable[fileIndex][x][y] = !passable[fileIndex][x][y];
 
-            debugLabel.Text = "X: " + x + " Y: " + y + "P: " + passable[fileIndex][x, y];
+            debugLabel.Text = "X: " + x + " Y: " + y + "P: " + passable[fileIndex][x][y];
 
             Draw();
         }
@@ -60,9 +68,9 @@ namespace Editor
             var bitmap = new Bitmap(overlay);
             using (var g = Graphics.FromImage(bitmap))
             {
-                for (var i = 0; i < passable[fileIndex].GetLength(0); i++)
-                    for (var j = 0; j < passable[fileIndex].GetLength(1); j++)
-                        if (!passable[fileIndex][i, j])
+                for (var i = 0; i < filesImages[fileIndex].Width / 32; i++)
+                    for (var j = 0; j < filesImages[fileIndex].Height / 32; j++)
+                        if (!passable[fileIndex][i][j])
                             g.DrawImage(_x, i * 32, j * 32);
             }
             _passable = bitmap;
@@ -78,7 +86,7 @@ namespace Editor
 
         private void saveButton_Click(object sender, System.EventArgs e)
         {
-            
+            Serializer.XmlSerialize(passable, "../../../Data/world2.passable.xml");
         }
 
         private void filesListBox_SelectedIndexChanged(object sender, System.EventArgs e)

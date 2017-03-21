@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.IO;
+using System.Xml.Serialization;
+using Common;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using TiledSharp;
@@ -46,6 +49,10 @@ namespace TiledSharp_MonoGame_Example_2
         {
             tiles = new Tile[tmxMap.Width, tmxMap.Height, tmxMap.Layers.Count];
 
+            var serializer = new XmlSerializer(typeof(bool[][][]));
+            var reader = new StreamReader("../../../../Data/world2.passable.xml");
+            var passable = (bool[][][])serializer.Deserialize(reader);
+
             for (var x = 0; x < tmxMap.Width; x++)
                 for (var y = 0; y < tmxMap.Height; y++)
                     for (var layer = 0; layer < tmxMap.Layers.Count; layer++)
@@ -59,16 +66,6 @@ namespace TiledSharp_MonoGame_Example_2
                         int tilesetIndex = 0;
                         int tileCount = 1;
                         int row = 0, column = 0;
-
-                        // get objects
-                        var passable = true;
-                        //foreach (var tile in tiledMap.Tilesets[0].Tiles)
-                        //{
-                        //    if (gid - 1 == tile.Id && tile.ObjectGroups != null && tile.ObjectGroups.Count > 0)
-                        //    {
-                        //        passable = false;
-                        //    }
-                        //}
 
                         // get tilesetIndex and position in tileset from gid
                         for (var i = 0; i < tmxMap.Tilesets.Count; i++)
@@ -90,7 +87,7 @@ namespace TiledSharp_MonoGame_Example_2
                         {
                             SpriteRect = new Rectangle(tileWidth*column, tileHeight*row, tileWidth, tileHeight),
                             Tileset = tilesetIndex,
-                            IsPassable = passable
+                            IsPassable = true//passable[layer][column][row]
                         };
                     }
 
