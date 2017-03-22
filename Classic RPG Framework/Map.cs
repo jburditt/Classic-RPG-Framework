@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 using Common;
 using Microsoft.Xna.Framework;
@@ -96,33 +97,51 @@ namespace TiledSharp_MonoGame_Example_2
         }
 
         // TODO Optimize by adding direction
-        public bool IsCollision(int playerX, int playerY)
+        public bool IsCollision(int playerX, int playerY, Direction direction)
         {
-            var playerRect = new Rectangle(playerX, playerY, 24, 32);
-            Rectangle tileRect;
             var x = playerX / tileWidth;
             var y = playerY / tileHeight;
 
-            // check 4 adjacent tiles around player
-            for (int i = -1; i <= 1; i++)
-                for (int j = -1; j <= 1; j++)
+            var isCollision = false;
+            
+            switch (direction)
+            {
+                case Direction.Up:
+                    isCollision = IsTileCollision(playerX, playerY, x, y) || (playerX % tileWidth != 0 && IsTileCollision(playerX, playerY, x + 1, y));
+                    return isCollision;
+                case Direction.Right:
+                    isCollision = IsTileCollision(playerX, playerY, x + 1, y) || (playerY % tileHeight != 0 && IsTileCollision(playerX, playerY, x + 1, y + 1));
+                    return isCollision;
+                case Direction.Down:
+                    isCollision = IsTileCollision(playerX, playerY, x, y + 1) || (playerX % tileWidth != 0 && IsTileCollision(playerX, playerY, x + 1, y + 1));
+                    return isCollision;
+                case Direction.Left:
+                    isCollision = IsTileCollision(playerX, playerY, x, y) || (playerY % tileHeight != 0 && IsTileCollision(playerX, playerY, x, y + 1));
+                    return isCollision;
+            }
+
+            return false;
+        }
+
+        public bool IsTileCollision(int playerX, int playerY, int x, int y)
+        {
+            // don't check tiles out of bounds
+            if (x < 0 || x > mapTilesWide || y < 0 || y > mapTilesHigh)
+                return true;
+
+            for (int layerIndex = 0; layerIndex < tiledMap.Layers.Count; layerIndex++)
+            {
+                var tile = tiles[x, y, layerIndex];
+
+                if (tile != null && !tile.IsPassable)
                 {
-                    // don't check tiles out of bounds
-                    if (x + i < 0 || x + i > mapTilesWide || y + j < 0 || y + j > mapTilesHigh)
-                        continue;
+                    var playerRect = new Rectangle(playerX, playerY + 8, 24, 24);
+                    var tileRect = new Rectangle(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
 
-                    for (int layerIndex = 0; layerIndex < tiledMap.Layers.Count; layerIndex++)
-                    {
-                        var tile = tiles[x + i, y + j, layerIndex];
-
-                        if (tile != null && !tile.IsPassable)
-                        {
-                            tileRect = new Rectangle(playerX + i*tileWidth, playerY + j*tileHeight, tileWidth, tileHeight);
-                            if (playerRect.Intersects(tileRect))
-                                return true;
-                        }
-                    }
+                    if (playerRect.Intersects(tileRect))
+                        return true;
                 }
+            }
 
             return false;
         }
@@ -143,31 +162,38 @@ namespace TiledSharp_MonoGame_Example_2
 
                     // handle player X coordinate
                     if (playerX < Screen.HalfWidth)
-                    {   // offset player when near the left boundary of the map
+                    {
+                        // offset player when near the left boundary of the map
                         playerTileX = 0;
-                    } else if (playerX > Width - Screen.HalfWidth)
-                    {   // offset player when near the right boundary of the map
-                        playerTileX = (Width - Screen.Width) / tileWidth;
-                    } else
+                    }
+                    else if (playerX > Width - Screen.HalfWidth)
+                    {
+                        // offset player when near the right boundary of the map
+                        playerTileX = (Width - Screen.Width)/tileWidth;
+                    }
+                    else
                     {
                         // position the player in the middle of the screen
-                        playerTileX = (playerX - Screen.HalfWidth) / tileWidth;
-                        offsetX = playerX % tileWidth;
+                        playerTileX = (playerX - Screen.HalfWidth)/tileWidth;
+                        offsetX = playerX%tileWidth;
                     }
 
                     // handle player Y coordinate
                     if (playerY < Screen.HalfHeight)
-                    {   // offset player when near the top boundary of the map
+                    {
+                        // offset player when near the top boundary of the map
                         playerTileY = 0;
                     }
                     else if (playerY > Height - Screen.HalfHeight)
-                    {   // offset player when near the bottom boundary of the map
-                        playerTileY = (Height - Screen.Height) / tileHeight;
+                    {
+                        // offset player when near the bottom boundary of the map
+                        playerTileY = (Height - Screen.Height)/tileHeight;
                     }
                     else
-                    {   // position the player in the middle of the screen
-                        playerTileY = (playerY - Screen.HalfHeight) / tileHeight;
-                        offsetY = (playerY + 16) % tileHeight;
+                    {
+                        // position the player in the middle of the screen
+                        playerTileY = (playerY - Screen.HalfHeight)/tileHeight;
+                        offsetY = (playerY + 16)%tileHeight;
                     }
 
                     // draw all tile layers
@@ -177,7 +203,7 @@ namespace TiledSharp_MonoGame_Example_2
 
                         if (tile != null)
                         {
-                            var drawRect = new Rectangle(x * tileWidth - offsetX, y * tileHeight - offsetY, tileWidth, tileHeight);
+                            var drawRect = new Rectangle(x*tileWidth - offsetX, y*tileHeight - offsetY, tileWidth, tileHeight);
 
                             spriteBatch.Draw(tileset[tile.Tileset], drawRect, tile.SpriteRect, Color.White);
                         }

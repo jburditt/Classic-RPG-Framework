@@ -67,7 +67,7 @@ namespace TiledSharp_MonoGame_Example_2
                 yPos = (int)y - Map.Height + Screen.Height;
              
             spriteBatch.Draw(sprite, new Rectangle(xPos, yPos, spriteWidth, spriteHeight), rect, Color.White);
-            spriteBatch.DrawRectangle(new Rectangle(xPos, yPos, spriteWidth, spriteHeight), Color.White);
+            //spriteBatch.DrawRectangle(new Rectangle(xPos, yPos, spriteWidth, spriteHeight), Color.White);
         }
 
         public void MoveUp(Map map, float deltaTime)
