@@ -74,7 +74,7 @@ namespace TiledSharp_MonoGame_Example_2
         {
             direction = Direction.Up;
 
-            if (!map.IsCollision((int)x, (int)(y - deltaTime * speedX)))
+            if (!map.IsCollision((int)x, (int)(y - deltaTime * speedX), direction))
                 y -= deltaTime * speedY;
 
             if (y < 0) y = 0;
@@ -84,7 +84,7 @@ namespace TiledSharp_MonoGame_Example_2
         {
             direction = Direction.Down;
 
-            if (!map.IsCollision((int)x, (int)(y + deltaTime * speedX)))
+            if (!map.IsCollision((int)x, (int)(y + deltaTime * speedX), direction))
                 y += deltaTime * speedY;
 
             if (y > Map.Height) y = Map.Height;
@@ -94,7 +94,7 @@ namespace TiledSharp_MonoGame_Example_2
         {
             direction = Direction.Left;
 
-            if (!map.IsCollision((int)(x - deltaTime * speedX), (int)y))
+            if (!map.IsCollision((int)(x - deltaTime * speedX), (int)y, direction))
                 x -= deltaTime * speedX;
 
             if (x < 0) x = 0;
@@ -104,7 +104,7 @@ namespace TiledSharp_MonoGame_Example_2
         {
             direction = Direction.Right;
 
-            if (!map.IsCollision((int)(x + deltaTime * speedX), (int)y))
+            if (!map.IsCollision((int)(x + deltaTime * speedX), (int)y, direction))
                 x += deltaTime * speedX;
 
             if (x > Map.Width) x = Map.Width;

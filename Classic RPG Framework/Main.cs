@@ -108,7 +108,7 @@ namespace TiledSharp_MonoGame_Example_2
 
             player.Draw(spriteBatch);
 
-            spriteBatch.DrawString(font, "FPS: " + (int)(1 / deltaTime) + " X: " + player.x + " Y: " + player.y, new Vector2(10, 10), Color.White);
+            spriteBatch.DrawString(font, "FPS: " + (int)(1 / deltaTime) + " X: " + player.x/32 + " Y: " + player.y/32, new Vector2(10, 10), Color.White);
 
             spriteBatch.End();
 

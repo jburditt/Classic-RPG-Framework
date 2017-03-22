@@ -64,7 +64,7 @@ namespace TiledSharp_MonoGame_Example_2
                             continue;
 
                         int tilesetIndex = 0;
-                        int tileCount = 1;
+                        int tileCount = 0;
                         int row = 0, column = 0;
 
                         // get tilesetIndex and position in tileset from gid
@@ -73,9 +73,10 @@ namespace TiledSharp_MonoGame_Example_2
                             if (gid < tmxMap.Tilesets[i].TileCount + tileCount)
                             {
                                 tilesetIndex = i;
-                                int tileFrame = gid - tileCount;
-                                column = tileFrame % mapTilesWide;
-                                row = (tileFrame) / mapTilesWide;
+                                int tileFrame = gid - tileCount - 1;
+                                int columns = tmxMap.Tilesets[i].Columns ?? 1;
+                                column = tileFrame % columns;
+                                row = (tileFrame) / columns;
                                 break;
                             }
 
@@ -87,7 +88,7 @@ namespace TiledSharp_MonoGame_Example_2
                         {
                             SpriteRect = new Rectangle(tileWidth*column, tileHeight*row, tileWidth, tileHeight),
                             Tileset = tilesetIndex,
-                            IsPassable = true//passable[layer][column][row]
+                            IsPassable = passable[tilesetIndex][column][row]
                         };
                     }
 
@@ -116,8 +117,7 @@ namespace TiledSharp_MonoGame_Example_2
 
                         if (tile != null && !tile.IsPassable)
                         {
-                            tileRect = new Rectangle(playerX + i*tileWidth, playerY + j*tileHeight, tileWidth,
-                                tileHeight);
+                            tileRect = new Rectangle(playerX + i*tileWidth, playerY + j*tileHeight, tileWidth, tileHeight);
                             if (playerRect.Intersects(tileRect))
                                 return true;
                         }
