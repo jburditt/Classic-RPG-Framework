@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Shapes;
 
-namespace TiledSharp_MonoGame_Example_2
+namespace Player
 {
     public class Player
     {

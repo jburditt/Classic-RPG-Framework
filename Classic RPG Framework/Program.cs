@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TiledSharp_MonoGame_Example_2
+namespace Player
 {
 #if WINDOWS || LINUX
     /// <summary>

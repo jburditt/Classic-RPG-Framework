@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace TiledSharp_MonoGame_Example_2
+namespace Player
 {
     public static class KeyboardHelper
     {

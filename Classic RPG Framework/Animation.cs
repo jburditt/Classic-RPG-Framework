@@ -1,4 +1,4 @@
-﻿namespace TiledSharp_MonoGame_Example_2
+﻿namespace Player
 {
     public class Animation
     {

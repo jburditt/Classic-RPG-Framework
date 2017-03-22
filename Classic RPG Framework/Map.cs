@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using TiledSharp;
 
-namespace TiledSharp_MonoGame_Example_2
+namespace Player
 {
     public class Map
     {
@@ -16,7 +16,6 @@ namespace TiledSharp_MonoGame_Example_2
         Texture2D[] tileset;
 
         int tileWidth, tileHeight;
-        int mapTilesWide, mapTilesHigh;
         int windowTilesWide, windowTilesHigh;
 
         public static int Width;
@@ -33,10 +32,7 @@ namespace TiledSharp_MonoGame_Example_2
             // TODO
             tileWidth = tiledMap.Tilesets[0].TileWidth;              // width of tile in pixels
             tileHeight = tiledMap.Tilesets[0].TileHeight;            // height of tile
-
-            mapTilesWide = tileset[0].Width / tileWidth;       // number of columns in tileset
-            mapTilesHigh = tileset[0].Height / tileHeight;     // number of rows in tileset
-
+           
             windowTilesWide = Screen.Width / tileWidth;         // number of columns in window
             windowTilesHigh = Screen.Height / tileHeight;       // number of rows in window
 
@@ -126,7 +122,7 @@ namespace TiledSharp_MonoGame_Example_2
         public bool IsTileCollision(int playerX, int playerY, int x, int y)
         {
             // don't check tiles out of bounds
-            if (x < 0 || x > mapTilesWide || y < 0 || y > mapTilesHigh)
+            if (x < 0 || x >= tiledMap.Width || y < 0 || y >= tiledMap.Height)
                 return true;
 
             for (int layerIndex = 0; layerIndex < tiledMap.Layers.Count; layerIndex++)

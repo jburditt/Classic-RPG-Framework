@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace TiledSharp_MonoGame_Example_2
+namespace Player
 {
     public class Tile
     {

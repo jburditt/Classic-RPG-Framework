@@ -1,4 +1,4 @@
-﻿namespace TiledSharp_MonoGame_Example_2
+﻿namespace Player
 {
     public enum Direction
     {
@@ -7,4 +7,19 @@
         Down,
         Left
     };
+
+    public enum GameState
+    {
+        StartMenu,
+        World,
+        Battle,
+        WorldMenu
+    }
+
+    public enum MenuItem
+    {
+        NewGame,
+        LoadGame,
+        Exit
+    }
 }

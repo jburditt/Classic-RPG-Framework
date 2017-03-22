@@ -1,22 +1,29 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended;
 using MonoGame.Extended.Shapes;
 
-namespace TiledSharp_MonoGame_Example_2
+namespace Player
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
     public class Main : Game
     {
+        // TODO Add this to references: http://opengameart.org/content/space-background
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Map map;
         Player player;
         KeyboardState previousState;
         Audio audio;
+        Song song;
+        Texture2D menu;
+
+        GameState gameState = GameState.StartMenu;
+        MenuItem menuItem = MenuItem.NewGame;
 
         private SpriteFont font;
 
@@ -54,6 +61,9 @@ namespace TiledSharp_MonoGame_Example_2
             map = new Map(Content, Window);
             player = new Player(Content);
             audio = new Audio(Content);
+            song = Content.Load<Song>("I3-Epic-Brave Heart");
+            menu = Content.Load<Texture2D>("menubg");
+            MediaPlayer.Play(song);
         }
 
         /// <summary>
@@ -85,7 +95,28 @@ namespace TiledSharp_MonoGame_Example_2
                 graphics.ApplyChanges();
             }
 
-            player.Update(map, deltaTime);
+            switch (gameState)
+            {
+                case GameState.StartMenu:
+                    if (KeyboardHelper.Down(Keys.Up))
+                    {
+                        menuItem--;
+                        if (menuItem < MenuItem.NewGame)
+                            menuItem = MenuItem.Exit;
+                    }
+                    if (KeyboardHelper.Down(Keys.Down))
+                    {
+                        menuItem++;
+                        if (menuItem > MenuItem.Exit)
+                            menuItem = MenuItem.NewGame;
+                    }
+                    if (KeyboardHelper.Down(Keys.Enter))
+                        gameState = GameState.World;
+                    break;
+                case GameState.World:
+                    player.Update(map, deltaTime);
+                    break;
+            }             
 
             base.Update(gameTime);
 
@@ -104,12 +135,24 @@ namespace TiledSharp_MonoGame_Example_2
 
             GraphicsDevice.Clear(Color.Black);
 
-            map.Draw(spriteBatch, (int)player.x, (int)player.y);
+            switch (gameState)
+            {
+                case GameState.StartMenu:
 
-            player.Draw(spriteBatch);
+                    spriteBatch.Draw(menu, new Rectangle(0, 0, Screen.Width, Screen.Height), new Rectangle(0, 0, Screen.Width, Screen.Height), Color.White);
+                    spriteBatch.DrawString(font, "New Game", new Vector2(180, 220), Color.White);
+                    spriteBatch.DrawString(font, "Load Game", new Vector2(180, 240), Color.White);
+                    spriteBatch.DrawString(font, "Exit", new Vector2(180, 260), Color.White);
+                    break;
 
-            spriteBatch.DrawString(font, "FPS: " + (int)(1 / deltaTime) + " X: " + player.x/32 + " Y: " + player.y/32, new Vector2(10, 10), Color.White);
+                case GameState.World:
 
+                    map.Draw(spriteBatch, (int) player.x, (int) player.y);
+                    player.Draw(spriteBatch);
+                    spriteBatch.DrawString(font, "FPS: " + (int) (1/deltaTime) + " X: " + player.x/32 + " Y: " + player.y/32, new Vector2(10, 10), Color.White);
+                    break;
+
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);

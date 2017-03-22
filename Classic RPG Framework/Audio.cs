@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 
-namespace TiledSharp_MonoGame_Example_2
+namespace Player
 {
     public class Audio
     {
