@@ -48,6 +48,7 @@
     <Compile Include="KeyboardHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Dialog.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,10 +75,13 @@
     <Content Include="Content\Crono.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\dialog.png" />
     <Content Include="Content\fsm-castle01_a.png" />
     <Content Include="Content\fsm-road01_a.png" />
     <Content Include="Content\I3-Epic-Brave Heart.mp3" />
+    <Content Include="Content\menubg.jpg" />
     <Content Include="Content\terrain.png" />
+    <Content Include="Content\tileset.jpg" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

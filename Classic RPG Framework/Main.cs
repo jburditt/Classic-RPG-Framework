@@ -17,6 +17,7 @@ namespace Player
         SpriteBatch spriteBatch;
         Map map;
         Player player;
+        Dialog dialog;
         KeyboardState previousState;
         Audio audio;
         Song song;
@@ -58,11 +59,15 @@ namespace Player
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Menu");
+
             map = new Map(Content, Window);
             player = new Player(Content);
             audio = new Audio(Content);
+            dialog = new Dialog(Content);
+
             song = Content.Load<Song>("I3-Epic-Brave Heart");
             menu = Content.Load<Texture2D>("menubg");
+            
             MediaPlayer.Play(song);
         }
 
@@ -139,7 +144,8 @@ namespace Player
             {
                 case GameState.StartMenu:
 
-                    spriteBatch.Draw(menu, new Rectangle(0, 0, Screen.Width, Screen.Height), new Rectangle(0, 0, Screen.Width, Screen.Height), Color.White);
+                    spriteBatch.Draw(menu, new Rectangle(0, 0, Screen.Width, Screen.Height), new Rectangle(200, 200, Screen.Width + 200, Screen.Height + 200), Color.White);
+                    dialog.Draw(spriteBatch, new Rectangle(160, 200, 130, 130), 0);
                     spriteBatch.DrawString(font, "New Game", new Vector2(180, 220), Color.White);
                     spriteBatch.DrawString(font, "Load Game", new Vector2(180, 240), Color.White);
                     spriteBatch.DrawString(font, "Exit", new Vector2(180, 260), Color.White);

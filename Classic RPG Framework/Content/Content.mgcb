@@ -24,6 +24,17 @@
 /processorParam:TextureFormat=Color
 /build:menubg.jpg
 
+#begin dialog.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,255,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:dialog.png
+
 #begin terrain.png
 /importer:TextureImporter
 /processor:TextureProcessor
