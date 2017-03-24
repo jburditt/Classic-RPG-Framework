@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Classic_RPG_Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using MonoGame.Extended;
-using MonoGame.Extended.Shapes;
 
 namespace Player
 {
@@ -15,15 +16,19 @@ namespace Player
         // TODO Add this to references: http://opengameart.org/content/space-background
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
         Map map;
         Player player;
+        IEnumerable<Actor> party;
         Dialog dialog;
         KeyboardState previousState;
         Audio audio;
         Song song;
         Texture2D menu;
 
-        GameState gameState = GameState.StartMenu;
+        Battle battle;
+
+        GameState gameState = GameState.Battle;
         MenuItem menuItem = MenuItem.NewGame;
 
         private SpriteFont font;
@@ -67,7 +72,16 @@ namespace Player
 
             song = Content.Load<Song>("I3-Epic-Brave Heart");
             menu = Content.Load<Texture2D>("menubg");
-            
+
+            battle = new Battle(Content);
+            party = new List<Actor>
+            {
+                new Actor { Name = "Cloud", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 1 },
+                new Actor { Name = "Cecil", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 2 },
+                new Actor { Name = "Rosa", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 3 },
+                new Actor { Name = "Barrett", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 4 },
+            };
+
             MediaPlayer.Play(song);
         }
 
@@ -156,6 +170,11 @@ namespace Player
                     map.Draw(spriteBatch, (int) player.x, (int) player.y);
                     player.Draw(spriteBatch);
                     spriteBatch.DrawString(font, "FPS: " + (int) (1/deltaTime) + " X: " + player.x/32 + " Y: " + player.y/32, new Vector2(10, 10), Color.White);
+                    break;
+
+                case GameState.Battle:
+
+                    battle.Draw(spriteBatch, dialog, font, party);
                     break;
 
             }
