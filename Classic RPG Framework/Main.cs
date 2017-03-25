@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Classic_RPG_Framework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,9 +7,6 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Player
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
     public class Main : Game
     {
         // TODO Add this to references: http://opengameart.org/content/space-background
@@ -18,6 +14,7 @@ namespace Player
         SpriteBatch spriteBatch;
 
         Map map;
+        SongManager songManager;
         Player player;
         IEnumerable<Actor> party;
         Dialog dialog;
@@ -69,6 +66,7 @@ namespace Player
             player = new Player(Content);
             audio = new Audio(Content);
             dialog = new Dialog(Content);
+            songManager = new SongManager(Content);
 
             song = Content.Load<Song>("I3-Epic-Brave Heart");
             menu = Content.Load<Texture2D>("menubg");
@@ -76,13 +74,13 @@ namespace Player
             battle = new Battle(Content);
             party = new List<Actor>
             {
-                new Actor { Name = "Cloud", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 1 },
-                new Actor { Name = "Cecil", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 2 },
-                new Actor { Name = "Rosa", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 3 },
-                new Actor { Name = "Barrett", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 4 },
+                new Actor(Content, "battlechar\\gus", "charset\\gus") { Name = "Gus", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 1 },
+                new Actor(Content, "battlechar\\fitz", "charset\\fitz") { Name = "Fitz", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 2 },
+                new Actor(Content, "battlechar\\sorah", "charset\\sorah") { Name = "Sorah", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 3 },
+                new Actor(Content, "battlechar\\sheba", "charset\\sheba") { Name = "Sheba", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 4 },
             };
 
-            MediaPlayer.Play(song);
+            //MediaPlayer.Play(song);
         }
 
         /// <summary>
@@ -169,7 +167,7 @@ namespace Player
 
                     map.Draw(spriteBatch, (int) player.x, (int) player.y);
                     player.Draw(spriteBatch);
-                    spriteBatch.DrawString(font, "FPS: " + (int) (1/deltaTime) + " X: " + player.x/32 + " Y: " + player.y/32, new Vector2(10, 10), Color.White);
+                    //spriteBatch.DrawString(font, "FPS: " + (int) (1/deltaTime) + " X: " + player.x/32 + " Y: " + player.y/32, new Vector2(10, 10), Color.White);
                     break;
 
                 case GameState.Battle:

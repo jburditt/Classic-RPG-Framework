@@ -12,16 +12,14 @@ namespace Player
         public int step;
         public int speedX = 150, speedY = 150;
         public Direction direction;
-        public RectangleF Bounds => new RectangleF(x, y, x + spriteWidth, y + spriteHeight);
-
-        private int spriteWidth = 24, spriteHeight = 32;
+        //public RectangleF Bounds => new RectangleF(x, y, x + spriteWidth, y + spriteHeight);
         
         private Texture2D sprite;
-        private Animation animation = new Animation();
+        private WalkAnimation animation = new WalkAnimation();
 
         public Player(ContentManager Content)
         {
-            sprite = Content.Load<Texture2D>("Crono");
+            sprite = Content.Load<Texture2D>("charset\\Gus");
         }
 
         public void Update(Map map, float deltaTime)
@@ -51,10 +49,7 @@ namespace Player
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int frameX = animation.x * spriteWidth;
-            int frameY = (int)direction * spriteHeight;
-
-            Rectangle rect = new Rectangle(frameX, frameY, spriteWidth, spriteHeight);
+            animation.Y = (int)direction;
 
             int xPos = Screen.HalfWidth;
             if (x < Screen.HalfWidth) xPos = (int)x;
@@ -66,7 +61,7 @@ namespace Player
             if (y > Map.Height - Screen.HalfHeight)
                 yPos = (int)y - Map.Height + Screen.Height;
              
-            spriteBatch.Draw(sprite, new Rectangle(xPos, yPos, spriteWidth, spriteHeight), rect, Color.White);
+            spriteBatch.Draw(sprite, animation.DrawRect(xPos, yPos), animation.SourceRect, Color.White);
             //spriteBatch.DrawRectangle(new Rectangle(xPos, yPos, spriteWidth, spriteHeight), Color.White);
         }
 

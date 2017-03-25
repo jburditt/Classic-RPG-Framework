@@ -8,8 +8,8 @@
     <ProjectGuid>{5336DDE4-3EDC-43A1-8D89-52F0DF8B4159}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Classic_RPG_Framework</RootNamespace>
-    <AssemblyName>Classic RPG Framework</AssemblyName>
+    <RootNamespace>Player</RootNamespace>
+    <AssemblyName>Game Player</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <MonoGameContentBuilderExe>
@@ -46,6 +46,8 @@
     <Compile Include="Animation.cs" />
     <Compile Include="Audio.cs" />
     <Compile Include="Battle.cs" />
+    <Compile Include="SongManager.cs" />
+    <Compile Include="TextureHelper.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="KeyboardHelper.cs" />
     <Compile Include="Main.cs" />
@@ -74,9 +76,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Crono.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\dialog.png" />
     <Content Include="Content\fsm-castle01_a.png" />
     <Content Include="Content\fsm-road01_a.png" />
@@ -92,9 +91,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Content\Menu.spritefont" />
-    <None Include="Content\world.tmx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Content\world2.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

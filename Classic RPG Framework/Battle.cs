@@ -31,9 +31,14 @@ namespace Classic_RPG_Framework
         public void DrawActorInfo(Actor actor, SpriteBatch spriteBatch, SpriteFont spriteFont)
         {
             spriteBatch.DrawString(spriteFont, actor.Name, new Vector2(280, 350 + actor.Order * 20), Color.White);
-            spriteBatch.DrawString(spriteFont, actor.Hp.ToString(), new Vector2(360, 350 + actor.Order * 20), Color.White);
-            spriteBatch.DrawString(spriteFont, "/", new Vector2(380, 350 + actor.Order * 20), Color.White);
-            spriteBatch.DrawString(spriteFont, actor.MaxHp.ToString(), new Vector2(390, 350 + actor.Order * 20), Color.White);
+            spriteBatch.DrawString(spriteFont, "HP: " + actor.Hp.ToString(), new Vector2(360, 350 + actor.Order * 20), Color.White);
+            spriteBatch.DrawString(spriteFont, "/", new Vector2(410, 350 + actor.Order * 20), Color.White);
+            spriteBatch.DrawString(spriteFont, actor.MaxHp.ToString(), new Vector2(415, 350 + actor.Order * 20), Color.White);
+            spriteBatch.DrawString(spriteFont, "MP: " + actor.Mp.ToString(), new Vector2(460, 350 + actor.Order * 20), Color.White);
+            spriteBatch.DrawString(spriteFont, "/", new Vector2(510, 350 + actor.Order * 20), Color.White);
+            spriteBatch.DrawString(spriteFont, actor.MaxMp.ToString(), new Vector2(520, 350 + actor.Order * 20), Color.White);
+            spriteBatch.DrawString(spriteFont, "Limit " + actor.Limit, new Vector2(550, 350 + actor.Order * 20), Color.White);
+            spriteBatch.DrawString(spriteFont, "%", new Vector2(610, 350 + actor.Order * 20), Color.White);
         }
     }
 }
