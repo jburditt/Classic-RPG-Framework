@@ -8,7 +8,7 @@ namespace Player
 {
     public class SongManager
     {
-        private Dictionary<string, Song> Songs { get; set; }
+        private Dictionary<string, Song> Songs { get; set; } = new Dictionary<string, Song>();
 
         public SongManager(ContentManager Content)
         {

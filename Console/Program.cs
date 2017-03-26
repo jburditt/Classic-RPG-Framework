@@ -12,7 +12,7 @@ namespace Console
         {
             var filepaths = FileManager.GetFilepaths("../../../Data");
 
-            using (var fileStream = File.Create("Content.mgcb"))
+            using (var fileStream = File.Create("../../../MonoGame/Content/Content.mgcb"))
             {
                 var info = new UTF8Encoding(true).GetBytes(@"
 #----------------------------- Global Properties ----------------------------#
@@ -33,10 +33,12 @@ namespace Console
 
                 foreach (var filepath in filepaths)
                 {
+                    var filename = filepath.Substring(14);
+
+                    // write images
                     if (filepath.IsImage())
                     {
                         var color = GetTransparentColor(filepath);
-                        var filename = filepath.Substring(14);
 
                         info = new UTF8Encoding(true).GetBytes($@"
 
@@ -49,6 +51,27 @@ namespace Console
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
+/build:{filename}");
+
+                        fileStream.Write(info, 0, info.Length);
+                    } else if (filepath.IsSong())
+                    {
+                        info = new UTF8Encoding(true).GetBytes($@"
+
+#begin {filename}
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:{filename}");
+
+                        fileStream.Write(info, 0, info.Length);
+                    } else if (filepath.IsFont()) {
+                        info = new UTF8Encoding(true).GetBytes($@"
+
+#begin {filename}
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
 /build:{filename}");
 
                         fileStream.Write(info, 0, info.Length);
