@@ -23,13 +23,17 @@ namespace MonoGame
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Dialog dialog, SpriteFont spriteFont, ActorManager actorManager, EnemyManager enemyManager)
+        public void Draw(SpriteBatch spriteBatch, Dialog dialog, SpriteFont spriteFont, ActorManager actorManager, EnemyManager enemyManager, IconManager iconManager)
         {
-            spriteBatch.Draw(BattleBg["1"], new Vector2(0, 0), Color.White);
+            spriteBatch.DrawTexture(BattleBg["1"], 0, 0);
             dialog.Draw(spriteBatch, new Rectangle(0, 330, 640, 150), 0);
+            spriteBatch.DrawTexture(iconManager.Icons["attack"], 50, 350);
+            spriteBatch.DrawTexture(iconManager.Icons["magic"], 20, 380);
+            spriteBatch.DrawTexture(iconManager.Icons["defend"], 80, 380);
+            spriteBatch.DrawTexture(iconManager.Icons["item"], 50, 410);
+            spriteBatch.DrawTexture(iconManager.Icons["run"], 20, 410);
 
             var i = 0;
-
             foreach (var actor in actorManager.Party)
             {
                 DrawActor(i, actorManager, spriteBatch);
@@ -38,7 +42,7 @@ namespace MonoGame
             }
 
             // draw enemies
-            spriteBatch.Draw(enemyManager.Enemies["DarkTroll"], new Rectangle(60, 200, enemyManager.Enemies["DarkTroll"].Width, enemyManager.Enemies["DarkTroll"].Height), Color.White);
+            spriteBatch.DrawTexture(enemyManager.Enemies["DarkTroll"], 60, 200);
         }
 
         public void DrawActor(int i, ActorManager actorManager, SpriteBatch spriteBatch)

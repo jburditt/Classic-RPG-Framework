@@ -44,10 +44,12 @@
   <ItemGroup>
     <Compile Include="ActorManager.cs" />
     <Compile Include="EnemyManager.cs" />
+    <Compile Include="IconManager.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Battle.cs" />
     <Compile Include="RectangleExtension.cs" />
     <Compile Include="SongManager.cs" />
+    <Compile Include="SpriteBatchExtensions.cs" />
     <Compile Include="TextureHelper.cs" />
     <Compile Include="KeyboardHelper.cs" />
     <Compile Include="Main.cs" />

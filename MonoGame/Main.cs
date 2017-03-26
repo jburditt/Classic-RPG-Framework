@@ -16,6 +16,7 @@ namespace MonoGame
         SoundManager soundManager;
         ActorManager actorManager;
         EnemyManager enemyManager;
+        IconManager iconManager;
         Player player;
         Dialog dialog;
         KeyboardState previousState;
@@ -68,6 +69,7 @@ namespace MonoGame
             soundManager = new SoundManager(Content);
             actorManager = new ActorManager(Content);
             enemyManager = new EnemyManager(Content);
+            iconManager = new IconManager(Content);
 
             menu = Content.Load<Texture2D>("menubg");
 
@@ -167,7 +169,7 @@ namespace MonoGame
 
                 case GameState.Battle:
 
-                    battle.Draw(spriteBatch, dialog, font, actorManager, enemyManager);
+                    battle.Draw(spriteBatch, dialog, font, actorManager, enemyManager, iconManager);
                     break;
 
             }
