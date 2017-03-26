@@ -10,7 +10,7 @@ namespace Console
     {
         static void Main(string[] args)
         {
-            var filepaths = FileManager.GetFilepaths("../../../Data");
+            var filepaths = FileManager.GetFilepaths("../../../MonoGame/Content");
 
             using (var fileStream = File.Create("../../../MonoGame/Content/Content.mgcb"))
             {
@@ -33,7 +33,7 @@ namespace Console
 
                 foreach (var filepath in filepaths)
                 {
-                    var filename = filepath.Substring(14);
+                    var filename = filepath.Substring(26);
 
                     // write images
                     if (filepath.IsImage())

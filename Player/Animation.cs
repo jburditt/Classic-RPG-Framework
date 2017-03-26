@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace Player
+﻿namespace Player
 {
     public class Animation
     {
@@ -10,14 +8,14 @@ namespace Player
         public int spriteWidth = 24;
         public int spriteHeight = 32;
 
-        public Rectangle DrawRect(int x, int y)
+        public Rect DrawRect(int x, int y)
         {
-            return new Rectangle(x, y, spriteWidth, spriteHeight);
+            return new Rect(x, y, spriteWidth, spriteHeight);
         }
 
-        public Rectangle SourceRect {
+        public Rect SourceRect {
             get {
-                return new Rectangle(X * spriteWidth, Y * spriteHeight, spriteWidth, spriteHeight);
+                return new Rect(X * spriteWidth, Y * spriteHeight, spriteWidth, spriteHeight);
             }
         }
     }

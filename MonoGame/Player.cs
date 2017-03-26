@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.Shapes;
+using Player;
 
-namespace Player
+namespace MonoGame
 {
     public class Player
     {
@@ -61,7 +61,7 @@ namespace Player
             if (y > Map.Height - Screen.HalfHeight)
                 yPos = (int)y - Map.Height + Screen.Height;
              
-            spriteBatch.Draw(sprite, animation.DrawRect(xPos, yPos), animation.SourceRect, Color.White);
+            spriteBatch.Draw(sprite, animation.DrawRect(xPos, yPos).ToRectangle(), animation.SourceRect.ToRectangle(), Color.White);
             //spriteBatch.DrawRectangle(new Rectangle(xPos, yPos, spriteWidth, spriteHeight), Color.White);
         }
 

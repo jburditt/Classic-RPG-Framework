@@ -1,13 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Xml.Serialization;
-using Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using TiledSharp;
+using Player;
 
-namespace Player
+namespace MonoGame
 {
     public class Map
     {
@@ -83,7 +82,7 @@ namespace Player
 
                         tiles[x, y, layer] = new Tile
                         {
-                            SpriteRect = new Rectangle(tileWidth*column, tileHeight*row, tileWidth, tileHeight),
+                            SpriteRect = new Rect(tileWidth*column, tileHeight*row, tileWidth, tileHeight),
                             Tileset = tilesetIndex,
                             IsPassable = passable[tilesetIndex][column][row]
                         };
@@ -201,7 +200,7 @@ namespace Player
                         {
                             var drawRect = new Rectangle(x*tileWidth - offsetX, y*tileHeight - offsetY, tileWidth, tileHeight);
 
-                            spriteBatch.Draw(tileset[tile.Tileset], drawRect, tile.SpriteRect, Color.White);
+                            spriteBatch.Draw(tileset[tile.Tileset], drawRect, tile.SpriteRect.ToRectangle(), Color.White);
                         }
                     }
                 }

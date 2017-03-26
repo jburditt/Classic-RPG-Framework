@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using Classic_RPG_Framework;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using Player;
 
-namespace Player
+namespace MonoGame
 {
     public class Main : Game
     {
@@ -15,12 +13,12 @@ namespace Player
 
         Map map;
         SongManager songManager;
+        ActorManager actorManager;
         Player player;
-        IEnumerable<Actor> party;
+        Actor[] party = new Actor[4];
         Dialog dialog;
         KeyboardState previousState;
         Audio audio;
-        Song song;
         Texture2D menu;
 
         Battle battle;
@@ -67,20 +65,16 @@ namespace Player
             audio = new Audio(Content);
             dialog = new Dialog(Content);
             songManager = new SongManager(Content);
+            //songManager.Play("01 - Namazu");
+            actorManager = new ActorManager(Content);
 
-            song = Content.Load<Song>("I3-Epic-Brave Heart");
             menu = Content.Load<Texture2D>("menubg");
 
             battle = new Battle(Content);
-            party = new List<Actor>
-            {
-                new Actor(Content, "battlechar\\gus", "charset\\gus") { Name = "Gus", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 1 },
-                new Actor(Content, "battlechar\\fitz", "charset\\fitz") { Name = "Fitz", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 2 },
-                new Actor(Content, "battlechar\\sorah", "charset\\sorah") { Name = "Sorah", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 3 },
-                new Actor(Content, "battlechar\\sheba", "charset\\sheba") { Name = "Sheba", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23, Order = 4 },
-            };
-
-            //MediaPlayer.Play(song);
+            party[0] = new Actor("battlechar\\gus", "charset\\gus") { Name = "Gus", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
+            party[1] = new Actor("battlechar\\fitz", "charset\\fitz") { Name = "Fitz", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
+            party[2] = new Actor("battlechar\\sorah", "charset\\sorah") { Name = "Sorah", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
+            party[3] = new Actor("battlechar\\sheba", "charset\\sheba") { Name = "Sheba", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
         }
 
         /// <summary>

@@ -1,11 +1,8 @@
 ﻿using System;
 
-namespace Player
+namespace MonoGame
 {
 #if WINDOWS || LINUX
-    /// <summary>
-    /// The main class.
-    /// </summary>
     public static class Program
     {
         /// <summary>

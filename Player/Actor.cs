@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace Player
+﻿namespace Player
 {
     public class Actor
     {
@@ -13,16 +10,15 @@ namespace Player
         public int Limit { get; set; }
         public int Experience { get; set; }
         public int Level { get; set; }
-        public int Order { get; set; }
+        public string CharSet { get; set; }
+        public string BattleChar { get; set; }
 
-        private Texture2D battleChar;
-        private Texture2D charSet;
         private Animation animation;
 
-        public Actor(ContentManager Content, string battleCharFileName, string charSetFileName)
+        public Actor(string battleChar, string charSet)
         {
-            battleChar = Content.Load<Texture2D>(battleCharFileName);
-            charSet = Content.Load<Texture2D>(charSetFileName);
+            this.BattleChar = battleChar;
+            this.CharSet = charSet;
             animation = new Animation { X = 1, Y = 5 };
         }
     }

@@ -42,10 +42,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Actor.cs" />
-    <Compile Include="Animation.cs" />
+    <Compile Include="ActorManager.cs" />
     <Compile Include="Audio.cs" />
     <Compile Include="Battle.cs" />
+    <Compile Include="RectangleExtension.cs" />
     <Compile Include="SongManager.cs" />
     <Compile Include="TextureHelper.cs" />
     <Compile Include="Enum.cs" />
@@ -57,7 +57,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen.cs" />
-    <Compile Include="Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -100,6 +99,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{1c3a39b9-a3ed-4adb-b0be-3ee456e9f633}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Player\Player.csproj">
+      <Project>{88f12e9b-d503-4ad4-a925-6a7a9a8210d3}</Project>
+      <Name>Player</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
