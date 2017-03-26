@@ -5,7 +5,7 @@ namespace Common
 {
     public static class FileManager
     {
-        public static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".JPE", ".BMP", ".GIF", ".PNG" };
+        public static readonly List<string> ImageExtensions = new List<string> { ".JPG", ".JPE", ".BMP", ".GIF", ".PNG", ".TGA" };
         public static readonly List<string> SongExtensions = new List<string> { ".MP3", ".OGG", ".WAV", ".MID", ".MIDI" };
         public static readonly List<string> FontExtensions = new List<string> { ".FONT", ".SPRITEFONT" };
 

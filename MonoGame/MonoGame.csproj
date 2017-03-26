@@ -8,13 +8,13 @@
     <ProjectGuid>{5336DDE4-3EDC-43A1-8D89-52F0DF8B4159}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Player</RootNamespace>
-    <AssemblyName>Game Player</AssemblyName>
+    <RootNamespace>MonoGame</RootNamespace>
+    <AssemblyName>MonoGame</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <MonoGameContentBuilderExe>
     </MonoGameContentBuilderExe>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -43,12 +43,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ActorManager.cs" />
-    <Compile Include="Audio.cs" />
+    <Compile Include="EnemyManager.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="Battle.cs" />
     <Compile Include="RectangleExtension.cs" />
     <Compile Include="SongManager.cs" />
     <Compile Include="TextureHelper.cs" />
-    <Compile Include="Enum.cs" />
     <Compile Include="KeyboardHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Map.cs" />
@@ -56,7 +56,6 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

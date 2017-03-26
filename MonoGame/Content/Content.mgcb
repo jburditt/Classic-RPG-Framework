@@ -267,6 +267,17 @@
 /processorParam:TextureFormat=Color
 /build:charset\sorah.png
 
+#begin enemy\DarkTroll.tga
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,255,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:enemy\DarkTroll.tga
+
 #begin portrait\fitz.png
 /importer:TextureImporter
 /processor:TextureProcessor

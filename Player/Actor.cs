@@ -12,6 +12,11 @@
         public int Level { get; set; }
         public string CharSet { get; set; }
         public string BattleChar { get; set; }
+        public Rect Rect {
+            get {
+                return new Rect(48, 48 * 6, 48, 48);
+            }
+        }
 
         private Animation animation;
 

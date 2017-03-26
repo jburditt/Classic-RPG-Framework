@@ -13,12 +13,12 @@ namespace MonoGame
 
         Map map;
         SongManager songManager;
+        SoundManager soundManager;
         ActorManager actorManager;
+        EnemyManager enemyManager;
         Player player;
-        Actor[] party = new Actor[4];
         Dialog dialog;
         KeyboardState previousState;
-        Audio audio;
         Texture2D menu;
 
         Battle battle;
@@ -62,19 +62,20 @@ namespace MonoGame
 
             map = new Map(Content, Window);
             player = new Player(Content);
-            audio = new Audio(Content);
             dialog = new Dialog(Content);
             songManager = new SongManager(Content);
             //songManager.Play("01 - Namazu");
+            soundManager = new SoundManager(Content);
             actorManager = new ActorManager(Content);
+            enemyManager = new EnemyManager(Content);
 
             menu = Content.Load<Texture2D>("menubg");
 
             battle = new Battle(Content);
-            party[0] = new Actor("battlechar\\gus", "charset\\gus") { Name = "Gus", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
-            party[1] = new Actor("battlechar\\fitz", "charset\\fitz") { Name = "Fitz", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
-            party[2] = new Actor("battlechar\\sorah", "charset\\sorah") { Name = "Sorah", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
-            party[3] = new Actor("battlechar\\sheba", "charset\\sheba") { Name = "Sheba", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
+            actorManager.Party[0] = new Actor("gus", "gus") { Name = "Gus", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
+            actorManager.Party[1] = new Actor("fitz", "fitz") { Name = "Fitz", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
+            actorManager.Party[2] = new Actor("sorah", "sorah") { Name = "Sorah", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
+            actorManager.Party[3] = new Actor("sheba", "sheba") { Name = "Sheba", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
         }
 
         /// <summary>
@@ -166,7 +167,7 @@ namespace MonoGame
 
                 case GameState.Battle:
 
-                    battle.Draw(spriteBatch, dialog, font, party);
+                    battle.Draw(spriteBatch, dialog, font, actorManager, enemyManager);
                     break;
 
             }

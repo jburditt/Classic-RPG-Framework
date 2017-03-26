@@ -1,6 +1,7 @@
 ﻿using Common;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Player;
 using System.Collections.Generic;
 using System.IO;
 
@@ -10,6 +11,7 @@ namespace MonoGame
     {
         public Dictionary<string, Texture2D> Charsets { get; set; } = new Dictionary<string, Texture2D>();
         public Dictionary<string, Texture2D> BattleChars { get; set; } = new Dictionary<string, Texture2D>();
+        public Actor[] Party = new Actor[4];
 
         public ActorManager(ContentManager Content)
         {

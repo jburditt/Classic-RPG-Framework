@@ -9,6 +9,14 @@ namespace Player
         public int B { get; set; }
         public int A { get; set; }
 
+        public ColorStruct(int r, int g, int b, int a)
+        {
+            R = r;
+            G = g;
+            B = b;
+            A = a;
+        }
+
         public override string ToString()
         {
             return R + "," + G + "," + B + "," + A;

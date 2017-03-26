@@ -44,9 +44,11 @@
     <Compile Include="Actor.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="Color.cs" />
+    <Compile Include="Enum.cs" />
     <Compile Include="ISongManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rect.cs" />
+    <Compile Include="Screen.cs" />
     <Compile Include="Tile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

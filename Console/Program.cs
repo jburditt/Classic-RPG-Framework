@@ -38,7 +38,11 @@ namespace Console
                     // write images
                     if (filepath.IsImage())
                     {
-                        var color = GetTransparentColor(filepath);
+                        ColorStruct color;
+                        if (string.Compare(filename.Right(3), "TGA", true) == 0)
+                            color = new ColorStruct(255, 255, 255, 255);
+                        else
+                            color = GetTransparentColor(filepath);
 
                         info = new UTF8Encoding(true).GetBytes($@"
 

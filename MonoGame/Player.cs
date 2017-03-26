@@ -12,7 +12,6 @@ namespace MonoGame
         public int step;
         public int speedX = 150, speedY = 150;
         public Direction direction;
-        //public RectangleF Bounds => new RectangleF(x, y, x + spriteWidth, y + spriteHeight);
         
         private Texture2D sprite;
         private WalkAnimation animation = new WalkAnimation();
@@ -62,7 +61,6 @@ namespace MonoGame
                 yPos = (int)y - Map.Height + Screen.Height;
              
             spriteBatch.Draw(sprite, animation.DrawRect(xPos, yPos).ToRectangle(), animation.SourceRect.ToRectangle(), Color.White);
-            //spriteBatch.DrawRectangle(new Rectangle(xPos, yPos, spriteWidth, spriteHeight), Color.White);
         }
 
         public void MoveUp(Map map, float deltaTime)
