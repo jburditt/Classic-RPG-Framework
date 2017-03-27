@@ -119,7 +119,7 @@ namespace MonoGame
                 if (effect.Lifespan <= 0)
                 {
                     Effects.Remove(effect);
-                    break;
+                    break;  // can't iterate enumeration after removing, ok since we should never really need to have multiple effects die at once
                 }
             }
         }
