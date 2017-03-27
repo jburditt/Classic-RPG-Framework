@@ -75,6 +75,8 @@ namespace MonoGame
                     if (KeyboardHelper.Down(Keys.Up) && KeyboardHelper.Down(Keys.Space))
                     {
                         Party.ActivePlayer.Attack(EnemyParty.Enemies.First());
+                        Party.ActivePlayer = null;
+
                         battleState = BattleState.Running;
 
                         if (EnemyParty.IsDead())
@@ -126,8 +128,10 @@ namespace MonoGame
 
         public void DrawActor(int i)
         {
-            SpriteBatch.Draw(ActorManager.BattleChars[Party.Actors[i].BattleChar], new Rectangle(560, 140 + i * 48, 48, 48),
-                Party.Actors[i].Rect.ToRectangle(), Color.White);
+            var actor = Party.Actors[i];
+
+            SpriteBatch.Draw(ActorManager.BattleChars[actor.BattleChar], new Rectangle(560 + (actor == Party.ActivePlayer ? -20 : 0), 140 + i * 48, 48, 48),
+                actor.Rect.ToRectangle(), Color.White);
         }
 
         public void DrawActorInfo(int i, Actor actor)

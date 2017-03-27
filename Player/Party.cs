@@ -11,7 +11,7 @@ namespace Player
         {
             get
             {
-                return Actors[activeIndex];
+                return activeIndex < 0 ? null : Actors[activeIndex];
             }
             set
             {
