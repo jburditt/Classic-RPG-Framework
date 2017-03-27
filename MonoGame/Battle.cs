@@ -7,15 +7,23 @@ using Common;
 using System.IO;
 using Microsoft.Xna.Framework.Input;
 using System.Linq;
+using MonoGame.Effect;
 
 namespace MonoGame
 {
     public class Battle
     {
         private Party Party { get; set; }
-
+        private List<IEffect> Effects = new List<IEffect>();
         private Dictionary<string, Texture2D> BattleBg = new Dictionary<string, Texture2D>();
+
+        private SpriteBatch SpriteBatch;
         private EnemyParty EnemyParty;
+        private ActorManager ActorManager;
+        private EnemyManager EnemyManager;
+        private IconManager IconManager;
+        private Dialog Dialog;
+        private SpriteFont SpriteFont;
         private BattleState battleState = BattleState.Running;
         private int timeIncrement = 1;
 
@@ -30,10 +38,16 @@ namespace MonoGame
             }
         }
 
-        public void Init(EnemyParty enemyParty, Party party)
+        public void Init(SpriteBatch spriteBatch, ActorManager actorManager, EnemyManager enemyManager, IconManager iconManager, EnemyParty enemyParty, Party party, Dialog dialog, SpriteFont spriteFont)
         {
+            SpriteBatch = spriteBatch;
+            ActorManager = actorManager;
+            EnemyManager = enemyManager;
+            IconManager = iconManager;
             EnemyParty = enemyParty;
             Party = party;
+            Dialog = dialog;
+            SpriteFont = spriteFont;
         }
 
         public bool Update()
@@ -43,7 +57,10 @@ namespace MonoGame
                 case BattleState.Running:
                     foreach (var enemy in EnemyParty.Enemies)
                         if (enemy.TimeLapse(timeIncrement))
+                        {
                             enemy.Action(Party);
+                            Effects.Add(new DialogEffect(SpriteBatch, Dialog, SpriteFont, $"{enemy.Name} attacked."));
+                        }
                     foreach (var actor in Party.Actors)
                     {
                         if (actor.TimeLapse(timeIncrement))
@@ -69,49 +86,61 @@ namespace MonoGame
             return false;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Dialog dialog, SpriteFont spriteFont, ActorManager actorManager, EnemyManager enemyManager, IconManager iconManager)
+        public void Draw()
         {
-            spriteBatch.DrawTexture(BattleBg["1"], 0, 0);
-            dialog.Draw(spriteBatch, new Rectangle(200, 330, 440, 150), 0);
+            SpriteBatch.DrawTexture(BattleBg["1"], 0, 0);
+            Dialog.Draw(SpriteBatch, new Rectangle(200, 330, 440, 150), 0);
 
             if (battleState == BattleState.Idle)
             {
-                spriteBatch.DrawTexture(iconManager.Icons["attack"], 50, 350, Color.White * (KeyboardHelper.Down(Keys.Up) ? 1f : 0.7f));
-                spriteBatch.DrawTexture(iconManager.Icons["magic"], 20, 380, Color.White * (KeyboardHelper.Down(Keys.Left) ? 1f : 0.7f));
-                spriteBatch.DrawTexture(iconManager.Icons["defend"], 80, 380, Color.White * (KeyboardHelper.Down(Keys.Right) ? 1f : 0.7f));
-                spriteBatch.DrawTexture(iconManager.Icons["item"], 50, 410, Color.White * (KeyboardHelper.Down(Keys.Down) ? 1f : 0.7f));
-                spriteBatch.DrawTexture(iconManager.Icons["run"], 20, 410, Color.White * 0.7f);
+                SpriteBatch.DrawTexture(IconManager.Icons["attack"], 50, 350, Color.White * (KeyboardHelper.Down(Keys.Up) ? 1f : 0.7f));
+                SpriteBatch.DrawTexture(IconManager.Icons["magic"], 20, 380, Color.White * (KeyboardHelper.Down(Keys.Left) ? 1f : 0.7f));
+                SpriteBatch.DrawTexture(IconManager.Icons["defend"], 80, 380, Color.White * (KeyboardHelper.Down(Keys.Right) ? 1f : 0.7f));
+                SpriteBatch.DrawTexture(IconManager.Icons["item"], 50, 410, Color.White * (KeyboardHelper.Down(Keys.Down) ? 1f : 0.7f));
+                SpriteBatch.DrawTexture(IconManager.Icons["run"], 20, 410, Color.White * 0.7f);
             }
 
             var i = 0;
             foreach (var actor in Party.Actors)
             {
-                DrawActor(i, actorManager, spriteBatch);
-                DrawActorInfo(i, actor, spriteBatch, spriteFont);
+                DrawActor(i);
+                DrawActorInfo(i, actor);
                 i++;
             }
 
             // draw enemies
-            spriteBatch.DrawTexture(enemyManager.Sprites["DarkTroll"], 60, 200);
+            SpriteBatch.DrawTexture(EnemyManager.Sprites["DarkTroll"], 60, 200);
+
+            // draw effects
+            foreach (var effect in Effects)
+            {
+                effect.Draw();
+                effect.Update();
+                if (effect.Lifespan <= 0)
+                {
+                    Effects.Remove(effect);
+                    break;
+                }
+            }
         }
 
-        public void DrawActor(int i, ActorManager actorManager, SpriteBatch spriteBatch)
+        public void DrawActor(int i)
         {
-            spriteBatch.Draw(actorManager.BattleChars[Party.Actors[i].BattleChar], new Rectangle(560, 140 + i * 48, 48, 48),
+            SpriteBatch.Draw(ActorManager.BattleChars[Party.Actors[i].BattleChar], new Rectangle(560, 140 + i * 48, 48, 48),
                 Party.Actors[i].Rect.ToRectangle(), Color.White);
         }
 
-        public void DrawActorInfo(int i, Actor actor, SpriteBatch spriteBatch, SpriteFont spriteFont)
+        public void DrawActorInfo(int i, Actor actor)
         {
-            spriteBatch.DrawString(spriteFont, actor.Name, new Vector2(280, 350 + i * 30), Color.White);
-            spriteBatch.DrawString(spriteFont, "HP: " + actor.Hp.ToString(), new Vector2(350, 350 + i * 30), Color.White);
-            spriteBatch.DrawString(spriteFont, "/", new Vector2(410, 350 + i * 30), Color.White);
-            spriteBatch.DrawString(spriteFont, actor.MaxHp.ToString(), new Vector2(420, 350 + i * 30), Color.White);
-            spriteBatch.DrawString(spriteFont, "MP: " + actor.Mp.ToString(), new Vector2(460, 350 + i * 30), Color.White);
-            spriteBatch.DrawString(spriteFont, "/", new Vector2(510, 350 + i * 30), Color.White);
-            spriteBatch.DrawString(spriteFont, actor.MaxMp.ToString(), new Vector2(520, 350 + i * 30), Color.White);
-            spriteBatch.DrawString(spriteFont, "Limit " + actor.Limit, new Vector2(550, 350 + i * 30), Color.White);
-            spriteBatch.DrawString(spriteFont, "%", new Vector2(610, 350 + i * 30), Color.White);
+            SpriteBatch.DrawString(SpriteFont, actor.Name, 280, 350 + i * 30);
+            SpriteBatch.DrawString(SpriteFont, "HP: " + actor.Hp.ToString(), 350, 350 + i * 30);
+            SpriteBatch.DrawString(SpriteFont, "/", 410, 350 + i * 30);
+            SpriteBatch.DrawString(SpriteFont, actor.MaxHp.ToString(), 420, 350 + i * 30);
+            SpriteBatch.DrawString(SpriteFont, "MP: " + actor.Mp.ToString(), 460, 350 + i * 30);
+            SpriteBatch.DrawString(SpriteFont, "/", 510, 350 + i * 30);
+            SpriteBatch.DrawString(SpriteFont, actor.MaxMp.ToString(), 520, 350 + i * 30);
+            SpriteBatch.DrawString(SpriteFont, "Limit " + actor.Limit, 550, 350 + i * 30);
+            SpriteBatch.DrawString(SpriteFont, "%", 610, 350 + i * 30);
         }
     }
 }

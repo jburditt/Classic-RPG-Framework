@@ -9,5 +9,10 @@ namespace MonoGame
         {
             spriteBatch.Draw(texture, new Rectangle(x, y, texture.Width, texture.Height), color ?? Color.White);
         }
+
+        public static void DrawString(this SpriteBatch spriteBatch, SpriteFont spriteFont, string text, int x, int y, Color? color = null)
+        {
+            spriteBatch.DrawString(spriteFont, text, new Vector2(x, y), color ?? Color.White);
+        }
     }
 }

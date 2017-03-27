@@ -86,7 +86,10 @@ namespace MonoGame
                     new Actor("sheba", "sheba") { Name = "Sheba", Hp = 44, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 5 }
                 }
             };
-            battle.Init(new EnemyParty(new List<Enemy> { enemyManager.Enemies["DarkTroll"] }), party);
+
+            var enemyParty = new EnemyParty(new List<Enemy> { enemyManager.Enemies["DarkTroll"] });
+
+            battle.Init(spriteBatch, actorManager, enemyManager, iconManager, enemyParty, party, dialog, font);
 
             //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
@@ -187,7 +190,7 @@ namespace MonoGame
 
                 case GameState.Battle:
 
-                    battle.Draw(spriteBatch, dialog, font, actorManager, enemyManager, iconManager);
+                    battle.Draw();
                     break;
 
             }
