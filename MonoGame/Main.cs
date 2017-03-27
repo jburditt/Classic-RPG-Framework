@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Player;
+using System.Collections.Generic;
 
 namespace MonoGame
 {
@@ -66,6 +67,7 @@ namespace MonoGame
             dialog = new Dialog(Content);
             songManager = new SongManager(Content);
             //songManager.Play("01 - Namazu");
+            songManager.Play("Battle of the Mind");
             soundManager = new SoundManager(Content);
             actorManager = new ActorManager(Content);
             enemyManager = new EnemyManager(Content);
@@ -74,10 +76,20 @@ namespace MonoGame
             menu = Content.Load<Texture2D>("menubg");
 
             battle = new Battle(Content);
-            actorManager.Party[0] = new Actor("gus", "gus") { Name = "Gus", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
-            actorManager.Party[1] = new Actor("fitz", "fitz") { Name = "Fitz", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
-            actorManager.Party[2] = new Actor("sorah", "sorah") { Name = "Sorah", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
-            actorManager.Party[3] = new Actor("sheba", "sheba") { Name = "Sheba", Hp = 40, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 23 };
+
+            var party = new Party
+            {
+                Actors = new List<Actor> {
+                    new Actor("gus", "gus") { Name = "Gus", Hp = 40, MaxHp = 58, Mp = 2, MaxMp = 8, Limit = 23 },
+                    new Actor("fitz", "fitz") { Name = "Fitz", Hp = 32, MaxHp = 52, Mp = 5, MaxMp = 12, Limit = 17 },
+                    new Actor("sorah", "sorah") { Name = "Sorah", Hp = 102, MaxHp = 252, Mp = 8, MaxMp = 12, Limit = 37 },
+                    new Actor("sheba", "sheba") { Name = "Sheba", Hp = 44, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 5 }
+                }
+            };
+            battle.Init(new EnemyParty(new List<Enemy> { enemyManager.Enemies["DarkTroll"] }), party);
+
+            //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
+            //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
         }
 
         /// <summary>
@@ -127,6 +139,12 @@ namespace MonoGame
                     if (KeyboardHelper.Down(Keys.Enter))
                         gameState = GameState.World;
                     break;
+
+                case GameState.Battle:
+                    if (battle.Update())
+                        gameState = GameState.World;
+                    break;
+
                 case GameState.World:
                     player.Update(map, deltaTime);
                     break;

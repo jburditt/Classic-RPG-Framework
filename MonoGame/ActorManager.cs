@@ -11,7 +11,6 @@ namespace MonoGame
     {
         public Dictionary<string, Texture2D> Charsets { get; set; } = new Dictionary<string, Texture2D>();
         public Dictionary<string, Texture2D> BattleChars { get; set; } = new Dictionary<string, Texture2D>();
-        public Actor[] Party = new Actor[4];
 
         public ActorManager(ContentManager Content)
         {

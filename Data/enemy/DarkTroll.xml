@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Enemy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Dark Troll</Name>
+  <Hp>10</Hp>
+  <MaxHp>10</MaxHp>
+  <Mp>0</Mp>
+  <MaxMp>0</MaxMp>
+  <SpriteName>DarkTroll</SpriteName>
+</Enemy>

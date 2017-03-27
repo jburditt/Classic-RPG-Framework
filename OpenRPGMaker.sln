@@ -14,18 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0F157C38-9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{72912467-9F1F-4EB8-9B8F-C45486ADA0D9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "battlebg", "battlebg", "{3A6881AE-7311-4E22-B779-CDAFBE767384}"
-	ProjectSection(SolutionItems) = preProject
-		Data\battlebg\1.jpg = Data\battlebg\1.jpg
-		Data\battlebg\2.jpg = Data\battlebg\2.jpg
-		Data\battlebg\3.jpg = Data\battlebg\3.jpg
-		Data\battlebg\4.jpg = Data\battlebg\4.jpg
-		Data\battlebg\5.jpg = Data\battlebg\5.jpg
-		Data\battlebg\6.jpg = Data\battlebg\6.jpg
-		Data\battlebg\7.jpg = Data\battlebg\7.jpg
-		Data\battlebg\8.jpg = Data\battlebg\8.jpg
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player", "Player\Player.csproj", "{88F12E9B-D503-4AD4-A925-6A7A9A8210D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{C44873DB-E73E-49CA-AB9A-18205E254E58}"
@@ -80,8 +68,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{3A6881AE-7311-4E22-B779-CDAFBE767384} = {0F157C38-9181-4FF8-92C8-2C6AB1A85386}
 	EndGlobalSection
 EndGlobal

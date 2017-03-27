@@ -22,4 +22,24 @@
         LoadGame,
         Exit
     }
+
+    public enum BattleState
+    {
+        Running,
+        Idle
+    }
+
+    public enum EnemyState
+    {
+        Waiting,
+        Ready,
+        Dead
+    }
+
+    public enum ActorState
+    {
+        Waiting,
+        Ready,
+        Dead
+    }
 }
