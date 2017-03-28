@@ -18,6 +18,7 @@ namespace MonoGame
         ActorManager actorManager;
         EnemyManager enemyManager;
         IconManager iconManager;
+        InputManager inputManager;
         Player player;
         Dialog dialog;
         KeyboardState previousState;
@@ -49,6 +50,10 @@ namespace MonoGame
         /// </summary>
         protected override void Initialize()
         {
+            inputManager = new InputManager(this);
+            
+            this.Components.Add(inputManager);
+
             base.Initialize();
         }
 
@@ -89,7 +94,7 @@ namespace MonoGame
 
             var enemyParty = new EnemyParty(new List<Enemy> { enemyManager.Enemies["DarkTroll"] });
 
-            battle.Init(spriteBatch, actorManager, enemyManager, iconManager, enemyParty, party, dialog, font);
+            battle.Init(spriteBatch, actorManager, enemyManager, iconManager, inputManager, enemyParty, party, dialog, font);
 
             //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");

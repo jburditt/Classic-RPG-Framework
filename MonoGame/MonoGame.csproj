@@ -46,6 +46,7 @@
     <Compile Include="Effect\DialogEffect.cs" />
     <Compile Include="EnemyManager.cs" />
     <Compile Include="IconManager.cs" />
+    <Compile Include="InputManager.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Battle.cs" />
     <Compile Include="RectangleExtension.cs" />

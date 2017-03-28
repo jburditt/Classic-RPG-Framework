@@ -22,6 +22,7 @@ namespace MonoGame
         private ActorManager ActorManager;
         private EnemyManager EnemyManager;
         private IconManager IconManager;
+        private InputManager InputManager;
         private Dialog Dialog;
         private SpriteFont SpriteFont;
         private BattleState battleState = BattleState.Running;
@@ -38,12 +39,13 @@ namespace MonoGame
             }
         }
 
-        public void Init(SpriteBatch spriteBatch, ActorManager actorManager, EnemyManager enemyManager, IconManager iconManager, EnemyParty enemyParty, Party party, Dialog dialog, SpriteFont spriteFont)
+        public void Init(SpriteBatch spriteBatch, ActorManager actorManager, EnemyManager enemyManager, IconManager iconManager, InputManager inputManager, EnemyParty enemyParty, Party party, Dialog dialog, SpriteFont spriteFont)
         {
             SpriteBatch = spriteBatch;
             ActorManager = actorManager;
             EnemyManager = enemyManager;
             IconManager = iconManager;
+            InputManager = inputManager;
             EnemyParty = enemyParty;
             Party = party;
             Dialog = dialog;
@@ -51,28 +53,32 @@ namespace MonoGame
         }
 
         public bool Update()
-        {
-            switch(battleState)
+        {          
+            switch (battleState)
             {
                 case BattleState.Running:
+
                     foreach (var enemy in EnemyParty.Enemies)
                         if (enemy.TimeLapse(timeIncrement))
                         {
                             enemy.Action(Party);
                             Effects.Add(new DialogEffect(SpriteBatch, Dialog, SpriteFont, $"{enemy.Name} attacked."));
                         }
+
                     foreach (var actor in Party.Actors)
                     {
                         if (actor.TimeLapse(timeIncrement))
                         {
                             battleState = BattleState.Idle;
                             Party.ActivePlayer = actor;
+                            break;
                         }
                     }
                     break;
 
                 case BattleState.Idle:
-                    if (KeyboardHelper.Down(Keys.Up) && KeyboardHelper.Down(Keys.Space))
+
+                    if (InputManager.JustPressed(Input.Up) && InputManager.JustPressed(Input.FaceButtonDown))
                     {
                         Party.ActivePlayer.Attack(EnemyParty.Enemies.First());
                         Party.ActivePlayer = null;
