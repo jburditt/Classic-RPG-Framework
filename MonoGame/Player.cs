@@ -26,7 +26,7 @@ namespace MonoGame
 
         public void Update(Map map, float deltaTime)
         {
-            if (KeyboardHelper.ShiftDown())
+            if (InputManager.IsPressed(Input.FaceButtonLeft))
                 speedX = speedY = 300;
             else
                 speedX = speedY = 150;

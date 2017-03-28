@@ -123,7 +123,7 @@ namespace MonoGame
                 Exit();
 
             // Alt-Enter
-            if (KeyboardHelper.AltPress(previousState, Keys.Enter))
+            if (inputManager.IsPressed(Keys.F5))
             {
                 graphics.IsFullScreen = !graphics.IsFullScreen;
                 graphics.ApplyChanges();

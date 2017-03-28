@@ -53,7 +53,6 @@
     <Compile Include="SongManager.cs" />
     <Compile Include="SpriteBatchExtensions.cs" />
     <Compile Include="TextureHelper.cs" />
-    <Compile Include="KeyboardHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Dialog.cs" />

@@ -103,7 +103,8 @@ namespace MonoGame
                 { Input.Down, Keys.Down },
                 { Input.Back, Keys.Back },
                 { Input.Start, Keys.Enter },
-                { Input.FaceButtonDown, Keys.Space }
+                { Input.FaceButtonDown, Keys.Space },
+                { Input.FaceButtonLeft, Keys.RightShift }
             });
         }
 
