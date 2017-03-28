@@ -12,13 +12,16 @@ namespace MonoGame
         public int step;
         public int speedX = 150, speedY = 150;
         public Direction direction;
-        
+
+        private InputManager InputManager;
+
         private Texture2D sprite;
         private WalkAnimation animation = new WalkAnimation();
 
-        public Player(ContentManager Content)
+        public Player(ContentManager Content, InputManager inputManager)
         {
             sprite = Content.Load<Texture2D>("charset\\Gus");
+            InputManager = inputManager;
         }
 
         public void Update(Map map, float deltaTime)
@@ -28,21 +31,21 @@ namespace MonoGame
             else
                 speedX = speedY = 150;
 
-            if (KeyboardHelper.Down(Keys.Up) || KeyboardHelper.Down(Keys.Down) || KeyboardHelper.Down(Keys.Left) || KeyboardHelper.Down(Keys.Right))
+            if (InputManager.IsPressed(Keys.Up) || InputManager.IsPressed(Keys.Down) || InputManager.IsPressed(Keys.Left) || InputManager.IsPressed(Keys.Right))
                 animation.Step();
             else
                 animation.frame = 1;
 
-            if (KeyboardHelper.Down(Keys.Up))
+            if (InputManager.IsPressed(Keys.Up))
                 MoveUp(map, deltaTime);
 
-            if (KeyboardHelper.Down(Keys.Down))
+            if (InputManager.IsPressed(Keys.Down))
                 MoveDown(map, deltaTime);
 
-            if (KeyboardHelper.Down(Keys.Left))
+            if (InputManager.IsPressed(Keys.Left))
                 MoveLeft(map, deltaTime);
 
-            if (KeyboardHelper.Down(Keys.Right))
+            if (InputManager.IsPressed(Keys.Right))
                 MoveRight(map, deltaTime);
         }
 

@@ -4,20 +4,6 @@ namespace Player
 {
     public static class KeyboardHelper
     {
-        public static bool Down(params Keys[] keys)
-        {
-            var isKeyDown = true;
-
-            foreach (var key in keys)
-            {
-                isKeyDown = Keyboard.GetState().IsKeyDown(key);
-                if (!isKeyDown)
-                    return false;
-            }
-            
-            return true;
-        }
-
         public static bool ShiftDown()
         {
             var state = Keyboard.GetState();

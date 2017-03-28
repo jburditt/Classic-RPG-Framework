@@ -68,7 +68,7 @@ namespace MonoGame
             font = Content.Load<SpriteFont>("Menu");
 
             map = new Map(Content, Window);
-            player = new Player(Content);
+            player = new Player(Content, inputManager);
             dialog = new Dialog(Content);
             songManager = new SongManager(Content);
             //songManager.Play("01 - Namazu");
@@ -132,19 +132,19 @@ namespace MonoGame
             switch (gameState)
             {
                 case GameState.StartMenu:
-                    if (KeyboardHelper.Down(Keys.Up))
+                    if (inputManager.IsPressed(Keys.Up))
                     {
                         menuItem--;
                         if (menuItem < MenuItem.NewGame)
                             menuItem = MenuItem.Exit;
                     }
-                    if (KeyboardHelper.Down(Keys.Down))
+                    if (inputManager.IsPressed(Keys.Down))
                     {
                         menuItem++;
                         if (menuItem > MenuItem.Exit)
                             menuItem = MenuItem.NewGame;
                     }
-                    if (KeyboardHelper.Down(Keys.Enter))
+                    if (inputManager.IsPressed(Keys.Enter))
                         gameState = GameState.World;
                     break;
 

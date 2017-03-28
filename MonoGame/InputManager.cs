@@ -135,6 +135,19 @@ namespace MonoGame
             return index >= 0 && index < players.Count ? players[index] : null;
         }
 
+        public bool IsPressed(params Keys[] keys)
+        {
+            var isKeyDown = true;
+
+            foreach (var key in keys)
+            {
+                isKeyDown = Keyboard.GetState().IsKeyDown(key);
+                if (!isKeyDown)
+                    return false;
+            }
+
+            return true;
+        }
         public bool IsPressed(Keys key)
         {
             return currentKeyboardState.IsKeyDown(key);
@@ -149,6 +162,19 @@ namespace MonoGame
             if (player != null && player.GamePadIndex >= 0)
                 return player.CurrentState.IsButtonDown(button);
             return false;
+        }
+        public bool IsPressed(params Input[] inputs)
+        {
+            var isKeyDown = true;
+
+            foreach (var input in inputs)
+            {
+                isKeyDown = IsPressed(input);
+                if (!isKeyDown)
+                    return false;
+            }
+
+            return true;
         }
         public bool IsPressed(Input input)
         {
@@ -293,6 +319,13 @@ namespace MonoGame
             return false;
         }
 
+        /// <param name="key">Key Pressed</param>
+        /// <param name="keys">Key(s) held down</param>
+        public bool JustPressed(Keys key, params Keys[] keys)
+        {
+            return currentKeyboardState.IsKeyDown(key) && !previousKeyboardState.IsKeyDown(key) &&
+                IsPressed(keys);
+        }
         public bool JustPressed(Keys key)
         {
             return currentKeyboardState.IsKeyDown(key) && !previousKeyboardState.IsKeyDown(key);
@@ -306,6 +339,15 @@ namespace MonoGame
             var player = getPlayer(index);
             if (player != null && player.GamePadIndex >= 0)
                 return player.CurrentState.IsButtonDown(button) && !player.PreviousState.IsButtonDown(button);
+            return false;
+        }
+        /// <param name="key">Key Pressed</param>
+        /// <param name="keys">Key(s) held down</param>
+        public bool JustPressed(Input input, params Input[] inputs)
+        {
+            for (int i = 0; i < players.Count; i++)
+                if (JustPressed(input, i))
+                    return IsPressed(inputs);
             return false;
         }
         public bool JustPressed(Input input)

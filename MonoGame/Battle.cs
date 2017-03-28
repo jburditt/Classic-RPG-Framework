@@ -78,7 +78,7 @@ namespace MonoGame
 
                 case BattleState.Idle:
 
-                    if (InputManager.JustPressed(Input.Up) && InputManager.JustPressed(Input.FaceButtonDown))
+                    if (InputManager.JustPressed(Input.FaceButtonDown, Input.Up))
                     {
                         Party.ActivePlayer.Attack(EnemyParty.Enemies.First());
                         Party.ActivePlayer = null;
@@ -101,10 +101,10 @@ namespace MonoGame
 
             if (battleState == BattleState.Idle)
             {
-                SpriteBatch.DrawTexture(IconManager.Icons["attack"], 50, 350, Color.White * (KeyboardHelper.Down(Keys.Up) ? 1f : 0.7f));
-                SpriteBatch.DrawTexture(IconManager.Icons["magic"], 20, 380, Color.White * (KeyboardHelper.Down(Keys.Left) ? 1f : 0.7f));
-                SpriteBatch.DrawTexture(IconManager.Icons["defend"], 80, 380, Color.White * (KeyboardHelper.Down(Keys.Right) ? 1f : 0.7f));
-                SpriteBatch.DrawTexture(IconManager.Icons["item"], 50, 410, Color.White * (KeyboardHelper.Down(Keys.Down) ? 1f : 0.7f));
+                SpriteBatch.DrawTexture(IconManager.Icons["attack"], 50, 350, Color.White * (InputManager.IsPressed(Keys.Up) ? 1f : 0.7f));
+                SpriteBatch.DrawTexture(IconManager.Icons["magic"], 20, 380, Color.White * (InputManager.IsPressed(Keys.Left) ? 1f : 0.7f));
+                SpriteBatch.DrawTexture(IconManager.Icons["defend"], 80, 380, Color.White * (InputManager.IsPressed(Keys.Right) ? 1f : 0.7f));
+                SpriteBatch.DrawTexture(IconManager.Icons["item"], 50, 410, Color.White * (InputManager.IsPressed(Keys.Down) ? 1f : 0.7f));
                 SpriteBatch.DrawTexture(IconManager.Icons["run"], 20, 410, Color.White * 0.7f);
             }
 
