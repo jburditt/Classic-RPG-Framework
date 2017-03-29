@@ -1,4 +1,6 @@
-﻿namespace Player
+﻿using System;
+
+namespace Player
 {
     public struct Rect
     {
@@ -20,7 +22,12 @@
     {
         public static bool Intersects(this Rect a, Rect b)
         {
-            return a.X >= b.X && a.X <= b.X + b.Width && a.Y >= b.Y && a.Y <= b.Y + b.Height;
+            int x1 = Math.Max(a.X, b.X);
+            int x2 = Math.Min(a.X + a.Width, b.X + b.Width);
+            int y1 = Math.Max(a.Y, b.Y);
+            int y2 = Math.Min(a.Y + a.Height, b.Y + b.Height);
+
+            return (x2 >= x1 && y2 >= y1);
         }
     }
 }

@@ -10,7 +10,8 @@ namespace MonoGame
     public class Main : Game
     {
         // TODO Add this to references: http://opengameart.org/content/space-background
-        GraphicsDeviceManager graphics;
+        GraphicsDeviceManager graphicsDeviceManager;
+        Graphics graphics;
         SpriteBatch spriteBatch;
 
         SongManager songManager;
@@ -28,18 +29,18 @@ namespace MonoGame
 
         Battle battle;
 
-        GameState gameState = GameState.Battle;
+        GameState gameState = GameState.World;
         MenuItem menuItem = MenuItem.NewGame;
 
         private SpriteFont font;
 
         public Main()
         {
-            graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = Screen.Width;// GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            graphics.PreferredBackBufferHeight = Screen.Height;// GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            graphicsDeviceManager = new GraphicsDeviceManager(this);
+            graphicsDeviceManager.PreferredBackBufferWidth = Screen.Width;// GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            graphicsDeviceManager.PreferredBackBufferHeight = Screen.Height;// GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             //graphics.IsFullScreen = true;
-            graphics.ApplyChanges();
+            graphicsDeviceManager.ApplyChanges();
 
             Content.RootDirectory = "Content";
         }
@@ -69,6 +70,7 @@ namespace MonoGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Menu");
 
+            graphics = new Graphics(spriteBatch, font);
             map = new Map(new TilesetManager(Content, spriteBatch, "Content/world2.tmx"));
             player = new Player(Content, inputManager);
             dialog = new Dialog(Content, spriteBatch);
@@ -76,9 +78,9 @@ namespace MonoGame
             //songManager.Play("01 - Namazu");
             songManager.Play("Battle of the Mind");
             soundManager = new SoundManager(Content);
-            actorManager = new ActorManager(Content);
-            enemyManager = new EnemyManager(Content);
-            iconManager = new IconManager(Content);
+            actorManager = new ActorManager(Content, spriteBatch);
+            enemyManager = new EnemyManager(Content, spriteBatch);
+            iconManager = new IconManager(Content, spriteBatch);
 
             menu = Content.Load<Texture2D>("menubg");
 
@@ -97,7 +99,7 @@ namespace MonoGame
             var enemyParty = new EnemyParty(new List<Enemy> { enemyManager.Enemies["DarkTroll"] });
 
             battleManager = new BattleManager(Content, spriteBatch);
-            battle.Init(spriteBatch, battleManager, actorManager, enemyManager, iconManager, inputManager, enemyParty, party, dialog, font);
+            battle.Init(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, enemyParty, party, dialog, font);
 
             //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
@@ -128,8 +130,8 @@ namespace MonoGame
             // Alt-Enter
             if (inputManager.IsPressed(Keys.F5))
             {
-                graphics.IsFullScreen = !graphics.IsFullScreen;
-                graphics.ApplyChanges();
+                graphicsDeviceManager.IsFullScreen = !graphicsDeviceManager.IsFullScreen;
+                graphicsDeviceManager.ApplyChanges();
             }
 
             switch (gameState)

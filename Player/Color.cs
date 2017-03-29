@@ -18,6 +18,44 @@ namespace Player
             A = a;
         }
 
+        public static bool operator ==(ColorStruct a, ColorStruct b)
+        {
+            return (a.A == b.A &&
+                a.R == b.R &&
+                a.G == b.G &&
+                a.B == b.B);
+        }
+
+        public static bool operator !=(ColorStruct a, ColorStruct b)
+        {
+            return !(a == b);
+        }
+
+        public static ColorStruct Multiply(ColorStruct value, float scale)
+        {
+            byte Red = (byte)(value.R * scale);
+            byte Green = (byte)(value.G * scale);
+            byte Blue = (byte)(value.B * scale);
+            byte Alpha = (byte)(value.A * scale);
+
+            return new ColorStruct(Red, Green, Blue, Alpha);
+        }
+
+        public static ColorStruct operator *(ColorStruct value, float scale)
+        {
+            return Multiply(value, scale);
+        }
+
+        public override int GetHashCode()
+        {
+            return R + G * 1000 + B * 1000000 + A * 1000000000;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return ((obj is Color) && this.Equals((Color)obj));
+        }
+
         public override string ToString()
         {
             return R + "," + G + "," + B + "," + A;

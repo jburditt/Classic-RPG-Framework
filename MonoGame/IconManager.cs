@@ -1,6 +1,7 @@
 ﻿using Common;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Player;
 using System.Collections.Generic;
 using System.IO;
 
@@ -8,10 +9,14 @@ namespace MonoGame
 {
     public class IconManager
     {
+        private readonly SpriteBatch _spriteBatch;
+
         public Dictionary<string, Texture2D> Icons = new Dictionary<string, Texture2D>();
 
-        public IconManager(ContentManager Content)
+        public IconManager(ContentManager Content, SpriteBatch spriteBatch)
         {
+            _spriteBatch = spriteBatch;
+
             var filepaths = FileManager.GetFilepaths("../../../Content/icon");
 
             foreach (var filepath in filepaths)
@@ -19,6 +24,11 @@ namespace MonoGame
                 var filename = Path.GetFileNameWithoutExtension(filepath);
                 Icons.Add(filename, Content.Load<Texture2D>("icon\\" + filename));
             }
+        }
+
+        public void Draw(string iconName, int x, int y, ColorStruct? color = null)
+        {
+            _spriteBatch.DrawTexture(Icons[iconName], x, y, color.ToColor());
         }
     }
 }
