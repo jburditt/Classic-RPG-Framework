@@ -27,7 +27,7 @@ namespace MonoGame
 
         Battle battle;
 
-        GameState gameState = GameState.Battle;
+        GameState gameState = GameState.World;
         MenuItem menuItem = MenuItem.NewGame;
 
         private SpriteFont font;
@@ -68,7 +68,7 @@ namespace MonoGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Menu");
 
-            map = new Map(Content, Window, new TilesetManager(Content, spriteBatch, "Content/world2.tmx"));
+            map = new Map(new TilesetManager(Content, spriteBatch, "Content/world2.tmx"));
             player = new Player(Content, inputManager);
             dialog = new Dialog(Content);
             songManager = new SongManager(Content);
@@ -189,7 +189,7 @@ namespace MonoGame
 
                 case GameState.World:
 
-                    map.Draw(spriteBatch, (int) player.x, (int) player.y);
+                    map.Draw((int) player.x, (int) player.y);
                     player.Draw(map, spriteBatch);
                     //spriteBatch.DrawString(font, "FPS: " + (int) (1/deltaTime) + " X: " + player.x/32 + " Y: " + player.y/32, new Vector2(10, 10), Color.White);
                     break;

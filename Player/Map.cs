@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Player;
+﻿using Player;
 using Player.Manager;
 
 namespace MonoGame
@@ -17,7 +14,7 @@ namespace MonoGame
 
         int windowTilesWide, windowTilesHigh;
 
-        public Map(ContentManager Content, GameWindow Window, ITilesetManager tilesetManager)
+        public Map(ITilesetManager tilesetManager)
         {
             _tilesetManager = tilesetManager;
 
@@ -66,8 +63,8 @@ namespace MonoGame
 
                 if (tile != null && !tile.IsPassable)
                 {
-                    var playerRect = new Rectangle(playerX, playerY + 8, 24, 24);
-                    var tileRect = new Rectangle(x * _tilesetManager.TileWidth, y * _tilesetManager.TileHeight, _tilesetManager.TileWidth, _tilesetManager.TileHeight);
+                    var playerRect = new Rect(playerX, playerY + 8, 24, 24);
+                    var tileRect = new Rect(x * _tilesetManager.TileWidth, y * _tilesetManager.TileHeight, _tilesetManager.TileWidth, _tilesetManager.TileHeight);
 
                     if (playerRect.Intersects(tileRect))
                         return true;
@@ -77,7 +74,7 @@ namespace MonoGame
             return false;
         }
 
-        public void Draw(SpriteBatch spriteBatch, int playerX, int playerY)
+        public void Draw(int playerX, int playerY)
         {
             for (var y = 0; y <= windowTilesHigh; y++)
                 for (var x = 0; x <= windowTilesWide; x++)

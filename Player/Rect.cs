@@ -15,4 +15,12 @@
             this.Height = height;
         }
     }
+
+    public static class RectExtensions
+    {
+        public static bool Intersects(this Rect a, Rect b)
+        {
+            return a.X >= b.X && a.X <= b.X + b.Width && a.Y >= b.Y && a.Y <= b.Y + b.Height;
+        }
+    }
 }

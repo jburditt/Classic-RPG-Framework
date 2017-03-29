@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-
-namespace Player
+﻿namespace Player
 {
     public interface IEffect
     {
