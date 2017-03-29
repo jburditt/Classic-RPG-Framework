@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Player;
-using Common;
-using System.IO;
 using Microsoft.Xna.Framework.Input;
 using System.Linq;
 using MonoGame.Effect;
+using MonoGame.Manager;
 
 namespace MonoGame
 {
@@ -15,9 +13,9 @@ namespace MonoGame
     {
         private Party Party { get; set; }
         private List<IEffect> Effects = new List<IEffect>();
-        private Dictionary<string, Texture2D> BattleBg = new Dictionary<string, Texture2D>();
 
         private SpriteBatch SpriteBatch;
+        private BattleManager BattleManager;
         private EnemyParty EnemyParty;
         private ActorManager ActorManager;
         private EnemyManager EnemyManager;
@@ -28,20 +26,10 @@ namespace MonoGame
         private BattleState battleState = BattleState.Running;
         private int timeIncrement = 1;
 
-        public Battle(ContentManager Content)
-        {
-            var filepaths = FileManager.GetFilepaths("../../../Content/battlebg");
-
-            foreach (var filepath in filepaths)
-            {
-                var filename = Path.GetFileNameWithoutExtension(filepath);
-                BattleBg.Add(filename, Content.Load<Texture2D>("battlebg\\" + filename));
-            }
-        }
-
-        public void Init(SpriteBatch spriteBatch, ActorManager actorManager, EnemyManager enemyManager, IconManager iconManager, InputManager inputManager, EnemyParty enemyParty, Party party, Dialog dialog, SpriteFont spriteFont)
+        public void Init(SpriteBatch spriteBatch, BattleManager battleManager, ActorManager actorManager, EnemyManager enemyManager, IconManager iconManager, InputManager inputManager, EnemyParty enemyParty, Party party, Dialog dialog, SpriteFont spriteFont)
         {
             SpriteBatch = spriteBatch;
+            BattleManager = battleManager;
             ActorManager = actorManager;
             EnemyManager = enemyManager;
             IconManager = iconManager;
@@ -96,8 +84,8 @@ namespace MonoGame
 
         public void Draw()
         {
-            SpriteBatch.DrawTexture(BattleBg["1"], 0, 0);
-            Dialog.Draw(SpriteBatch, new Rectangle(200, 330, 440, 150), 0);
+            BattleManager.Draw("1");
+            Dialog.Draw(new Rectangle(200, 330, 440, 150));
 
             if (battleState == BattleState.Idle)
             {

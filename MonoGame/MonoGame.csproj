@@ -48,6 +48,7 @@
     <Compile Include="EnemyManager.cs" />
     <Compile Include="IconManager.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="Manager\BattleManager.cs" />
     <Compile Include="Manager\TilesetManager.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Battle.cs" />

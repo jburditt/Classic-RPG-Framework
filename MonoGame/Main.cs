@@ -13,13 +13,14 @@ namespace MonoGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Map map;
         SongManager songManager;
         SoundManager soundManager;
+        BattleManager battleManager;
         ActorManager actorManager;
         EnemyManager enemyManager;
         IconManager iconManager;
         InputManager inputManager;
+        Map map;
         Player player;
         Dialog dialog;
         KeyboardState previousState;
@@ -27,7 +28,7 @@ namespace MonoGame
 
         Battle battle;
 
-        GameState gameState = GameState.World;
+        GameState gameState = GameState.Battle;
         MenuItem menuItem = MenuItem.NewGame;
 
         private SpriteFont font;
@@ -70,7 +71,7 @@ namespace MonoGame
 
             map = new Map(new TilesetManager(Content, spriteBatch, "Content/world2.tmx"));
             player = new Player(Content, inputManager);
-            dialog = new Dialog(Content);
+            dialog = new Dialog(Content, spriteBatch);
             songManager = new SongManager(Content);
             //songManager.Play("01 - Namazu");
             songManager.Play("Battle of the Mind");
@@ -81,7 +82,7 @@ namespace MonoGame
 
             menu = Content.Load<Texture2D>("menubg");
 
-            battle = new Battle(Content);
+            battle = new Battle();
 
             var party = new Party
             {
@@ -95,7 +96,8 @@ namespace MonoGame
 
             var enemyParty = new EnemyParty(new List<Enemy> { enemyManager.Enemies["DarkTroll"] });
 
-            battle.Init(spriteBatch, actorManager, enemyManager, iconManager, inputManager, enemyParty, party, dialog, font);
+            battleManager = new BattleManager(Content, spriteBatch);
+            battle.Init(spriteBatch, battleManager, actorManager, enemyManager, iconManager, inputManager, enemyParty, party, dialog, font);
 
             //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
@@ -181,7 +183,7 @@ namespace MonoGame
                 case GameState.StartMenu:
 
                     spriteBatch.Draw(menu, new Rectangle(0, 0, Screen.Width, Screen.Height), new Rectangle(200, 200, Screen.Width + 200, Screen.Height + 200), Color.White);
-                    dialog.Draw(spriteBatch, new Rectangle(160, 200, 130, 130), 0);
+                    dialog.Draw(new Rectangle(160, 200, 130, 130));
                     spriteBatch.DrawString(font, "New Game", new Vector2(180, 220), Color.White);
                     spriteBatch.DrawString(font, "Load Game", new Vector2(180, 240), Color.White);
                     spriteBatch.DrawString(font, "Exit", new Vector2(180, 260), Color.White);

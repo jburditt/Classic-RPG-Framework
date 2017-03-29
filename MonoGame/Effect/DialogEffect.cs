@@ -25,7 +25,7 @@ namespace MonoGame.Effect
 
         public void Draw()
         {
-            Dialog.Draw(SpriteBatch, new Rectangle(0, 0, 640, 45), 0);
+            Dialog.Draw(new Rectangle(0, 0, 640, 45));
             SpriteBatch.DrawString(Font, Text, 50, 15);
         }
 
