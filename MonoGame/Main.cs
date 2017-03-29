@@ -29,7 +29,7 @@ namespace MonoGame
 
         Battle battle;
 
-        GameState gameState = GameState.World;
+        GameState gameState = GameState.Battle;
         MenuItem menuItem = MenuItem.NewGame;
 
         private SpriteFont font;

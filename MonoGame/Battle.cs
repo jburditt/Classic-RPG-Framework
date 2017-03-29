@@ -50,7 +50,7 @@ namespace MonoGame
                         if (enemy.TimeLapse(timeIncrement))
                         {
                             enemy.Action(Party);
-                            //Effects.Add(new DialogEffect(SpriteBatch, Dialog, SpriteFont, $"{enemy.Name} attacked."));
+                            Effects.Add(new DialogEffect(_graphics, Dialog, SpriteFont, $"{enemy.Name} attacked."));
                         }
 
                     foreach (var actor in Party.Actors)
