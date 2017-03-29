@@ -49,19 +49,19 @@ namespace MonoGame
                 MoveRight(map, deltaTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(Map map, SpriteBatch spriteBatch)
         {
             animation.Y = (int)direction;
 
             int xPos = Screen.HalfWidth;
             if (x < Screen.HalfWidth) xPos = (int)x;
-            if (x > Map.Width - Screen.HalfWidth)
+            if (x > map.Width - Screen.HalfWidth)
                 xPos = (int)x - Screen.Width - Screen.HalfWidth;
 
             int yPos = Screen.HalfHeight;
             if (y < Screen.HalfHeight) yPos = (int)y;
-            if (y > Map.Height - Screen.HalfHeight)
-                yPos = (int)y - Map.Height + Screen.Height;
+            if (y > map.Height - Screen.HalfHeight)
+                yPos = (int)y - map.Height + Screen.Height;
              
             spriteBatch.Draw(sprite, animation.DrawRect(xPos, yPos).ToRectangle(), animation.SourceRect.ToRectangle(), Color.White);
         }
@@ -83,7 +83,7 @@ namespace MonoGame
             if (!map.IsCollision((int)x, (int)(y + deltaTime * speedX), direction))
                 y += deltaTime * speedY;
 
-            if (y > Map.Height) y = Map.Height;
+            if (y > map.Height) y = map.Height;
         }
 
         public void MoveLeft(Map map, float deltaTime)
@@ -103,7 +103,7 @@ namespace MonoGame
             if (!map.IsCollision((int)(x + deltaTime * speedX), (int)y, direction))
                 x += deltaTime * speedX;
 
-            if (x > Map.Width) x = Map.Width;
+            if (x > map.Width) x = map.Width;
         }
     }
 }

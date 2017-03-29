@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.Manager;
 using Player;
 using System.Collections.Generic;
 
@@ -67,7 +68,7 @@ namespace MonoGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Menu");
 
-            map = new Map(Content, Window);
+            map = new Map(Content, Window, new TilesetManager(Content, spriteBatch, "Content/world2.tmx"));
             player = new Player(Content, inputManager);
             dialog = new Dialog(Content);
             songManager = new SongManager(Content);
@@ -189,7 +190,7 @@ namespace MonoGame
                 case GameState.World:
 
                     map.Draw(spriteBatch, (int) player.x, (int) player.y);
-                    player.Draw(spriteBatch);
+                    player.Draw(map, spriteBatch);
                     //spriteBatch.DrawString(font, "FPS: " + (int) (1/deltaTime) + " X: " + player.x/32 + " Y: " + player.y/32, new Vector2(10, 10), Color.White);
                     break;
 

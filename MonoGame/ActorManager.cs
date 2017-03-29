@@ -1,7 +1,6 @@
 ﻿using Common;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Player;
 using System.Collections.Generic;
 using System.IO;
 

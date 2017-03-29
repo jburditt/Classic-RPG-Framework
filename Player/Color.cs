@@ -8,6 +8,7 @@ namespace Player
         public int G { get; set; }
         public int B { get; set; }
         public int A { get; set; }
+        public static ColorStruct White { get { return new ColorStruct(255, 255, 255, 255); } }
 
         public ColorStruct(int r, int g, int b, int a)
         {

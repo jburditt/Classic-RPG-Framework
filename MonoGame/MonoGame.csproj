@@ -43,10 +43,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ActorManager.cs" />
+    <Compile Include="Color.cs" />
     <Compile Include="Effect\DialogEffect.cs" />
     <Compile Include="EnemyManager.cs" />
     <Compile Include="IconManager.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="Manager\TilesetManager.cs" />
     <Compile Include="SoundManager.cs" />
     <Compile Include="Battle.cs" />
     <Compile Include="RectangleExtension.cs" />
@@ -54,7 +56,6 @@
     <Compile Include="SpriteBatchExtensions.cs" />
     <Compile Include="TextureHelper.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Map.cs" />
     <Compile Include="Dialog.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
@@ -70,10 +71,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="TiledSharp, Version=0.15.5889.20321, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TiledSharp.0.15\lib\TiledSharp.dll</HintPath>
-      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
