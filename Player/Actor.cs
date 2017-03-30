@@ -46,13 +46,15 @@
             return false;
         }
 
-        public void Attack(Enemy enemy)
+        public int Attack(Enemy enemy)
         {
-            enemy.Hp -= 1;
+            enemy.Hp -= 2;
             if (enemy.Hp <= 0)
                 enemy.State = EnemyState.Dead;
 
             State = ActorState.Waiting;
+
+            return 2;
         }
     }
 }

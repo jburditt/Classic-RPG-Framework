@@ -9,6 +9,7 @@ namespace MonoGame
     public class Main : Game
     {
         // TODO Add this to references: http://opengameart.org/content/space-background
+        //http://opengameart.org/content/iron-plague-pointercursor
 
         // MonoGame Framework
         GraphicsDeviceManager graphicsDeviceManager;
@@ -67,7 +68,7 @@ namespace MonoGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Menu");
 
-            graphics = new Graphics(spriteBatch, font);
+            graphics = new Graphics(Content, spriteBatch, font);
             tilesetManager = new TilesetManager(Content, spriteBatch, "Content/world2.tmx");
             dialog = new Dialog(Content, spriteBatch);
             songManager = new SongManager(Content);
@@ -75,9 +76,6 @@ namespace MonoGame
             actorManager = new ActorManager(Content, spriteBatch);
             enemyManager = new EnemyManager(Content, spriteBatch);
             iconManager = new IconManager(Content, spriteBatch);
-
-            menu = Content.Load<Texture2D>("menubg");
-
             battleManager = new BattleManager(Content, spriteBatch);
 
             gameEngine = new GameEngine(songManager, graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, tilesetManager, dialog);

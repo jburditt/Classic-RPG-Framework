@@ -58,17 +58,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Menu.spritefont
 
-#begin menubg.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=0,18,30,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:menubg.jpg
-
 #begin terrain.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -502,6 +491,28 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:song\SID_5_Lone_Walk.mp3
+
+#begin sprite\cursor.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=69,78,91,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:sprite\cursor.png
+
+#begin sprite\menubg.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=0,18,30,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:sprite\menubg.jpg
 
 #begin tileset\TileB-Lunarea.png
 /importer:TextureImporter

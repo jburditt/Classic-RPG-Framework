@@ -5,8 +5,10 @@ namespace Player
 {
     public class GamePlayer
     {
+        public bool IsMoving { get; set; }
+
         public float x = 520, y = 610;
-        public int step;
+        public float step;
         public int speedX = 150, speedY = 150;
         public Direction direction;
 
@@ -30,9 +32,18 @@ namespace Player
                 speedX = speedY = 150;
 
             if (_inputManager.IsPressedKey((int)Keys.Up) || _inputManager.IsPressedKey((int)Keys.Down) || _inputManager.IsPressedKey((int)Keys.Left) || _inputManager.IsPressedKey((int)Keys.Right))
+            {
                 animation.Step();
+                IsMoving = true;
+                step += deltaTime;
+                if (_inputManager.IsPressedInput((int)Input.FaceButtonLeft))
+                    step += deltaTime;
+            }
             else
+            {
                 animation.frame = 1;
+                IsMoving = false;
+            }
 
             if (_inputManager.IsPressedKey((int)Keys.Up))
                 MoveUp(map, deltaTime);

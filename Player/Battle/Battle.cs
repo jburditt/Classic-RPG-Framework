@@ -20,12 +20,13 @@ namespace Player
         private IEnemyManager _enemyManager;
         private IIconManager _iconManager;
         private IInputManager _inputManager;
+        private ISongManager _songManager;
         private BattleState battleState = BattleState.Running;
         private int timeIncrement = 1;
 
         public Battle(
             IGraphics graphics, IBattleManager battleManager, IActorManager actorManager, IEnemyManager enemyManager, 
-            IIconManager iconManager, IInputManager inputManager, EnemyParty enemyParty, Party party, IDialog dialog)
+            IIconManager iconManager, IInputManager inputManager, ISongManager songManager, EnemyParty enemyParty, Party party, IDialog dialog)
         {
             _graphics = graphics;
             _battleManager = battleManager;
@@ -33,14 +34,24 @@ namespace Player
             _enemyManager = enemyManager;
             _iconManager = iconManager;
             _inputManager = inputManager;
+            _songManager = songManager;
             EnemyParty = enemyParty;
             Party = party;
             _dialog = dialog;
 
-            for (var i = 0; i < party.Actors.Count; i++) {
-                party.Actors[i].X = 560;
-                party.Actors[i].Y = 140 + i * 48;
+        }
+
+        public void Load()
+        {
+            _songManager.Play("Battle of the Mind");
+
+            for (var i = 0; i < Party.Actors.Count; i++)
+            {
+                Party.Actors[i].X = 560;
+                Party.Actors[i].Y = 140 + i * 48;
             }
+
+            EnemyParty = new EnemyParty(new List<Enemy> { _enemyManager.Enemies["DarkTroll"] });
         }
 
         public bool Update()
@@ -73,8 +84,8 @@ namespace Player
                     if (_inputManager.JustPressedInput((int)Input.FaceButtonDown, (int)Input.Up))
                     {
                         var enemy = EnemyParty.Enemies.First();
-                        Party.ActivePlayer.Attack(enemy);
-                        Effects.Add(new HpEffect(_graphics, "1", 60, 200));
+                        int damage = Party.ActivePlayer.Attack(enemy);
+                        Effects.Add(new HpEffect(_graphics, damage.ToString(), 60, 200));
 
                         Party.ActivePlayer = null;
 
