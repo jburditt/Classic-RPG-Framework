@@ -1,12 +1,13 @@
 ﻿using Common;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Player.Manager;
 using System.Collections.Generic;
 using System.IO;
 
 namespace MonoGame.Manager
 {
-    public class BattleManager
+    public class BattleManager : IBattleManager
     {
         private Dictionary<string, Texture2D> BattleBg = new Dictionary<string, Texture2D>();
 

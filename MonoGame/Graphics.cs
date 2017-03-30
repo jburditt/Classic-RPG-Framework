@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Player.Graphics;
 
 namespace MonoGame
 {
-    public class Graphics
+    public class Graphics : IGraphics
     {
         private readonly SpriteBatch _spriteBatch;
         private readonly SpriteFont _spriteFont;

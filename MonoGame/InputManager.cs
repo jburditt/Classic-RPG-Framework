@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Player;
+//using Player.Inputs;
 
 namespace MonoGame
 {
@@ -53,7 +55,7 @@ namespace MonoGame
         Button2
     }
 
-    public class InputManager : GameComponent
+    public class InputManager : GameComponent, IInputManager
     {
         private class Player
         {
@@ -136,27 +138,30 @@ namespace MonoGame
             return index >= 0 && index < players.Count ? players[index] : null;
         }
 
-        public bool IsPressed(params Keys[] keys)
+        public bool IsPressedKeys(params int[] keys)
         {
             var isKeyDown = true;
 
             foreach (var key in keys)
             {
-                isKeyDown = Keyboard.GetState().IsKeyDown(key);
+                isKeyDown = Keyboard.GetState().IsKeyDown((Keys)key);
                 if (!isKeyDown)
                     return false;
             }
 
             return true;
         }
-        public bool IsPressed(Keys key)
+
+        public bool IsPressedKey(int key)
         {
-            return currentKeyboardState.IsKeyDown(key);
+            return currentKeyboardState.IsKeyDown((Keys)key);
         }
+
         public bool IsPressed(MouseInput input)
         {
             return IsPressed(currentMouseState, input);
         }
+
         public bool IsPressed(Buttons button, int index)
         {
             var player = getPlayer(index);
@@ -164,13 +169,13 @@ namespace MonoGame
                 return player.CurrentState.IsButtonDown(button);
             return false;
         }
-        public bool IsPressed(params Input[] inputs)
+        public bool IsPressedInputs(params int[] inputs)
         {
             var isKeyDown = true;
 
             foreach (var input in inputs)
             {
-                isKeyDown = IsPressed(input);
+                isKeyDown = IsPressed((Input)input);
                 if (!isKeyDown)
                     return false;
             }
@@ -322,10 +327,10 @@ namespace MonoGame
 
         /// <param name="key">Key Pressed</param>
         /// <param name="keys">Key(s) held down</param>
-        public bool JustPressed(Keys key, params Keys[] keys)
+        public bool JustPressedKey(int key, params int[] keys)
         {
-            return currentKeyboardState.IsKeyDown(key) && !previousKeyboardState.IsKeyDown(key) &&
-                IsPressed(keys);
+            return currentKeyboardState.IsKeyDown((Keys)key) && !previousKeyboardState.IsKeyDown((Keys)key) &&
+                IsPressedKeys(keys);
         }
         public bool JustPressed(Keys key)
         {
@@ -344,17 +349,17 @@ namespace MonoGame
         }
         /// <param name="key">Key Pressed</param>
         /// <param name="keys">Key(s) held down</param>
-        public bool JustPressed(Input input, params Input[] inputs)
+        public bool JustPressedInput(int input, params int[] inputs)
         {
             for (int i = 0; i < players.Count; i++)
-                if (JustPressed(input, i))
-                    return IsPressed(inputs);
+                if (JustPressed((Input)input, i))
+                    return IsPressedInputs(inputs);
             return false;
         }
-        public bool JustPressed(Input input)
+        public bool JustPressedInput(int input)
         {
             for (int i = 0; i < players.Count; i++)
-                if (JustPressed(input, i))
+                if (JustPressed((Input)input, i))
                     return true;
             return false;
         }

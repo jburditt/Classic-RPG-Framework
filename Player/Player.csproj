@@ -44,12 +44,23 @@
   <ItemGroup>
     <Compile Include="Actor.cs" />
     <Compile Include="Animation.cs" />
+    <Compile Include="Battle\Battle.cs" />
     <Compile Include="Color.cs" />
+    <Compile Include="Effect\DialogEffect.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyParty.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="Graphics\IDialog.cs" />
+    <Compile Include="Graphics\IGraphics.cs" />
     <Compile Include="IEffect.cs" />
+    <Compile Include="IInputManager.cs" />
+    <Compile Include="Inputs\Input.cs" />
+    <Compile Include="Inputs\Keys.cs" />
     <Compile Include="ISongManager.cs" />
+    <Compile Include="Manager\IActorManager.cs" />
+    <Compile Include="Manager\IBattleManager.cs" />
+    <Compile Include="Manager\IEnemyManager.cs" />
+    <Compile Include="Manager\IIconManager.cs" />
     <Compile Include="Manager\ITilesetManager.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Party.cs" />

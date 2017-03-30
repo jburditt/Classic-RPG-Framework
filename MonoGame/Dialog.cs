@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Player.Graphics;
 
 namespace Player
 {
-    public class Dialog
+    public class Dialog : IDialog
     {
         private readonly SpriteBatch _spriteBatch;
 
@@ -20,7 +21,7 @@ namespace Player
             dialog = Content.Load<Texture2D>("dialog");
         }
 
-        public void Draw(Rectangle targetRect, int index = 0)
+        public void Draw(Rect targetRect, int index = 0)
         {
             int x = 0, y = 7;
             var topleft = new Rectangle(x, y, chipsize, chipsize);

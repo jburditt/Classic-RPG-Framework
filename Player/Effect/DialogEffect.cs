@@ -1,14 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Player;
+﻿using Player.Graphics;
 
-namespace MonoGame.Effect
+namespace Player.Effect
 {
     public class DialogEffect : IEffect
     {
-        private Graphics _graphics;
-        private Dialog Dialog;
-        private SpriteFont Font;
+        private IGraphics _graphics;
+        private IDialog _dialog;
 
         public int X { get; set; }
         public int Y { get; set; }
@@ -16,17 +13,16 @@ namespace MonoGame.Effect
 
         private string Text;
 
-        public DialogEffect(Graphics graphics, Dialog dialog, SpriteFont font, string text)
+        public DialogEffect(IGraphics graphics, IDialog dialog, string text)
         {
             _graphics = graphics;
-            Dialog = dialog;
-            Font = font;
+            _dialog = dialog;
             Text = text;
         }
 
         public void Draw()
         {
-            Dialog.Draw(new Rectangle(0, 0, 640, 45));
+            _dialog.Draw(new Rect(0, 0, 640, 45));
             _graphics.DrawString(Text, 50, 15);
         }
 

@@ -31,21 +31,21 @@ namespace MonoGame
             else
                 speedX = speedY = 150;
 
-            if (InputManager.IsPressed(Keys.Up) || InputManager.IsPressed(Keys.Down) || InputManager.IsPressed(Keys.Left) || InputManager.IsPressed(Keys.Right))
+            if (InputManager.IsPressedKey((int)Keys.Up) || InputManager.IsPressedKey((int)Keys.Down) || InputManager.IsPressedKey((int)Keys.Left) || InputManager.IsPressedKey((int)Keys.Right))
                 animation.Step();
             else
                 animation.frame = 1;
 
-            if (InputManager.IsPressed(Keys.Up))
+            if (InputManager.IsPressedKey((int)Keys.Up))
                 MoveUp(map, deltaTime);
 
-            if (InputManager.IsPressed(Keys.Down))
+            if (InputManager.IsPressedKey((int)Keys.Down))
                 MoveDown(map, deltaTime);
 
-            if (InputManager.IsPressed(Keys.Left))
+            if (InputManager.IsPressedKey((int)Keys.Left))
                 MoveLeft(map, deltaTime);
 
-            if (InputManager.IsPressed(Keys.Right))
+            if (InputManager.IsPressedKey((int)Keys.Right))
                 MoveRight(map, deltaTime);
         }
 

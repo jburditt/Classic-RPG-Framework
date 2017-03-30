@@ -2,12 +2,13 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Player;
+using Player.Manager;
 using System.Collections.Generic;
 using System.IO;
 
 namespace MonoGame
 {
-    public class EnemyManager
+    public class EnemyManager : IEnemyManager
     {
         private readonly SpriteBatch _spriteBatch;
 

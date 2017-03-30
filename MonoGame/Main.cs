@@ -84,8 +84,6 @@ namespace MonoGame
 
             menu = Content.Load<Texture2D>("menubg");
 
-            battle = new Battle();
-
             var party = new Party
             {
                 Actors = new List<Actor> {
@@ -99,7 +97,7 @@ namespace MonoGame
             var enemyParty = new EnemyParty(new List<Enemy> { enemyManager.Enemies["DarkTroll"] });
 
             battleManager = new BattleManager(Content, spriteBatch);
-            battle.Init(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, enemyParty, party, dialog, font);
+            battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, enemyParty, party, dialog);
 
             //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
@@ -128,7 +126,7 @@ namespace MonoGame
                 Exit();
 
             // Alt-Enter
-            if (inputManager.IsPressed(Keys.F5))
+            if (inputManager.IsPressedKey((int)Keys.F5))
             {
                 graphicsDeviceManager.IsFullScreen = !graphicsDeviceManager.IsFullScreen;
                 graphicsDeviceManager.ApplyChanges();
@@ -137,19 +135,19 @@ namespace MonoGame
             switch (gameState)
             {
                 case GameState.StartMenu:
-                    if (inputManager.IsPressed(Keys.Up))
+                    if (inputManager.IsPressedKey((int)Keys.Up))
                     {
                         menuItem--;
                         if (menuItem < MenuItem.NewGame)
                             menuItem = MenuItem.Exit;
                     }
-                    if (inputManager.IsPressed(Keys.Down))
+                    if (inputManager.IsPressedKey((int)Keys.Down))
                     {
                         menuItem++;
                         if (menuItem > MenuItem.Exit)
                             menuItem = MenuItem.NewGame;
                     }
-                    if (inputManager.IsPressed(Keys.Enter))
+                    if (inputManager.IsPressedKey((int)Keys.Enter))
                         gameState = GameState.World;
                     break;
 
@@ -185,7 +183,7 @@ namespace MonoGame
                 case GameState.StartMenu:
 
                     spriteBatch.Draw(menu, new Rectangle(0, 0, Screen.Width, Screen.Height), new Rectangle(200, 200, Screen.Width + 200, Screen.Height + 200), Color.White);
-                    dialog.Draw(new Rectangle(160, 200, 130, 130));
+                    dialog.Draw(new Rect(160, 200, 130, 130));
                     spriteBatch.DrawString(font, "New Game", new Vector2(180, 220), Color.White);
                     spriteBatch.DrawString(font, "Load Game", new Vector2(180, 240), Color.White);
                     spriteBatch.DrawString(font, "Exit", new Vector2(180, 260), Color.White);

@@ -2,12 +2,13 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Player;
+using Player.Manager;
 using System.Collections.Generic;
 using System.IO;
 
 namespace MonoGame
 {
-    public class ActorManager
+    public class ActorManager : IActorManager
     {
         private readonly SpriteBatch _spriteBatch;
 
@@ -37,9 +38,9 @@ namespace MonoGame
             }
         }
 
-        public void Draw(string battleBgName, Rect sourceRect, Rect targetRect, ColorStruct? color = null)
+        public void Draw(string battleCharName, Rect sourceRect, Rect targetRect, ColorStruct? color = null)
         {
-            _spriteBatch.Draw(BattleChars[battleBgName], sourceRect.ToRectangle(), targetRect.ToRectangle(), color.ToColor());
+            _spriteBatch.Draw(BattleChars[battleCharName], sourceRect.ToRectangle(), targetRect.ToRectangle(), color.ToColor());
 
         }
     }
