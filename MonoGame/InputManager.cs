@@ -175,17 +175,17 @@ namespace MonoGame
 
             foreach (var input in inputs)
             {
-                isKeyDown = IsPressed((Input)input);
+                isKeyDown = IsPressedInput(input);
                 if (!isKeyDown)
                     return false;
             }
 
             return true;
         }
-        public bool IsPressed(Input input)
+        public bool IsPressedInput(int input)
         {
             for (int i = 0; i < players.Count; i++)
-                if (IsPressed(input, i))
+                if (IsPressed((Input)input, i))
                     return true;
             return false;
         }

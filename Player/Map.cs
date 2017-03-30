@@ -1,7 +1,6 @@
-﻿using Player;
-using Player.Manager;
+﻿using Player.Manager;
 
-namespace MonoGame
+namespace Player
 {
     public class Map
     {

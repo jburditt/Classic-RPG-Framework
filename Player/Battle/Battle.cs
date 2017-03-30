@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using Player;
 using System.Linq;
 using Player.Graphics;
 using Player.Manager;
 using Player.Effect;
 using Player.Inputs;
 
-namespace MonoGame
+namespace Player
 {
     public class Battle
     {
@@ -123,7 +122,7 @@ namespace MonoGame
         {
             var actor = Party.Actors[i];
 
-            _actorManager.Draw(actor.BattleChar, new Rect(560 + (actor == Party.ActivePlayer ? -20 : 0), 140 + i * 48, 48, 48), actor.Rect);
+            _actorManager.DrawBattle(actor.BattleChar, new Rect(560 + (actor == Party.ActivePlayer ? -20 : 0), 140 + i * 48, 48, 48), actor.Rect);
         }
 
         public void DrawActorInfo(int i, Actor actor)
