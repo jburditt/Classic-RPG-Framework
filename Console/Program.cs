@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using System;
+using Common;
 using Player;
 using System.Drawing;
 using System.IO;
@@ -39,7 +40,7 @@ namespace Console
                     if (filepath.IsImage())
                     {
                         ColorStruct color;
-                        if (string.Compare(filename.Right(3), "TGA", true) == 0)
+                        if (string.Compare(filename.Right(3), "TGA", StringComparison.OrdinalIgnoreCase) == 0)
                             color = new ColorStruct(255, 255, 255, 255);
                         else
                             color = GetTransparentColor(filepath);

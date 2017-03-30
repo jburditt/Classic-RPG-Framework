@@ -80,7 +80,18 @@
 /processorParam:TextureFormat=Color
 /build:tileset.jpg
 
-#begin battlebg\1.jpg
+#begin battlebg\01sougen.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,255,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:battlebg\01sougen.jpg
+
+#begin battlebg\02doukutsu.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=192,158,113,255
@@ -89,9 +100,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:battlebg\1.jpg
+/build:battlebg\02doukutsu.jpg
 
-#begin battlebg\2.jpg
+#begin battlebg\03setugen2.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=131,99,86,255
@@ -100,9 +111,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:battlebg\2.jpg
+/build:battlebg\03setugen2.jpg
 
-#begin battlebg\3.jpg
+#begin battlebg\03setugen3.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=183,222,239,255
@@ -111,9 +122,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:battlebg\3.jpg
+/build:battlebg\03setugen3.jpg
 
-#begin battlebg\4.jpg
+#begin battlebg\05beach.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=224,239,244,255
@@ -122,9 +133,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:battlebg\4.jpg
+/build:battlebg\05beach.jpg
 
-#begin battlebg\5.jpg
+#begin battlebg\08konkuri.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=113,123,115,255
@@ -133,9 +144,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:battlebg\5.jpg
+/build:battlebg\08konkuri.jpg
 
-#begin battlebg\6.jpg
+#begin battlebg\09desert.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=234,245,249,255
@@ -144,9 +155,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:battlebg\6.jpg
+/build:battlebg\09desert.jpg
 
-#begin battlebg\7.jpg
+#begin battlebg\18kumo.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=202,232,243,255
@@ -155,9 +166,9 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:battlebg\7.jpg
+/build:battlebg\18kumo.jpg
 
-#begin battlebg\8.jpg
+#begin battlebg\21maou_yama.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=32,32,32,255
@@ -166,7 +177,7 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
-/build:battlebg\8.jpg
+/build:battlebg\21maou_yama.jpg
 
 #begin battlechar\fitz.png
 /importer:TextureImporter

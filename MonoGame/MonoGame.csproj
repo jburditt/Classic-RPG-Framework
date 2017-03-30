@@ -79,7 +79,6 @@
     <Content Include="Content\fsm-castle01_a.png" />
     <Content Include="Content\fsm-road01_a.png" />
     <Content Include="Content\I3-Epic-Brave Heart.mp3" />
-    <Content Include="Content\menubg.jpg" />
     <Content Include="Content\terrain.png" />
     <Content Include="Content\tileset.jpg" />
     <Content Include="Icon.ico" />

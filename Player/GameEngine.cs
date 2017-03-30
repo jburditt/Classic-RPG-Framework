@@ -44,7 +44,7 @@ namespace Player
             //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
 
-            battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, EnemyParty, Party, dialog);
+            battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialog);
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager);
             map = new Map(tilesetManager);
 
