@@ -8,15 +8,17 @@ namespace Player
     public class GameEngine
     {
         private IInputManager _inputManager;
+        private IDialog _dialog;
+        private IGraphics _graphics;
 
         Battle battle;
         GamePlayer player;
         Map map;
-
+        
         public Party Party { get; private set; }
         public EnemyParty EnemyParty { get; private set; }
+        public GameState GameState { get; private set; } = GameState.StartMenu;
 
-        GameState gameState = GameState.Battle;
         MenuItem menuItem = MenuItem.NewGame;
 
         public GameEngine(
@@ -24,6 +26,8 @@ namespace Player
             IIconManager iconManager, IInputManager inputManager, ITilesetManager tilesetManager, IDialog dialog)
         {
             _inputManager = inputManager;
+            _dialog = dialog;
+            _graphics = graphics;
 
             Party = new Party
             {
@@ -50,7 +54,10 @@ namespace Player
 
         public void Update(float deltaTime)
         {
-            switch (gameState)
+            if (_inputManager.IsPressedInput((int)Input.Back) || _inputManager.IsPressedKey((int)Keys.Escape))
+                GameState = GameState.Exit;
+
+            switch (GameState)
             {
                 case GameState.StartMenu:
                     if (_inputManager.IsPressedKey((int)Keys.Up))
@@ -66,12 +73,12 @@ namespace Player
                             menuItem = MenuItem.NewGame;
                     }
                     if (_inputManager.IsPressedKey((int)Keys.Enter))
-                        gameState = GameState.World;
+                        GameState = GameState.World;
                     break;
 
                 case GameState.Battle:
                     if (battle.Update())
-                        gameState = GameState.World;
+                        GameState = GameState.World;
                     break;
 
                 case GameState.World:
@@ -82,15 +89,15 @@ namespace Player
 
         public void Draw()
         {
-            switch (gameState)
+            switch (GameState)
             {
                 case GameState.StartMenu:
 
                     //spriteBatch.Draw(menu, new Rectangle(0, 0, Screen.Width, Screen.Height), new Rectangle(200, 200, Screen.Width + 200, Screen.Height + 200), Color.White);
-                    //dialog.Draw(new Rect(160, 200, 130, 130));
-                    //spriteBatch.DrawString(font, "New Game", new Vector2(180, 220), Color.White);
-                    //spriteBatch.DrawString(font, "Load Game", new Vector2(180, 240), Color.White);
-                    //spriteBatch.DrawString(font, "Exit", new Vector2(180, 260), Color.White);
+                    _dialog.Draw(new Rect(160, 200, 130, 130));
+                    _graphics.DrawString("New Game", 180, 220);
+                    _graphics.DrawString("Load Game", 180, 240);
+                    _graphics.DrawString("Exit", 180, 260);
                     break;
 
                 case GameState.World:

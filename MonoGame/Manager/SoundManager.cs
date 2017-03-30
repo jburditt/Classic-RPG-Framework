@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 
-namespace MonoGame
+namespace MonoGame.Manager
 {
     public class SoundManager
     {

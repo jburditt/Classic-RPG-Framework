@@ -13,7 +13,8 @@
         StartMenu,
         World,
         Battle,
-        WorldMenu
+        WorldMenu,
+        Exit
     }
 
     public enum MenuItem

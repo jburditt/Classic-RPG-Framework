@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Player;
-//using Player.Inputs;
 
-namespace MonoGame
+namespace MonoGame.Manager
 {
     // Input enum used to identify which action has been pressed
     public enum Input

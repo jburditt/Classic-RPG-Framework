@@ -6,7 +6,7 @@ using Player.Manager;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MonoGame
+namespace MonoGame.Manager
 {
     public class IconManager : IIconManager
     {

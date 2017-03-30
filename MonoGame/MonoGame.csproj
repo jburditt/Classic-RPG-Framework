@@ -42,17 +42,17 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ActorManager.cs" />
+    <Compile Include="Manager\ActorManager.cs" />
     <Compile Include="Color.cs" />
-    <Compile Include="EnemyManager.cs" />
+    <Compile Include="Manager\EnemyManager.cs" />
     <Compile Include="Graphics.cs" />
-    <Compile Include="IconManager.cs" />
-    <Compile Include="InputManager.cs" />
+    <Compile Include="Manager\IconManager.cs" />
+    <Compile Include="Manager\InputManager.cs" />
     <Compile Include="Manager\BattleManager.cs" />
     <Compile Include="Manager\TilesetManager.cs" />
-    <Compile Include="SoundManager.cs" />
+    <Compile Include="Manager\SoundManager.cs" />
     <Compile Include="RectangleExtension.cs" />
-    <Compile Include="SongManager.cs" />
+    <Compile Include="Manager\SongManager.cs" />
     <Compile Include="SpriteBatchExtensions.cs" />
     <Compile Include="TextureHelper.cs" />
     <Compile Include="Main.cs" />

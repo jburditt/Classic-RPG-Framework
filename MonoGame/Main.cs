@@ -9,12 +9,16 @@ namespace MonoGame
     public class Main : Game
     {
         // TODO Add this to references: http://opengameart.org/content/space-background
+
+        // MonoGame Framework
         GraphicsDeviceManager graphicsDeviceManager;
-        Graphics graphics;
         SpriteBatch spriteBatch;
         SpriteFont font;
         Texture2D menu;
 
+        // MonoGame Managers
+        Graphics graphics;
+        Dialog dialog;
         TilesetManager tilesetManager;
         SongManager songManager;
         SoundManager soundManager;
@@ -24,8 +28,8 @@ namespace MonoGame
         IconManager iconManager;
         InputManager inputManager;
 
+        // Game
         GameEngine gameEngine;
-        Dialog dialog;
 
         public Main()
         {
@@ -96,7 +100,7 @@ namespace MonoGame
         protected override void Update(GameTime gameTime)
         {
             // Exit
-            if (inputManager.IsPressedInput((int)Input.Back) || inputManager.IsPressedKey((int)Keys.Escape))
+            if (gameEngine.GameState == GameState.Exit)
                 Exit();
 
             // Alt-Enter
@@ -119,8 +123,6 @@ namespace MonoGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             spriteBatch.Begin();
 
             GraphicsDevice.Clear(Color.Black);

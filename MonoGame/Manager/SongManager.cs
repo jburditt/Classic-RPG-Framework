@@ -5,7 +5,7 @@ using Player;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MonoGame
+namespace MonoGame.Manager
 {
     public class SongManager : ISongManager
     {
