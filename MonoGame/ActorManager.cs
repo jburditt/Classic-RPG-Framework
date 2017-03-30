@@ -41,7 +41,6 @@ namespace MonoGame
         public void Draw(string battleCharName, Rect sourceRect, Rect targetRect, ColorStruct? color = null)
         {
             _spriteBatch.Draw(BattleChars[battleCharName], sourceRect.ToRectangle(), targetRect.ToRectangle(), color.ToColor());
-
         }
     }
 }

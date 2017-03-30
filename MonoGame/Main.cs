@@ -13,6 +13,7 @@ namespace MonoGame
         GraphicsDeviceManager graphicsDeviceManager;
         Graphics graphics;
         SpriteBatch spriteBatch;
+        Texture2D menu;
 
         SongManager songManager;
         SoundManager soundManager;
@@ -21,12 +22,12 @@ namespace MonoGame
         EnemyManager enemyManager;
         IconManager iconManager;
         InputManager inputManager;
+
+        GameEngine gameEngine;
         Map map;
         Player player;
         Dialog dialog;
         KeyboardState previousState;
-        Texture2D menu;
-
         Battle battle;
 
         GameState gameState = GameState.Battle;
@@ -75,8 +76,6 @@ namespace MonoGame
             player = new Player(Content, inputManager);
             dialog = new Dialog(Content, spriteBatch);
             songManager = new SongManager(Content);
-            //songManager.Play("01 - Namazu");
-            songManager.Play("Battle of the Mind");
             soundManager = new SoundManager(Content);
             actorManager = new ActorManager(Content, spriteBatch);
             enemyManager = new EnemyManager(Content, spriteBatch);
@@ -84,20 +83,10 @@ namespace MonoGame
 
             menu = Content.Load<Texture2D>("menubg");
 
-            var party = new Party
-            {
-                Actors = new List<Actor> {
-                    new Actor("gus", "gus") { Name = "Gus", Hp = 40, MaxHp = 58, Mp = 2, MaxMp = 8, Limit = 23 },
-                    new Actor("fitz", "fitz") { Name = "Fitz", Hp = 32, MaxHp = 52, Mp = 5, MaxMp = 12, Limit = 17 },
-                    new Actor("sorah", "sorah") { Name = "Sorah", Hp = 102, MaxHp = 252, Mp = 8, MaxMp = 12, Limit = 37 },
-                    new Actor("sheba", "sheba") { Name = "Sheba", Hp = 44, MaxHp = 52, Mp = 8, MaxMp = 12, Limit = 5 }
-                }
-            };
-
-            var enemyParty = new EnemyParty(new List<Enemy> { enemyManager.Enemies["DarkTroll"] });
+            gameEngine = new GameEngine(songManager, enemyManager);
 
             battleManager = new BattleManager(Content, spriteBatch);
-            battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, enemyParty, party, dialog);
+            battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, gameEngine.EnemyParty, gameEngine.Party, dialog);
 
             //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");

@@ -13,7 +13,7 @@ namespace MonoGame
         private readonly SpriteBatch _spriteBatch;
 
         public Dictionary<string, Texture2D> Sprites = new Dictionary<string, Texture2D>();
-        public Dictionary<string, Enemy> Enemies = new Dictionary<string, Enemy>();
+        public Dictionary<string, Enemy> Enemies { get; private set; } = new Dictionary<string, Enemy>();
 
         public EnemyManager(ContentManager Content, SpriteBatch spriteBatch)
         {

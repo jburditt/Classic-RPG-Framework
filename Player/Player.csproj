@@ -50,6 +50,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyParty.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Graphics\IDialog.cs" />
     <Compile Include="Graphics\IGraphics.cs" />
     <Compile Include="IEffect.cs" />
