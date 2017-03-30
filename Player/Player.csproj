@@ -47,6 +47,7 @@
     <Compile Include="Battle\Battle.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Effect\DialogEffect.cs" />
+    <Compile Include="Effect\HpEffect.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyParty.cs" />
     <Compile Include="Enum.cs" />

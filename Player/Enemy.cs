@@ -25,13 +25,15 @@
             return false;
         }
 
-        public void Action(Party party)
+        public Actor Action(Party party)
         {
             var target = party.GetRandom();
             target.Hp -= 1;
 
             if (target.Hp <= 0)
                 target.State = ActorState.Dead;
+
+            return target;
         }
     }
 }

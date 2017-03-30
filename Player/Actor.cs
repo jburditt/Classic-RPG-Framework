@@ -11,9 +11,13 @@
         public int Limit { get; set; }
         public int Experience { get; set; }
         public int Level { get; set; }
+
         public string CharSet { get; set; }
         public string BattleChar { get; set; }
         public ActorState State { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+
         private Animation animation { get; set; }
 
         public Rect Rect {

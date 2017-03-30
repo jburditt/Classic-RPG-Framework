@@ -36,6 +36,11 @@ namespace Player
             EnemyParty = enemyParty;
             Party = party;
             _dialog = dialog;
+
+            for (var i = 0; i < party.Actors.Count; i++) {
+                party.Actors[i].X = 560;
+                party.Actors[i].Y = 140 + i * 48;
+            }
         }
 
         public bool Update()
@@ -47,8 +52,9 @@ namespace Player
                     foreach (var enemy in EnemyParty.Enemies)
                         if (enemy.TimeLapse(timeIncrement))
                         {
-                            enemy.Action(Party);
+                            var target = enemy.Action(Party);
                             Effects.Add(new DialogEffect(_graphics, _dialog, $"{enemy.Name} attacked."));
+                            Effects.Add(new HpEffect(_graphics, "1", target.X, target.Y));
                         }
 
                     foreach (var actor in Party.Actors)
@@ -66,7 +72,10 @@ namespace Player
 
                     if (_inputManager.JustPressedInput((int)Input.FaceButtonDown, (int)Input.Up))
                     {
-                        Party.ActivePlayer.Attack(EnemyParty.Enemies.First());
+                        var enemy = EnemyParty.Enemies.First();
+                        Party.ActivePlayer.Attack(enemy);
+                        Effects.Add(new HpEffect(_graphics, "1", 60, 200));
+
                         Party.ActivePlayer = null;
 
                         battleState = BattleState.Running;
@@ -122,7 +131,7 @@ namespace Player
         {
             var actor = Party.Actors[i];
 
-            _actorManager.DrawBattle(actor.BattleChar, new Rect(560 + (actor == Party.ActivePlayer ? -20 : 0), 140 + i * 48, 48, 48), actor.Rect);
+            _actorManager.DrawBattle(actor.BattleChar, new Rect(actor.X + (actor == Party.ActivePlayer ? -20 : 0), actor.Y, 48, 48), actor.Rect);
         }
 
         public void DrawActorInfo(int i, Actor actor)
