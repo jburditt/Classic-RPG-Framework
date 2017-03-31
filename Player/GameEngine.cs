@@ -46,7 +46,7 @@ namespace Player
 
             battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialog);
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager);
-            map = new Map(tilesetManager);
+            map = new Map(tilesetManager, "Content/world2.tmx");
 
             //songManager.Play("01 - Namazu");
             songManager.Play("Sadness Everlasting");

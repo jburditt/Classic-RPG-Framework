@@ -43,22 +43,29 @@
             this.tilesetRemoveButton = new System.Windows.Forms.Button();
             this.tilesetAddButton = new System.Windows.Forms.Button();
             this.tilesetsListBox = new System.Windows.Forms.ListBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.cancelButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.mapTab = new System.Windows.Forms.TabPage();
+            this.mapPanel = new System.Windows.Forms.Panel();
+            this.mapPictureBox = new System.Windows.Forms.PictureBox();
             this.charsetTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.filePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.filePictureBox)).BeginInit();
+            this.mapTab.SuspendLayout();
+            this.mapPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mapPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // charsetTab
             // 
             this.charsetTab.Controls.Add(this.tabPage1);
             this.charsetTab.Controls.Add(this.tabPage2);
+            this.charsetTab.Controls.Add(this.mapTab);
             this.charsetTab.Location = new System.Drawing.Point(1, 1);
-            this.charsetTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.charsetTab.Margin = new System.Windows.Forms.Padding(4);
             this.charsetTab.Name = "charsetTab";
             this.charsetTab.SelectedIndex = 0;
             this.charsetTab.Size = new System.Drawing.Size(1177, 640);
@@ -79,9 +86,9 @@
             this.tabPage1.Controls.Add(this.tilesetAddButton);
             this.tabPage1.Controls.Add(this.tilesetsListBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1169, 611);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tilesets";
@@ -102,7 +109,7 @@
             this.filePanel.AutoScroll = true;
             this.filePanel.Controls.Add(this.filePictureBox);
             this.filePanel.Location = new System.Drawing.Point(503, 16);
-            this.filePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filePanel.Margin = new System.Windows.Forms.Padding(4);
             this.filePanel.Name = "filePanel";
             this.filePanel.Size = new System.Drawing.Size(653, 549);
             this.filePanel.TabIndex = 11;
@@ -110,7 +117,7 @@
             // filePictureBox
             // 
             this.filePictureBox.Location = new System.Drawing.Point(4, 4);
-            this.filePictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filePictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.filePictureBox.Name = "filePictureBox";
             this.filePictureBox.Size = new System.Drawing.Size(490, 446);
             this.filePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -121,7 +128,7 @@
             // fileRemoveButton
             // 
             this.fileRemoveButton.Location = new System.Drawing.Point(371, 574);
-            this.fileRemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fileRemoveButton.Margin = new System.Windows.Forms.Padding(4);
             this.fileRemoveButton.Name = "fileRemoveButton";
             this.fileRemoveButton.Size = new System.Drawing.Size(100, 28);
             this.fileRemoveButton.TabIndex = 9;
@@ -131,7 +138,7 @@
             // fileAddButton
             // 
             this.fileAddButton.Location = new System.Drawing.Point(265, 574);
-            this.fileAddButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fileAddButton.Margin = new System.Windows.Forms.Padding(4);
             this.fileAddButton.Name = "fileAddButton";
             this.fileAddButton.Size = new System.Drawing.Size(100, 28);
             this.fileAddButton.TabIndex = 8;
@@ -143,7 +150,7 @@
             this.filesListBox.FormattingEnabled = true;
             this.filesListBox.ItemHeight = 16;
             this.filesListBox.Location = new System.Drawing.Point(265, 144);
-            this.filesListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filesListBox.Margin = new System.Windows.Forms.Padding(4);
             this.filesListBox.Name = "filesListBox";
             this.filesListBox.Size = new System.Drawing.Size(204, 420);
             this.filesListBox.TabIndex = 7;
@@ -162,7 +169,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(265, 91);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(132, 22);
             this.textBox2.TabIndex = 5;
@@ -180,7 +187,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(265, 36);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(132, 22);
             this.textBox1.TabIndex = 3;
@@ -188,7 +195,7 @@
             // tilesetRemoveButton
             // 
             this.tilesetRemoveButton.Location = new System.Drawing.Point(135, 574);
-            this.tilesetRemoveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tilesetRemoveButton.Margin = new System.Windows.Forms.Padding(4);
             this.tilesetRemoveButton.Name = "tilesetRemoveButton";
             this.tilesetRemoveButton.Size = new System.Drawing.Size(100, 28);
             this.tilesetRemoveButton.TabIndex = 2;
@@ -198,7 +205,7 @@
             // tilesetAddButton
             // 
             this.tilesetAddButton.Location = new System.Drawing.Point(9, 574);
-            this.tilesetAddButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tilesetAddButton.Margin = new System.Windows.Forms.Padding(4);
             this.tilesetAddButton.Name = "tilesetAddButton";
             this.tilesetAddButton.Size = new System.Drawing.Size(100, 28);
             this.tilesetAddButton.TabIndex = 1;
@@ -210,35 +217,10 @@
             this.tilesetsListBox.FormattingEnabled = true;
             this.tilesetsListBox.ItemHeight = 16;
             this.tilesetsListBox.Location = new System.Drawing.Point(9, 16);
-            this.tilesetsListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tilesetsListBox.Margin = new System.Windows.Forms.Padding(4);
             this.tilesetsListBox.Name = "tilesetsListBox";
             this.tilesetsListBox.Size = new System.Drawing.Size(224, 548);
             this.tilesetsListBox.TabIndex = 0;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog";
-            // 
-            // cancelButton
-            // 
-            this.cancelButton.Location = new System.Drawing.Point(1061, 647);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(100, 28);
-            this.cancelButton.TabIndex = 1;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(945, 647);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(100, 28);
-            this.saveButton.TabIndex = 2;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // tabPage2
             // 
@@ -250,6 +232,59 @@
             this.tabPage2.Text = "Charsets";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog";
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(1061, 647);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(4);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(100, 28);
+            this.cancelButton.TabIndex = 1;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(945, 647);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(100, 28);
+            this.saveButton.TabIndex = 2;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // mapTab
+            // 
+            this.mapTab.Controls.Add(this.mapPanel);
+            this.mapTab.Location = new System.Drawing.Point(4, 25);
+            this.mapTab.Name = "mapTab";
+            this.mapTab.Padding = new System.Windows.Forms.Padding(3);
+            this.mapTab.Size = new System.Drawing.Size(1169, 611);
+            this.mapTab.TabIndex = 2;
+            this.mapTab.Text = "Map";
+            this.mapTab.UseVisualStyleBackColor = true;
+            // 
+            // mapPanel
+            // 
+            this.mapPanel.Controls.Add(this.mapPictureBox);
+            this.mapPanel.Location = new System.Drawing.Point(3, 0);
+            this.mapPanel.Name = "mapPanel";
+            this.mapPanel.Size = new System.Drawing.Size(1166, 614);
+            this.mapPanel.TabIndex = 0;
+            // 
+            // mapPictureBox
+            // 
+            this.mapPictureBox.Location = new System.Drawing.Point(52, 35);
+            this.mapPictureBox.Name = "mapPictureBox";
+            this.mapPictureBox.Size = new System.Drawing.Size(511, 354);
+            this.mapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.mapPictureBox.TabIndex = 0;
+            this.mapPictureBox.TabStop = false;
+            // 
             // editorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -258,7 +293,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.charsetTab);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "editorForm";
             this.Text = "RPG Editor";
             this.charsetTab.ResumeLayout(false);
@@ -267,6 +302,10 @@
             this.filePanel.ResumeLayout(false);
             this.filePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.filePictureBox)).EndInit();
+            this.mapTab.ResumeLayout(false);
+            this.mapPanel.ResumeLayout(false);
+            this.mapPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mapPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -292,6 +331,9 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage mapTab;
+        private System.Windows.Forms.Panel mapPanel;
+        private System.Windows.Forms.PictureBox mapPictureBox;
     }
 }
 

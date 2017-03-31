@@ -3,11 +3,17 @@ using System.Drawing;
 using System.Windows.Forms;
 using Common;
 using TiledSharp;
+using Player;
+using Editor.Manager;
 
 namespace Editor
 {
     public partial class editorForm : Form
     {
+        TilesetManager tilesetManager;
+        Map map;
+        private Graphics _graphics;
+
         private TmxMap tiledMap;
         private int fileIndex = 0;
         private List<Image> filesImages = new List<Image>();
@@ -21,7 +27,7 @@ namespace Editor
 
             _x.MakeTransparent(Color.White);
 
-            tiledMap = new TmxMap("../../../Classic RPG Framework/Content/world2.tmx");
+            tiledMap = new TmxMap("../../../MonoGame/Content/world2.tmx");
 
             passable = new bool[tiledMap.Tilesets.Count][][];
             
@@ -43,6 +49,9 @@ namespace Editor
             filePictureBox.Image = filesImages[0];
             _passable = new Bitmap(filePictureBox.Image.Width, filePictureBox.Image.Height);
             _passable.MakeTransparent(Color.White);
+
+            tilesetManager = new TilesetManager(_graphics);
+            map = new Map(tilesetManager, "../../../MonoGame/Content/world2.tmx");
         }
 
         private void filePictureBox_Click(object sender, System.EventArgs e)

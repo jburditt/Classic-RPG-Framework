@@ -69,7 +69,7 @@ namespace MonoGame
             font = Content.Load<SpriteFont>("Menu");
 
             graphics = new Graphics(Content, spriteBatch, font);
-            tilesetManager = new TilesetManager(Content, spriteBatch, "Content/world2.tmx");
+            tilesetManager = new TilesetManager(Content, spriteBatch);
             dialog = new Dialog(Content, spriteBatch);
             songManager = new SongManager(Content);
             soundManager = new SoundManager(Content);
