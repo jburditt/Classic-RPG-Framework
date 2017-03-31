@@ -6,7 +6,7 @@ namespace Editor.Manager
 {
     public class TilesetManager : ITilesetManager
     {
-        private Graphics _graphics;
+        public Graphics _graphics;
         private Bitmap[] tileset;    // make this a dictionary
 
         public TilesetManager(Graphics graphics)

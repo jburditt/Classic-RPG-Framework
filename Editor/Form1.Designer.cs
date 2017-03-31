@@ -44,12 +44,12 @@
             this.tilesetAddButton = new System.Windows.Forms.Button();
             this.tilesetsListBox = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
             this.mapTab = new System.Windows.Forms.TabPage();
             this.mapPanel = new System.Windows.Forms.Panel();
             this.mapPictureBox = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.charsetTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.filePanel.SuspendLayout();
@@ -232,6 +232,35 @@
             this.tabPage2.Text = "Charsets";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // mapTab
+            // 
+            this.mapTab.Controls.Add(this.mapPanel);
+            this.mapTab.Location = new System.Drawing.Point(4, 25);
+            this.mapTab.Name = "mapTab";
+            this.mapTab.Padding = new System.Windows.Forms.Padding(3);
+            this.mapTab.Size = new System.Drawing.Size(1169, 611);
+            this.mapTab.TabIndex = 2;
+            this.mapTab.Text = "Map";
+            this.mapTab.UseVisualStyleBackColor = true;
+            // 
+            // mapPanel
+            // 
+            this.mapPanel.AutoScroll = true;
+            this.mapPanel.Controls.Add(this.mapPictureBox);
+            this.mapPanel.Location = new System.Drawing.Point(3, 0);
+            this.mapPanel.Name = "mapPanel";
+            this.mapPanel.Size = new System.Drawing.Size(1166, 614);
+            this.mapPanel.TabIndex = 0;
+            // 
+            // mapPictureBox
+            // 
+            this.mapPictureBox.Location = new System.Drawing.Point(3, 3);
+            this.mapPictureBox.Name = "mapPictureBox";
+            this.mapPictureBox.Size = new System.Drawing.Size(511, 354);
+            this.mapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.mapPictureBox.TabIndex = 0;
+            this.mapPictureBox.TabStop = false;
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog";
@@ -256,34 +285,6 @@
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // mapTab
-            // 
-            this.mapTab.Controls.Add(this.mapPanel);
-            this.mapTab.Location = new System.Drawing.Point(4, 25);
-            this.mapTab.Name = "mapTab";
-            this.mapTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mapTab.Size = new System.Drawing.Size(1169, 611);
-            this.mapTab.TabIndex = 2;
-            this.mapTab.Text = "Map";
-            this.mapTab.UseVisualStyleBackColor = true;
-            // 
-            // mapPanel
-            // 
-            this.mapPanel.Controls.Add(this.mapPictureBox);
-            this.mapPanel.Location = new System.Drawing.Point(3, 0);
-            this.mapPanel.Name = "mapPanel";
-            this.mapPanel.Size = new System.Drawing.Size(1166, 614);
-            this.mapPanel.TabIndex = 0;
-            // 
-            // mapPictureBox
-            // 
-            this.mapPictureBox.Location = new System.Drawing.Point(52, 35);
-            this.mapPictureBox.Name = "mapPictureBox";
-            this.mapPictureBox.Size = new System.Drawing.Size(511, 354);
-            this.mapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.mapPictureBox.TabIndex = 0;
-            this.mapPictureBox.TabStop = false;
             // 
             // editorForm
             // 

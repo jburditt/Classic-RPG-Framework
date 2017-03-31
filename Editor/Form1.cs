@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Common;
-using TiledSharp;
 using Player;
 using Editor.Manager;
 
@@ -10,11 +9,10 @@ namespace Editor
 {
     public partial class editorForm : Form
     {
-        TilesetManager tilesetManager;
+        private TilesetManager _tilesetManager;
         Map map;
         private Graphics _graphics;
 
-        private TmxMap tiledMap;
         private int fileIndex = 0;
         private List<Image> filesImages = new List<Image>();
         private Bitmap _x = (Bitmap)Image.FromFile("../../x.png");
@@ -27,21 +25,23 @@ namespace Editor
 
             _x.MakeTransparent(Color.White);
 
-            tiledMap = new TmxMap("../../../MonoGame/Content/world2.tmx");
+            _graphics = Graphics.FromImage(new Bitmap(1024, 1024));
+            _tilesetManager = new TilesetManager(_graphics);
+            map = new Map(_tilesetManager, "../../../MonoGame/Content/world2.tmx");
 
-            passable = new bool[tiledMap.Tilesets.Count][][];
+            passable = new bool[map.tiledMap.Tilesets.Count][][];
             
-            for (var i = 0; i < tiledMap.Tilesets.Count; i++)
+            for (var i = 0; i < map.tiledMap.Tilesets.Count; i++)
             {
-                filesListBox.Items.Add(tiledMap.Tilesets[i].Name);
-                filesImages.Add(Image.FromFile(tiledMap.Tilesets[i].Image.Source));
+                filesListBox.Items.Add(map.tiledMap.Tilesets[i].Name);
+                filesImages.Add(Image.FromFile(map.tiledMap.Tilesets[i].Image.Source));
                 //passable[i] = new bool[tiledMap.Tilesets[i].Columns.Value][(tiledMap.Tilesets[i].TileCount ?? 0) / tiledMap.Tilesets[i].Columns.Value];
-                passable[i] = new bool[tiledMap.Tilesets[i].Columns.Value][];
+                passable[i] = new bool[map.tiledMap.Tilesets[i].Columns.Value][];
 
-                for (var x = 0; x < tiledMap.Tilesets[i].Columns.Value; x++)
+                for (var x = 0; x < map.tiledMap.Tilesets[i].Columns.Value; x++)
                 {
-                    passable[i][x] = new bool[(tiledMap.Tilesets[i].TileCount ?? 0) / tiledMap.Tilesets[i].Columns.Value];
-                    for (var y = 0; y < (tiledMap.Tilesets[i].TileCount ?? 0)/tiledMap.Tilesets[i].Columns.Value; y++)
+                    passable[i][x] = new bool[(map.tiledMap.Tilesets[i].TileCount ?? 0) / map.tiledMap.Tilesets[i].Columns.Value];
+                    for (var y = 0; y < (map.tiledMap.Tilesets[i].TileCount ?? 0)/ map.tiledMap.Tilesets[i].Columns.Value; y++)
                         passable[i][x][y] = true;
                 }
             }
@@ -50,8 +50,12 @@ namespace Editor
             _passable = new Bitmap(filePictureBox.Image.Width, filePictureBox.Image.Height);
             _passable.MakeTransparent(Color.White);
 
-            tilesetManager = new TilesetManager(_graphics);
-            map = new Map(tilesetManager, "../../../MonoGame/Content/world2.tmx");
+            mapPictureBox.Image = new Bitmap(map.Width, map.Height);
+            using (var g = Graphics.FromImage(mapPictureBox.Image))
+            {
+                _tilesetManager._graphics = g;
+                map.Draw(0, 0);
+            }
         }
 
         private void filePictureBox_Click(object sender, System.EventArgs e)

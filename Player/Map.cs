@@ -19,8 +19,8 @@ namespace Player
         public int Rows { get; set; }
         public int Layers { get; set; }
 
+        public TmxMap tiledMap { get; set; }
         Tile[,,] tiles;
-        private TmxMap tiledMap;
 
         int windowTilesWide, windowTilesHigh;
 
