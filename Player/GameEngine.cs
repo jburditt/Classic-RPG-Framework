@@ -10,6 +10,7 @@ namespace Player
         private IInputManager _inputManager;
         private IDialog _dialog;
         private IGraphics _graphics;
+        private ISongManager _songManager;
 
         Battle battle;
         GamePlayer player;
@@ -28,6 +29,7 @@ namespace Player
             _inputManager = inputManager;
             _dialog = dialog;
             _graphics = graphics;
+            _songManager = songManager;
 
             Party = new Party
             {
@@ -46,7 +48,8 @@ namespace Player
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager);
             map = new Map(tilesetManager);
 
-            songManager.Play("01 - Namazu");
+            //songManager.Play("01 - Namazu");
+            songManager.Play("Sadness Everlasting");
         }
 
         public void Update(float deltaTime)
@@ -70,12 +73,16 @@ namespace Player
                             menuItem = MenuItem.NewGame;
                     }
                     if (_inputManager.IsPressedKey((int)Keys.Enter))
-                        GameState = GameState.World;
+                    {
+                        LoadWorld();
+                    }
                     break;
 
                 case GameState.Battle:
                     if (battle.Update())
-                        GameState = GameState.World;
+                    {
+                        LoadWorld();
+                    }
                     break;
 
                 case GameState.World:
@@ -117,6 +124,12 @@ namespace Player
                     break;
 
             }
+        }
+
+        public void LoadWorld()
+        {
+            GameState = GameState.World;
+            _songManager.Play("Losing Your Way");
         }
     }
 }

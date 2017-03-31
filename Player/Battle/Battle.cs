@@ -38,7 +38,6 @@ namespace Player
             EnemyParty = enemyParty;
             Party = party;
             _dialog = dialog;
-
         }
 
         public void Load()
@@ -52,6 +51,7 @@ namespace Player
             }
 
             EnemyParty = new EnemyParty(new List<Enemy> { _enemyManager.Enemies["DarkTroll"] });
+            EnemyParty.Init();
         }
 
         public bool Update()
@@ -102,7 +102,7 @@ namespace Player
 
         public void Draw()
         {
-            _battleManager.Draw("1");
+            _battleManager.Draw("02doukutsu");
             _dialog.Draw(new Rect(200, 330, 440, 150));
 
             if (battleState == BattleState.Idle)
