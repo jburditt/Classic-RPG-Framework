@@ -39,8 +39,6 @@ namespace Player
                 }
             };
 
-            EnemyParty = new EnemyParty(new List<Enemy> { enemyManager.Enemies["DarkTroll"] });
-
             //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
 
@@ -48,8 +46,7 @@ namespace Player
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager);
             map = new Map(tilesetManager);
 
-            //songManager.Play("01 - Namazu");
-            songManager.Play("Battle of the Mind");
+            songManager.Play("01 - Namazu");
         }
 
         public void Update(float deltaTime)
@@ -60,13 +57,13 @@ namespace Player
             switch (GameState)
             {
                 case GameState.StartMenu:
-                    if (_inputManager.IsPressedKey((int)Keys.Up))
+                    if (_inputManager.JustPressedKey((int)Keys.Up))
                     {
                         menuItem--;
                         if (menuItem < MenuItem.NewGame)
                             menuItem = MenuItem.Exit;
                     }
-                    if (_inputManager.IsPressedKey((int)Keys.Down))
+                    if (_inputManager.JustPressedKey((int)Keys.Down))
                     {
                         menuItem++;
                         if (menuItem > MenuItem.Exit)
@@ -83,6 +80,12 @@ namespace Player
 
                 case GameState.World:
                     player.Update(map, deltaTime);
+                    if (player.step >= 3)
+                    {
+                        player.step = 0;
+                        GameState = GameState.Battle;
+                        battle.Load();
+                    }
                     break;
             }
         }
@@ -93,18 +96,19 @@ namespace Player
             {
                 case GameState.StartMenu:
 
-                    //spriteBatch.Draw(menu, new Rectangle(0, 0, Screen.Width, Screen.Height), new Rectangle(200, 200, Screen.Width + 200, Screen.Height + 200), Color.White);
-                    _dialog.Draw(new Rect(160, 200, 130, 130));
+                    _graphics.DrawSprite("menubg", new Rect(0, 0, Screen.Width, Screen.Height), new Rect(200, 200, Screen.Width + 200, Screen.Height + 200));               
+                    _dialog.Draw(new Rect(160, 200, 130, 120));
                     _graphics.DrawString("New Game", 180, 220);
                     _graphics.DrawString("Load Game", 180, 240);
                     _graphics.DrawString("Exit", 180, 260);
+                    _graphics.DrawSprite("cursor", 160, 223 + (int)menuItem * 20);
                     break;
 
                 case GameState.World:
 
                     map.Draw((int)player.x, (int)player.y);
                     player.Draw(map);
-                    ////spriteBatch.DrawString(font, "FPS: " + (int) (1/deltaTime) + " X: " + player.x/32 + " Y: " + player.y/32, new Vector2(10, 10), Color.White);
+                    //_graphics.DrawString($"Step: {player.step} FPS: " + /*(int) (1/deltaTime) +*/ " X: " + player.x/32 + " Y: " + player.y/32, 10, 10);
                     break;
 
                 case GameState.Battle:
