@@ -218,5 +218,24 @@ namespace Player
                     }
                 }
         }
+
+        public void DrawWorld()
+        {
+            for (var x = 0; x < Columns; x++)
+                for (var y = 0; y < Rows; y++)
+
+            // draw all tile layers
+            for (var layer = 0; layer < Layers; layer++)
+            {
+                var tile = tiles[x, y, layer];
+
+                if (tile != null)
+                {
+                    var drawRect = new Rect(x * TileWidth, y * TileHeight, TileWidth, TileHeight);
+
+                    _tilesetManager.Draw(tile.Tileset, drawRect, tile.SpriteRect);
+                }
+            }
+        }
     }
 }

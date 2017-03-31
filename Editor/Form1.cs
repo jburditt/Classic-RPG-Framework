@@ -53,8 +53,8 @@ namespace Editor
             mapPictureBox.Image = new Bitmap(map.Width, map.Height);
             using (var g = Graphics.FromImage(mapPictureBox.Image))
             {
-                _tilesetManager._graphics = g;
-                map.Draw(0, 0);
+                _tilesetManager.Graphics = g;
+                map.DrawWorld();
             }
         }
 

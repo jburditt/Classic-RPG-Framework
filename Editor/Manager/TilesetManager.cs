@@ -6,12 +6,13 @@ namespace Editor.Manager
 {
     public class TilesetManager : ITilesetManager
     {
-        public Graphics _graphics;
+        public Graphics Graphics { get; set; }
+
         private Bitmap[] tileset;    // make this a dictionary
 
         public TilesetManager(Graphics graphics)
         {
-            _graphics = graphics;
+            Graphics = graphics;
         }
 
         public void Load(string[] tilesets)
@@ -24,7 +25,7 @@ namespace Editor.Manager
 
         public void Draw(int i, Rect targetRect, Rect sourceRect, ColorStruct? color = null)
         {
-            _graphics.DrawImage(tileset[i], targetRect.ToRectangle(), sourceRect.ToRectangle(), GraphicsUnit.Pixel);
+            Graphics.DrawImage(tileset[i], targetRect.ToRectangle(), sourceRect.ToRectangle(), GraphicsUnit.Pixel);
         }
     }
 }
