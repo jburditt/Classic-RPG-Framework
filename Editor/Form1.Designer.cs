@@ -1,6 +1,6 @@
 ﻿namespace Editor
 {
-    partial class editorForm
+    partial class EditorForm
     {
         /// <summary>
         /// Required designer variable.

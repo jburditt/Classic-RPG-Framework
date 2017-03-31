@@ -13,7 +13,7 @@ namespace Editor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new editorForm());
+            Application.Run(new EditorForm());
         }
     }
 }

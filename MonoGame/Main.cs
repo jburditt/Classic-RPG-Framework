@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DataStore;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Manager;
@@ -31,6 +32,9 @@ namespace MonoGame
 
         // Game
         GameEngine gameEngine;
+
+        // DataStore
+        private readonly XmlDataStore _dataStore;
 
         public Main()
         {
@@ -78,7 +82,7 @@ namespace MonoGame
             iconManager = new IconManager(Content, spriteBatch);
             battleManager = new BattleManager(Content, spriteBatch);
 
-            gameEngine = new GameEngine(songManager, graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, tilesetManager, dialog);
+            gameEngine = new GameEngine(_dataStore, songManager, graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, tilesetManager, dialog);
         }
 
         /// <summary>

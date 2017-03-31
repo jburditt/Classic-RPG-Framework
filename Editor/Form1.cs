@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Common;
 using Player;
 using Editor.Manager;
+using DataStore;
 
 namespace Editor
 {
-    public partial class editorForm : Form
+    public partial class EditorForm : Form
     {
-        private TilesetManager _tilesetManager;
-        Map map;
-        private Graphics _graphics;
+        private readonly TilesetManager _tilesetManager;
+        private readonly Map _map;
+        private readonly Graphics _graphics;
+        private readonly XmlDataStore _dataStore;
 
         private int fileIndex = 0;
         private List<Image> filesImages = new List<Image>();
@@ -19,43 +20,55 @@ namespace Editor
         private Bitmap _passable;
         private bool[][][] passable;
 
-        public editorForm()
+        public EditorForm()
         {
             InitializeComponent();
 
             _x.MakeTransparent(Color.White);
-
             _graphics = Graphics.FromImage(new Bitmap(1024, 1024));
             _tilesetManager = new TilesetManager(_graphics);
-            map = new Map(_tilesetManager, "../../../MonoGame/Content/world2.tmx");
+            _dataStore = new XmlDataStore();
+            _map = new Map(_dataStore, _tilesetManager, "../../../MonoGame/Content/world2.tmx");
 
-            passable = new bool[map.tiledMap.Tilesets.Count][][];
-            
-            for (var i = 0; i < map.tiledMap.Tilesets.Count; i++)
-            {
-                filesListBox.Items.Add(map.tiledMap.Tilesets[i].Name);
-                filesImages.Add(Image.FromFile(map.tiledMap.Tilesets[i].Image.Source));
-                //passable[i] = new bool[tiledMap.Tilesets[i].Columns.Value][(tiledMap.Tilesets[i].TileCount ?? 0) / tiledMap.Tilesets[i].Columns.Value];
-                passable[i] = new bool[map.tiledMap.Tilesets[i].Columns.Value][];
-
-                for (var x = 0; x < map.tiledMap.Tilesets[i].Columns.Value; x++)
-                {
-                    passable[i][x] = new bool[(map.tiledMap.Tilesets[i].TileCount ?? 0) / map.tiledMap.Tilesets[i].Columns.Value];
-                    for (var y = 0; y < (map.tiledMap.Tilesets[i].TileCount ?? 0)/ map.tiledMap.Tilesets[i].Columns.Value; y++)
-                        passable[i][x][y] = true;
-                }
-            }
+            // TODO Remove this
+            passable = LoadPassable("world2.passable");
 
             filePictureBox.Image = filesImages[0];
             _passable = new Bitmap(filePictureBox.Image.Width, filePictureBox.Image.Height);
             _passable.MakeTransparent(Color.White);
 
-            mapPictureBox.Image = new Bitmap(map.Width, map.Height);
+            mapPictureBox.Image = new Bitmap(_map.Width, _map.Height);
             using (var g = Graphics.FromImage(mapPictureBox.Image))
             {
                 _tilesetManager.Graphics = g;
-                map.DrawWorld();
+                _map.DrawWorld();
             }
+        }
+
+        private bool[][][] LoadPassable(string mapName)
+        {
+            //var temp = _dataStore.Load<bool[][][]>(mapName);
+
+            //if (temp == null)
+            //{
+                var temp = new bool[_map.tiledMap.Tilesets.Count][][];
+
+                for (var i = 0; i < _map.tiledMap.Tilesets.Count; i++)
+                {
+                    filesListBox.Items.Add(_map.tiledMap.Tilesets[i].Name);
+                    filesImages.Add(Image.FromFile(_map.tiledMap.Tilesets[i].Image.Source));
+                    passable[i] = new bool[_map.tiledMap.Tilesets[i].Columns.Value][];
+
+                    for (var x = 0; x < _map.tiledMap.Tilesets[i].Columns.Value; x++)
+                    {
+                        passable[i][x] = new bool[(_map.tiledMap.Tilesets[i].TileCount ?? 0) / _map.tiledMap.Tilesets[i].Columns.Value];
+                        for (var y = 0; y < (_map.tiledMap.Tilesets[i].TileCount ?? 0) / _map.tiledMap.Tilesets[i].Columns.Value; y++)
+                            passable[i][x][y] = true;
+                    }
+                }
+            //}
+
+            return temp;
         }
 
         private void filePictureBox_Click(object sender, System.EventArgs e)
@@ -98,7 +111,7 @@ namespace Editor
 
         private void saveButton_Click(object sender, System.EventArgs e)
         {
-            Serializer.XmlSerialize(passable, "../../../Data/world2.passable.xml");
+            _dataStore.Save(passable, "world2.passable");
         }
 
         private void filesListBox_SelectedIndexChanged(object sender, System.EventArgs e)

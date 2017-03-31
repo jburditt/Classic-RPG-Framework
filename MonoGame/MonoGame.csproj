@@ -95,6 +95,10 @@
       <Project>{1c3a39b9-a3ed-4adb-b0be-3ee456e9f633}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataStore\DataStore.csproj">
+      <Project>{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}</Project>
+      <Name>DataStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Player\Player.csproj">
       <Project>{88f12e9b-d503-4ad4-a925-6a7a9a8210d3}</Project>
       <Name>Player</Name>

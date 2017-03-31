@@ -83,6 +83,10 @@
       <Project>{72912467-9F1F-4EB8-9B8F-C45486ADA0D9}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataStore\DataStore.csproj">
+      <Project>{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}</Project>
+      <Name>DataStore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

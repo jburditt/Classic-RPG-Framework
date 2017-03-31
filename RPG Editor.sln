@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame", "MonoGame\MonoGame.csproj", "{5336DDE4-3EDC-43A1-8D89-52F0DF8B4159}"
 EndProject
@@ -17,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player", "Player\Player.csproj", "{88F12E9B-D503-4AD4-A925-6A7A9A8210D3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{C44873DB-E73E-49CA-AB9A-18205E254E58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStore", "DataStore\DataStore.csproj", "{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,14 @@ Global
 		{C44873DB-E73E-49CA-AB9A-18205E254E58}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C44873DB-E73E-49CA-AB9A-18205E254E58}.Release|x86.ActiveCfg = Release|Any CPU
 		{C44873DB-E73E-49CA-AB9A-18205E254E58}.Release|x86.Build.0 = Release|Any CPU
+		{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}.Debug|x86.Build.0 = Debug|Any CPU
+		{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}.Release|x86.ActiveCfg = Release|Any CPU
+		{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

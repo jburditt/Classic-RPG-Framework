@@ -1,8 +1,6 @@
-﻿using Common;
+﻿using DataStore;
 using Player.Manager;
-using System.IO;
 using System.Linq;
-using System.Xml.Serialization;
 using TiledSharp;
 
 namespace Player
@@ -10,6 +8,7 @@ namespace Player
     public class Map
     {
         private readonly ITilesetManager _tilesetManager;
+        private readonly IDataStore _dataStore;
 
         public int TileWidth { get; set; }
         public int TileHeight { get; set; }
@@ -24,8 +23,9 @@ namespace Player
 
         int windowTilesWide, windowTilesHigh;
 
-        public Map(ITilesetManager tilesetManager, string map)
+        public Map(IDataStore dataStore, ITilesetManager tilesetManager, string map)
         {
+            _dataStore = dataStore;
             _tilesetManager = tilesetManager;
 
             tiledMap = new TmxMap(map);
@@ -55,9 +55,7 @@ namespace Player
         {
             var tiles = new Tile[tiledMap.Width, tiledMap.Height, tiledMap.Layers.Count];
 
-            var serializer = new XmlSerializer(typeof(bool[][][]));
-            var reader = new StreamReader("../../../Data/world2.passable.xml");
-            var passable = (bool[][][])serializer.Deserialize(reader);
+            var passable = _dataStore.Load<bool[][][]>("world2.passable");
 
             for (var x = 0; x < tiledMap.Width; x++)
                 for (var y = 0; y < tiledMap.Height; y++)

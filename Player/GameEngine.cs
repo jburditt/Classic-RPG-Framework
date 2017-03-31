@@ -1,4 +1,5 @@
-﻿using Player.Graphics;
+﻿using DataStore;
+using Player.Graphics;
 using Player.Inputs;
 using Player.Manager;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Player
         MenuItem menuItem = MenuItem.NewGame;
 
         public GameEngine(
-            ISongManager songManager, IGraphics graphics, IBattleManager battleManager, IActorManager actorManager, IEnemyManager enemyManager,
+            IDataStore dataStore, ISongManager songManager, IGraphics graphics, IBattleManager battleManager, IActorManager actorManager, IEnemyManager enemyManager,
             IIconManager iconManager, IInputManager inputManager, ITilesetManager tilesetManager, IDialog dialog)
         {
             _inputManager = inputManager;
@@ -46,7 +47,7 @@ namespace Player
 
             battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialog);
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager);
-            map = new Map(tilesetManager, "Content/world2.tmx");
+            map = new Map(dataStore, tilesetManager, "Content/world2.tmx");
 
             //songManager.Play("01 - Namazu");
             songManager.Play("Sadness Everlasting");
