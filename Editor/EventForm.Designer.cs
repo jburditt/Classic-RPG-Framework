@@ -39,11 +39,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.eventNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             this.eventTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -130,9 +132,11 @@
             this.imageButton.TabIndex = 1;
             this.imageButton.Text = "Image";
             this.imageButton.UseVisualStyleBackColor = true;
+            this.imageButton.Click += new System.EventHandler(this.imageButton_Click);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.eventNumericUpDown);
             this.panel1.Controls.Add(this.saveButton);
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -161,6 +165,13 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // eventNumericUpDown
+            // 
+            this.eventNumericUpDown.Location = new System.Drawing.Point(4, 4);
+            this.eventNumericUpDown.Name = "eventNumericUpDown";
+            this.eventNumericUpDown.Size = new System.Drawing.Size(120, 22);
+            this.eventNumericUpDown.TabIndex = 6;
+            // 
             // EventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -175,6 +186,7 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.eventNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -192,5 +204,6 @@
         private System.Windows.Forms.Button imageButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.NumericUpDown eventNumericUpDown;
     }
 }

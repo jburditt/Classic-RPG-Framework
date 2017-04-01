@@ -20,8 +20,7 @@ namespace Player
 
         public TmxMap TiledMap { get; set; }
         public bool[][][] Passable { get; set; }
-
-        Tile[,,] tiles;
+        public Tile[,,] Tiles { get; set; }
 
         int windowTilesWide, windowTilesHigh;
 
@@ -50,7 +49,7 @@ namespace Player
 
             tilesetManager.Load(tilesetNames);
 
-            tiles = Load();
+            Tiles = Load();
         }
 
         public Tile[,,] Load()
@@ -139,7 +138,7 @@ namespace Player
 
             for (int layerIndex = 0; layerIndex < Layers; layerIndex++)
             {
-                var tile = tiles[x, y, layerIndex];
+                var tile = Tiles[x, y, layerIndex];
 
                 if (tile != null && !tile.IsPassable)
                 {
@@ -207,7 +206,7 @@ namespace Player
                     // draw all tile layers
                     for (var layer = 0; layer < Layers; layer++)
                     {
-                        var tile = tiles[x + playerTileX, y + playerTileY, layer];
+                        var tile = Tiles[x + playerTileX, y + playerTileY, layer];
 
                         if (tile != null)
                         {
@@ -223,7 +222,7 @@ namespace Player
         {
             for (var layer = 0; layer < Layers; layer++)
             {
-                var tile = tiles[x, y, layer];
+                var tile = Tiles[x, y, layer];
 
                 if (tile != null)
                 {

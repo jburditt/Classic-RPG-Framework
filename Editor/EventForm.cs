@@ -1,5 +1,6 @@
 ﻿using Player;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,11 +8,20 @@ namespace Editor
 {
     public partial class EventForm : Form
     {
-        public NPC Selected { get; set; } = new NPC();
+        public List<NPC> Selected { get; set; } = new List<NPC>();
+
+        public NPC Active {
+            get
+            {
+                return Selected[(int)eventNumericUpDown.Value];
+            }
+        }
 
         public EventForm()
         {
             InitializeComponent();
+
+            Selected.Add(new NPC());
         }
 
         private void imageButton_Click(object sender, EventArgs e)
@@ -25,8 +35,8 @@ namespace Editor
                     imageLabel.Text = form.Selected.Name;
                     pictureBox.Image = new Bitmap(form.Selected.FilePath);
 
-                    Selected.Name = form.Selected.Name;
-                    Selected.CharSet = form.Selected.FilePath;
+                    Active.Name = form.Selected.Name;
+                    Active.CharSet = form.Selected.FilePath;
                 }
             }
         }
@@ -35,7 +45,7 @@ namespace Editor
         {
             DialogResult = DialogResult.OK;
 
-            Selected.Dialog = dialogTextBox.Text;
+            Active.Dialog = dialogTextBox.Text;
 
             Close();
         }
