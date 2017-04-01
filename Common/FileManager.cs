@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Common
 {
@@ -9,7 +10,7 @@ namespace Common
         public static readonly List<string> SongExtensions = new List<string> { ".MP3", ".OGG", ".WAV", ".MID", ".MIDI" };
         public static readonly List<string> FontExtensions = new List<string> { ".FONT", ".SPRITEFONT" };
 
-        public static IEnumerable<string> GetFilepaths(string targetDirectory, bool includeSubFolders = true)
+        public static List<string> GetFilepaths(string targetDirectory, bool includeSubFolders = true)
         {
             var filepaths = new List<string>();
 
@@ -31,6 +32,11 @@ namespace Common
             return filepaths;
         }
 
+        public static List<Asset> ToFileList(this List<string> filePaths)
+        {
+            return filePaths.Select(n => new Asset { Name = n.Substring(n.LastIndexOf("\\") + 1), FilePath = n }).ToList();
+        }
+
         public static bool IsImage(this string filepath)
         {
             return ImageExtensions.Contains(Path.GetExtension(filepath).ToUpperInvariant());
@@ -45,5 +51,11 @@ namespace Common
         {
             return FontExtensions.Contains(Path.GetExtension(filepath).ToUpperInvariant());
         }
+    }
+
+    public class Asset
+    {
+        public string Name { get; set; }
+        public string FilePath { get; set; }
     }
 }

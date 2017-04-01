@@ -1,9 +1,6 @@
-﻿using System.Globalization;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-//using System.Xml;
 using System.Xml.Serialization;
-//using Newtonsoft.Json;
 
 namespace Common
 {
@@ -55,42 +52,6 @@ namespace Common
             {
                 reader?.Close();
             }
-        }
-
-        public static string XmlSerializeToString<T>(T value)
-        {
-            if (value == null)
-                return null;
-
-            var writer = new StringWriter(CultureInfo.InvariantCulture);
-            var serializer = new XmlSerializer(typeof(T));
-            serializer.Serialize(writer, value);
-            return writer.ToString();
-        }
-
-
-        public static T XmlDeserializeToString<T>(string serializedString)
-        {
-            if (string.IsNullOrEmpty(serializedString))
-                return default(T);
-
-            var x = new XmlSerializer(typeof(T));
-            var deserializedClass = (T)x.Deserialize(new StringReader(serializedString));
-
-            return deserializedClass;
-        }
-
-        //public static string JsonSerialize(this object obj, Formatting formatting = Formatting.None, JsonSerializerSettings serializerSettings = null)
-        //{
-        //    if (serializerSettings == null)
-        //        serializerSettings = new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore };
-
-        //    return JsonConvert.SerializeObject(obj, formatting, serializerSettings);
-        //}
-
-        //public static T JsonDeserialize<T>(this string str, JsonSerializerSettings serializerSettings = null)
-        //{
-        //    return JsonConvert.DeserializeObject<T>(str, serializerSettings);
-        //}
+        }       
     }
 }

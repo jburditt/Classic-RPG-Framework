@@ -1,6 +1,6 @@
 ﻿namespace Editor
 {
-    partial class EditorForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -260,6 +260,9 @@
             this.mapPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.mapPictureBox.TabIndex = 0;
             this.mapPictureBox.TabStop = false;
+            this.mapPictureBox.Click += new System.EventHandler(this.mapPictureBox_Click);
+            this.mapPictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mapPictureBox_MouseMove);
+
             // 
             // openFileDialog1
             // 
@@ -286,7 +289,7 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // editorForm
+            // EditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -295,7 +298,7 @@
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.charsetTab);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "editorForm";
+            this.Name = "EditorForm";
             this.Text = "RPG Editor";
             this.charsetTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

@@ -18,7 +18,9 @@ namespace Player
         public int Rows { get; set; }
         public int Layers { get; set; }
 
-        public TmxMap tiledMap { get; set; }
+        public TmxMap TiledMap { get; set; }
+        public bool[][][] Passable { get; set; }
+
         Tile[,,] tiles;
 
         int windowTilesWide, windowTilesHigh;
@@ -28,22 +30,22 @@ namespace Player
             _dataStore = dataStore;
             _tilesetManager = tilesetManager;
 
-            tiledMap = new TmxMap(map);
+            TiledMap = new TmxMap(map);
 
-            TileWidth = tiledMap.Tilesets[0].TileWidth;              // width of tile in pixels
-            TileHeight = tiledMap.Tilesets[0].TileHeight;            // height of tile
+            TileWidth = TiledMap.Tilesets[0].TileWidth;              // width of tile in pixels
+            TileHeight = TiledMap.Tilesets[0].TileHeight;            // height of tile
 
             windowTilesWide = Screen.Width / TileWidth;         // number of columns in window
             windowTilesHigh = Screen.Height / TileHeight;       // number of rows in window
 
-            Width = tiledMap.Width * TileWidth;                      // width of map in pixels
-            Height = tiledMap.Height * TileHeight;                   // height of map
+            Width = TiledMap.Width * TileWidth;                      // width of map in pixels
+            Height = TiledMap.Height * TileHeight;                   // height of map
 
-            Columns = tiledMap.Width;
-            Rows = tiledMap.Height;
-            Layers = tiledMap.Layers.Count;
+            Columns = TiledMap.Width;
+            Rows = TiledMap.Height;
+            Layers = TiledMap.Layers.Count;
 
-            var tilesets = tiledMap.Tilesets;
+            var tilesets = TiledMap.Tilesets;
             var tilesetNames = tilesets.Select(n => n.Image.Source).ToArray();
 
             tilesetManager.Load(tilesetNames);
@@ -53,17 +55,17 @@ namespace Player
 
         public Tile[,,] Load()
         {
-            var tiles = new Tile[tiledMap.Width, tiledMap.Height, tiledMap.Layers.Count];
+            var tiles = new Tile[TiledMap.Width, TiledMap.Height, TiledMap.Layers.Count];
 
-            var passable = _dataStore.Load<bool[][][]>("world2.passable");
+            Passable = _dataStore.Load<bool[][][]>("world2.passable");
 
-            for (var x = 0; x < tiledMap.Width; x++)
-                for (var y = 0; y < tiledMap.Height; y++)
-                    for (var layer = 0; layer < tiledMap.Layers.Count; layer++)
+            for (var x = 0; x < TiledMap.Width; x++)
+                for (var y = 0; y < TiledMap.Height; y++)
+                    for (var layer = 0; layer < TiledMap.Layers.Count; layer++)
                     {
-                        int tileIndex = x + y * tiledMap.Width;
+                        int tileIndex = x + y * TiledMap.Width;
 
-                        int gid = tiledMap.Layers[layer].Tiles[tileIndex].Gid;
+                        int gid = TiledMap.Layers[layer].Tiles[tileIndex].Gid;
                         if (gid == 0)
                             continue;
 
@@ -72,30 +74,30 @@ namespace Player
                         int row = 0, column = 0;
 
                         // get tilesetIndex and position in tileset from gid
-                        for (var i = 0; i < tiledMap.Tilesets.Count; i++)
+                        for (var i = 0; i < TiledMap.Tilesets.Count; i++)
                         {
-                            if (gid < tiledMap.Tilesets[i].TileCount + tileCount)
+                            if (gid < TiledMap.Tilesets[i].TileCount + tileCount)
                             {
                                 tilesetIndex = i;
                                 int tileFrame = gid - tileCount - 1;
-                                int columns = tiledMap.Tilesets[i].Columns ?? 1;
+                                int columns = TiledMap.Tilesets[i].Columns ?? 1;
                                 column = tileFrame % columns;
                                 row = (tileFrame) / columns;
                                 break;
                             }
 
                             // make sure we tally the tile count, so we know what to subtract from gid
-                            tileCount += tiledMap.Tilesets[i].TileCount ?? 0;
+                            tileCount += TiledMap.Tilesets[i].TileCount ?? 0;
                         }
 
-                        var tileWidth = tiledMap.Tilesets[0].TileWidth;
-                        var tileHeight = tiledMap.Tilesets[0].TileHeight;
+                        var tileWidth = TiledMap.Tilesets[0].TileWidth;
+                        var tileHeight = TiledMap.Tilesets[0].TileHeight;
 
                         tiles[x, y, layer] = new Tile
                         {
                             SpriteRect = new Rect(tileWidth * column, tileHeight * row, tileWidth, tileHeight),
                             Tileset = tilesetIndex,
-                            IsPassable = passable[tilesetIndex][column][row]
+                            IsPassable = Passable[tilesetIndex][column][row]
                         };
                     }
 
@@ -217,12 +219,8 @@ namespace Player
                 }
         }
 
-        public void DrawWorld()
+        public void DrawTile(int x, int y)
         {
-            for (var x = 0; x < Columns; x++)
-                for (var y = 0; y < Rows; y++)
-
-            // draw all tile layers
             for (var layer = 0; layer < Layers; layer++)
             {
                 var tile = tiles[x, y, layer];
@@ -234,6 +232,13 @@ namespace Player
                     _tilesetManager.Draw(tile.Tileset, drawRect, tile.SpriteRect);
                 }
             }
+        }
+
+        public void DrawWorld()
+        {
+            for (var x = 0; x < Columns; x++)
+                for (var y = 0; y < Rows; y++)
+                    DrawTile(x, y);
         }
     }
 }

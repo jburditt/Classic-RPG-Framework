@@ -68,6 +68,7 @@
     <Compile Include="Manager\IIconManager.cs" />
     <Compile Include="Manager\ITilesetManager.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="NPC.cs" />
     <Compile Include="Party.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
