@@ -55,7 +55,8 @@
     <Compile Include="EnemyParty.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="GameEngine.cs" />
-    <Compile Include="Graphics\IDialog.cs" />
+    <Compile Include="Graphics\Dialog.cs" />
+    <Compile Include="Graphics\IDialogManager.cs" />
     <Compile Include="Graphics\IGraphics.cs" />
     <Compile Include="IEffect.cs" />
     <Compile Include="Manager\IInputManager.cs" />
