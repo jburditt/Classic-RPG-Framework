@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -34,7 +35,11 @@ namespace Common
 
         public static List<Asset> ToFileList(this List<string> filePaths)
         {
-            return filePaths.Select(n => new Asset { Name = n.Substring(n.LastIndexOf("\\") + 1), FilePath = n }).ToList();
+            return filePaths.Select(n => new Asset {
+                FileName = n.Substring(n.LastIndexOf("\\") + 1),
+                FilePath = n,
+                Name = n.Substring(n.LastIndexOf("\\") + 1).Left(Math.Max(0, n.Substring(n.LastIndexOf("\\") + 1).Length - 4))
+            }).ToList();
         }
 
         public static bool IsImage(this string filepath)
@@ -55,7 +60,8 @@ namespace Common
 
     public class Asset
     {
-        public string Name { get; set; }
+        public string FileName { get; set; }
         public string FilePath { get; set; }
+        public string Name { get; set; }
     }
 }

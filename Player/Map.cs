@@ -1,5 +1,7 @@
-﻿using DataStore;
+﻿using Common;
+using DataStore;
 using Player.Manager;
+using System.Collections.Generic;
 using System.Linq;
 using TiledSharp;
 
@@ -20,7 +22,21 @@ namespace Player
 
         public TmxMap TiledMap { get; set; }
         public bool[][][] Passable { get; set; }
-        public Tile[,,] Tiles { get; set; }
+        public Tile[][][] Tiles { get; set; }
+
+        public List<NPC> NPC {
+            get
+            {
+                var list = new List<NPC>();
+
+                for (var x = 0; x < Tiles.Length; x++)
+                    for (var y = 0; y < Tiles.Length; y++)
+                        if (Tiles[x][y][0].NPC.Count > 0)
+                            list.AddRange(Tiles[x][y][0].NPC);
+
+                return list;
+            }
+        }
 
         int windowTilesWide, windowTilesHigh;
 
@@ -45,21 +61,28 @@ namespace Player
             Layers = TiledMap.Layers.Count;
 
             var tilesets = TiledMap.Tilesets;
-            var tilesetNames = tilesets.Select(n => n.Image.Source).ToArray();
+            // TODO I might have got carried away with LINQ ...
+            var tilesetNames = tilesets.Select(n => n.Image.Source).ToList().ToFileList().Select(n => n.Name).ToArray();
 
             tilesetManager.Load(tilesetNames);
 
             Tiles = Load();
         }
 
-        public Tile[,,] Load()
+        public Tile[][][] Load()
         {
-            var tiles = new Tile[TiledMap.Width, TiledMap.Height, TiledMap.Layers.Count];
+            var tiles = new Tile[TiledMap.Width][][];
 
             Passable = _dataStore.Load<bool[][][]>("world2.passable");
 
             for (var x = 0; x < TiledMap.Width; x++)
+            {
+                tiles[x] = new Tile[TiledMap.Height][];
+
                 for (var y = 0; y < TiledMap.Height; y++)
+                {
+                    tiles[x][y] = new Tile[TiledMap.Layers.Count];
+
                     for (var layer = 0; layer < TiledMap.Layers.Count; layer++)
                     {
                         int tileIndex = x + y * TiledMap.Width;
@@ -92,13 +115,15 @@ namespace Player
                         var tileWidth = TiledMap.Tilesets[0].TileWidth;
                         var tileHeight = TiledMap.Tilesets[0].TileHeight;
 
-                        tiles[x, y, layer] = new Tile
+                        tiles[x][y][layer] = new Tile
                         {
                             SpriteRect = new Rect(tileWidth * column, tileHeight * row, tileWidth, tileHeight),
                             Tileset = tilesetIndex,
                             IsPassable = Passable[tilesetIndex][column][row]
                         };
                     }
+                }
+            }
 
             return tiles;
         }
@@ -138,7 +163,7 @@ namespace Player
 
             for (int layerIndex = 0; layerIndex < Layers; layerIndex++)
             {
-                var tile = Tiles[x, y, layerIndex];
+                var tile = Tiles[x][y][layerIndex];
 
                 if (tile != null && !tile.IsPassable)
                 {
@@ -206,7 +231,7 @@ namespace Player
                     // draw all tile layers
                     for (var layer = 0; layer < Layers; layer++)
                     {
-                        var tile = Tiles[x + playerTileX, y + playerTileY, layer];
+                        var tile = Tiles[x + playerTileX][y + playerTileY][layer];
 
                         if (tile != null)
                         {
@@ -222,7 +247,7 @@ namespace Player
         {
             for (var layer = 0; layer < Layers; layer++)
             {
-                var tile = Tiles[x, y, layer];
+                var tile = Tiles[x][y][layer];
 
                 if (tile != null)
                 {

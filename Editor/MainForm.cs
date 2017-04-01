@@ -134,6 +134,8 @@ namespace Editor
         private void saveButton_Click(object sender, System.EventArgs e)
         {
             _dataStore.Save(_map.Passable, "world2.passable");
+            _dataStore.Save(_map.Tiles, "world2.Tiles");
+            _dataStore.Save(_map.NPC, "world2.NPC");
         }
 
         private void filesListBox_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -150,9 +152,9 @@ namespace Editor
 
                 if (result == DialogResult.OK)
                 {
-                    _map.Tiles[mouseOldX, mouseOldY, 0].NPC = form.Selected;
+                    _map.Tiles[mouseOldX][mouseOldY][0].NPC = form.Selected;
 
-                    // load image
+                    // TODO load image
                 }
             }
         }

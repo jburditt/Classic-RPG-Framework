@@ -34,7 +34,7 @@ namespace MonoGame
         GameEngine gameEngine;
 
         // DataStore
-        private readonly XmlDataStore _dataStore;
+        private XmlDataStore _dataStore;
 
         public Main()
         {
@@ -81,6 +81,8 @@ namespace MonoGame
             enemyManager = new EnemyManager(Content, spriteBatch);
             iconManager = new IconManager(Content, spriteBatch);
             battleManager = new BattleManager(Content, spriteBatch);
+
+            _dataStore = new XmlDataStore("../../../../Data/");
 
             gameEngine = new GameEngine(_dataStore, songManager, graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, tilesetManager, dialog);
         }
