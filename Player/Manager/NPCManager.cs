@@ -13,15 +13,21 @@ namespace Player.Manager
             _actorManager = actorManager;
         }
 
-        public void Draw(Map map, int playerX, int playerY)
+        public void Update(Map map)
+        {
+            foreach (var npc in NPC)
+                npc.Update(map);
+        }
+
+        public void Draw(Map map)
         {
             foreach (var npc in NPC)
             {
-                npc.animation.Y = (int)npc.direction;
+                npc.Animation.Y = (int)npc.Direction;
 
                 var pos = npc.Pos - map.Camera;
 
-                _actorManager.Draw(npc.CharSet, npc.animation.DrawRect(pos.X, pos.Y), npc.animation.SourceRect);
+                _actorManager.Draw(npc.CharSet, npc.Animation.DrawRect(pos.X, pos.Y), npc.Animation.SourceRect);
             }
         }
     }

@@ -37,7 +37,8 @@ namespace Editor
 
                     Active.Name = form.Selected.Name;
                     Active.CharSet = form.Selected.Name;
-                    Active.direction = Direction.Down;
+                    Active.Direction = Direction.Down;
+                    Active.Movement = Movement.Walking;
                 }
             }
         }
@@ -54,6 +55,7 @@ namespace Editor
         private void cancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+
             Close();
         }
     }

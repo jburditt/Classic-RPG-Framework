@@ -120,27 +120,26 @@ namespace Player
             return tiles;
         }
 
-        // TODO Optimize by adding direction
-        public bool IsCollision(int playerX, int playerY, Direction direction)
+        public bool IsCollision(Vector pos, Direction direction)
         {
-            var x = playerX / TileWidth;
-            var y = playerY / TileHeight;
+            var x = pos.X / TileWidth;
+            var y = pos.Y / TileHeight;
 
             var isCollision = false;
 
             switch (direction)
             {
                 case Direction.Up:
-                    isCollision = IsTileCollision(playerX, playerY, x, y) || (playerX % TileWidth != 0 && IsTileCollision(playerX, playerY, x + 1, y));
+                    isCollision = IsTileCollision(pos.X, pos.Y, x, y) || (pos.X % TileWidth != 0 && IsTileCollision(pos.X, pos.Y, x + 1, y));
                     return isCollision;
                 case Direction.Right:
-                    isCollision = IsTileCollision(playerX, playerY, x + 1, y) || (playerY % TileHeight != 0 && IsTileCollision(playerX, playerY, x + 1, y + 1));
+                    isCollision = IsTileCollision(pos.X, pos.Y, x + 1, y) || (pos.X % TileHeight != 0 && IsTileCollision(pos.X, pos.Y, x + 1, y + 1));
                     return isCollision;
                 case Direction.Down:
-                    isCollision = IsTileCollision(playerX, playerY, x, y + 1) || (playerX % TileWidth != 0 && IsTileCollision(playerX, playerY, x + 1, y + 1));
+                    isCollision = IsTileCollision(pos.X, pos.Y, x, y + 1) || (pos.X % TileWidth != 0 && IsTileCollision(pos.X, pos.Y, x + 1, y + 1));
                     return isCollision;
                 case Direction.Left:
-                    isCollision = IsTileCollision(playerX, playerY, x, y) || (playerY % TileHeight != 0 && IsTileCollision(playerX, playerY, x, y + 1));
+                    isCollision = IsTileCollision(pos.X, pos.Y, x, y) || (pos.Y % TileHeight != 0 && IsTileCollision(pos.X, pos.Y, x, y + 1));
                     return isCollision;
             }
 
@@ -170,27 +169,27 @@ namespace Player
             return false;
         }
 
-        public void Draw(int playerX, int playerY)
+        public void Draw(Vector player)
         {
             for (var y = 0; y <= windowTilesHigh; y++)
                 for (var x = 0; x <= windowTilesWide; x++)
                 {
                     // don't draw extra tile if on the boundary
-                    if (playerY >= Height - Screen.HalfHeight && y == windowTilesHigh)
+                    if (player.Y >= Height - Screen.HalfHeight && y == windowTilesHigh)
                         break;
-                    if (playerX >= Width - Screen.HalfWidth && x == windowTilesWide)
+                    if (player.X >= Width - Screen.HalfWidth && x == windowTilesWide)
                         continue;
 
                     int playerTileX, playerTileY;
                     int offsetX = 0, offsetY = 0;
 
                     // handle player X coordinate
-                    if (playerX < Screen.HalfWidth)
+                    if (player.X < Screen.HalfWidth)
                     {
                         // offset player when near the left boundary of the map
                         playerTileX = 0;
                     }
-                    else if (playerX > Width - Screen.HalfWidth)
+                    else if (player.X > Width - Screen.HalfWidth)
                     {
                         // offset player when near the right boundary of the map
                         playerTileX = (Width - Screen.Width) / TileWidth;
@@ -198,17 +197,17 @@ namespace Player
                     else
                     {
                         // position the player in the middle of the screen
-                        playerTileX = (playerX - Screen.HalfWidth) / TileWidth;
-                        offsetX = playerX % TileWidth;
+                        playerTileX = (player.X - Screen.HalfWidth) / TileWidth;
+                        offsetX = player.X % TileWidth;
                     }
 
                     // handle player Y coordinate
-                    if (playerY < Screen.HalfHeight)
+                    if (player.Y < Screen.HalfHeight)
                     {
                         // offset player when near the top boundary of the map
                         playerTileY = 0;
                     }
-                    else if (playerY > Height - Screen.HalfHeight)
+                    else if (player.Y > Height - Screen.HalfHeight)
                     {
                         // offset player when near the bottom boundary of the map
                         playerTileY = (Height - Screen.Height) / TileHeight;
@@ -216,8 +215,8 @@ namespace Player
                     else
                     {
                         // position the player in the middle of the screen
-                        playerTileY = (playerY - Screen.HalfHeight) / TileHeight;
-                        offsetY = (playerY + 16) % TileHeight;
+                        playerTileY = (player.Y - Screen.HalfHeight) / TileHeight;
+                        offsetY = (player.Y + 16) % TileHeight;
                     }
 
                     // draw all tile layers
@@ -257,52 +256,47 @@ namespace Player
                     DrawTile(x, y);
         }
 
-        public int TransformX(float x)
+        public VectorF Transform(VectorF p)
         {
-            var n = Screen.HalfWidth;
-            if (x < Screen.HalfWidth) n = (int)x;
-            if (x > Width - Screen.HalfWidth)
-                n = (int)x - Screen.Width - Screen.HalfWidth;
+            float x = Screen.HalfWidth;
+            if (p.X < Screen.HalfWidth) x = p.X;
+            if (p.X > Width - Screen.HalfWidth)
+                x = p.X - Screen.Width - Screen.HalfWidth;
 
-            return n;
+            float y = Screen.HalfHeight;
+            if (p.Y < Screen.HalfHeight) y = p.Y;
+            if (p.Y > Height - Screen.HalfHeight)
+                y = p.Y - Height + Screen.Height;
+
+            return new VectorF(x, y);
         }
 
-        public int TransformY(float y)
+        public void UpdateCamera(Vector pos)
         {
-            var n = Screen.HalfHeight;
-            if (y < Screen.HalfHeight) n = (int)y;
-            if (y > Height - Screen.HalfHeight)
-                n = (int)y - Height + Screen.Height;
-
-            return n;
-        }
-
-        public void UpdateCamera(int x, int y)
-        {
-            if (x < Screen.HalfWidth)
+            if (pos.X < Screen.HalfWidth)
             {
                 Camera.X = 0;
             }
-            else if (x > Width - Screen.HalfWidth)
+            else if (pos.X > Width - Screen.HalfWidth)
             {
                 Camera.X = Width - Screen.Width;
             }
             else
             {
-                Camera.X = x - Screen.HalfWidth;
+                Camera.X = pos.X - Screen.HalfWidth;
             }
 
-            if (y < Screen.HalfHeight)
+            if (pos.Y < Screen.HalfHeight)
             {
                 Camera.Y = 0;
             }
-            else if (y > Height - Screen.HalfHeight)
+            else if (pos.Y > Height - Screen.HalfHeight)
             {
                 Camera.Y = Height - Screen.Height;
             }
             else
             {
-                Camera.Y = y - Screen.HalfHeight;
+                Camera.Y = pos.Y - Screen.HalfHeight;
             }
         }
     }

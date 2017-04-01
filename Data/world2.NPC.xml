@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNPC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <NPC>
-    <animation>
+    <Animation>
       <spriteWidth>24</spriteWidth>
       <spriteHeight>32</spriteHeight>
       <X>0</X>
       <Y>0</Y>
       <frame>0</frame>
-    </animation>
-    <direction>Down</direction>
+    </Animation>
+    <Direction>Down</Direction>
+    <Movement>Walking</Movement>
     <Name>gus</Name>
     <CharSet>gus</CharSet>
     <Dialog>asdf</Dialog>

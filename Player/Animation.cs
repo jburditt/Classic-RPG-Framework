@@ -8,6 +8,16 @@
         public int spriteWidth = 24;
         public int spriteHeight = 32;
 
+        public Rect DrawRect(Vector n)
+        {
+            return new Rect(n.X, n.Y, spriteWidth, spriteHeight);
+        }
+
+        public Rect DrawRect(VectorF n)
+        {
+            return new Rect((int)n.X, (int)n.Y, spriteWidth, spriteHeight);
+        }
+
         public Rect DrawRect(int x, int y)
         {
             return new Rect(x, y, spriteWidth, spriteHeight);

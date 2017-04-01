@@ -1,5 +1,6 @@
 ﻿using Player.Inputs;
 using Player.Manager;
+using System.Collections.Generic;
 
 namespace Player
 {
@@ -7,7 +8,7 @@ namespace Player
     {
         public bool IsMoving { get; set; }
 
-        public float x = 520, y = 610;
+        public VectorF Pos;
         public float step;
         public int speedX = 150, speedY = 150;
         public Direction direction;
@@ -58,57 +59,79 @@ namespace Player
                 MoveRight(map, deltaTime);
 
             if (_inputManager.AnyPressedKey((int)Keys.Up, (int)Keys.Down, (int)Keys.Left, (int)Keys.Right))
-                map.UpdateCamera((int)x, (int)y);
+                map.UpdateCamera(Pos.ToVector());
+        }
+
+        public void Action(Map map)
+        {
+            foreach (var npc in map.NPC)
+            {
+                if (Vector.Distance(npc.Pos, Pos.ToVector()) < 10)
+                    npc.Talk();
+            }
         }
 
         public void Draw(Map map)
         {
             animation.Y = (int)direction;
 
-            int xPos = map.TransformX(x);
-            int yPos = map.TransformY(y);
-             
-            _actorManager.Draw(_charSetName, animation.DrawRect(xPos, yPos), animation.SourceRect);
+            //int xPos = map.TransformX(x);
+            //int yPos = map.TransformY(y);
+            var pos = map.Transform(Pos);
+            
+            _actorManager.Draw(_charSetName, animation.DrawRect(pos), animation.SourceRect);
         }
 
         public void MoveUp(Map map, float deltaTime)
         {
             direction = Direction.Up;
 
-            if (!map.IsCollision((int)x, (int)(y - deltaTime * speedX), direction))
-                y -= deltaTime * speedY;
+            var dest = Pos;
+            dest.Y -= deltaTime * speedY;
 
-            if (y < 0) y = 0;
+            if (!map.IsCollision(dest.ToVector(), direction))
+                Pos.Y -= deltaTime * speedY;
+
+            if (Pos.Y < 0) Pos.Y = 0;
         }
 
         public void MoveDown(Map map, float deltaTime)
         {
             direction = Direction.Down;
 
-            if (!map.IsCollision((int)x, (int)(y + deltaTime * speedX), direction))
-                y += deltaTime * speedY;
+            var dest = Pos;
+            dest.Y += deltaTime * speedY;
 
-            if (y > map.Height) y = map.Height;
+            if (!map.IsCollision(dest.ToVector(), direction))
+                Pos.Y += deltaTime * speedY;
+
+            if (Pos.Y > map.Height) Pos.Y = map.Height;
         }
 
         public void MoveLeft(Map map, float deltaTime)
         {
             direction = Direction.Left;
 
-            if (!map.IsCollision((int)(x - deltaTime * speedX), (int)y, direction))
-                x -= deltaTime * speedX;
+            var dest = Pos;
+            dest.X -= deltaTime * speedX;
 
-            if (x < 0) x = 0;
+            if (!map.IsCollision(dest.ToVector(), direction))
+                Pos.X -= deltaTime * speedX;
+
+            if (Pos.X < 0) Pos.X = 0;
         }
 
         public void MoveRight(Map map, float deltaTime)
         {
             direction = Direction.Right;
 
-            if (!map.IsCollision((int)(x + deltaTime * speedX), (int)y, direction))
-                x += deltaTime * speedX;
+            var dest = Pos;
+            dest.X += deltaTime * speedX;
 
-            if (x > map.Width) x = map.Width;
+            if (!map.IsCollision(dest.ToVector(), direction))
+                Pos.X += deltaTime * speedX;
+
+            if (Pos.X > map.Width) Pos.X = map.Width;
         }
     }
 }

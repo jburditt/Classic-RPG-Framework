@@ -91,8 +91,10 @@ namespace Player
                     break;
 
                 case GameState.World:
-                    foreach (var npc in map.NPC)
-                        npc.Update();
+                    _npcManager.Update(map);
+
+                    if (_inputManager.IsPressedInput((int)Input.FaceButtonDown))
+                        player.Action(map);
 
                     player.Update(map, deltaTime);
                     if (player.step >= 3)
@@ -121,8 +123,8 @@ namespace Player
 
                 case GameState.World:
 
-                    map.Draw((int)player.x, (int)player.y);
-                    _npcManager.Draw(map, (int)player.x, (int)player.y);
+                    map.Draw(player.Pos.ToVector());
+                    _npcManager.Draw(map);
                     player.Draw(map);
                     //_graphics.DrawString($"Step: {player.step} FPS: " + /*(int) (1/deltaTime) +*/ " X: " + player.x/32 + " Y: " + player.y/32, 10, 10);
                     break;

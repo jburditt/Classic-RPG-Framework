@@ -9,6 +9,11 @@
             return r.Next(0, max);
         }
 
+        public static int Next(int min, int max)
+        {
+            return r.Next(min, max);
+        }
+
         public static int Sign()
         {
             return r.Next(0, 1) == 0 ? 1 : -1;
