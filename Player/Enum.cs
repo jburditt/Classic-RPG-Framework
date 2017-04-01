@@ -43,4 +43,13 @@
         Ready,
         Dead
     }
+
+    public enum Movement
+    {
+        None,
+        Walking,
+        Running,
+        Path,
+        Follow
+    }
 }

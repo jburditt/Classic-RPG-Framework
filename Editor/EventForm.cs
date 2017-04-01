@@ -36,7 +36,8 @@ namespace Editor
                     pictureBox.Image = new Bitmap(form.Selected.FilePath);
 
                     Active.Name = form.Selected.Name;
-                    Active.CharSet = form.Selected.FilePath;
+                    Active.CharSet = form.Selected.Name;
+                    Active.direction = Direction.Down;
                 }
             }
         }

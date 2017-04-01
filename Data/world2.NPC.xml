@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfNPC xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <NPC>
-    <Name>fitz</Name>
-    <CharSet>../../../MonoGame/Content/charset\fitz.png</CharSet>
-    <Dialog>Hi</Dialog>
-    <X>320</X>
-    <Y>160</Y>
+    <animation>
+      <spriteWidth>24</spriteWidth>
+      <spriteHeight>32</spriteHeight>
+      <X>0</X>
+      <Y>0</Y>
+      <frame>0</frame>
+    </animation>
+    <direction>Down</direction>
+    <Name>gus</Name>
+    <CharSet>gus</CharSet>
+    <Dialog>asdf</Dialog>
+    <Pos>
+      <X>640</X>
+      <Y>384</Y>
+    </Pos>
   </NPC>
 </ArrayOfNPC>

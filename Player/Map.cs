@@ -25,9 +25,10 @@ namespace Player
         public Tile[][][] Tiles { get; set; }
         public List<NPC> NPC { get; set; } = new List<NPC>();
 
+        public Vector Camera;
+
         int windowTilesWide, windowTilesHigh;
 
-        // DEPRECATED
         public Map(IDataStore dataStore, ITilesetManager tilesetManager, string map, bool isMonoGame = false)
         {
             _dataStore = dataStore;
@@ -254,6 +255,55 @@ namespace Player
             for (var x = 0; x < Columns; x++)
                 for (var y = 0; y < Rows; y++)
                     DrawTile(x, y);
+        }
+
+        public int TransformX(float x)
+        {
+            var n = Screen.HalfWidth;
+            if (x < Screen.HalfWidth) n = (int)x;
+            if (x > Width - Screen.HalfWidth)
+                n = (int)x - Screen.Width - Screen.HalfWidth;
+
+            return n;
+        }
+
+        public int TransformY(float y)
+        {
+            var n = Screen.HalfHeight;
+            if (y < Screen.HalfHeight) n = (int)y;
+            if (y > Height - Screen.HalfHeight)
+                n = (int)y - Height + Screen.Height;
+
+            return n;
+        }
+
+        public void UpdateCamera(int x, int y)
+        {
+            if (x < Screen.HalfWidth)
+            {
+                Camera.X = 0;
+            }
+            else if (x > Width - Screen.HalfWidth)
+            {
+                Camera.X = Width - Screen.Width;
+            }
+            else
+            {
+                Camera.X = x - Screen.HalfWidth;
+            }
+
+            if (y < Screen.HalfHeight)
+            {
+                Camera.Y = 0;
+            }
+            else if (y > Height - Screen.HalfHeight)
+            {
+                Camera.Y = Height - Screen.Height;
+            }
+            else
+            {
+                Camera.Y = y - Screen.HalfHeight;
+            }
         }
     }
 }

@@ -56,21 +56,17 @@ namespace Player
 
             if (_inputManager.IsPressedKey((int)Keys.Right))
                 MoveRight(map, deltaTime);
+
+            if (_inputManager.AnyPressedKey((int)Keys.Up, (int)Keys.Down, (int)Keys.Left, (int)Keys.Right))
+                map.UpdateCamera((int)x, (int)y);
         }
 
         public void Draw(Map map)
         {
             animation.Y = (int)direction;
 
-            int xPos = Screen.HalfWidth;
-            if (x < Screen.HalfWidth) xPos = (int)x;
-            if (x > map.Width - Screen.HalfWidth)
-                xPos = (int)x - Screen.Width - Screen.HalfWidth;
-
-            int yPos = Screen.HalfHeight;
-            if (y < Screen.HalfHeight) yPos = (int)y;
-            if (y > map.Height - Screen.HalfHeight)
-                yPos = (int)y - map.Height + Screen.Height;
+            int xPos = map.TransformX(x);
+            int yPos = map.TransformY(y);
              
             _actorManager.Draw(_charSetName, animation.DrawRect(xPos, yPos), animation.SourceRect);
         }

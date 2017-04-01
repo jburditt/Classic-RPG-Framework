@@ -13,6 +13,7 @@ namespace Player
         private IGraphics _graphics;
         private ISongManager _songManager;
 
+        private NPCManager _npcManager;
         Battle battle;
         GamePlayer player;
         Map map;
@@ -31,6 +32,9 @@ namespace Player
             _dialog = dialog;
             _graphics = graphics;
             _songManager = songManager;
+
+            _npcManager = new NPCManager(actorManager);
+            _npcManager.NPC = dataStore.Load<List<NPC>>("world2.NPC");
 
             Party = new Party
             {
@@ -94,8 +98,8 @@ namespace Player
                     if (player.step >= 3)
                     {
                         player.step = 0;
-                        GameState = GameState.Battle;
-                        battle.Load();
+                        //GameState = GameState.Battle;
+                        //battle.Load();
                     }
                     break;
             }
@@ -117,10 +121,8 @@ namespace Player
 
                 case GameState.World:
 
-                    foreach (var npc in map.NPC)
-                        npc.Draw();
-
                     map.Draw((int)player.x, (int)player.y);
+                    _npcManager.Draw(map, (int)player.x, (int)player.y);
                     player.Draw(map);
                     //_graphics.DrawString($"Step: {player.step} FPS: " + /*(int) (1/deltaTime) +*/ " X: " + player.x/32 + " Y: " + player.y/32, 10, 10);
                     break;

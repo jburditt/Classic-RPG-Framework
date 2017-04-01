@@ -152,8 +152,7 @@ namespace Editor
 
                 if (result == DialogResult.OK)
                 {
-                    form.Selected.ForEach(n => n.X = mouseOldX * _map.TileWidth);
-                    form.Selected.ForEach(n => n.Y = mouseOldY * _map.TileHeight);
+                    form.Selected.ForEach(n => n.Pos = new Vector(mouseOldX * _map.TileWidth, mouseOldY * _map.TileHeight));
 
                     _map.NPC.AddRange(form.Selected);
 

@@ -137,6 +137,17 @@ namespace MonoGame.Manager
             return index >= 0 && index < players.Count ? players[index] : null;
         }
 
+        public bool AnyPressedKey(params int[] keys)
+        {
+            foreach (var key in keys)
+            {
+                if (Keyboard.GetState().IsKeyDown((Keys)key))
+                    return true;
+            }
+
+            return false;
+        }
+
         public bool IsPressedKeys(params int[] keys)
         {
             var isKeyDown = true;

@@ -67,9 +67,11 @@
     <Compile Include="Manager\IEnemyManager.cs" />
     <Compile Include="Manager\IIconManager.cs" />
     <Compile Include="Manager\ITilesetManager.cs" />
+    <Compile Include="Manager\NPCManager.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="NPC.cs" />
     <Compile Include="Party.cs" />
+    <Compile Include="Physics\Vector.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rect.cs" />

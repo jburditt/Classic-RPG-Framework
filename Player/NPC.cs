@@ -1,35 +1,40 @@
-﻿using Player.Manager;
+﻿using Common;
 
 namespace Player
 {
     public class NPC
     {
-        private IActorManager _actorManager;
-        private WalkAnimation animation = new WalkAnimation();
-
+        public WalkAnimation animation = new WalkAnimation();
         public Direction direction;
 
         public string Name { get; set; }
         public string CharSet { get; set; }
         public string Dialog { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
+        public Vector Pos { get; set; }
 
-        public NPC(IActorManager actorManager)
-        {
-            _actorManager = actorManager;
-        }
+        private Movement _movement;
+        private Vector _destination;
 
         public void Update()
         {
+            //switch (_movement)
+            //{
+            //    case Movement.Walking:
 
+            //        if (Pos == _destination)
+            //            _destination = NextDestination();
+            //        break;
+            //}
         }
 
-        public void Draw()
+        public Vector NextDestination()
         {
-            animation.Y = (int)direction;
+            int x = Random.Next(100);
+            int y = 100 - x;
+            x *= Random.Sign();
+            y *= Random.Sign();
 
-            _actorManager.Draw(CharSet, animation.DrawRect(X, Y), animation.SourceRect);
+            return new Vector(x, y) + Pos;
         }
     }
 }
