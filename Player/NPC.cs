@@ -73,7 +73,7 @@ namespace Player
 
         public void Talk()
         {
-
+            
         }
     }
 }

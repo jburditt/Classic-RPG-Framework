@@ -20,7 +20,7 @@ namespace MonoGame
 
         // MonoGame Managers
         Graphics graphics;
-        Dialog dialog;
+        DialogManager dialogManager;
         TilesetManager tilesetManager;
         SongManager songManager;
         SoundManager soundManager;
@@ -74,7 +74,7 @@ namespace MonoGame
 
             graphics = new Graphics(Content, spriteBatch, font);
             tilesetManager = new TilesetManager(Content, spriteBatch);
-            dialog = new Dialog(Content, spriteBatch);
+            dialogManager = new DialogManager(Content, spriteBatch);
             songManager = new SongManager(Content);
             soundManager = new SoundManager(Content);
             actorManager = new ActorManager(Content, spriteBatch);
@@ -84,7 +84,7 @@ namespace MonoGame
 
             _dataStore = new XmlDataStore("../../../../Data/");
 
-            gameEngine = new GameEngine(_dataStore, songManager, graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, tilesetManager, dialog);
+            gameEngine = new GameEngine(_dataStore, songManager, graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, tilesetManager, dialogManager);
         }
 
         /// <summary>

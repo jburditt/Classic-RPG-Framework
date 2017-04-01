@@ -1,6 +1,5 @@
 ﻿using Player.Inputs;
 using Player.Manager;
-using System.Collections.Generic;
 
 namespace Player
 {
@@ -62,21 +61,10 @@ namespace Player
                 map.UpdateCamera(Pos.ToVector());
         }
 
-        public void Action(Map map)
-        {
-            foreach (var npc in map.NPC)
-            {
-                if (Vector.Distance(npc.Pos, Pos.ToVector()) < 10)
-                    npc.Talk();
-            }
-        }
-
         public void Draw(Map map)
         {
             animation.Y = (int)direction;
 
-            //int xPos = map.TransformX(x);
-            //int yPos = map.TransformY(y);
             var pos = map.Transform(Pos);
             
             _actorManager.Draw(_charSetName, animation.DrawRect(pos), animation.SourceRect);

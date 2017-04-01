@@ -5,7 +5,7 @@ namespace Player.Effect
     public class DialogEffect : IEffect
     {
         private IGraphics _graphics;
-        private IDialog _dialog;
+        private IDialogManager _dialog;
 
         public int X { get; set; }
         public int Y { get; set; }
@@ -13,7 +13,7 @@ namespace Player.Effect
 
         private string Text;
 
-        public DialogEffect(IGraphics graphics, IDialog dialog, string text)
+        public DialogEffect(IGraphics graphics, IDialogManager dialog, string text)
         {
             _graphics = graphics;
             _dialog = dialog;

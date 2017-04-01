@@ -13,7 +13,7 @@ namespace Player
         private EnemyParty EnemyParty;
         private List<IEffect> Effects = new List<IEffect>();
 
-        private IDialog _dialog;
+        private IDialogManager _dialog;
         private IGraphics _graphics;
         private IBattleManager _battleManager;
         private IActorManager _actorManager;
@@ -26,7 +26,7 @@ namespace Player
 
         public Battle(
             IGraphics graphics, IBattleManager battleManager, IActorManager actorManager, IEnemyManager enemyManager, 
-            IIconManager iconManager, IInputManager inputManager, ISongManager songManager, EnemyParty enemyParty, Party party, IDialog dialog)
+            IIconManager iconManager, IInputManager inputManager, ISongManager songManager, EnemyParty enemyParty, Party party, IDialogManager dialog)
         {
             _graphics = graphics;
             _battleManager = battleManager;

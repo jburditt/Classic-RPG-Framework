@@ -8,20 +8,11 @@ namespace Editor
 {
     public partial class EventForm : Form
     {
-        public List<NPC> Selected { get; set; } = new List<NPC>();
-
-        public NPC Active {
-            get
-            {
-                return Selected[(int)eventNumericUpDown.Value];
-            }
-        }
+        public NPC Selected { get; set; } = new NPC();
 
         public EventForm()
         {
             InitializeComponent();
-
-            Selected.Add(new NPC());
         }
 
         private void imageButton_Click(object sender, EventArgs e)
@@ -35,10 +26,10 @@ namespace Editor
                     imageLabel.Text = form.Selected.Name;
                     pictureBox.Image = new Bitmap(form.Selected.FilePath);
 
-                    Active.Name = form.Selected.Name;
-                    Active.CharSet = form.Selected.Name;
-                    Active.Direction = Direction.Down;
-                    Active.Movement = Movement.Walking;
+                    Selected.Name = form.Selected.Name;
+                    Selected.CharSet = form.Selected.Name;
+                    Selected.Direction = Direction.Down;
+                    Selected.Movement = Movement.Walking;
                 }
             }
         }
@@ -47,7 +38,7 @@ namespace Editor
         {
             DialogResult = DialogResult.OK;
 
-            Active.Dialog = dialogTextBox.Text;
+            Selected.Dialog = dialogTextBox.Text;
 
             Close();
         }
@@ -57,6 +48,6 @@ namespace Editor
             DialogResult = DialogResult.Cancel;
 
             Close();
-        }
+        }     
     }
 }

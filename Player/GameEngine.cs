@@ -9,7 +9,7 @@ namespace Player
     public class GameEngine
     {
         private IInputManager _inputManager;
-        private IDialog _dialog;
+        private IDialogManager _dialogManager;
         private IGraphics _graphics;
         private ISongManager _songManager;
 
@@ -17,7 +17,8 @@ namespace Player
         Battle battle;
         GamePlayer player;
         Map map;
-        
+        private List<IEffect> _effects { get; set; } = new List<IEffect>();
+
         public Party Party { get; private set; }
         public EnemyParty EnemyParty { get; private set; }
         public GameState GameState { get; private set; } = GameState.StartMenu;
@@ -26,14 +27,14 @@ namespace Player
 
         public GameEngine(
             IDataStore dataStore, ISongManager songManager, IGraphics graphics, IBattleManager battleManager, IActorManager actorManager, IEnemyManager enemyManager,
-            IIconManager iconManager, IInputManager inputManager, ITilesetManager tilesetManager, IDialog dialog)
+            IIconManager iconManager, IInputManager inputManager, ITilesetManager tilesetManager, IDialogManager dialogManager)
         {
             _inputManager = inputManager;
-            _dialog = dialog;
+            _dialogManager = dialogManager;
             _graphics = graphics;
             _songManager = songManager;
 
-            _npcManager = new NPCManager(actorManager);
+            _npcManager = new NPCManager(actorManager, _dialogManager, _graphics);
             _npcManager.NPC = dataStore.Load<List<NPC>>("world2.NPC");
 
             Party = new Party
@@ -49,7 +50,7 @@ namespace Player
             //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
 
-            battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialog);
+            battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialogManager);
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager);
             map = new Map(dataStore, tilesetManager, "Content/world2.tmx", true);
 
@@ -94,7 +95,7 @@ namespace Player
                     _npcManager.Update(map);
 
                     if (_inputManager.IsPressedInput((int)Input.FaceButtonDown))
-                        player.Action(map);
+                        _effects.AddRange(_npcManager.CheckTalk(map, player.Pos));
 
                     player.Update(map, deltaTime);
                     if (player.step >= 3)
@@ -114,7 +115,7 @@ namespace Player
                 case GameState.StartMenu:
 
                     _graphics.DrawSprite("menubg", new Rect(0, 0, Screen.Width, Screen.Height), new Rect(200, 200, Screen.Width + 200, Screen.Height + 200));               
-                    _dialog.Draw(new Rect(160, 200, 130, 120));
+                    _dialogManager.Draw(new Rect(160, 200, 130, 120));
                     _graphics.DrawString("New Game", 180, 220);
                     _graphics.DrawString("Load Game", 180, 240);
                     _graphics.DrawString("Exit", 180, 260);
@@ -134,6 +135,11 @@ namespace Player
                     battle.Draw();
                     break;
 
+            }
+
+            foreach (var effect in _effects)
+            {
+                effect.Draw();
             }
         }
 
