@@ -6956,13 +6956,6 @@
         </SpriteRect>
         <Tileset>0</Tileset>
         <IsPassable>true</IsPassable>
-        <NPC>
-          <NPC>
-            <Name>fitz.png</Name>
-            <CharSet>../../../MonoGame/Content/charset\fitz.png</CharSet>
-            <Dialog>Hi. My name is Fitz.</Dialog>
-          </NPC>
-        </NPC>
       </Tile>
       <Tile xsi:nil="true" />
     </ArrayOfTile>

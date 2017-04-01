@@ -47,7 +47,7 @@ namespace Player
 
             battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialog);
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager);
-            map = new Map(dataStore, tilesetManager, "Content/world2.tmx");
+            map = new Map(dataStore, tilesetManager, "Content/world2.tmx", true);
 
             //songManager.Play("01 - Namazu");
             songManager.Play("Sadness Everlasting");
@@ -87,6 +87,9 @@ namespace Player
                     break;
 
                 case GameState.World:
+                    foreach (var npc in map.NPC)
+                        npc.Update();
+
                     player.Update(map, deltaTime);
                     if (player.step >= 3)
                     {
@@ -113,6 +116,9 @@ namespace Player
                     break;
 
                 case GameState.World:
+
+                    foreach (var npc in map.NPC)
+                        npc.Draw();
 
                     map.Draw((int)player.x, (int)player.y);
                     player.Draw(map);

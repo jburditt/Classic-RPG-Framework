@@ -23,24 +23,12 @@ namespace Player
         public TmxMap TiledMap { get; set; }
         public bool[][][] Passable { get; set; }
         public Tile[][][] Tiles { get; set; }
-
-        public List<NPC> NPC {
-            get
-            {
-                var list = new List<NPC>();
-
-                for (var x = 0; x < Tiles.Length; x++)
-                    for (var y = 0; y < Tiles.Length; y++)
-                        if (Tiles[x][y][0].NPC.Count > 0)
-                            list.AddRange(Tiles[x][y][0].NPC);
-
-                return list;
-            }
-        }
+        public List<NPC> NPC { get; set; } = new List<NPC>();
 
         int windowTilesWide, windowTilesHigh;
 
-        public Map(IDataStore dataStore, ITilesetManager tilesetManager, string map)
+        // DEPRECATED
+        public Map(IDataStore dataStore, ITilesetManager tilesetManager, string map, bool isMonoGame = false)
         {
             _dataStore = dataStore;
             _tilesetManager = tilesetManager;
@@ -61,9 +49,12 @@ namespace Player
             Layers = TiledMap.Layers.Count;
 
             var tilesets = TiledMap.Tilesets;
-            // TODO I might have got carried away with LINQ ...
-            var tilesetNames = tilesets.Select(n => n.Image.Source).ToList().ToFileList().Select(n => n.Name).ToArray();
 
+            string[] tilesetNames;
+            if (isMonoGame)
+                tilesetNames = tilesets.Select(n => n.Image.Source).ToList().ToFileList().Select(n => n.Name).ToArray();
+            else
+                tilesetNames = tilesets.Select(n => n.Image.Source).ToArray();
             tilesetManager.Load(tilesetNames);
 
             Tiles = Load();
