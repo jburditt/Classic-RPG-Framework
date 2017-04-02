@@ -9,8 +9,10 @@ namespace MonoGame
 {
     public class Main : Game
     {
-        // TODO Add this to references: http://opengameart.org/content/space-background
-        //http://opengameart.org/content/iron-plague-pointercursor
+        // TODO Add this to references: 
+        // menubg.png   http://opengameart.org/content/space-background
+        // cursor.png   http://opengameart.org/content/iron-plague-pointercursor
+        // icons.png    https://www.scirra.com/forum/pixel-art-rpg-icons_t66386
 
         // MonoGame Framework
         GraphicsDeviceManager graphicsDeviceManager;

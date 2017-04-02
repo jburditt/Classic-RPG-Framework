@@ -54,11 +54,13 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyParty.cs" />
     <Compile Include="Enum.cs" />
+    <Compile Include="Events\Event.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Graphics\Dialog.cs" />
     <Compile Include="Graphics\IDialogManager.cs" />
     <Compile Include="Graphics\IGraphics.cs" />
     <Compile Include="IEffect.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Manager\IInputManager.cs" />
     <Compile Include="Inputs\Input.cs" />
     <Compile Include="Inputs\Keys.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rect.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="TestData.cs" />
     <Compile Include="Tile.cs" />
   </ItemGroup>
   <ItemGroup>

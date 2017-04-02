@@ -300,6 +300,17 @@
 /processorParam:TextureFormat=Color
 /build:icon\defend.tga
 
+#begin icon\icons.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,255,255,0
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:icon\icons.png
+
 #begin icon\item.tga
 /importer:TextureImporter
 /processor:TextureProcessor
