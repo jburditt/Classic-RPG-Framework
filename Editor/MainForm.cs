@@ -9,6 +9,7 @@ namespace Editor
 {
     public partial class MainForm : Form
     {
+        private readonly IconManager _iconManager;
         private readonly TilesetManager _tilesetManager;
         private readonly Map _map;
         private readonly Graphics _graphics;
@@ -30,7 +31,7 @@ namespace Editor
             _tilesetManager = new TilesetManager(_graphics);
             _dataStore = new XmlDataStore();
 
-            _map = new Map(_dataStore, _tilesetManager, "../../../MonoGame/Content/world2.tmx");
+            _map = new Map(_dataStore, _iconManager, _tilesetManager, "../../../MonoGame/Content/world2.tmx");
             _map.Passable = LoadPassable();
 
             filePictureBox.Image = filesImages[0];

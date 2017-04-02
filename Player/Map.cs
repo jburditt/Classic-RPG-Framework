@@ -1,5 +1,6 @@
 ﻿using Common;
 using DataStore;
+using Player.Events;
 using Player.Manager;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Player
 {
     public class Map
     {
+        private readonly IIconManager _iconManager;
         private readonly ITilesetManager _tilesetManager;
         private readonly IDataStore _dataStore;
 
@@ -29,9 +31,10 @@ namespace Player
 
         int windowTilesWide, windowTilesHigh;
 
-        public Map(IDataStore dataStore, ITilesetManager tilesetManager, string map, bool isMonoGame = false)
+        public Map(IDataStore dataStore, IIconManager iconManager, ITilesetManager tilesetManager, string map, bool isMonoGame = false)
         {
             _dataStore = dataStore;
+            _iconManager = iconManager;
             _tilesetManager = tilesetManager;
 
             TiledMap = new TmxMap(map);
@@ -224,6 +227,9 @@ namespace Player
                     {
                         var tile = Tiles[x + playerTileX][y + playerTileY][layer];
 
+                        if (layer == 1 || Layers == 1)
+                            DrawEventCollection(tile.EventCollection, new Vector(x + playerTileX, y + playerTileY));
+
                         if (tile != null)
                         {
                             var drawRect = new Rect(x * TileWidth - offsetX, y * TileHeight - offsetY, TileWidth, TileHeight);
@@ -246,6 +252,30 @@ namespace Player
 
                     _tilesetManager.Draw(tile.Tileset, drawRect, tile.SpriteRect);
                 }
+            }
+        }
+
+        public void DrawEventCollection(EventCollection n, Vector vector)
+        {
+            foreach (var e in n)
+            {
+                foreach (var eventPage in e.EventPages)
+                {
+                    if (eventPage.TriggerCollection.IsTriggered())
+                        DrawEvent(eventPage, vector);
+                }
+            }
+        }
+
+        public void DrawEvent(EventPage eventPage, Vector vector)
+        {
+            switch (eventPage.ImageType)
+            {
+                case ImageType.Icon:
+                    _iconManager.Draw(eventPage.ImageKey, vector);
+                    break;
+                //case ImageType.Tileset:
+                //    _tilesetManager.Draw(eventPage.ImageKey, )
             }
         }
 

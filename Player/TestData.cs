@@ -43,7 +43,7 @@ namespace Player
                             }
                         },
                         ImageKey = "icons",
-                        ImageFolder = "icon",
+                        ImageType = ImageType.Icon,
                         TilesetSource = new Rect(8 * 34, 4 * 34, 34, 34),
                         TriggerCollection = new TriggerCollection
                         {
@@ -56,7 +56,7 @@ namespace Player
                     new EventPage {
                         ScriptActionCollection = null,
                         ImageKey = "icons",
-                        ImageFolder = "icon",
+                        ImageType = ImageType.Icon,
                         TilesetSource = new Rect(9 * 34, 4 * 34, 34, 34),
                         TriggerCollection = new TriggerCollection
                         {
