@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
 namespace Player.Events
@@ -11,6 +10,18 @@ namespace Player.Events
         public void Add(Event e)
         {
             Events.Add(e);
+        }
+
+        public EventPage Action()
+        {
+            foreach (var n in this)
+                foreach (var eventPage in n.EventPages)
+                {
+                    if (eventPage.Action())
+                        return eventPage;
+                }
+
+            return null;
         }
 
         public IEnumerator<Event> GetEnumerator()
@@ -31,30 +42,21 @@ namespace Player.Events
 
     public class EventPage
     {
+        public Dictionary<string, int> Switch { get; set; } = new Dictionary<string, int>();
+        public int Id { get; set; }
         public string ImageKey { get; set; }
         public ImageType ImageType { get; set; }
         public Rect TilesetSource { get; set; }
         public ScriptActionCollection ScriptActionCollection { get; set; }
         public TriggerCollection TriggerCollection { get; set; }
-    }
 
-    public class ScriptActionCollection
-    {
-        public List<ScriptAction> ScriptActions { get; set; }
-    }
-
-    public class ScriptAction
-    {
-        public ScriptAction(ScriptActionType actionType, params object[] p)
+        public bool Action()
         {
+            if (TriggerCollection == null)
+                return false;
 
+            return TriggerCollection.Action(this);
         }
-    }
-    
-    public enum ScriptActionType
-    {
-        ChangeItem,
-        ChangeSelfSwitch
     }
 
     public enum ImageType

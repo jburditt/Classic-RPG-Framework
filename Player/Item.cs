@@ -1,5 +1,23 @@
-﻿namespace Player
+﻿using System.Collections.Generic;
+
+namespace Player
 {
+    public class ItemManager
+    {
+        public static Dictionary<int, Item> Items { get; set; } = new Dictionary<int, Item>();
+
+        public static Item CreateItem(int itemId, int quantity)
+        {
+            if (!Items.ContainsKey(itemId))
+                return null;
+
+            var item = Items[itemId];
+            item.Quantity = quantity;
+
+            return item;
+        }
+    }
+
     public class Item
     {
         public int Id { get; set; }

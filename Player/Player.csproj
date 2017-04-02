@@ -55,6 +55,7 @@
     <Compile Include="EnemyParty.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\Script.cs" />
     <Compile Include="Events\Trigger.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Graphics\Dialog.cs" />
@@ -76,7 +77,7 @@
     <Compile Include="NPC.cs" />
     <Compile Include="Party.cs" />
     <Compile Include="Physics\Vector.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="GamePlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rect.cs" />
     <Compile Include="Screen.cs" />

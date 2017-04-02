@@ -1,10 +1,12 @@
 ﻿using Player.Inputs;
 using Player.Manager;
+using System.Collections.Generic;
 
 namespace Player
 {
     public class GamePlayer
     {
+        public Dictionary<int, Item> Inventory { get; set; } = new Dictionary<int, Item>();
         public bool IsMoving { get; set; }
 
         public VectorF Pos;
@@ -120,6 +122,14 @@ namespace Player
                 Pos.X += deltaTime * speedX;
 
             if (Pos.X > map.Width) Pos.X = map.Width;
+        }
+
+        public void ChangeItem(int itemId, int quantity)
+        {
+            if (Inventory.ContainsKey(itemId))
+                Inventory[itemId].Quantity += quantity;
+            else
+                Inventory.Add(itemId, ItemManager.CreateItem(itemId, quantity));
         }
     }
 }

@@ -98,7 +98,11 @@ namespace Player
                     _npcManager.Update(map);
 
                     if (_inputManager.IsPressedInput((int)Input.FaceButtonDown))
+                    {
+                        map.Action(player);
+
                         _effects.AddRange(_npcManager.CheckTalk(map, player.Pos));
+                    }
 
                     player.Update(map, deltaTime);
                     if (player.step >= 3)

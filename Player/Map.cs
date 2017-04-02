@@ -152,7 +152,7 @@ namespace Player
         public bool IsTileCollision(int playerX, int playerY, int x, int y)
         {
             // don't check tiles out of bounds
-            if (x < 0 || x >= Columns || y < 0 || y >= Height)
+            if (OutBounds(x, y))
                 return true;
 
             for (int layerIndex = 0; layerIndex < Layers; layerIndex++)
@@ -172,27 +172,47 @@ namespace Player
             return false;
         }
 
-        public void Draw(Vector player)
+        public void Action(GamePlayer player)
+        {
+            var p = (player.Pos / new VectorF(TileWidth, TileHeight)).ToVector();
+
+            for (var x = -1; x <= 1; x++)
+                for (var y = -1; y <= 1; y++)
+                {
+                    if (OutBounds(x, y))
+                        continue;
+
+                    // TODO check distance of tile from player
+
+                    var eventPage = Tiles[p.X + x][p.Y + y][0].EventCollection?.Action();
+                    if (eventPage != null)
+                    {
+                        Script.Execute(eventPage, player, this);
+                    }
+                }
+        }
+
+        public void Draw(Vector pos)
         {
             for (var y = 0; y <= windowTilesHigh; y++)
                 for (var x = 0; x <= windowTilesWide; x++)
                 {
                     // don't draw extra tile if on the boundary
-                    if (player.Y >= Height - Screen.HalfHeight && y == windowTilesHigh)
+                    if (pos.Y >= Height - Screen.HalfHeight && y == windowTilesHigh)
                         break;
-                    if (player.X >= Width - Screen.HalfWidth && x == windowTilesWide)
+                    if (pos.X >= Width - Screen.HalfWidth && x == windowTilesWide)
                         continue;
 
                     int playerTileX, playerTileY;
                     int offsetX = 0, offsetY = 0;
 
                     // handle player X coordinate
-                    if (player.X < Screen.HalfWidth)
+                    if (pos.X < Screen.HalfWidth)
                     {
                         // offset player when near the left boundary of the map
                         playerTileX = 0;
                     }
-                    else if (player.X > Width - Screen.HalfWidth)
+                    else if (pos.X > Width - Screen.HalfWidth)
                     {
                         // offset player when near the right boundary of the map
                         playerTileX = (Width - Screen.Width) / TileWidth;
@@ -200,17 +220,17 @@ namespace Player
                     else
                     {
                         // position the player in the middle of the screen
-                        playerTileX = (player.X - Screen.HalfWidth) / TileWidth;
-                        offsetX = player.X % TileWidth;
+                        playerTileX = (pos.X - Screen.HalfWidth) / TileWidth;
+                        offsetX = pos.X % TileWidth;
                     }
 
                     // handle player Y coordinate
-                    if (player.Y < Screen.HalfHeight)
+                    if (pos.Y < Screen.HalfHeight)
                     {
                         // offset player when near the top boundary of the map
                         playerTileY = 0;
                     }
-                    else if (player.Y > Height - Screen.HalfHeight)
+                    else if (pos.Y > Height - Screen.HalfHeight)
                     {
                         // offset player when near the bottom boundary of the map
                         playerTileY = (Height - Screen.Height) / TileHeight;
@@ -218,8 +238,8 @@ namespace Player
                     else
                     {
                         // position the player in the middle of the screen
-                        playerTileY = (player.Y - Screen.HalfHeight) / TileHeight;
-                        offsetY = (player.Y + 16) % TileHeight;
+                        playerTileY = (pos.Y - Screen.HalfHeight) / TileHeight;
+                        offsetY = (pos.Y + 16) % TileHeight;
                     }
 
                     // draw all tile layers
@@ -234,7 +254,7 @@ namespace Player
                             _tilesetManager.Draw(tile.Tileset, drawRect, tile.SpriteRect);
 
                             if (layer == 0)
-                                DrawEventCollection(tile.EventCollection, new Vector(x + playerTileX, y + playerTileY));
+                                DrawEventCollection(tile.EventCollection, new Vector(x * TileWidth - offsetX, y * TileHeight - offsetY));
                         }
                     }
                 }
@@ -255,7 +275,8 @@ namespace Player
             }
         }
 
-        public void DrawEventCollection(EventCollection n, Vector vector)
+        // TODO IsTriggered is calculated every screen update when in view. Could be optimized by adding listeners instead.
+        public void DrawEventCollection(EventCollection n, Vector pos)
         {
             if (n == null)
                 return;
@@ -264,18 +285,18 @@ namespace Player
             {
                 foreach (var eventPage in e.EventPages)
                 {
-                    if (eventPage.TriggerCollection.IsTriggered())
-                        DrawEvent(eventPage, vector);
+                    if (eventPage.TriggerCollection == null || eventPage.TriggerCollection.IsTriggered(eventPage))
+                        DrawEvent(eventPage, pos);
                 }
             }
         }
 
-        public void DrawEvent(EventPage eventPage, Vector vector)
+        public void DrawEvent(EventPage eventPage, Vector pos)
         {
             switch (eventPage.ImageType)
             {
                 case ImageType.Icon:
-                    _iconManager.Draw(eventPage.ImageKey, vector);
+                    _iconManager.Draw(eventPage.ImageKey, eventPage.TilesetSource, new Rect(pos.X, pos.Y, eventPage.TilesetSource.Width, eventPage.TilesetSource.Height));
                     break;
                 //case ImageType.Tileset:
                 //    _tilesetManager.Draw(eventPage.ImageKey, )
@@ -331,6 +352,11 @@ namespace Player
             {
                 Camera.Y = pos.Y - Screen.HalfHeight;
             }
+        }
+
+        private bool OutBounds(int x, int y)
+        {
+            return x < 0 || x >= Columns || y < 0 || y >= Height;
         }
     }
 }

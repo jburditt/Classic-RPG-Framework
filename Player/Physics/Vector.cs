@@ -73,6 +73,16 @@ public struct VectorF
         return new VectorF(a.X - b.X, a.Y - b.Y);
     }
 
+    public static VectorF operator /(VectorF a, VectorF b)
+    {
+        return new VectorF(a.X / b.X, a.Y / b.Y);
+    }
+
+    public static VectorF operator *(VectorF a, VectorF b)
+    {
+        return new VectorF(a.X * b.X, a.Y * b.Y);
+    }
+
     //public override bool Equals(object obj)
     //{
     //    this.Equals(obj);

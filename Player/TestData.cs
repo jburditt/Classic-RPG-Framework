@@ -6,7 +6,6 @@ namespace Player
     public class TestData
     {
         public List<EventCollection> EventCollections;
-        public List<Item> Items;
 
         public TestData()
         {
@@ -18,14 +17,14 @@ namespace Player
                 }
             };
 
-            Items = new List<Item>
-            {
+            ItemManager.Items.Add(
+                1,
                 new Item {
                     Id = 1, Name = "Small HP potion", Description = "Small HP potion, heals 10 HP", ItemType = ItemType.Useable,
                     ImageKey = "icons", SourceRect = new Rect(8 * 34, 4 * 34, 34, 34), ItemActionType = ItemActionType.ModifyAttribute,
                     Quantity = 10, Value = 50
                 }
-            };
+            );
         }
 
         public class Chest : Event
@@ -34,35 +33,30 @@ namespace Player
             {
                 EventPages = new List<EventPage> {
                     new EventPage {
+                        Id = 1,
+                        ScriptActionCollection = null,
+                        ImageKey = "icons",
+                        ImageType = ImageType.Icon,
+                        TilesetSource = new Rect(7 * 34, 29 * 34, 34, 34),
+                        TriggerCollection = null
+                    },
+                    new EventPage {
+                        Id = 1,
                         ScriptActionCollection = new ScriptActionCollection
                         {
                             ScriptActions = new List<ScriptAction>
                             {
-                                new ScriptAction(ScriptActionType.ChangeItem, 1, 1),
-                                new ScriptAction(ScriptActionType.ChangeSelfSwitch, 1)
+                                new ScriptAction(ScriptActionType.ChangeItem, 1, 1)
                             }
                         },
                         ImageKey = "icons",
                         ImageType = ImageType.Icon,
-                        TilesetSource = new Rect(8 * 34, 4 * 34, 34, 34),
+                        TilesetSource = new Rect(8 * 34, 29 * 34, 34, 34),
                         TriggerCollection = new TriggerCollection
                         {
                             Triggers = new List<Trigger>
                             {
-                                new Trigger { TriggerType = TriggerType.SelfSwitch, Value = 0 }
-                            }
-                        }
-                    },
-                    new EventPage {
-                        ScriptActionCollection = null,
-                        ImageKey = "icons",
-                        ImageType = ImageType.Icon,
-                        TilesetSource = new Rect(9 * 34, 4 * 34, 34, 34),
-                        TriggerCollection = new TriggerCollection
-                        {
-                            Triggers = new List<Trigger>
-                            {
-                                new Trigger { TriggerType = TriggerType.SelfSwitch, Value = 1 }
+                                new Trigger { TriggerType = TriggerType.Action, Value = 0 }
                             }
                         }
                     }
