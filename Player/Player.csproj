@@ -55,6 +55,7 @@
     <Compile Include="EnemyParty.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\Trigger.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="Graphics\Dialog.cs" />
     <Compile Include="Graphics\IDialogManager.cs" />

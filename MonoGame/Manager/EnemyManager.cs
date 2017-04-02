@@ -40,7 +40,7 @@ namespace MonoGame.Manager
 
         public void Draw(string enemyName, int x, int y)
         {
-            _spriteBatch.DrawTexture(Sprites[enemyName], x, y);
+            _spriteBatch.DrawTexture(Sprites[enemyName], new Vector(x, y));
         }
     }
 }

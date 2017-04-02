@@ -107,11 +107,11 @@ namespace Player
 
             if (battleState == BattleState.Idle)
             {
-                _iconManager.Draw("attack", 50, 350, ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Up) ? 1f : 0.7f));
-                _iconManager.Draw("magic", 20, 380, ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Left) ? 1f : 0.7f));
-                _iconManager.Draw("defend", 80, 380, ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Right) ? 1f : 0.7f));
-                _iconManager.Draw("item", 50, 410, ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Down) ? 1f : 0.7f));
-                _iconManager.Draw("run", 20, 410, ColorStruct.White * 0.7f);
+                _iconManager.Draw("attack", new Vector(50, 350), ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Up) ? 1f : 0.7f));
+                _iconManager.Draw("magic", new Vector(20, 380), ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Left) ? 1f : 0.7f));
+                _iconManager.Draw("defend", new Vector(80, 380), ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Right) ? 1f : 0.7f));
+                _iconManager.Draw("item", new Vector(50, 410), ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Down) ? 1f : 0.7f));
+                _iconManager.Draw("run", new Vector(20, 410), ColorStruct.White * 0.7f);
             }
 
             var i = 0;

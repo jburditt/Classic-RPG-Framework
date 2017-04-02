@@ -227,14 +227,14 @@ namespace Player
                     {
                         var tile = Tiles[x + playerTileX][y + playerTileY][layer];
 
-                        if (layer == 1 || Layers == 1)
-                            DrawEventCollection(tile.EventCollection, new Vector(x + playerTileX, y + playerTileY));
-
                         if (tile != null)
                         {
                             var drawRect = new Rect(x * TileWidth - offsetX, y * TileHeight - offsetY, TileWidth, TileHeight);
 
                             _tilesetManager.Draw(tile.Tileset, drawRect, tile.SpriteRect);
+
+                            if (layer == 0)
+                                DrawEventCollection(tile.EventCollection, new Vector(x + playerTileX, y + playerTileY));
                         }
                     }
                 }
@@ -257,6 +257,9 @@ namespace Player
 
         public void DrawEventCollection(EventCollection n, Vector vector)
         {
+            if (n == null)
+                return;
+
             foreach (var e in n)
             {
                 foreach (var eventPage in e.EventPages)

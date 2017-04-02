@@ -28,7 +28,7 @@ namespace MonoGame.Manager
 
         public void Draw(string battleBgName)
         {
-            _spriteBatch.DrawTexture(BattleBg[battleBgName], 0, 0);
+            _spriteBatch.DrawTexture(BattleBg[battleBgName], new Vector(0, 0));
         }
     }
 }

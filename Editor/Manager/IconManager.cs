@@ -16,6 +16,11 @@ namespace Editor.Manager
             Graphics = graphics;
         }
 
+        public void Draw(string iconName, int x, int y, ColorStruct? color = null)
+        {
+            Draw(iconName, new Vector(x, y), color);
+        }
+
         public void Draw(string iconName, Vector vector, ColorStruct? color = null)
         {
             var sourceRect = new Rect(0, 0, Icons[iconName].Width, Icons[iconName].Height);

@@ -6,7 +6,7 @@ namespace Player.Events
 {
     public class EventCollection : IEnumerable<Event>
     {
-        public List<Event> Events { get; set; }
+        public List<Event> Events { get; set; } = new List<Event>();
 
         public void Add(Event e)
         {
@@ -16,6 +16,11 @@ namespace Player.Events
         public IEnumerator<Event> GetEnumerator()
         {
             return Events.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable<Event>)Events).GetEnumerator();
         }
     }
 
@@ -45,32 +50,11 @@ namespace Player.Events
 
         }
     }
-
-    public class TriggerCollection
-    {
-        public List<Trigger> Triggers { get; set; }
-    }
-
-    public class Trigger
-    {
-        public TriggerType TriggerType { get; set; }
-        public int Value { get; set; }
-    }
-
+    
     public enum ScriptActionType
     {
         ChangeItem,
         ChangeSelfSwitch
-    }
-
-    public enum TriggerType
-    {
-        Switch,
-        SelfSwitch,
-        Variable,
-        Quest,
-        Item,
-        Actor
     }
 
     public enum ImageType

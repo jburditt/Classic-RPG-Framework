@@ -2,6 +2,7 @@
 {
     public interface IIconManager
     {
-        void Draw(string iconName, int x, int y, ColorStruct? color = null);
+        void Draw(string iconName, Vector vector, ColorStruct? color = null);
+        void Draw(string iconName, Rect sourceRect, Rect targetRect, ColorStruct? color = null);
     }
 }

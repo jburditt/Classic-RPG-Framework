@@ -27,9 +27,14 @@ namespace MonoGame.Manager
             }
         }
 
-        public void Draw(string iconName, int x, int y, ColorStruct? color = null)
+        public void Draw(string iconName, Vector vector, ColorStruct? color = null)
         {
-            _spriteBatch.DrawTexture(Icons[iconName], x, y, color.ToColor());
+            _spriteBatch.DrawTexture(Icons[iconName], vector, color.ToColor());
+        }
+
+        public void Draw(string iconName, Rect sourceRect, Rect targetRect, ColorStruct? color = null)
+        {
+            _spriteBatch.Draw(Icons[iconName], targetRect.ToRectangle(), sourceRect.ToRectangle(), color.ToColor());
         }
     }
 }
