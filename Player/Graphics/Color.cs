@@ -10,6 +10,8 @@ namespace Player
         public int A { get; set; }
         public static ColorStruct White { get { return new ColorStruct(255, 255, 255, 255); } }
 
+        public ColorStruct(int r, int g, int b) : this(r, g, b, 255) { }
+
         public ColorStruct(int r, int g, int b, int a)
         {
             R = r;

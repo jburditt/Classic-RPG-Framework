@@ -48,13 +48,14 @@
     <Compile Include="Actor.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="Battle\Battle.cs" />
-    <Compile Include="Color.cs" />
+    <Compile Include="Graphics\Color.cs" />
     <Compile Include="Effect\DialogEffect.cs" />
     <Compile Include="Effect\HpEffect.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyParty.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Events\Event.cs" />
+    <Compile Include="Events\EventService.cs" />
     <Compile Include="Events\Script.cs" />
     <Compile Include="Events\Trigger.cs" />
     <Compile Include="GameEngine.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Manager\ITilesetManager.cs" />
     <Compile Include="Manager\NPCManager.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Map\TilesetMeta.cs" />
     <Compile Include="NPC.cs" />
     <Compile Include="Party.cs" />
     <Compile Include="Physics\Vector.cs" />

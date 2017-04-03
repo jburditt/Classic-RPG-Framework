@@ -26,6 +26,11 @@ namespace Player.Events
     {
         public List<ScriptAction> ScriptActions { get; set; }
 
+        public void Add(ScriptAction scriptAction)
+        {
+            ScriptActions.Add(scriptAction);
+        }
+
         public IEnumerator<ScriptAction> GetEnumerator()
         {
             return ScriptActions.GetEnumerator();
@@ -41,6 +46,8 @@ namespace Player.Events
     {
         public ScriptActionType ScriptActionType { get; set; }
         public object[] Params { get; set; }
+
+        public ScriptAction() { }
 
         public ScriptAction(ScriptActionType actionType, params object[] p)
         {

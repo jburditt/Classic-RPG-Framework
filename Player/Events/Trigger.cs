@@ -5,9 +5,14 @@ namespace Player.Events
 {
     public class TriggerCollection : IEnumerable<Trigger>
     {
-        public static Dictionary<string, int> Switch { get; set; } = new Dictionary<string, int>();
+        public static SerializableDictionary<string, int> Switch { get; set; } = new SerializableDictionary<string, int>();
 
         public List<Trigger> Triggers { get; set; }
+
+        public void Add(Trigger trigger)
+        {
+            Triggers.Add(trigger);
+        }
 
         public IEnumerator<Trigger> GetEnumerator()
         {

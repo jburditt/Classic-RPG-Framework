@@ -20,7 +20,10 @@ namespace MonoGame.Manager
         {
             tileset = new Texture2D[tilesets.Length];
             for (var i = 0; i < tilesets.Length; i++)
-                tileset[i] = _content.Load<Texture2D>(tilesets[i]);
+            {
+                var name = tilesets[i].Substring(tilesets[i].IndexOf("tileset"));
+                tileset[i] = _content.Load<Texture2D>(name);
+            }
         }
 
         public void Draw(int i, Rect targetRect, Rect sourceRect, ColorStruct? color = null)

@@ -4,13 +4,19 @@ using Player;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using TiledSharp;
+using Player.Maps;
 
 namespace Console
 {
     class Program
     {
+        private static SerializableDictionary<string, TilesetMeta> TilesetMetas = new SerializableDictionary<string, TilesetMeta>();
+
         static void Main(string[] args)
         {
+            LoadTilesetMeta("../../../Data/map/Start.tmx");
+            
             var filepaths = FileManager.GetFilepaths("../../../MonoGame/Content");
 
             using (var fileStream = File.Create("../../../MonoGame/Content/Content.mgcb"))
@@ -87,10 +93,29 @@ namespace Console
 
         private static ColorStruct GetTransparentColor(string imagePath)
         {
+            // load transparency color from saved meta (loaded from Tiled map)
+            if (imagePath.Contains("tileset"))
+            {
+                var tilesetName = imagePath.Substring(imagePath.IndexOf("tileset\\") + 8);
+                tilesetName = tilesetName.Left(tilesetName.Length - 4);
+                if (TilesetMetas.ContainsKey(tilesetName))
+                    return TilesetMetas[tilesetName].TransparencyColor;
+            }
+
+            // use the pixel at top left for transparency
             var myBitmap = new Bitmap(imagePath);
             var pixelColor = myBitmap.GetPixel(0, 0);
 
             return pixelColor.ToStruct();
+        }
+
+        private static void LoadTilesetMeta(string mapFilePath)
+        {
+            var tiledMap = new TmxMap(mapFilePath);
+            foreach (var tileset in tiledMap.Tilesets) {
+                var trans = tileset.Image.Trans;
+                TilesetMetas.Add(tileset.Name, new TilesetMeta { TransparencyColor = new ColorStruct(trans.R, trans.G, trans.B) });
+            }
         }
     }
 }

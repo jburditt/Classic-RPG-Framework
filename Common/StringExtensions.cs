@@ -45,5 +45,13 @@ namespace Common
                 buffer.Append(c);
             return buffer.ToString();
         }
+
+        public static int ToInt(this string n)
+        {
+            if (string.IsNullOrEmpty(n) || !int.TryParse(n, out int i))
+                return 0;
+
+            return i;
+        }
     }
 }

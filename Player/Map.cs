@@ -10,6 +10,7 @@ namespace Player
 {
     public class Map
     {
+        private readonly EventService _eventService;
         private readonly IIconManager _iconManager;
         private readonly ITilesetManager _tilesetManager;
         private readonly IDataStore _dataStore;
@@ -27,17 +28,19 @@ namespace Player
         public Tile[][][] Tiles { get; set; }
         public List<NPC> NPC { get; set; } = new List<NPC>();
 
-        public Vector Camera;
+        public Vector Camera, Start;
 
         int windowTilesWide, windowTilesHigh;
 
-        public Map(IDataStore dataStore, IIconManager iconManager, ITilesetManager tilesetManager, string map, bool isMonoGame = false)
+        public Map(IDataStore dataStore, EventService eventService, IIconManager iconManager, ITilesetManager tilesetManager, string mapFilePath, string mapName, bool isMonoGame = false)
         {
             _dataStore = dataStore;
+            _eventService = eventService;
             _iconManager = iconManager;
             _tilesetManager = tilesetManager;
 
-            TiledMap = new TmxMap(map);
+            // TODO copy TMX files to Content dir on build
+            TiledMap = new TmxMap(mapFilePath);
 
             TileWidth = TiledMap.Tilesets[0].TileWidth;              // width of tile in pixels
             TileHeight = TiledMap.Tilesets[0].TileHeight;            // height of tile
@@ -61,14 +64,15 @@ namespace Player
                 tilesetNames = tilesets.Select(n => n.Image.Source).ToArray();
             tilesetManager.Load(tilesetNames);
 
-            Tiles = Load();
+            Tiles = Load(mapName);
+            LoadObjects();
         }
 
-        public Tile[][][] Load()
+        public Tile[][][] Load(string mapName)
         {
             var tiles = new Tile[TiledMap.Width][][];
 
-            Passable = _dataStore.Load<bool[][][]>("world2.passable");
+            Passable = _dataStore.Load<bool[][][]>($"{mapName}.passable");
 
             for (var x = 0; x < TiledMap.Width; x++)
             {
@@ -114,13 +118,33 @@ namespace Player
                         {
                             SpriteRect = new Rect(tileWidth * column, tileHeight * row, tileWidth, tileHeight),
                             Tileset = tilesetIndex,
-                            IsPassable = Passable[tilesetIndex][column][row]
+                            IsPassable = Passable == null ? true : Passable[tilesetIndex][column][row]
                         };
                     }
                 }
             }
 
             return tiles;
+        }
+
+        public void LoadObjects()
+        {
+            foreach (var objLayer in TiledMap.ObjectGroups)
+            {
+                foreach (var obj in objLayer.Objects)
+                {
+                    var x = (int)obj.X / TileWidth;
+                    var y = (int)obj.Y / TileWidth;
+
+                    if (obj.Properties.ContainsKey("Start"))
+                    {
+                        Start = new Vector((int)obj.X, (int)obj.Y);
+                    } else if (obj.Properties.ContainsKey("EventId"))
+                    {
+                        Tiles[x][y][0].EventCollection = _eventService.Find(obj.Properties["EventId"].ToInt());
+                    }
+                }
+            }
         }
 
         public bool IsCollision(Vector pos, Direction direction)
@@ -356,7 +380,7 @@ namespace Player
 
         private bool OutBounds(int x, int y)
         {
-            return x < 0 || x >= Columns || y < 0 || y >= Height;
+            return x < 0 || x >= Columns || y < 0 || y >= Rows;
         }
     }
 }

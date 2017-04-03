@@ -17,6 +17,7 @@ namespace Editor.Manager
 
         public void Load(string[] tilesets)
         {
+            // TODO load from Image in TiledMap.Tileset[i].Image
             tileset = new Bitmap[tilesets.Length];
 
             for (var i = 0; i < tilesets.Length; i++)

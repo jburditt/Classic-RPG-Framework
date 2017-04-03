@@ -100,4 +100,9 @@ public static class VectorExtensions
     {
         return new Vector((int)n.X, (int)n.Y);
     }
+
+    public static VectorF ToVectorF(this Vector n)
+    {
+        return new VectorF(n.X, n.Y);
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using DataStore;
+using Player.Events;
 using Player.Graphics;
 using Player.Inputs;
 using Player.Manager;
@@ -13,7 +14,9 @@ namespace Player
         private IGraphics _graphics;
         private ISongManager _songManager;
 
+        private EventService _eventService;
         private NPCManager _npcManager;
+
         Battle battle;
         GamePlayer player;
         Map map;
@@ -22,6 +25,8 @@ namespace Player
         public Party Party { get; private set; }
         public EnemyParty EnemyParty { get; private set; }
         public GameState GameState { get; private set; } = GameState.StartMenu;
+
+        private string mapName = "Start";
 
         MenuItem menuItem = MenuItem.NewGame;
 
@@ -36,6 +41,7 @@ namespace Player
 
             _npcManager = new NPCManager(actorManager, _dialogManager, _graphics);
             _npcManager.NPC = dataStore.Load<List<NPC>>("world2.NPC");
+            _eventService = new EventService();
 
             Party = new Party
             {
@@ -51,11 +57,8 @@ namespace Player
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
 
             battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialogManager);
-            player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager);
-            map = new Map(dataStore, iconManager, tilesetManager, "Content/world2.tmx", true);
-
-            var data = new TestData();
-            map.Tiles[5][5][0].EventCollection = data.EventCollections[0];
+            map = new Map(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/map/{mapName}.tmx", mapName, true);
+            player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager, map.Start);
 
             //songManager.Play("01 - Namazu");
             songManager.Play("Sadness Everlasting");

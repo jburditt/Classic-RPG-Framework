@@ -19,11 +19,13 @@ namespace Player
         private WalkAnimation animation = new WalkAnimation();
         private string _charSetName;
 
-        public GamePlayer(string charSetName, IInputManager inputManager, IActorManager actorManager)
+        public GamePlayer(string charSetName, IInputManager inputManager, IActorManager actorManager, Vector start)
         {
             _charSetName = charSetName;
             _inputManager = inputManager;
             _actorManager = actorManager;
+
+            Pos = start.ToVectorF();
         }
 
         public void Update(Map map, float deltaTime)

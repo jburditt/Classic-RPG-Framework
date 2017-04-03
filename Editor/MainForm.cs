@@ -1,6 +1,7 @@
 ﻿using DataStore;
 using Editor.Manager;
 using Player;
+using Player.Events;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -9,12 +10,14 @@ namespace Editor
 {
     public partial class MainForm : Form
     {
+        private readonly EventService _eventService;
         private readonly IconManager _iconManager;
         private readonly TilesetManager _tilesetManager;
         private readonly Map _map;
         private readonly Graphics _graphics;
         private readonly XmlDataStore _dataStore;
 
+        private string mapName = "Start";
         private int fileIndex = 0;
         private List<Image> filesImages = new List<Image>();
         private Bitmap _x = (Bitmap)Image.FromFile("../../x.png");
@@ -31,7 +34,7 @@ namespace Editor
             _tilesetManager = new TilesetManager(_graphics);
             _dataStore = new XmlDataStore();
 
-            _map = new Map(_dataStore, _iconManager, _tilesetManager, "../../../MonoGame/Content/world2.tmx");
+            _map = new Map(_dataStore, _eventService, _iconManager, _tilesetManager, $"../../../Data/map/{mapName}.tmx", mapName);
             _map.Passable = LoadPassable();
 
             filePictureBox.Image = filesImages[0];

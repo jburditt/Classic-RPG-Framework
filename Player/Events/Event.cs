@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Player.Events
 {
     public class EventCollection : IEnumerable<Event>
     {
+        public int Id { get; set; }
         public List<Event> Events { get; set; } = new List<Event>();
 
         public void Add(Event e)
@@ -42,7 +44,7 @@ namespace Player.Events
 
     public class EventPage
     {
-        public Dictionary<string, int> Switch { get; set; } = new Dictionary<string, int>();
+        public SerializableDictionary<string, int> Switch { get; set; } = new SerializableDictionary<string, int>();
         public int Id { get; set; }
         public string ImageKey { get; set; }
         public ImageType ImageType { get; set; }
