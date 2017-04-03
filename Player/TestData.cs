@@ -51,7 +51,7 @@ namespace Player
                     {
                         ScriptActions = new List<ScriptAction>
                         {
-                            new ScriptAction(ScriptActionType.ChangeMap, "Tent", 12, 23)
+                            new ScriptAction(ScriptActionType.ChangeMap, "Tent", 12, 22)
                         }
                     },
                     ImageKey = null,

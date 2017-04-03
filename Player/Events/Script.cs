@@ -19,7 +19,7 @@ namespace Player.Events
                         break;
                     case ScriptActionType.ChangeMap:
                         map.Load(script.Params[0].ToString());
-                        player.Pos = new VectorF((int)script.Params[1], (int)script.Params[2]);
+                        player.Pos = new VectorF((int)script.Params[1] * map.TileWidth, (int)script.Params[2] * map.TileHeight);
                         break;
                 }
             }

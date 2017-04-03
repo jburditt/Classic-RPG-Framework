@@ -150,7 +150,8 @@ namespace Player
                         Start = new Vector((int)obj.X, (int)obj.Y);
                     } else if (obj.Properties.ContainsKey("EventId"))
                     {
-                        Tiles[x][y][0].EventCollection = _eventService.Find(obj.Properties["EventId"].ToInt());
+                        // compensate for bug in Tiled (+1, -1)
+                        Tiles[x+1][y-1][0].EventCollection = _eventService.Find(obj.Properties["EventId"].ToInt());
                     }
                 }
             }
@@ -229,7 +230,7 @@ namespace Player
         {
             // activate triggers
             var eventPage1 = Tiles[newPos.X][newPos.Y][0].EventCollection?.Walk(true);
-            var eventPage2 = Tiles[newPos.X][newPos.Y][0].EventCollection?.Walk(false);
+            var eventPage2 = Tiles[oldPos.X][oldPos.Y][0].EventCollection?.Walk(false);
             // execute event
             if (eventPage1 != null)
                 Script.Execute(eventPage1, player, this);
@@ -363,7 +364,7 @@ namespace Player
             float x = Screen.HalfWidth;
             if (p.X < Screen.HalfWidth) x = p.X;
             if (p.X > Width - Screen.HalfWidth)
-                x = p.X - Screen.Width - Screen.HalfWidth;
+                x = p.X - Width + Screen.Width;
 
             float y = Screen.HalfHeight;
             if (p.Y < Screen.HalfHeight) y = p.Y;
