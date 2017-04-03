@@ -140,9 +140,9 @@ namespace Editor
 
         private void saveButton_Click(object sender, System.EventArgs e)
         {
-            _dataStore.Save(_map.Passable, "world2.passable");
-            _dataStore.Save(_map.Tiles, "world2.Tiles");
-            _dataStore.Save(_map.NPC, "world2.NPC");
+            _dataStore.Save(_map.Passable, $"map\\{mapName}.passable");
+            _dataStore.Save(_map.Tiles, $"map\\{mapName}.Tiles");
+            _dataStore.Save(_map.NPC, $"map\\{mapName}.NPC");
         }
 
         private void filesListBox_SelectedIndexChanged(object sender, System.EventArgs e)

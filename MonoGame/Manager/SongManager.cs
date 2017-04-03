@@ -1,9 +1,7 @@
-﻿using Common;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using Player;
 using System.Collections.Generic;
-using System.IO;
 
 namespace MonoGame.Manager
 {

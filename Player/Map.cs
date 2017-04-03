@@ -3,7 +3,6 @@ using DataStore;
 using Player.Events;
 using Player.Manager;
 using System.Collections.Generic;
-using System.Linq;
 using TiledSharp;
 
 namespace Player
@@ -66,6 +65,10 @@ namespace Player
 
             var tilesets = TiledMap.Tilesets;
 
+            // TODO
+            // Leaving this here for now
+            // At some point we will probably want to load only the textures we need (below) instead of all (current)
+
             //string[] tilesetNames;
             //if (isMonoGame)
             //    tilesetNames = tilesets.Select(n => n.Image.Source).ToList().ToFileList().Select(n => n.Name).ToArray();
@@ -81,7 +84,7 @@ namespace Player
         {
             var tiles = new Tile[TiledMap.Width][][];
 
-            Passable = _dataStore.Load<bool[][][]>($"{mapName}.passable");
+            Passable = _dataStore.Load<bool[][][]>($"map\\{mapName}.passable");
 
             for (var x = 0; x < TiledMap.Width; x++)
             {
@@ -234,6 +237,7 @@ namespace Player
             // activate triggers
             var eventPage1 = Tiles[newPos.X][newPos.Y][0].EventCollection?.Walk(true);
             var eventPage2 = Tiles[oldPos.X][oldPos.Y][0].EventCollection?.Walk(false);
+
             // execute event
             if (eventPage1 != null)
                 Script.Execute(eventPage1, player, this);
@@ -380,30 +384,18 @@ namespace Player
         public void UpdateCamera(Vector pos)
         {
             if (pos.X < Screen.HalfWidth)
-            {
                 Camera.X = 0;
-            }
             else if (pos.X > Width - Screen.HalfWidth)
-            {
                 Camera.X = Width - Screen.Width;
-            }
             else
-            {
                 Camera.X = pos.X - Screen.HalfWidth;
-            }
 
             if (pos.Y < Screen.HalfHeight)
-            {
                 Camera.Y = 0;
-            }
             else if (pos.Y > Height - Screen.HalfHeight)
-            {
                 Camera.Y = Height - Screen.Height;
-            }
             else
-            {
                 Camera.Y = pos.Y - Screen.HalfHeight;
-            }
         }
 
         private bool OutBounds(int x, int y)
