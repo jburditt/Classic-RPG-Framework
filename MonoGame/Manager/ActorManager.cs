@@ -24,7 +24,7 @@ namespace MonoGame.Manager
 
         public void Draw(string charSetName, Rect sourceRect, Rect targetRect, ColorStruct? color = null)
         {
-            _spriteBatch.Draw(Charsets[charSetName], sourceRect.ToRectangle(), targetRect.ToRectangle(), color.ToColor());
+            _spriteBatch.Draw(Charsets[charSetName], targetRect.ToRectangle(), sourceRect.ToRectangle(), color.ToColor());
         }
 
         public void DrawBattle(string battleCharName, Rect sourceRect, Rect targetRect, ColorStruct? color = null)

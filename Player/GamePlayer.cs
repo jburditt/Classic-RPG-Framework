@@ -84,7 +84,7 @@ namespace Player
 
             var pos = map.Transform(Pos);
             
-            _actorManager.Draw(_charSetName, animation.DrawRect(pos), animation.SourceRect);
+            _actorManager.Draw(_charSetName, animation.SourceRect, animation.DrawRect(pos));
         }
 
         public void MoveUp(Map map, float deltaTime)

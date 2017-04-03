@@ -33,7 +33,7 @@ namespace Player.Manager
 
                 var pos = npc.Pos - map.Camera;
 
-                _actorManager.Draw(npc.CharSet, npc.Animation.DrawRect(pos.X, pos.Y), npc.Animation.SourceRect);
+                _actorManager.Draw(npc.CharSet, npc.Animation.SourceRect, npc.Animation.DrawRect(pos));
             }
         }
 

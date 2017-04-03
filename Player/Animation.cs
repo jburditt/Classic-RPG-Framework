@@ -18,11 +18,6 @@
             return new Rect((int)n.X, (int)n.Y, spriteWidth, spriteHeight);
         }
 
-        public Rect DrawRect(int x, int y)
-        {
-            return new Rect(x, y, spriteWidth, spriteHeight);
-        }
-
         public Rect SourceRect {
             get {
                 return new Rect(X * spriteWidth, Y * spriteHeight, spriteWidth, spriteHeight);

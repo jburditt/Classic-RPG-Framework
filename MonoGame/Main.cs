@@ -110,7 +110,7 @@ namespace MonoGame
                 Exit();
 
             // Alt-Enter
-            if (inputManager.IsPressedKey((int)Keys.F5))
+            if (inputManager.JustPressedKey((int)Keys.F5))
             {
                 graphicsDeviceManager.IsFullScreen = !graphicsDeviceManager.IsFullScreen;
                 graphicsDeviceManager.ApplyChanges();
