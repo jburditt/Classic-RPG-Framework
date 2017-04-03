@@ -50,6 +50,7 @@
     <Compile Include="Manager\IconManager.cs" />
     <Compile Include="Manager\InputManager.cs" />
     <Compile Include="Manager\BattleManager.cs" />
+    <Compile Include="Manager\ManagerHelper.cs" />
     <Compile Include="Manager\TilesetManager.cs" />
     <Compile Include="Manager\SoundManager.cs" />
     <Compile Include="RectangleExtension.cs" />

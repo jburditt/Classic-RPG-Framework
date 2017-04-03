@@ -1,9 +1,7 @@
-﻿using Common;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Player.Manager;
 using System.Collections.Generic;
-using System.IO;
 
 namespace MonoGame.Manager
 {
@@ -13,17 +11,11 @@ namespace MonoGame.Manager
 
         private SpriteBatch _spriteBatch;
 
-        public BattleManager(ContentManager Content, SpriteBatch spriteBatch)
+        public BattleManager(ContentManager contentManager, SpriteBatch spriteBatch)
         {
             _spriteBatch = spriteBatch;
 
-            var filepaths = FileManager.GetFilepaths("../../../Content/battlebg");
-
-            foreach (var filepath in filepaths)
-            {
-                var filename = Path.GetFileNameWithoutExtension(filepath);
-                BattleBg.Add(filename, Content.Load<Texture2D>("battlebg\\" + filename));
-            }
+            BattleBg = ManagerHelper.LoadFolder<Texture2D>("battleBg", contentManager);
         }
 
         public void Draw(string battleBgName)

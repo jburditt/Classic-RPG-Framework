@@ -1,10 +1,8 @@
-﻿using Common;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Player;
 using Player.Manager;
 using System.Collections.Generic;
-using System.IO;
 
 namespace MonoGame.Manager
 {
@@ -12,30 +10,16 @@ namespace MonoGame.Manager
     {
         private readonly SpriteBatch _spriteBatch;
 
+        // TODO no Texture2D should be public...
         public Dictionary<string, Texture2D> Charsets { get; set; } = new Dictionary<string, Texture2D>();
         public Dictionary<string, Texture2D> BattleChars { get; set; } = new Dictionary<string, Texture2D>();
 
-        public ActorManager(ContentManager Content, SpriteBatch spriteBatch)
+        public ActorManager(ContentManager contentManager, SpriteBatch spriteBatch)
         {
             _spriteBatch = spriteBatch;
 
-            // charset
-            var filepaths = FileManager.GetFilepaths("../../../Content/charset");
-
-            foreach (var filepath in filepaths)
-            {
-                var filename = Path.GetFileNameWithoutExtension(filepath);
-                Charsets.Add(filename, Content.Load<Texture2D>("charset\\" + filename));
-            }
-
-            // battlechar
-            filepaths = FileManager.GetFilepaths("../../../Content/battlechar");
-
-            foreach (var filepath in filepaths)
-            {
-                var filename = Path.GetFileNameWithoutExtension(filepath);
-                BattleChars.Add(filename, Content.Load<Texture2D>("battlechar\\" + filename));
-            }
+            Charsets = ManagerHelper.LoadFolder<Texture2D>("charset", contentManager);
+            BattleChars = ManagerHelper.LoadFolder<Texture2D>("battlechar", contentManager);
         }
 
         public void Draw(string charSetName, Rect sourceRect, Rect targetRect, ColorStruct? color = null)

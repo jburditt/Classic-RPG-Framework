@@ -19,13 +19,7 @@ namespace MonoGame.Manager
             _content = content;
             _spriteBatch = spriteBatch;
 
-            var filepaths = FileManager.GetFilepaths("../../../Content/tileset");
-
-            foreach (var filepath in filepaths)
-            {
-                var filename = Path.GetFileNameWithoutExtension(filepath);
-                _tilesets.Add(filename, content.Load<Texture2D>("tileset\\" + filename));
-            }
+            _tilesets = ManagerHelper.LoadFolder<Texture2D>("tileset", content);
         }
 
         public void Draw(string tilesetName, Rect targetRect, Rect sourceRect, ColorStruct? color = null)

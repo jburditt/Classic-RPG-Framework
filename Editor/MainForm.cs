@@ -5,6 +5,7 @@ using Player.Events;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using TiledSharp;
 
 namespace Editor
 {
@@ -17,7 +18,7 @@ namespace Editor
         private readonly Graphics _graphics;
         private readonly XmlDataStore _dataStore;
 
-        private string mapName = "Start";
+        private string mapName = "Start", mapFilePath = $"../../../Data/map/";
         private int fileIndex = 0;
         private List<Image> filesImages = new List<Image>();
         private Bitmap _x = (Bitmap)Image.FromFile("../../x.png");
@@ -31,10 +32,12 @@ namespace Editor
 
             _x.MakeTransparent(Color.White);
             _graphics = Graphics.FromImage(new Bitmap(1024, 1024));
-            _tilesetManager = new TilesetManager(_graphics);
+            // TODO Loading this twice (also in Map.Load())
+            var tiledMap = new TmxMap($"{mapFilePath + mapName}.tmx");
+            _tilesetManager = new TilesetManager(_graphics, tiledMap.Tilesets);
             _dataStore = new XmlDataStore();
 
-            _map = new Map(_dataStore, _eventService, _iconManager, _tilesetManager, $"../../../Data/map/", mapName);
+            _map = new Map(_dataStore, _eventService, _iconManager, _tilesetManager, mapFilePath, mapName);
             _map.Passable = LoadPassable();
 
             filePictureBox.Image = filesImages[0];

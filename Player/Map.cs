@@ -138,6 +138,9 @@ namespace Player
 
         public void LoadObjects()
         {
+            if (_eventService == null)
+                return;
+
             foreach (var objLayer in TiledMap.ObjectGroups)
             {
                 foreach (var obj in objLayer.Objects)

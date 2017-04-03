@@ -15,21 +15,15 @@ namespace MonoGame.Manager
         public Dictionary<string, Texture2D> Sprites = new Dictionary<string, Texture2D>();
         public Dictionary<string, Enemy> Enemies { get; private set; } = new Dictionary<string, Enemy>();
 
-        public EnemyManager(ContentManager Content, SpriteBatch spriteBatch)
+        public EnemyManager(ContentManager contentManager, SpriteBatch spriteBatch)
         {
             _spriteBatch = spriteBatch;
 
             // load textures
-            var filepaths = FileManager.GetFilepaths("../../../Content/enemy");
-
-            foreach (var filepath in filepaths)
-            {
-                var filename = Path.GetFileNameWithoutExtension(filepath);
-                Sprites.Add(filename, Content.Load<Texture2D>("enemy\\" + filename));
-            }
+            Sprites = ManagerHelper.LoadFolder<Texture2D>("enemy", contentManager);
 
             // load enemies
-            filepaths = FileManager.GetFilepaths("../../../../Data/enemy");
+            var filepaths = FileManager.GetFilepaths("../../../../Data/enemy");
 
             foreach (var filepath in filepaths)
             {

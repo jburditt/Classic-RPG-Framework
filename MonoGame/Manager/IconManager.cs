@@ -14,17 +14,11 @@ namespace MonoGame.Manager
 
         public Dictionary<string, Texture2D> Icons = new Dictionary<string, Texture2D>();
 
-        public IconManager(ContentManager Content, SpriteBatch spriteBatch)
+        public IconManager(ContentManager contentManager, SpriteBatch spriteBatch)
         {
             _spriteBatch = spriteBatch;
 
-            var filepaths = FileManager.GetFilepaths("../../../Content/icon");
-
-            foreach (var filepath in filepaths)
-            {
-                var filename = Path.GetFileNameWithoutExtension(filepath);
-                Icons.Add(filename, Content.Load<Texture2D>("icon\\" + filename));
-            }
+            Icons = ManagerHelper.LoadFolder<Texture2D>("icon", contentManager);
         }
 
         public void Draw(string iconName, Vector vector, ColorStruct? color = null)

@@ -1,6 +1,8 @@
 ﻿using Player;
 using Player.Manager;
+using System.Collections.Generic;
 using System.Drawing;
+using TiledSharp;
 
 namespace Editor.Manager
 {
@@ -8,25 +10,18 @@ namespace Editor.Manager
     {
         public Graphics Graphics { get; set; }
 
-        private Bitmap[] tileset;    // make this a dictionary
+        private Dictionary<string, Bitmap> _tilesets = new Dictionary<string, Bitmap>();
 
-        public TilesetManager(Graphics graphics)
+        public TilesetManager(Graphics graphics, TmxList<TmxTileset> tilesets)
         {
             Graphics = graphics;
+            foreach (var tileset in tilesets)
+                _tilesets.Add(tileset.Name, (Bitmap)Image.FromFile(tileset.Image.Source));
         }
 
-        public void Load(string[] tilesets)
+        public void Draw(string tilesetName, Rect targetRect, Rect sourceRect, ColorStruct? color = null)
         {
-            // TODO load from Image in TiledMap.Tileset[i].Image
-            tileset = new Bitmap[tilesets.Length];
-
-            for (var i = 0; i < tilesets.Length; i++)
-                tileset[i] = (Bitmap)Image.FromFile(tilesets[i]);
-        }
-
-        public void Draw(int i, Rect targetRect, Rect sourceRect, ColorStruct? color = null)
-        {
-            Graphics.DrawImage(tileset[i], targetRect.ToRectangle(), sourceRect.ToRectangle(), GraphicsUnit.Pixel);
+            Graphics.DrawImage(_tilesets[tilesetName], targetRect.ToRectangle(), sourceRect.ToRectangle(), GraphicsUnit.Pixel);
         }
     }
 }

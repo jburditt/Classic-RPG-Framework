@@ -11,15 +11,9 @@ namespace MonoGame.Manager
     {
         private Dictionary<string, Song> Songs { get; set; } = new Dictionary<string, Song>();
 
-        public SongManager(ContentManager Content)
+        public SongManager(ContentManager contentManager)
         {
-            var filepaths = FileManager.GetFilepaths("../../../Content/song");
-
-            foreach (var filepath in filepaths)
-            {
-                var filename = Path.GetFileNameWithoutExtension(filepath);
-                Songs.Add(filename, Content.Load<Song>("song\\" + filename));
-            }
+            Songs = ManagerHelper.LoadFolder<Song>("song", contentManager);
 
             MediaPlayer.IsRepeating = true;
         }
