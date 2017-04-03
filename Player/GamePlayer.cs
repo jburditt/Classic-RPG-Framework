@@ -30,11 +30,16 @@ namespace Player
 
         public void Update(Map map, float deltaTime)
         {
+            // save old position
+            var oldPos = (Pos / new VectorF(map.TileWidth, map.TileHeight)).ToVector();   
+
+            // running
             if (_inputManager.IsPressedInput((int)Input.FaceButtonLeft))
                 speedX = speedY = 300;
             else
                 speedX = speedY = 150;
 
+            // animate
             if (_inputManager.IsPressedKey((int)Keys.Up) || _inputManager.IsPressedKey((int)Keys.Down) || _inputManager.IsPressedKey((int)Keys.Left) || _inputManager.IsPressedKey((int)Keys.Right))
             {
                 animation.Step();
@@ -49,6 +54,7 @@ namespace Player
                 IsMoving = false;
             }
 
+            // move player
             if (_inputManager.IsPressedKey((int)Keys.Up))
                 MoveUp(map, deltaTime);
 
@@ -63,6 +69,13 @@ namespace Player
 
             if (_inputManager.AnyPressedKey((int)Keys.Up, (int)Keys.Down, (int)Keys.Left, (int)Keys.Right))
                 map.UpdateCamera(Pos.ToVector());
+
+            // check walkon event
+            var newPos = (Pos / new VectorF(map.TileWidth, map.TileHeight)).ToVector();
+            if (newPos != oldPos)
+            {
+                map.Walk(this, newPos, oldPos);
+            }
         }
 
         public void Draw(Map map)

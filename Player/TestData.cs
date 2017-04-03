@@ -17,7 +17,7 @@ namespace Player
                     TriggerCollection = null
                 },
                 new EventPage {
-                    Id = 1,
+                    Id = 2,
                     ScriptActionCollection = new ScriptActionCollection
                     {
                         ScriptActions = new List<ScriptAction>
@@ -33,6 +33,64 @@ namespace Player
                         Triggers = new List<Trigger>
                         {
                             new Trigger { TriggerType = TriggerType.Action, Value = 0 }
+                        }
+                    }
+                }
+            };
+        }
+    }
+
+    public class Warp : Event
+    {
+        public Warp()
+        {
+            EventPages = new List<EventPage> {
+                new EventPage {
+                    Id = 3,
+                    ScriptActionCollection = new ScriptActionCollection
+                    {
+                        ScriptActions = new List<ScriptAction>
+                        {
+                            new ScriptAction(ScriptActionType.ChangeMap, "Tent", 12, 23)
+                        }
+                    },
+                    ImageKey = null,
+                    ImageType = 0,
+                    TilesetSource = new Rect(0, 0, 0, 0),
+                    TriggerCollection = new TriggerCollection
+                    {
+                        Triggers = new List<Trigger>
+                        {
+                            new Trigger { TriggerType = TriggerType.WalkOn, Value = 0 }
+                        }
+                    }
+                }
+            };
+        }
+    }
+
+    public class TentWarp : Event
+    {
+        public TentWarp()
+        {
+            EventPages = new List<EventPage> {
+                new EventPage {
+                    Id = 4,
+                    ScriptActionCollection = new ScriptActionCollection
+                    {
+                        ScriptActions = new List<ScriptAction>
+                        {
+                            new ScriptAction(ScriptActionType.ChangeMap, "Start", 55, 59)
+                        }
+                    },
+                    ImageKey = null,
+                    ImageType = 0,
+                    TilesetSource = new Rect(0, 0, 0, 0),
+                    TriggerCollection = new TriggerCollection
+                    {
+                        Triggers = new List<Trigger>
+                        {
+                            new Trigger { TriggerType = TriggerType.WalkOn, Value = 0 }
                         }
                     }
                 }

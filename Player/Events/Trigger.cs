@@ -9,6 +9,7 @@ namespace Player.Events
 
         public List<Trigger> Triggers { get; set; }
 
+        #region IEnumerable
         public void Add(Trigger trigger)
         {
             Triggers.Add(trigger);
@@ -23,6 +24,7 @@ namespace Player.Events
         {
             return ((IEnumerable<Trigger>)Triggers).GetEnumerator();
         }
+        #endregion IEnumerable
 
         public bool Action(EventPage eventPage)
         {
@@ -30,6 +32,18 @@ namespace Player.Events
             {
                 if (trigger.TriggerType == TriggerType.Action)
                     trigger.On = true;
+            }
+
+            return IsTriggered(eventPage);
+        }
+
+        public bool Walk(EventPage eventPage, bool on)
+        {
+            // TODO when you walk off the tile, trigger.On = false
+            foreach (var trigger in this)
+            {
+                if (trigger.TriggerType == TriggerType.WalkOn)
+                    trigger.On = on;
             }
 
             return IsTriggered(eventPage);
@@ -89,6 +103,7 @@ namespace Player.Events
         Action,
         Switch,
         SelfSwitch,
+        WalkOn,
         Variable,
         Quest,
         Item,

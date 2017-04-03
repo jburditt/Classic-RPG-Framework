@@ -22,6 +22,8 @@ namespace Player
         public int Columns { get; set; }
         public int Rows { get; set; }
         public int Layers { get; set; }
+        public string MapFilePath { get; set; }
+        public string MapName { get; set; }
 
         public TmxMap TiledMap { get; set; }
         public bool[][][] Passable { get; set; }
@@ -39,14 +41,21 @@ namespace Player
             _iconManager = iconManager;
             _tilesetManager = tilesetManager;
 
-            // TODO copy TMX files to Content dir on build
-            TiledMap = new TmxMap(mapFilePath);
+            MapFilePath = mapFilePath;
+            MapName = mapName;
+
+            Load(mapName, isMonoGame);
+        }
+
+        public void Load(string mapName, bool isMonoGame = false)
+        {
+            TiledMap = new TmxMap($"{MapFilePath+mapName}.tmx");
 
             TileWidth = TiledMap.Tilesets[0].TileWidth;              // width of tile in pixels
             TileHeight = TiledMap.Tilesets[0].TileHeight;            // height of tile
 
-            windowTilesWide = Screen.Width / TileWidth;         // number of columns in window
-            windowTilesHigh = Screen.Height / TileHeight;       // number of rows in window
+            windowTilesWide = Screen.Width / TileWidth;             // number of columns in window
+            windowTilesHigh = Screen.Height / TileHeight;           // number of rows in window
 
             Width = TiledMap.Width * TileWidth;                      // width of map in pixels
             Height = TiledMap.Height * TileHeight;                   // height of map
@@ -57,18 +66,18 @@ namespace Player
 
             var tilesets = TiledMap.Tilesets;
 
-            string[] tilesetNames;
-            if (isMonoGame)
-                tilesetNames = tilesets.Select(n => n.Image.Source).ToList().ToFileList().Select(n => n.Name).ToArray();
-            else
-                tilesetNames = tilesets.Select(n => n.Image.Source).ToArray();
-            tilesetManager.Load(tilesetNames);
+            //string[] tilesetNames;
+            //if (isMonoGame)
+            //    tilesetNames = tilesets.Select(n => n.Image.Source).ToList().ToFileList().Select(n => n.Name).ToArray();
+            //else
+            //    tilesetNames = tilesets.Select(n => n.Image.Source).ToArray();
+            //_tilesetManager.Load(tilesetNames);
 
-            Tiles = Load(mapName);
+            Tiles = LoadTiles(mapName);
             LoadObjects();
         }
 
-        public Tile[][][] Load(string mapName)
+        private Tile[][][] LoadTiles(string mapName)
         {
             var tiles = new Tile[TiledMap.Width][][];
 
@@ -117,7 +126,7 @@ namespace Player
                         tiles[x][y][layer] = new Tile
                         {
                             SpriteRect = new Rect(tileWidth * column, tileHeight * row, tileWidth, tileHeight),
-                            Tileset = tilesetIndex,
+                            Tileset = TiledMap.Tilesets[tilesetIndex].Name,
                             IsPassable = Passable == null ? true : Passable[tilesetIndex][column][row]
                         };
                     }
@@ -214,6 +223,18 @@ namespace Player
                         Script.Execute(eventPage, player, this);
                     }
                 }
+        }
+
+        public void Walk(GamePlayer player, Vector newPos, Vector oldPos)
+        {
+            // activate triggers
+            var eventPage1 = Tiles[newPos.X][newPos.Y][0].EventCollection?.Walk(true);
+            var eventPage2 = Tiles[newPos.X][newPos.Y][0].EventCollection?.Walk(false);
+            // execute event
+            if (eventPage1 != null)
+                Script.Execute(eventPage1, player, this);
+            if (eventPage2 != null)
+                Script.Execute(eventPage2, player, this);
         }
 
         public void Draw(Vector pos)
@@ -317,6 +338,9 @@ namespace Player
 
         public void DrawEvent(EventPage eventPage, Vector pos)
         {
+            if (string.IsNullOrEmpty(eventPage.ImageKey))
+                return;
+
             switch (eventPage.ImageType)
             {
                 case ImageType.Icon:

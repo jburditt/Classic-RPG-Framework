@@ -612,14 +612,3 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
 /build:tileset\Mack-Outer.png
-
-#begin tileset\Mack-Slums.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=194,171,107,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:tileset\Mack-Slums.png

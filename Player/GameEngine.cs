@@ -57,7 +57,7 @@ namespace Player
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
 
             battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialogManager);
-            map = new Map(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/map/{mapName}.tmx", mapName, true);
+            map = new Map(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/map/", mapName, true);
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager, map.Start);
 
             //songManager.Play("01 - Namazu");

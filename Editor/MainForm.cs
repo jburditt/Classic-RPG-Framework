@@ -34,7 +34,7 @@ namespace Editor
             _tilesetManager = new TilesetManager(_graphics);
             _dataStore = new XmlDataStore();
 
-            _map = new Map(_dataStore, _eventService, _iconManager, _tilesetManager, $"../../../Data/map/{mapName}.tmx", mapName);
+            _map = new Map(_dataStore, _eventService, _iconManager, _tilesetManager, $"../../../Data/map/", mapName);
             _map.Passable = LoadPassable();
 
             filePictureBox.Image = filesImages[0];

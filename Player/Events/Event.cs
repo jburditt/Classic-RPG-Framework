@@ -26,6 +26,18 @@ namespace Player.Events
             return null;
         }
 
+        public EventPage Walk(bool on)
+        {
+            foreach (var n in this)
+                foreach (var eventPage in n.EventPages)
+                {
+                    if (eventPage.Walk(on))
+                        return eventPage;
+                }
+
+            return null;
+        }
+
         public IEnumerator<Event> GetEnumerator()
         {
             return Events.GetEnumerator();
@@ -58,6 +70,14 @@ namespace Player.Events
                 return false;
 
             return TriggerCollection.Action(this);
+        }
+
+        public bool Walk(bool on)
+        {
+            if (TriggerCollection == null)
+                return false;
+
+            return TriggerCollection.Walk(this, on);
         }
     }
 

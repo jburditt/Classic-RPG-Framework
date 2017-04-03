@@ -17,6 +17,10 @@ namespace Player.Events
                     case ScriptActionType.ChangeSelfSwitch:
                         eventPage.Switch.Set(script.Params[0].ToString(), (int)script.Params[1]);
                         break;
+                    case ScriptActionType.ChangeMap:
+                        map.Load(script.Params[0].ToString());
+                        player.Pos = new VectorF((int)script.Params[1], (int)script.Params[2]);
+                        break;
                 }
             }
         }
@@ -59,6 +63,7 @@ namespace Player.Events
     public enum ScriptActionType
     {
         ChangeItem,
-        ChangeSelfSwitch
+        ChangeSelfSwitch,
+        ChangeMap
     }
 }

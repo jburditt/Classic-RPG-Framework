@@ -5,17 +5,21 @@ namespace Player.Events
 {
     public class EventService
     {
-        public List<EventCollection> EventCollections { get; set; }
+        private List<EventCollection> EventCollections { get; set; } = new List<EventCollection>();
 
         public EventService()
         {
-            EventCollections = new List<EventCollection>()
-            {
-                new EventCollection
-                {
-                    new Chest()
-                }
-            };
+            var chest = new EventCollection { new Chest() };
+            chest.Id = 1;
+            EventCollections.Add(chest);
+
+            var warp = new EventCollection { new Warp() };
+            warp.Id = 2;
+            EventCollections.Add(warp);
+
+            var e3 = new EventCollection { new TentWarp() };
+            e3.Id = 3;
+            EventCollections.Add(e3);
 
             ItemManager.Items.Add(
                 1,
