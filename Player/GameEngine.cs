@@ -40,7 +40,7 @@ namespace Player
             _songManager = songManager;
 
             _npcManager = new NPCManager(actorManager, _dialogManager, _graphics);
-            _npcManager.NPC = dataStore.Load<List<NPC>>("world2.NPC");
+            _npcManager.NPC = dataStore.Load<List<NPC>>($"map/{mapName}.NPC");
             _eventService = new EventService();
 
             Party = new Party
@@ -114,6 +114,13 @@ namespace Player
                         //GameState = GameState.Battle;
                         //battle.Load();
                     }
+
+                    if (_inputManager.JustPressedKey((int)Keys.B))
+                    {
+                        GameState = GameState.Battle;
+                        battle.Load();
+                    }
+
                     break;
             }
         }
