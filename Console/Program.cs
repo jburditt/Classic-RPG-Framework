@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using TiledSharp;
 using Player.Maps;
+using tIDEReader;
 
 namespace Console
 {
@@ -15,8 +16,9 @@ namespace Console
 
         static void Main(string[] args)
         {
-            LoadTilesetMeta("../../../Data/map/Start.tmx");
-            
+            //LoadTilesetMeta("../../../Data/map/Start.tmx");
+            LoadTideTilesetMeta("../../../Data/map/Untitled.tide");
+
             var filepaths = FileManager.GetFilepaths("../../../MonoGame/Content");
 
             using (var fileStream = File.Create("../../../MonoGame/Content/Content.mgcb"))
@@ -109,12 +111,25 @@ namespace Console
             return pixelColor.ToStruct();
         }
 
-        private static void LoadTilesetMeta(string mapFilePath)
+
+        // TODO Move to TileReader or something
+        private static void LoadTiledTilesetMeta(string mapFilePath)
         {
             var tiledMap = new TmxMap(mapFilePath);
             foreach (var tileset in tiledMap.Tilesets) {
                 var trans = tileset.Image.Trans;
                 TilesetMetas.Add(tileset.Name, new TilesetMeta { TransparencyColor = new ColorStruct(trans.R, trans.G, trans.B) });
+            }
+        }
+
+        private static void LoadTideTilesetMeta(string mapFilePath)
+        {
+            var tiledMap = new TideLoader(mapFilePath).m_map;
+            foreach (var tileset in tiledMap.TileSheets)
+            {
+                // TODO
+                //var trans = tileset.
+                TilesetMetas.Add(tileset.Id, new TilesetMeta { TransparencyColor = new ColorStruct(255, 255, 255) });
             }
         }
     }

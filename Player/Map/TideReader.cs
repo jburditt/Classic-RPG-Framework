@@ -71,7 +71,7 @@ namespace Player.Maps
                             if (gid < TiledMap.TileSheets[i].TileCount + tileCount)
                             {
                                 tilesetIndex = i;
-                                int tileFrame = gid - tileCount - 1;
+                                int tileFrame = gid - tileCount;
                                 int columns = TiledMap.TileSheets[i].SheetWidth;
                                 column = tileFrame % columns;
                                 row = (tileFrame) / columns;
