@@ -182,7 +182,7 @@ namespace Player
                     {
                         // position the player in the middle of the screen
                         playerTileY = (pos.Y - Screen.HalfHeight) / TileHeight;
-                        offsetY = (pos.Y + 16) % TileHeight;
+                        offsetY = (pos.Y + TileHeight / 2) % TileHeight;
                     }
 
                     // draw all tile layers
