@@ -1,10 +1,8 @@
-﻿using Common;
-using DataStore;
+﻿using DataStore;
 using Player.Events;
 using Player.Manager;
 using Player.Maps;
 using System.Collections.Generic;
-using TiledSharp;
 
 namespace Player
 {
@@ -50,9 +48,9 @@ namespace Player
         {
             Passable = _dataStore.Load<bool[][][]>($"map\\{mapName}.passable");
 
-            //TideReader n = new TideReader("../../../../Data/map/Untitled.tide");
+            new TideReader().Load(_eventService, this, "../../../../Data/map/Untitled.tide");
 
-            new TiledReader().Load(_eventService, this, $"{MapFilePath + mapName}.tmx");
+            //new TiledReader().Load(_eventService, this, $"{MapFilePath + mapName}.tmx");
         }
 
         public bool IsCollision(Vector pos, Direction direction)

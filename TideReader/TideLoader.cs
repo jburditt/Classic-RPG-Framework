@@ -3,11 +3,11 @@ using xTile.Format;
 
 namespace tIDEReader
 {
-    public class TideReader
+    public class TideLoader
     {
         public TideMap m_map { get; set; }
 
-        public TideReader(string filename)
+        public TideLoader(string filename)
         {
             LoadMap(filename);
         }

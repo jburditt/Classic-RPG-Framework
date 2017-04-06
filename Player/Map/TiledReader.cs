@@ -81,8 +81,9 @@ namespace Player.Maps
                             tileCount += TiledMap.Tilesets[i].TileCount ?? 0;
                         }
 
-                        var tileWidth = TiledMap.Tilesets[0].TileWidth;
-                        var tileHeight = TiledMap.Tilesets[0].TileHeight;
+                        //TODO this should be TiledMap.Layers[layer].TileWidth
+                        //var tileWidth = TiledMap.Tilesets[0].TileWidth;
+                        //var tileHeight = TiledMap.Tilesets[0].TileHeight;
 
                         map.Tiles[x][y][layer] = new Tile
                         {
