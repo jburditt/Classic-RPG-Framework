@@ -1,9 +1,11 @@
-# [TiledSharp](https://github.com/marshallward/TiledSharp) [MonoGame](https://github.com/mono/MonoGame) Example
+# WARNING
+This project in it's current state is very difficult to compile and run. If you want to build and run the project, please notify me and I can help. Currently I'm the sole contributor and I'm using it as a playground.
 
-This example shows how simple it is to draw a (TMX) map made with [Tiled](http://www.mapeditor.org/) in MonoGame project.
+## Note
+Requires MonoGame installed. Could be used with another graphics library or Unity. Visual Studio 2017 and .NET 4.6.2 recommended.
 
-## Note:
-Remember to add TileSharp to your projects **References**!
+## Description
+2D RPG Game and Editor. RPG Editor plugin for tIDE http://tide.codeplex.com
 
-The (TMX) map file is **not** supposed to be build with content pipeline. Just add it to the project and set **Copy if newer** from the files properties.
-
+## Game
+Side-battle 2D RPG like Final Fantasy 3. More details can be found at http://jburditt.com
