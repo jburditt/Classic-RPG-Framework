@@ -75,6 +75,7 @@
     <Compile Include="Manager\ITilesetManager.cs" />
     <Compile Include="Manager\NPCManager.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Map\TiledReader.cs" />
     <Compile Include="Map\TilesetMeta.cs" />
     <Compile Include="NPC.cs" />
     <Compile Include="Party.cs" />

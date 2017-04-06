@@ -2,6 +2,7 @@
 using DataStore;
 using Player.Events;
 using Player.Manager;
+using Player.Maps;
 using System.Collections.Generic;
 using TiledSharp;
 
@@ -24,16 +25,15 @@ namespace Player
         public string MapFilePath { get; set; }
         public string MapName { get; set; }
 
-        public TmxMap TiledMap { get; set; }
         public bool[][][] Passable { get; set; }
         public Tile[][][] Tiles { get; set; }
         public List<NPC> NPC { get; set; } = new List<NPC>();
 
         public Vector Camera, Start;
 
-        int windowTilesWide, windowTilesHigh;
+        public int WindowColumns, WindowRows;
 
-        public Map(IDataStore dataStore, EventService eventService, IIconManager iconManager, ITilesetManager tilesetManager, string mapFilePath, string mapName, bool isMonoGame = false)
+        public Map(IDataStore dataStore, EventService eventService, IIconManager iconManager, ITilesetManager tilesetManager, string mapFilePath, string mapName)
         {
             _dataStore = dataStore;
             _eventService = eventService;
@@ -43,126 +43,16 @@ namespace Player
             MapFilePath = mapFilePath;
             MapName = mapName;
 
-            //TideReader n = new TideReader("../../../../Data/map/Untitled.tide");
-
-            Load(mapName, isMonoGame);
+            Load(MapName);
         }
 
-        public void Load(string mapName, bool isMonoGame = false)
+        public void Load(string mapName)
         {
-            TiledMap = new TmxMap($"{MapFilePath+mapName}.tmx");
-
-            TileWidth = TiledMap.Tilesets[0].TileWidth;              // width of tile in pixels
-            TileHeight = TiledMap.Tilesets[0].TileHeight;            // height of tile
-
-            windowTilesWide = Screen.Width / TileWidth;             // number of columns in window
-            windowTilesHigh = Screen.Height / TileHeight;           // number of rows in window
-
-            Width = TiledMap.Width * TileWidth;                      // width of map in pixels
-            Height = TiledMap.Height * TileHeight;                   // height of map
-
-            Columns = TiledMap.Width;
-            Rows = TiledMap.Height;
-            Layers = TiledMap.Layers.Count;
-
-            var tilesets = TiledMap.Tilesets;
-
-            // TODO
-            // Leaving this here for now
-            // At some point we will probably want to load only the textures we need (below) instead of all (current)
-
-            //string[] tilesetNames;
-            //if (isMonoGame)
-            //    tilesetNames = tilesets.Select(n => n.Image.Source).ToList().ToFileList().Select(n => n.Name).ToArray();
-            //else
-            //    tilesetNames = tilesets.Select(n => n.Image.Source).ToArray();
-            //_tilesetManager.Load(tilesetNames);
-
-            Tiles = LoadTiles(mapName);
-            LoadObjects();
-        }
-
-        private Tile[][][] LoadTiles(string mapName)
-        {
-            var tiles = new Tile[Rows][][];
-
             Passable = _dataStore.Load<bool[][][]>($"map\\{mapName}.passable");
 
-            for (var x = 0; x < Rows; x++)
-            {
-                tiles[x] = new Tile[Columns][];
+            //TideReader n = new TideReader("../../../../Data/map/Untitled.tide");
 
-                for (var y = 0; y < Columns; y++)
-                {
-                    tiles[x][y] = new Tile[TiledMap.Layers.Count];
-
-                    for (var layer = 0; layer < TiledMap.Layers.Count; layer++)
-                    {
-                        int tileIndex = x + y * Rows;
-
-                        int gid = TiledMap.Layers[layer].Tiles[tileIndex].Gid;
-                        if (gid == 0)
-                            continue;
-
-                        int tilesetIndex = 0;
-                        int tileCount = 0;
-                        int row = 0, column = 0;
-
-                        // get tilesetIndex and position in tileset from gid
-                        for (var i = 0; i < TiledMap.Tilesets.Count; i++)
-                        {
-                            if (gid < TiledMap.Tilesets[i].TileCount + tileCount)
-                            {
-                                tilesetIndex = i;
-                                int tileFrame = gid - tileCount - 1;
-                                int columns = TiledMap.Tilesets[i].Columns ?? 1;
-                                column = tileFrame % columns;
-                                row = (tileFrame) / columns;
-                                break;
-                            }
-
-                            // make sure we tally the tile count, so we know what to subtract from gid
-                            tileCount += TiledMap.Tilesets[i].TileCount ?? 0;
-                        }
-
-                        var tileWidth = TiledMap.Tilesets[0].TileWidth;
-                        var tileHeight = TiledMap.Tilesets[0].TileHeight;
-
-                        tiles[x][y][layer] = new Tile
-                        {
-                            SpriteRect = new Rect(tileWidth * column, tileHeight * row, tileWidth, tileHeight),
-                            Tileset = TiledMap.Tilesets[tilesetIndex].Name,
-                            IsPassable = Passable == null ? true : Passable[tilesetIndex][column][row]
-                        };
-                    }
-                }
-            }
-
-            return tiles;
-        }
-
-        public void LoadObjects()
-        {
-            if (_eventService == null)
-                return;
-
-            foreach (var objLayer in TiledMap.ObjectGroups)
-            {
-                foreach (var obj in objLayer.Objects)
-                {
-                    var x = (int)obj.X / TileWidth;
-                    var y = (int)obj.Y / TileWidth;
-
-                    if (obj.Properties.ContainsKey("Start"))
-                    {
-                        Start = new Vector((int)obj.X, (int)obj.Y);
-                    } else if (obj.Properties.ContainsKey("EventId"))
-                    {
-                        // compensate for bug in Tiled (+1, -1)
-                        Tiles[x+1][y-1][0].EventCollection = _eventService.Find(obj.Properties["EventId"].ToInt());
-                    }
-                }
-            }
+            new TiledReader().Load(_eventService, this, $"{MapFilePath + mapName}.tmx");
         }
 
         public bool IsCollision(Vector pos, Direction direction)
@@ -249,13 +139,13 @@ namespace Player
 
         public void Draw(Vector pos)
         {
-            for (var y = 0; y <= windowTilesHigh; y++)
-                for (var x = 0; x <= windowTilesWide; x++)
+            for (var y = 0; y <= WindowRows; y++)
+                for (var x = 0; x <= WindowColumns; x++)
                 {
                     // don't draw extra tile if on the boundary
-                    if (pos.Y >= Height - Screen.HalfHeight && y == windowTilesHigh)
+                    if (pos.Y >= Height - Screen.HalfHeight && y == WindowRows)
                         break;
-                    if (pos.X >= Width - Screen.HalfWidth && x == windowTilesWide)
+                    if (pos.X >= Width - Screen.HalfWidth && x == WindowColumns)
                         continue;
 
                     int playerTileX, playerTileY;
