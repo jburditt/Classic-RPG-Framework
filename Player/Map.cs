@@ -43,6 +43,8 @@ namespace Player
             MapFilePath = mapFilePath;
             MapName = mapName;
 
+            //TideReader n = new TideReader("../../../../Data/map/Untitled.tide");
+
             Load(mapName, isMonoGame);
         }
 
@@ -82,21 +84,21 @@ namespace Player
 
         private Tile[][][] LoadTiles(string mapName)
         {
-            var tiles = new Tile[TiledMap.Width][][];
+            var tiles = new Tile[Rows][][];
 
             Passable = _dataStore.Load<bool[][][]>($"map\\{mapName}.passable");
 
-            for (var x = 0; x < TiledMap.Width; x++)
+            for (var x = 0; x < Rows; x++)
             {
-                tiles[x] = new Tile[TiledMap.Height][];
+                tiles[x] = new Tile[Columns][];
 
-                for (var y = 0; y < TiledMap.Height; y++)
+                for (var y = 0; y < Columns; y++)
                 {
                     tiles[x][y] = new Tile[TiledMap.Layers.Count];
 
                     for (var layer = 0; layer < TiledMap.Layers.Count; layer++)
                     {
-                        int tileIndex = x + y * TiledMap.Width;
+                        int tileIndex = x + y * Rows;
 
                         int gid = TiledMap.Layers[layer].Tiles[tileIndex].Gid;
                         if (gid == 0)
