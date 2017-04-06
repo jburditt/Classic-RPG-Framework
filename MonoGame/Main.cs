@@ -70,6 +70,8 @@ namespace MonoGame
         /// </summary>
         protected override void LoadContent()
         {
+            //TideReader n = new TideReader("../../../../Data/map/Untitled.tide");
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Menu");
