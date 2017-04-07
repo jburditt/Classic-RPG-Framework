@@ -6,7 +6,9 @@
       <Description><![CDATA[]]></Description>
       <ImageSource><![CDATA[..\..\MonoGame\Content\tileset\building.png]]></ImageSource>
       <Alignment SheetSize="30 x 16" TileSize="16 x 16" Margin="0 x 0" Spacing="0 x 0" />
-      <Properties />
+      <Properties>
+        <Property Key="@AutoTile@Auto Tile #1" Type="String"><![CDATA[7,98,96,97,38,66,8,36,36,8,66,38,37,96,98,67]]></Property>
+      </Properties>
     </TileSheet>
   </TileSheets>
   <Layers>
@@ -106,9 +108,9 @@
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
           <Static Index="7" BlendMode="Alpha" />
           <Static Index="7" BlendMode="Alpha" />
           <Static Index="7" BlendMode="Alpha" />
@@ -133,9 +135,9 @@
           <Static Index="365" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
           <Static Index="7" BlendMode="Alpha" />
           <Static Index="390" BlendMode="Alpha" />
           <Static Index="391" BlendMode="Alpha" />
@@ -160,9 +162,9 @@
           <Static Index="363" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
           <Static Index="7" BlendMode="Alpha" />
           <Static Index="420" BlendMode="Alpha" />
           <Static Index="421" BlendMode="Alpha" />
@@ -187,10 +189,10 @@
           <Static Index="363" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
           <Static Index="450" BlendMode="Alpha" />
           <Static Index="451" BlendMode="Alpha" />
           <Static Index="452" BlendMode="Alpha" />
@@ -214,37 +216,10 @@
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-        </Row>
-        <Row>
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
@@ -268,10 +243,37 @@
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+        </Row>
+        <Row>
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
@@ -295,10 +297,10 @@
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
+          <Static Index="7" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
@@ -317,8 +319,8 @@
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="210" BlendMode="Alpha" />
+          <Static Index="210" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
@@ -344,8 +346,8 @@
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
-          <Static Index="271" BlendMode="Alpha" />
+          <Static Index="210" BlendMode="Alpha" />
+          <Static Index="210" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />
           <Static Index="271" BlendMode="Alpha" />

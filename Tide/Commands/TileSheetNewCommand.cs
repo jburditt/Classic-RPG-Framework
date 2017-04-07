@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using xTile;
+using xTile.Tiles;
+
+using tIDE.Controls;
+
+namespace tIDE.Commands
+{
+    internal class TileSheetNewCommand: Command
+    {
+        private TideMap m_map;
+        private TileSheet m_newTileSheet;
+        private MapTreeView m_mapTreeView;
+
+        public TileSheetNewCommand(TideMap map, TileSheet newTileSheet, MapTreeView mapTreeView)
+        {
+            m_map = map;
+            m_newTileSheet = newTileSheet;
+            m_mapTreeView = mapTreeView;
+            m_description = "Add new tile sheet \"" + newTileSheet.Id + "\"";
+        }
+
+        public override void Do()
+        {
+            TileImageCache.Instance.Refresh(m_newTileSheet);
+            m_map.AddTileSheet(m_newTileSheet);
+            if (m_mapTreeView != null)
+            {
+                m_mapTreeView.UpdateTree();
+                m_mapTreeView.SelectedComponent = m_newTileSheet;
+            }
+        }
+
+        public override void Undo()
+        {
+            m_map.RemoveTileSheet(m_newTileSheet);
+
+            if (m_mapTreeView != null)
+                m_mapTreeView.UpdateTree();
+        }
+    }
+}

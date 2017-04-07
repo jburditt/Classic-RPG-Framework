@@ -1,0 +1,893 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <GenerateResourceNeverLockTypeAssemblies>true</GenerateResourceNeverLockTypeAssemblies>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{23DDF477-C651-46E1-A856-46BA1D64FC6B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>tIDE</RootNamespace>
+    <AssemblyName>tIDE</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>Resources\tIDE.ico</ApplicationIcon>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <StartupObject>tIDE.Program</StartupObject>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>757FD256334516B643817BA6487710D1F2C08240</ManifestCertificateThumbprint>
+    <ManifestKeyFile>TileMapEditor_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>false</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <TargetZone>LocalIntranet</TargetZone>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TilePC">
+      <HintPath>..\TilePC\bin\Debug\TilePC.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoTiles\AutoTile.cs" />
+    <Compile Include="AutoTiles\AutoTileManager.cs" />
+    <Compile Include="ClipBoardManager.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\CommandHistory.cs" />
+    <Compile Include="Commands\ToolsFloodFillCommand.cs" />
+    <Compile Include="Commands\LayerOffsetCommand.cs" />
+    <Compile Include="Commands\TileSheetAutoTilesCommand.cs" />
+    <Compile Include="Commands\TileSheetRemoveDependencyCommand.cs" />
+    <Compile Include="Commands\CustomPropertiesCommand.cs" />
+    <Compile Include="Commands\TileAnimationCommand.cs" />
+    <Compile Include="Commands\TilePropertiesCommand.cs" />
+    <Compile Include="Commands\TileSheetPropertiesCommand.cs" />
+    <Compile Include="Commands\LayerDeleteCommand.cs" />
+    <Compile Include="Commands\LayerOrderCommand.cs" />
+    <Compile Include="Commands\LayerVisibilityCommand.cs" />
+    <Compile Include="Commands\LayerPropertiesCommand.cs" />
+    <Compile Include="Commands\LayerNewCommand.cs" />
+    <Compile Include="Commands\EditChangeSelectionCommand.cs" />
+    <Compile Include="Commands\EditCopyCommand.cs" />
+    <Compile Include="Commands\EditCutCommand.cs" />
+    <Compile Include="Commands\EditTileBrushesCommand.cs" />
+    <Compile Include="Commands\MapPropertiesCommand.cs" />
+    <Compile Include="Commands\TileSheetDeleteCommand.cs" />
+    <Compile Include="Commands\EditDeleteCommand.cs" />
+    <Compile Include="Commands\TileSheetSwapTilesCommand.cs" />
+    <Compile Include="Commands\ToolsTileBlockCommand.cs" />
+    <Compile Include="Commands\ToolsEraseTileCommand.cs" />
+    <Compile Include="Commands\TileSheetNewCommand.cs" />
+    <Compile Include="Commands\EditPasteCommand.cs" />
+    <Compile Include="Commands\ToolsPlaceTileCommand.cs" />
+    <Compile Include="Commands\ToolsSelectCommand.cs" />
+    <Compile Include="Compression\Zlib\Adler32.cs" />
+    <Compile Include="Compression\Zlib\Deflate.cs" />
+    <Compile Include="Compression\Zlib\InfBlocks.cs" />
+    <Compile Include="Compression\Zlib\InfCodes.cs" />
+    <Compile Include="Compression\Zlib\Inflate.cs" />
+    <Compile Include="Compression\Zlib\InfTree.cs" />
+    <Compile Include="Compression\Zlib\StaticTree.cs" />
+    <Compile Include="Compression\Zlib\SupportClass.cs" />
+    <Compile Include="Compression\Zlib\Tree.cs" />
+    <Compile Include="Compression\Zlib\ZInputStream.cs" />
+    <Compile Include="Compression\Zlib\Zlib.cs" />
+    <Compile Include="Compression\Zlib\ZOutputStream.cs" />
+    <Compile Include="Compression\Zlib\ZStream.cs" />
+    <Compile Include="Compression\Zlib\ZStreamException.cs" />
+    <Compile Include="Controls\AlignmentButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AlignmentButton.Designer.cs">
+      <DependentUpon>AlignmentButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomMessageBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomMessageBox.Designer.cs">
+      <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomPropertyEventArgs.cs" />
+    <Compile Include="Controls\CustomRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomPropertyGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomPropertyGrid.Designer.cs">
+      <DependentUpon>CustomPropertyGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CustomTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomToolStripSplitButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MapPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MapPanel.Designer.cs">
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TabControlNativeMethods.cs" />
+    <Compile Include="Controls\TabStyle.cs" />
+    <Compile Include="Controls\TabStyleProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TabStyleProviders\TabStyleAngledProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TabStyleProviders\TabStyleChromeProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TabStyleProviders\TabStyleDefaultProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TabStyleProviders\TabStyleIE8Provider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TabStyleProviders\TabStyleNoneProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TabStyleProviders\TabStyleRoundedProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TabStyleProviders\TabStyleVisualStudioProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TabStyleProviders\TabStyleVS2010Provider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ThemedColors.cs" />
+    <Compile Include="Controls\TilePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TilePicker.Designer.cs">
+      <DependentUpon>TilePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AutoTileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AutoTileDialog.Designer.cs">
+      <DependentUpon>AutoTileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\IconInfo.cs" />
+    <Compile Include="Dialogs\LayerOffsetDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\LayerOffsetDialog.Designer.cs">
+      <DependentUpon>LayerOffsetDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OptonsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\OptonsDialog.Designer.cs">
+      <DependentUpon>OptonsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TiledFormatOptionsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TiledFormatOptionsDialog.Designer.cs">
+      <DependentUpon>TiledFormatOptionsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Format\FlixelLayerFormat.cs" />
+    <Compile Include="Format\FlixelMapFormat.cs" />
+    <Compile Include="Format\MappyFmapFormat.cs" />
+    <Compile Include="Format\PathHelper.cs" />
+    <Compile Include="Format\TiledTmxFormat.cs" />
+    <Compile Include="Installer\CustomInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Installer\CustomInstaller.Designer.cs">
+      <DependentUpon>CustomInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CommandHistoryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CommandHistoryDialog.Designer.cs">
+      <DependentUpon>CommandHistoryDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\FormatCompatibilityDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FormatCompatibilityDialog.Designer.cs">
+      <DependentUpon>FormatCompatibilityDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MapStatisticsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MapStatisticsDialog.Designer.cs">
+      <DependentUpon>MapStatisticsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TilePropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TilePropertiesDialog.Designer.cs">
+      <DependentUpon>TilePropertiesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TileAnimationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TileAnimationDialog.Designer.cs">
+      <DependentUpon>TileAnimationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CustomPropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\CustomPropertiesDialog.Designer.cs">
+      <DependentUpon>CustomPropertiesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PluginInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PluginInfoDialog.Designer.cs">
+      <DependentUpon>PluginInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TileBrushDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TileBrushDialog.Designer.cs">
+      <DependentUpon>TileBrushDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Help\HelpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Help\HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Installer\RunApplicationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Installer\RunApplicationDialog.Designer.cs">
+      <DependentUpon>RunApplicationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Localisation\Language.cs" />
+    <Compile Include="Localisation\LanguageManager.cs" />
+    <Compile Include="Plugin\Bridge\ApplicationBridge.cs" />
+    <Compile Include="Plugin\Bridge\CommandBridge.cs" />
+    <Compile Include="Plugin\Bridge\ElementBridge.cs" />
+    <Compile Include="Plugin\Bridge\MenuStripBridge.cs" />
+    <Compile Include="Plugin\Bridge\MenuItemBridge.cs" />
+    <Compile Include="Plugin\Bridge\EditorBridge.cs" />
+    <Compile Include="Plugin\Bridge\ToolBarBridge.cs" />
+    <Compile Include="Plugin\Bridge\ToolBarButtonBridge.cs" />
+    <Compile Include="Plugin\PluginManager.cs" />
+    <Compile Include="Plugin\Version.cs" />
+    <Compile Include="PrintManager.cs" />
+    <Compile Include="RecentFilesManager.cs" />
+    <Compile Include="TileBrushes\TileBrushCollection.cs" />
+    <Compile Include="TileBrushes\TileBrushElement.cs" />
+    <Compile Include="TileImageCache.cs" />
+    <Compile Include="Controls\MapPanelEventArgs.cs" />
+    <Compile Include="Controls\TilePickerEventArgs.cs" />
+    <Compile Include="TileSelection.cs" />
+    <Compile Include="Dialogs\LayerPropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\LayerPropertiesDialog.Designer.cs">
+      <DependentUpon>LayerPropertiesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TileSheetPropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\TileSheetPropertiesDialog.Designer.cs">
+      <DependentUpon>TileSheetPropertiesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MapPropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MapPropertiesDialog.Designer.cs">
+      <DependentUpon>MapPropertiesDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MapTreeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MapTreeView.Designer.cs">
+      <DependentUpon>MapTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\AlignmentButton.resx">
+      <DependentUpon>AlignmentButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CustomPropertyGrid.es-ES.resx">
+      <DependentUpon>CustomPropertyGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CustomPropertyGrid.fr-FR.resx">
+      <DependentUpon>CustomPropertyGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CustomPropertyGrid.it-IT.resx">
+      <DependentUpon>CustomPropertyGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CustomPropertyGrid.resx">
+      <DependentUpon>CustomPropertyGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapPanel.es-ES.resx">
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapPanel.fr-FR.resx">
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapPanel.it-IT.resx">
+      <DependentUpon>MapPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapPanel.resx">
+      <DependentUpon>MapPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapTreeView.es-ES.resx">
+      <DependentUpon>MapTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapTreeView.fr-FR.resx">
+      <DependentUpon>MapTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapTreeView.it-IT.resx">
+      <DependentUpon>MapTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TilePicker.es-ES.resx">
+      <DependentUpon>TilePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TilePicker.fr-FR.resx">
+      <DependentUpon>TilePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TilePicker.it-IT.resx">
+      <DependentUpon>TilePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TilePicker.resx">
+      <DependentUpon>TilePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AboutDialog.it-IT.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AutoTileDialog.es-ES.resx">
+      <DependentUpon>AutoTileDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AutoTileDialog.fr-FR.resx">
+      <DependentUpon>AutoTileDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AutoTileDialog.it-IT.resx">
+      <DependentUpon>AutoTileDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AutoTileDialog.resx">
+      <DependentUpon>AutoTileDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CommandHistoryDialog.es-ES.resx">
+      <DependentUpon>CommandHistoryDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CommandHistoryDialog.fr-FR.resx">
+      <DependentUpon>CommandHistoryDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CommandHistoryDialog.it-IT.resx">
+      <DependentUpon>CommandHistoryDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CommandHistoryDialog.resx">
+      <DependentUpon>CommandHistoryDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CustomPropertiesDialog.es-ES.resx">
+      <DependentUpon>CustomPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CustomPropertiesDialog.fr-FR.resx">
+      <DependentUpon>CustomPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CustomPropertiesDialog.it-IT.resx">
+      <DependentUpon>CustomPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FormatCompatibilityDialog.es-ES.resx">
+      <DependentUpon>FormatCompatibilityDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FormatCompatibilityDialog.fr-FR.resx">
+      <DependentUpon>FormatCompatibilityDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FormatCompatibilityDialog.it-IT.resx">
+      <DependentUpon>FormatCompatibilityDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FormatCompatibilityDialog.resx">
+      <DependentUpon>FormatCompatibilityDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\LayerOffsetDialog.es-ES.resx">
+      <DependentUpon>LayerOffsetDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\LayerOffsetDialog.fr-FR.resx">
+      <DependentUpon>LayerOffsetDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\LayerOffsetDialog.it-IT.resx">
+      <DependentUpon>LayerOffsetDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\LayerOffsetDialog.resx">
+      <DependentUpon>LayerOffsetDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\LayerPropertiesDialog.es-ES.resx">
+      <DependentUpon>LayerPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\LayerPropertiesDialog.fr-FR.resx">
+      <DependentUpon>LayerPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\LayerPropertiesDialog.it-IT.resx">
+      <DependentUpon>LayerPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MapPropertiesDialog.es-ES.resx">
+      <DependentUpon>MapPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MapPropertiesDialog.fr-FR.resx">
+      <DependentUpon>MapPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MapPropertiesDialog.it-IT.resx">
+      <DependentUpon>MapPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MapStatisticsDialog.es-ES.resx">
+      <DependentUpon>MapStatisticsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MapStatisticsDialog.fr-FR.resx">
+      <DependentUpon>MapStatisticsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MapStatisticsDialog.it-IT.resx">
+      <DependentUpon>MapStatisticsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MapStatisticsDialog.resx">
+      <DependentUpon>MapStatisticsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\OptonsDialog.es-ES.resx">
+      <DependentUpon>OptonsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\OptonsDialog.fr-FR.resx">
+      <DependentUpon>OptonsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\OptonsDialog.it-IT.resx">
+      <DependentUpon>OptonsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\OptonsDialog.resx">
+      <DependentUpon>OptonsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PluginInfoDialog.it-IT.resx">
+      <DependentUpon>PluginInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileAnimationDialog.es-ES.resx">
+      <DependentUpon>TileAnimationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileAnimationDialog.fr-FR.resx">
+      <DependentUpon>TileAnimationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileAnimationDialog.it-IT.resx">
+      <DependentUpon>TileAnimationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileBrushDialog.es-ES.resx">
+      <DependentUpon>TileBrushDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileBrushDialog.fr-FR.resx">
+      <DependentUpon>TileBrushDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileBrushDialog.it-IT.resx">
+      <DependentUpon>TileBrushDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TiledFormatOptionsDialog.es-ES.resx">
+      <DependentUpon>TiledFormatOptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TiledFormatOptionsDialog.fr-FR.resx">
+      <DependentUpon>TiledFormatOptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TiledFormatOptionsDialog.it-IT.resx">
+      <DependentUpon>TiledFormatOptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TiledFormatOptionsDialog.resx">
+      <DependentUpon>TiledFormatOptionsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TilePropertiesDialog.es-ES.resx">
+      <DependentUpon>TilePropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TilePropertiesDialog.fr-FR.resx">
+      <DependentUpon>TilePropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TilePropertiesDialog.it-IT.resx">
+      <DependentUpon>TilePropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TilePropertiesDialog.resx">
+      <DependentUpon>TilePropertiesDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileAnimationDialog.resx">
+      <DependentUpon>TileAnimationDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\CustomPropertiesDialog.resx">
+      <DependentUpon>CustomPropertiesDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\LayerPropertiesDialog.resx">
+      <DependentUpon>LayerPropertiesDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PluginInfoDialog.resx">
+      <DependentUpon>PluginInfoDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileBrushDialog.resx">
+      <DependentUpon>TileBrushDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileSheetPropertiesDialog.es-ES.resx">
+      <DependentUpon>TileSheetPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileSheetPropertiesDialog.fr-FR.resx">
+      <DependentUpon>TileSheetPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileSheetPropertiesDialog.it-IT.resx">
+      <DependentUpon>TileSheetPropertiesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TileSheetPropertiesDialog.resx">
+      <DependentUpon>TileSheetPropertiesDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help\HelpForm.es-ES.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help\HelpForm.fr-FR.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help\HelpForm.it-IT.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Help\HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MapPropertiesDialog.resx">
+      <DependentUpon>MapPropertiesDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapTreeView.resx">
+      <DependentUpon>MapTreeView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Installer\RunApplicationDialog.es-ES.resx">
+      <DependentUpon>RunApplicationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Installer\RunApplicationDialog.fr-FR.resx">
+      <DependentUpon>RunApplicationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Installer\RunApplicationDialog.it-IT.resx">
+      <DependentUpon>RunApplicationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Installer\RunApplicationDialog.resx">
+      <DependentUpon>RunApplicationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.es-ES.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.fr-FR.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.it-IT.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="TileBrushes\TileBrush.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Layer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LayerDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LayerNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FileNew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FileOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FileSave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FileSaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ToolsFloodFill.png" />
+    <None Include="Resources\ToolsFloodFillCursor.cur" />
+    <None Include="app.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Resources\Edit.png" />
+    <None Include="Resources\EditClearSelection.png" />
+    <None Include="Resources\EditDelete.png" />
+    <None Include="Resources\AboutBackground.png" />
+    <None Include="Resources\EditSelectAll.png" />
+    <None Include="Resources\EditInvertSelection.png" />
+    <None Include="Resources\EditMakeTileBrush.png" />
+    <None Include="Resources\EditManageTileBrushes.png" />
+    <None Include="Resources\AboutSide.png" />
+    <None Include="Resources\AboutPluginBackground.png" />
+    <None Include="Resources\HelpSearch.png" />
+    <None Include="Resources\EditClipboard.png" />
+    <None Include="Resources\EditHistory.png" />
+    <None Include="Resources\EditCopy.png" />
+    <None Include="Resources\EditCut.png" />
+    <None Include="Resources\EditPaste.png" />
+    <None Include="Resources\AutoTileTemplate.png" />
+    <None Include="Resources\CustomProperties.png" />
+    <None Include="Resources\AnchorDown.png" />
+    <None Include="Resources\AnchorDownLeft.png" />
+    <None Include="Resources\AnchorDownRight.png" />
+    <None Include="Resources\AnchorLeft.png" />
+    <None Include="Resources\AnchorRight.png" />
+    <None Include="Resources\AnchorUp.png" />
+    <None Include="Resources\AnchorUpLeft.png" />
+    <None Include="Resources\AnchorUpRight.png" />
+    <None Include="Resources\DefaultButtonImage.png" />
+    <Content Include="Resources\EditUndo.png" />
+    <Content Include="Resources\EditRedo.png" />
+    <Content Include="Resources\File.png" />
+    <None Include="Resources\FilePrint.png" />
+    <None Include="Resources\FilePageSetup.png" />
+    <None Include="Resources\FilePrintPreview.png" />
+    <None Include="Resources\FileOpenRecent.png" />
+    <None Include="Resources\FileOptions.png" />
+    <Content Include="Resources\help.ico" />
+    <Content Include="Resources\Help.png" />
+    <None Include="Resources\Help\AutoTileDialog.rtf" />
+    <None Include="Resources\Help\LayerOffsetDialog.rtf" />
+    <None Include="Resources\Help\OptionsDialog.rtf" />
+    <None Include="Resources\Help\SampledTileTool.rtf" />
+    <None Include="Resources\Help\XnaTutorial.rtf" />
+    <None Include="Resources\TileSheetEditImageSource.png" />
+    <None Include="Resources\TileOrderImage.png" />
+    <None Include="Resources\TileOrderMru.png" />
+    <None Include="Resources\TileOrderIndexed.png" />
+    <None Include="Resources\LayerOffset.png" />
+    <None Include="Resources\TileSheetAlignment.png" />
+    <None Include="Resources\OptionsLanguage.png" />
+    <None Include="Resources\TileSheetAutoTiles.png" />
+    <None Include="Resources\MapCompatibilityFull.png" />
+    <None Include="Resources\MapCompatibilityNone.png" />
+    <None Include="Resources\MapCompatibilityPartial.png" />
+    <None Include="Resources\tIDE.ico" />
+    <None Include="Resources\Help\AboutDialog.rtf" />
+    <None Include="Resources\Help\CommandHistoryDialog.rtf" />
+    <None Include="Resources\Help\CommandReference.rtf" />
+    <None Include="Resources\Help\DialogBoxReference.rtf" />
+    <None Include="Resources\Help\EditingToolbox.rtf" />
+    <None Include="Resources\Help\Features.rtf" />
+    <None Include="Resources\Help\HelpCommandReference.rtf" />
+    <None Include="Resources\Help\LayerCommandReference.rtf" />
+    <None Include="Resources\Help\LayerPropertiesDialog.rtf" />
+    <None Include="Resources\Help\MapCommandReference.rtf" />
+    <None Include="Resources\Help\MapPropertiesDialog.rtf" />
+    <None Include="Resources\Help\MapStatisticsDialog.rtf" />
+    <None Include="Resources\Help\OpenFileDialog.rtf" />
+    <None Include="Resources\Help\PluginCommandReference.rtf" />
+    <None Include="Resources\Help\PluginInfoDialog.rtf" />
+    <None Include="Resources\Help\SaveFileDialog.rtf" />
+    <None Include="Resources\Help\tIDE.rtf" />
+    <None Include="Resources\Help\TileAnimationDialog.rtf" />
+    <None Include="Resources\Help\TileBlockTool.rtf" />
+    <None Include="Resources\Help\TileBrushDialog.rtf" />
+    <None Include="Resources\Help\TileBrushTool.rtf" />
+    <None Include="Resources\Help\TileEraserTool.rtf" />
+    <None Include="Resources\Help\TilePickingTool.rtf" />
+    <None Include="Resources\Help\TilePlacementTool.rtf" />
+    <None Include="Resources\Help\TilePropertiesDialog.rtf" />
+    <None Include="Resources\Help\TileSelectionTool.rtf" />
+    <None Include="Resources\Help\TileSheetCommandReference.rtf" />
+    <None Include="Resources\Help\TileSheetPropertiesDialog.rtf" />
+    <None Include="Resources\Help\ViewCommandReference.rtf" />
+    <None Include="Resources\Help\EditCommandReference.rtf" />
+    <None Include="Resources\Help\FileCommandReference.rtf" />
+    <None Include="Resources\Help\GettingStarted.rtf" />
+    <None Include="Resources\LayerBringForward.png" />
+    <None Include="Resources\LayerSendBackward.png" />
+    <None Include="Resources\ImageBackground.png" />
+    <None Include="Resources\ViewZoom.png" />
+    <None Include="Resources\ViewZoomIn.png" />
+    <None Include="Resources\ViewZoomOut.png" />
+    <None Include="Resources\View.png" />
+    <None Include="Resources\ViewLayerCompositing.png" />
+    <None Include="Resources\VewTileGuides.png" />
+    <None Include="Resources\VewTileGuidesShow.png" />
+    <None Include="Resources\VewTileGuidesHide.png" />
+    <None Include="Resources\ViewLayerCompositingDimUnselected.png" />
+    <None Include="Resources\ViewLayerCompositingShowAll.png" />
+    <None Include="Resources\Plugin.png" />
+    <None Include="Resources\PluginReload.png" />
+    <None Include="Resources\ToolsSelect.png" />
+    <None Include="Resources\ToolsSingleTile.png" />
+    <None Include="Resources\ToolsTileBlock.png" />
+    <None Include="Resources\ToolsEraser.png" />
+    <None Include="Resources\ToolsDropper.png" />
+    <None Include="Resources\ToolsTileBrush.png" />
+    <None Include="Resources\ToolsDropperCursor.cur" />
+    <None Include="Resources\ToolsEraserCursor.cur" />
+    <None Include="Resources\ToolsTileBlockCursor.cur" />
+    <None Include="Resources\ViewWindowed.png" />
+    <None Include="Resources\ViewFullScreen.png" />
+    <None Include="Resources\LayerInvisible.png" />
+    <None Include="Resources\LayerVisible.png" />
+    <None Include="Resources\ViewViewport.png" />
+    <None Include="Resources\TileProperties.png" />
+    <None Include="Resources\TilePropertiesIndicator.png" />
+    <None Include="Resources\HelpIndex.png" />
+    <None Include="Resources\HelpContents.png" />
+    <None Include="Resources\TileSheetAutoUpdateDisable.png" />
+    <None Include="Resources\TileSheetAutoUpdateEnable.png" />
+    <None Include="Resources\TileAnimation.png" />
+    <None Include="Resources\TileAnimationFrameDelete.png" />
+    <None Include="Resources\TileAnimationFrameProperties.png" />
+    <None Include="Resources\Help\KeywordBlacklist.txt" />
+    <None Include="Resources\MapStatistics.png" />
+    <None Include="Resources\TileSheetRemoveDependencies.png" />
+    <None Include="Resources\Legal.txt" />
+    <None Include="Resources\ToolsTexture.png" />
+    <None Include="Resources\TileSheetProperties.png" />
+    <None Include="Resources\TileSheetDelete.png" />
+    <None Include="Resources\TileSheetNew.png" />
+    <None Include="Resources\TileSheet.png" />
+    <None Include="Resources\LayerProperties.png" />
+    <None Include="Resources\HelpAbout.png" />
+    <None Include="Resources\MapProperties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tide.Plugin\Tide.Plugin.csproj">
+      <Project>{2787F0CD-8BFD-4696-AAAA-629452D05A21}</Project>
+      <Name>Tide.Plugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
