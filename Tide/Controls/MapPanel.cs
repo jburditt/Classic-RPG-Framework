@@ -1094,7 +1094,7 @@ namespace tIDE.Controls
                 }
             }
 
-            DrawTileEvent(this, new TileEventArgs(location));
+            DrawTileEvent(this, new TileEventArgs(m_graphics, location));
         }
 
         public void EndScene()

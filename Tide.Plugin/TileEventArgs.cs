@@ -1,20 +1,18 @@
 ﻿using System;
+using System.Drawing;
 using xTile.Dimensions;
 
 namespace tIDE.Plugin
 {
     public class TileEventArgs : EventArgs
     {
-        private Location m_location;
+        public Graphics Graphics { get; set; }
+        public Location Location { get; set; }
 
-        public TileEventArgs(Location location)
+        public TileEventArgs(Graphics graphics, Location location)
         {
-            m_location = location;
-        }
-
-        public Location Location
-        {
-            get { return m_location; }
+            Graphics = graphics;
+            Location = location;
         }
     }
 }

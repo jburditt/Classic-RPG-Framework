@@ -75,11 +75,12 @@
     <Compile Include="Manager\ITilesetManager.cs" />
     <Compile Include="Manager\NPCManager.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="Map\TideReader.cs" />
-    <Compile Include="Map\TileSheetMeta.cs" />
+    <Compile Include="Maps\MapMeta.cs" />
+    <Compile Include="Maps\TideReader.cs" />
+    <Compile Include="Maps\TileMeta.cs" />
+    <Compile Include="Maps\TileSheetMeta.cs" />
     <Compile Include="NPC.cs" />
     <Compile Include="Party.cs" />
-    <Compile Include="Physics\Size.cs" />
     <Compile Include="Physics\Vector.cs" />
     <Compile Include="GamePlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -855,6 +855,10 @@
       <Project>{2787F0CD-8BFD-4696-AAAA-629452D05A21}</Project>
       <Name>Tide.Plugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tide.RPGPlugin\Tide.RPGPlugin.csproj">
+      <Project>{BF90ABC8-A2A6-4240-9DE4-CD6C1E81934D}</Project>
+      <Name>Tide.RPGPlugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tide.Tile\Tide.Tile.csproj">
       <Project>{7e023bc7-d39a-4d3b-a8a8-55cb5cac1abc}</Project>
       <Name>Tide.Tile</Name>

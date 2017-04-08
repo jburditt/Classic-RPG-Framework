@@ -1,6 +1,8 @@
 ﻿using DataStore;
+using DataStore.DataStore;
 using Player.Maps;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using tIDE.Plugin;
 using tIDE.Plugin.Interface;
@@ -16,7 +18,7 @@ namespace RPGPlugin
         private MapMeta m_mapMeta;
         private Layer m_layer;
 
-        private IDataStore m_dataStore;
+        private IDataStore m_dataStore = new BinaryDataStore();
 
         private IMenuItem m_myDropDownMenu;
         private IMenuItem m_myMenuItem;
@@ -149,7 +151,7 @@ namespace RPGPlugin
                         form.Selected.Pos = new Vector(tileLocation.X * m_layer.TileWidth, tileLocation.Y * m_layer.TileHeight);
 
                         // TODO Check if NPC exists before adding
-                        //m_map.NPC.Add(form.Selected);
+                        m_mapMeta.Layers[0].Tiles[tileLocation.X, tileLocation.Y].NPCs.Add(form.Selected);
 
                         // TODO load image
                     }
@@ -159,20 +161,21 @@ namespace RPGPlugin
 
         public void OnDrawTile(TileEventArgs e)
         {
-            var layerIndex = 0;
+            if (m_mapMeta?.Layers == null)
+                return;
 
-            foreach (var layer in m_mapMeta.Layers) {
-                layerIndex++;
+            var tileWidth = m_mapMeta.Layers[0].TileSize.Width;
+            var tileHeight = m_mapMeta.Layers[0].TileSize.Height;
 
-                for (var x = 0; x < layer.Tiles.Rows(); x++)
-                    for (var y = 0; y < layer.Tiles.Columns(); y++)
-                    {
-                        var npcs = m_mapMeta.Layers[layerIndex].Tiles[x, y].NPCs;
-                        if (npcs != null && npcs.Count > 0)
-                            foreach (var npc in npcs)
-                                layerIndex = layerIndex;
-                    }
-            }
+            Bitmap tileBitmap = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
+
+            System.Drawing.Rectangle destRect;
+            destRect = new System.Drawing.Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
+
+            var npcs = m_mapMeta.Layers[0].Tiles[e.Location.X / tileWidth, e.Location.Y / tileHeight]?.NPCs;
+            if (npcs != null && npcs.Count > 0)
+                foreach (var npc in npcs)
+                    e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
         }
 
         #endregion

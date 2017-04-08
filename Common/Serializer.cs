@@ -17,6 +17,9 @@ namespace Common
 
         public static object BinaryDeserialize(string filePath)
         {
+            if (!File.Exists(filePath))
+                return null;
+
             using (var stream = File.Open(filePath, FileMode.Open))
             {
                 var bformatter = new BinaryFormatter();

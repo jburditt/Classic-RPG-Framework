@@ -10,6 +10,7 @@ using tIDE.Controls;
 using tIDE.Dialogs;
 using tIDE.Plugin.Interface;
 using tIDE.Plugin.Bridge;
+using RPGPlugin;
 
 namespace tIDE.Plugin
 {
@@ -107,6 +108,14 @@ namespace tIDE.Plugin
 
         public void LoadPlugins(string pluginsPath)
         {
+            // TODO After development stops, remove between these comments
+            IPlugin plugin = new RPGPlugin.RPGPlugin();
+            plugin.Initialise(m_applicationBridge);
+            m_plugins[plugin.Name] = plugin;
+            UpdatePluginMenu();
+            return;
+            // TODO Remove the above code
+
             try
             {
                 if (!Directory.Exists(pluginsPath))

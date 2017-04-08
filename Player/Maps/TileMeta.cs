@@ -4,7 +4,7 @@ namespace Player.Maps
 {
     public class TileMeta
     {
-        public IList<NPC> NPCs { get; set; }
+        public IList<NPC> NPCs { get; set; } = new List<NPC>();
     }
 
     public static class TileExtensions

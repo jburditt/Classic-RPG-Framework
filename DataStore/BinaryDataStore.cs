@@ -21,7 +21,7 @@ namespace DataStore
                 FilePath = filePath;
             }
 
-            public T Load<T>(string name) where T : new()
+            public T Load<T>(string name)
             {
                 return (T)Serializer.BinaryDeserialize($"{name}.dat");
             }
