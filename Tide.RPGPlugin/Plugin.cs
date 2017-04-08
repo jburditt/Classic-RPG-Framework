@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataStore;
+using Player.Maps;
+using System;
 using System.Windows.Forms;
 using tIDE.Plugin;
 using tIDE.Plugin.Interface;
@@ -11,7 +13,10 @@ namespace RPGPlugin
     public class RPGPlugin : IPlugin
     {
         private Map m_map;
+        private MapMeta m_mapMeta;
         private Layer m_layer;
+
+        private IDataStore m_dataStore;
 
         private IMenuItem m_myDropDownMenu;
         private IMenuItem m_myMenuItem;
@@ -81,9 +86,16 @@ namespace RPGPlugin
             m_eventToolBarButton.ToolTipText = "TileSheets";
             m_eventToolBarButton.EventHandler = TileSheetsAction;
 
+            // pass application map to plugin
             m_map = application.Editor.Map;
             m_layer = application.Editor.Layer;
 
+            // load map meta data
+            m_mapMeta = m_dataStore.Load<MapMeta>($"{m_map.Id}.MapMeta");
+            if (m_mapMeta == null)
+                m_mapMeta = new MapMeta(m_map);
+
+            // add plugin events to application
             application.Editor.MouseDown = OnEditorMouseDown;
             application.Editor.DrawTile = OnDrawTile;
         }
@@ -147,6 +159,20 @@ namespace RPGPlugin
 
         public void OnDrawTile(TileEventArgs e)
         {
+            var layerIndex = 0;
+
+            foreach (var layer in m_mapMeta.Layers) {
+                layerIndex++;
+
+                for (var x = 0; x < layer.Tiles.Rows(); x++)
+                    for (var y = 0; y < layer.Tiles.Columns(); y++)
+                    {
+                        var npcs = m_mapMeta.Layers[layerIndex].Tiles[x, y].NPCs;
+                        if (npcs != null && npcs.Count > 0)
+                            foreach (var npc in npcs)
+                                layerIndex = layerIndex;
+                    }
+            }
         }
 
         #endregion

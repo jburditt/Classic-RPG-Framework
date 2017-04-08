@@ -2,7 +2,7 @@
 {
     public interface IDataStore
     {
-        T Load<T>(string name) where T : new();
+        T Load<T>(string name);
         void Save<T>(T obj, string name);
     }
 }

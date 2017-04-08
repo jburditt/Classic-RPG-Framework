@@ -13,7 +13,7 @@ namespace DataStore
             FilePath = filePath;
         }
 
-        public T Load<T>(string name) where T : new()
+        public T Load<T>(string name)
         {
             return Serializer.XmlDeserialize<T>($"{name}.xml");
         }

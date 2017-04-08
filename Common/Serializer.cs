@@ -39,7 +39,7 @@ namespace Common
             }
         }
 
-        public static T XmlDeserialize<T>(string filePath) where T : new()
+        public static T XmlDeserialize<T>(string filePath)
         {
             if (!File.Exists(filePath))
                 return default(T);

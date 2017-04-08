@@ -4,27 +4,21 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 using xTile;
 using xTile.Dimensions;
 using xTile.Display;
 using xTile.Layers;
 using xTile.Tiles;
-
 using tIDE.Commands;
 using tIDE.Dialogs;
 using tIDE.TileBrushes;
 using tIDE.Plugin;
-using tIDE.Plugin.Interface;
 
 namespace tIDE.Controls
 {
-    [ToolboxBitmapAttribute(typeof(Panel))]
+    [ToolboxBitmap(typeof(Panel))]
     public partial class MapPanel : UserControl, IDisplayDevice
     {
         public event EventHandler<TileEventArgs> DrawTileEvent;
