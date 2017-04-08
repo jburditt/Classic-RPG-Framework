@@ -29,7 +29,7 @@ namespace xTile.Tiles
         /// <summary>
         /// Map to which this TileSheet is assigned
         /// </summary>
-        public TideMap Map { get { return m_map; } }
+        public Map Map { get { return m_map; } }
 
         /// <summary>
         /// Reference to a tile image source. May be a disk path, URL,
@@ -186,7 +186,7 @@ namespace xTile.Tiles
         /// <param name="imageSource">Reference to an image source</param>
         /// <param name="sheetSize">Size of the sheet in tiles</param>
         /// <param name="tileSize">Size of the tiles in pixels</param>
-        public TileSheet(TideMap map, string imageSource, Size sheetSize, Size tileSize)
+        public TileSheet(Map map, string imageSource, Size sheetSize, Size tileSize)
         {
             m_map = map;
             m_imageSource = imageSource;
@@ -205,7 +205,7 @@ namespace xTile.Tiles
         /// <param name="imageSource">Reference to an image source</param>
         /// <param name="sheetSize">Size of the sheet in tiles</param>
         /// <param name="tileSize">Size of the tiles in pixels</param>
-        public TileSheet(string id, TideMap map, string imageSource, Size sheetSize, Size tileSize)
+        public TileSheet(string id, Map map, string imageSource, Size sheetSize, Size tileSize)
             : base(id)
         {
             m_map = map;
@@ -251,7 +251,7 @@ namespace xTile.Tiles
 
         #region Private Variables
 
-        private TideMap m_map;
+        private Map m_map;
         private string m_imageSource;
         private Size m_sheetSize;
         private Size m_tileSize;

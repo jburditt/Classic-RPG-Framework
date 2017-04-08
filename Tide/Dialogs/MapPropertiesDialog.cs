@@ -19,7 +19,7 @@ namespace tIDE.Dialogs
     {
         #region Private Variables
 
-        private TideMap m_map;
+        private Map m_map;
         private bool m_isNewMap;
 
         #endregion
@@ -81,7 +81,7 @@ namespace tIDE.Dialogs
 
         #region Public Methods
 
-        public MapPropertiesDialog(TideMap map, bool isNewMap)
+        public MapPropertiesDialog(Map map, bool isNewMap)
         {
             InitializeComponent();
 

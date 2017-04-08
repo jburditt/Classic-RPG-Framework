@@ -16,7 +16,7 @@ namespace Player
         private Vector _destination;
         private int _step;
 
-        public void Update(Map map)
+        public void Update(MapEngine map)
         {
             switch (Movement)
             {

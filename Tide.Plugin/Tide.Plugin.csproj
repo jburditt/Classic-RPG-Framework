@@ -61,10 +61,6 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TilePC, Version=2.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TilePC\bin\Debug\TilePC.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\IApplication.cs" />
@@ -86,6 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tIDE.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tide.Tile\Tide.Tile.csproj">
+      <Project>{7e023bc7-d39a-4d3b-a8a8-55cb5cac1abc}</Project>
+      <Name>Tide.Tile</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -15,7 +15,7 @@ namespace tIDE.AutoTiles
     {
         public static AutoTileManager Instance { get { return s_instance; } }
 
-        public void Refresh(TideMap map)
+        public void Refresh(Map map)
         {
             m_autoTiles.Clear();
             foreach (TileSheet tileSheet in map.TileSheets)

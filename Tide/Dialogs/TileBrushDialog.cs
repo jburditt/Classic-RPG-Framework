@@ -16,7 +16,7 @@ namespace tIDE.Dialogs
 {
     internal partial class TileBrushDialog : Form
     {
-        private TideMap m_map;
+        private Map m_map;
         private TileBrushCollection m_tileBrushCollection;
         private TileBrush m_newTileBrush;
         private TileBrush m_selectedTileBrush;
@@ -202,7 +202,7 @@ namespace tIDE.Dialogs
                 m_tileBrushCollection.TileBrushes.Remove(m_newTileBrush);
         }
 
-        public TileBrushDialog(TideMap map, TileBrushCollection tileBrushCollection)
+        public TileBrushDialog(Map map, TileBrushCollection tileBrushCollection)
         {
             InitializeComponent();
 
@@ -212,7 +212,7 @@ namespace tIDE.Dialogs
             m_selectedTileBrush = null;
         }
 
-        public TileBrushDialog(TideMap map,
+        public TileBrushDialog(Map map,
             TileBrushCollection tileBrushCollection, TileBrush newTileBrush)
         {
             InitializeComponent();

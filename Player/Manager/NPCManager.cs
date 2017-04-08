@@ -19,7 +19,7 @@ namespace Player.Manager
             _graphics = graphics;
         }
 
-        public void Update(Map map)
+        public void Update(MapEngine map)
         {
             if (NPC == null)
                 return;
@@ -28,7 +28,7 @@ namespace Player.Manager
                 npc.Update(map);
         }
 
-        public void Draw(Map map)
+        public void Draw(MapEngine map)
         {
             if (NPC == null)
                 return;
@@ -43,7 +43,7 @@ namespace Player.Manager
             }
         }
 
-        public List<IEffect> CheckTalk(Map map, VectorF pos)
+        public List<IEffect> CheckTalk(MapEngine map, VectorF pos)
         {
             var effects = new List<IEffect>();
 

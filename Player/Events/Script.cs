@@ -5,7 +5,7 @@ namespace Player.Events
 {
     public class Script
     {
-        public static void Execute(EventPage eventPage, GamePlayer player, Map map)
+        public static void Execute(EventPage eventPage, GamePlayer player, MapEngine map)
         {
             foreach (var script in eventPage.ScriptActionCollection)
             {

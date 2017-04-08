@@ -5,7 +5,7 @@ namespace Player.Maps
 {
     public class TideReader
     {
-        public void Load(EventService eventService, Map map, string mapFilePath)
+        public void Load(EventService eventService, MapEngine map, string mapFilePath)
         {
             var TiledMap = MapLoader.LoadMap(mapFilePath);
 
@@ -39,7 +39,7 @@ namespace Player.Maps
             LoadObjects(eventService, TiledMap, map);
         }
 
-        private void LoadTiles(TideMap TiledMap, Map map)
+        private void LoadTiles(Map TiledMap, MapEngine map)
         {
             map.Tiles = new Tile[map.Rows][][];
 
@@ -94,7 +94,7 @@ namespace Player.Maps
             }
         }
 
-        public void LoadObjects(EventService _eventService, TideMap TiledMap, Map map)
+        public void LoadObjects(EventService _eventService, Map TiledMap, MapEngine map)
         {
             if (_eventService == null)
                 return;

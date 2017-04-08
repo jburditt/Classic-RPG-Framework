@@ -37,15 +37,15 @@ namespace xTile.Format
         /// </summary>
         /// <param name="map">Map to analyse</param>
         /// <returns>Format compatibility report</returns>
-        public CompatibilityReport DetermineCompatibility(TideMap map)
+        public CompatibilityReport DetermineCompatibility(Map map)
         {
             // trivially compatible
             return m_compatibilityResults;
         }
 
-        public TideMap Load(Stream stream)
+        public Map Load(Stream stream)
         {
-            TideMap map = new TideMap();
+            Map map = new Map();
 
             LoadSequence(stream, m_tbinSequence);
             map.Id = LoadString(stream);
@@ -57,7 +57,7 @@ namespace xTile.Format
             return map;
         }
 
-        public void Store(TideMap map, Stream stream)
+        public void Store(Map map, Stream stream)
         {
             StoreSequence(stream, m_tbinSequence);
             StoreString(stream, map.Id);
@@ -258,7 +258,7 @@ namespace xTile.Format
             StoreProperties(stream, tileSheet);
         }
 
-        private void LoadTileSheet(Stream stream, TideMap map)
+        private void LoadTileSheet(Stream stream, Map map)
         {
             string id = LoadString(stream);
             string description = LoadString(stream);
@@ -274,14 +274,14 @@ namespace xTile.Format
             map.AddTileSheet(tileSheet);
         }
 
-        private void StoreTileSheets(Stream stream, TideMap map)
+        private void StoreTileSheets(Stream stream, Map map)
         {
             StoreInt32(stream, map.TileSheets.Count);
             foreach (TileSheet tileSheet in map.TileSheets)
                 StoreTileSheet(stream, tileSheet);
         }
 
-        private void LoadTileSheets(Stream stream, TideMap map)
+        private void LoadTileSheets(Stream stream, Map map)
         {
             int tileSheetCount = LoadInt32(stream);
             while (tileSheetCount-- > 0)
@@ -332,7 +332,7 @@ namespace xTile.Format
             int tileFrameCount = LoadInt32(stream);
             List<StaticTile> tileFrames = new List<StaticTile>(tileFrameCount);
 
-            TideMap map = layer.Map;
+            Map map = layer.Map;
             TileSheet tileSheet = null;
             while(tileFrameCount > 0)
             {
@@ -420,7 +420,7 @@ namespace xTile.Format
 
         }
 
-        private void LoadLayer(Stream stream, TideMap map)
+        private void LoadLayer(Stream stream, Map map)
         {
             string id = LoadString(stream);
             bool visible = LoadBool(stream);
@@ -470,14 +470,14 @@ namespace xTile.Format
             map.AddLayer(layer);
         }
 
-        private void StoreLayers(Stream stream, TideMap map)
+        private void StoreLayers(Stream stream, Map map)
         {
             StoreInt32(stream, map.Layers.Count);
             foreach (Layer layer in map.Layers)
                 StoreLayer(stream, layer);
         }
 
-        private void LoadLayers(Stream stream, TideMap map)
+        private void LoadLayers(Stream stream, Map map)
         {
             int layerCount = LoadInt32(stream);
             while (layerCount-- > 0)

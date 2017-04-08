@@ -44,11 +44,11 @@ namespace tIDE.Commands
 
     internal class TileSheetRemoveDependencyCommand: Command
     {
-        private TideMap m_map;
+        private Map m_map;
         private TileSheet m_tileSheet;
         private List<TileSheetDependency> m_tileSheetDependencies;
 
-        public TileSheetRemoveDependencyCommand(TideMap map, TileSheet tileSheet)
+        public TileSheetRemoveDependencyCommand(Map map, TileSheet tileSheet)
         {
             m_map = map;
             m_tileSheet = tileSheet;

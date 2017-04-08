@@ -74,7 +74,7 @@ namespace tIDE.Plugin.Bridge
             return layer.GetTileLocation(layerDisplayLocation);
         }
 
-        public TideMap Map { get { return m_mapPanel.Map; } }
+        public Map Map { get { return m_mapPanel.Map; } }
         public Layer Layer { get { return m_mapPanel.SelectedLayer; } }
 
         public MouseEditorHandler MouseDown

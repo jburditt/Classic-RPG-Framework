@@ -65,7 +65,7 @@ namespace xTile.Format
         /// </summary>
         /// <param name="map">Map to analyse</param>
         /// <returns>Format compatibility report</returns>
-        public CompatibilityReport DetermineCompatibility(TideMap map)
+        public CompatibilityReport DetermineCompatibility(Map map)
         {
             // trivially compatible
             return m_compatibilityResults;
@@ -76,7 +76,7 @@ namespace xTile.Format
         /// </summary>
         /// <param name="stream">Input stream</param>
         /// <returns>Map instance loaded from stream</returns>
-        public TideMap Load(Stream stream)
+        public Map Load(Stream stream)
         {
             XmlTextReader xmlReader = new XmlTextReader(stream);
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;
@@ -86,7 +86,7 @@ namespace xTile.Format
             xmlHelper.AdvanceDeclaration();
             xmlHelper.AdvanceStartElement("Map");
             string mapId = xmlHelper.GetAttribute("Id");
-            TideMap map = new TideMap(mapId);
+            Map map = new Map(mapId);
 
             xmlHelper.AdvanceStartElement("Description");
             string mapDescription = xmlHelper.GetCData();
@@ -108,7 +108,7 @@ namespace xTile.Format
         /// </summary>
         /// <param name="map">Map to store</param>
         /// <param name="stream">Output stream</param>
-        public void Store(TideMap map, Stream stream)
+        public void Store(Map map, Stream stream)
         {
             XmlTextWriter xmlWriter = new XmlTextWriter(stream, Encoding.UTF8);
             xmlWriter.Formatting = Formatting.Indented;
@@ -226,7 +226,7 @@ namespace xTile.Format
 
             xmlHelper.AdvanceStartElement("Frames");
 
-            TideMap map = layer.Map;
+            Map map = layer.Map;
             List<StaticTile> tileFrames = new List<StaticTile>();
 
             while (xmlHelper.AdvanceNode() != XmlNodeType.EndElement)
@@ -291,7 +291,7 @@ namespace xTile.Format
             xmlWriter.WriteEndElement();
         }
 
-        private void LoadTileSheet(XmlHelper xmlHelper, TideMap map)
+        private void LoadTileSheet(XmlHelper xmlHelper, Map map)
         {
             string id = xmlHelper.GetAttribute("Id");
 
@@ -348,7 +348,7 @@ namespace xTile.Format
             xmlWriter.WriteEndElement();
         }
 
-        private void LoadTileSheets(XmlHelper xmlHelper, TideMap map)
+        private void LoadTileSheets(XmlHelper xmlHelper, Map map)
         {
             xmlHelper.AdvanceStartElement("TileSheets");
 
@@ -364,7 +364,7 @@ namespace xTile.Format
             xmlWriter.WriteEndElement();
         }
 
-        private void LoadLayer(XmlHelper xmlHelper, TideMap map)
+        private void LoadLayer(XmlHelper xmlHelper, Map map)
         {
             string id = xmlHelper.GetAttribute("Id");
 
@@ -511,7 +511,7 @@ namespace xTile.Format
             xmlWriter.WriteEndElement();
         }
 
-        private void LoadLayers(XmlHelper xmlHelper, TideMap map)
+        private void LoadLayers(XmlHelper xmlHelper, Map map)
         {
             xmlHelper.AdvanceStartElement("Layers");
 

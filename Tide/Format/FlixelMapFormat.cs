@@ -18,7 +18,7 @@ namespace tIDE.Format
     {
         #region Public Methods
 
-        public CompatibilityReport DetermineCompatibility(TideMap map)
+        public CompatibilityReport DetermineCompatibility(Map map)
         {
             List<CompatibilityNote> compatibilityNotes = new List<CompatibilityNote>();
 
@@ -58,7 +58,7 @@ namespace tIDE.Format
             return compatibilityReport;
         }
 
-        public TideMap Load(System.IO.Stream stream)
+        public Map Load(System.IO.Stream stream)
         {
             XmlTextReader xmlReader = new XmlTextReader(stream);
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;
@@ -68,7 +68,7 @@ namespace tIDE.Format
             xmlHelper.AdvanceDeclaration();
             xmlHelper.AdvanceStartElement("Map");
             string mapId = xmlHelper.GetAttribute("Id");
-            TideMap map = new TideMap(mapId);
+            Map map = new Map(mapId);
 
             xmlHelper.AdvanceStartElement("Description");
             string mapDescription = xmlHelper.GetCData();
@@ -84,7 +84,7 @@ namespace tIDE.Format
             return map;
         }
 
-        public void Store(TideMap map, Stream stream)
+        public void Store(Map map, Stream stream)
         {
             // determine layer filename prefix to use
             string mainFilename = "Map.flixel";
@@ -210,7 +210,7 @@ namespace tIDE.Format
             xmlWriter.WriteEndElement();
         }
 
-        private void LoadTileSheet(XmlHelper xmlHelper, TideMap map)
+        private void LoadTileSheet(XmlHelper xmlHelper, Map map)
         {
             string id = xmlHelper.GetAttribute("Id");
 
@@ -267,7 +267,7 @@ namespace tIDE.Format
             xmlWriter.WriteEndElement();
         }
 
-        private void LoadTileSheets(XmlHelper xmlHelper, TideMap map)
+        private void LoadTileSheets(XmlHelper xmlHelper, Map map)
         {
             xmlHelper.AdvanceStartElement("TileSheets");
 
@@ -283,7 +283,7 @@ namespace tIDE.Format
             xmlWriter.WriteEndElement();
         }
 
-        private void LoadLayer(XmlHelper xmlHelper, TideMap map)
+        private void LoadLayer(XmlHelper xmlHelper, Map map)
         {
             string id = xmlHelper.GetAttribute("Id");
 
@@ -392,7 +392,7 @@ namespace tIDE.Format
             layerTextWriter.Close();
         }
 
-        private void LoadLayers(XmlHelper xmlHelper, TideMap map)
+        private void LoadLayers(XmlHelper xmlHelper, Map map)
         {
             xmlHelper.AdvanceStartElement("Layers");
 

@@ -7,7 +7,7 @@ namespace tIDE.Plugin.Interface
 {
     public interface IEditor: IElement
     {
-        TideMap Map { get; }
+        Map Map { get; }
         Layer Layer { get; }
 
         MouseEditorHandler MouseDown { set; }

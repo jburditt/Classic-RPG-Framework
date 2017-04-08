@@ -19,7 +19,7 @@ namespace Player
 
         Battle battle;
         GamePlayer player;
-        Map map;
+        MapEngine map;
         private List<IEffect> _effects { get; set; } = new List<IEffect>();
 
         public Party Party { get; private set; }
@@ -57,7 +57,7 @@ namespace Player
             //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
 
             battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialogManager);
-            map = new Map(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/map/", mapName);
+            map = new MapEngine(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/map/", mapName);
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager, map.Start);
 
             //songManager.Play("01 - Namazu");

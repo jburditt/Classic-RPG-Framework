@@ -43,7 +43,7 @@ namespace tIDE.TileBrushes
             return newId;
         }
 
-        internal void LoadFromMap(TideMap map)
+        internal void LoadFromMap(Map map)
         {
             m_tileBrushes.Clear();
 
@@ -144,7 +144,7 @@ namespace tIDE.TileBrushes
             }
         }
 
-        internal void StoreInMap(TideMap map)
+        internal void StoreInMap(Map map)
         {
             // clear old properties related to tile brushes
             List<string> tileBrushKeys = new List<string>();

@@ -28,7 +28,7 @@ namespace Player
             Pos = start.ToVectorF();
         }
 
-        public void Update(Map map, float deltaTime)
+        public void Update(MapEngine map, float deltaTime)
         {
             // save old position
             var oldPos = (Pos / new VectorF(map.TileWidth, map.TileHeight)).ToVector();   
@@ -78,7 +78,7 @@ namespace Player
             }
         }
 
-        public void Draw(Map map)
+        public void Draw(MapEngine map)
         {
             animation.Y = (int)direction;
 
@@ -87,7 +87,7 @@ namespace Player
             _actorManager.Draw(_charSetName, animation.SourceRect, animation.DrawRect(pos));
         }
 
-        public void MoveUp(Map map, float deltaTime)
+        public void MoveUp(MapEngine map, float deltaTime)
         {
             direction = Direction.Up;
 
@@ -100,7 +100,7 @@ namespace Player
             if (Pos.Y < 0) Pos.Y = 0;
         }
 
-        public void MoveDown(Map map, float deltaTime)
+        public void MoveDown(MapEngine map, float deltaTime)
         {
             direction = Direction.Down;
 
@@ -113,7 +113,7 @@ namespace Player
             if (Pos.Y > map.Height) Pos.Y = map.Height;
         }
 
-        public void MoveLeft(Map map, float deltaTime)
+        public void MoveLeft(MapEngine map, float deltaTime)
         {
             direction = Direction.Left;
 
@@ -126,7 +126,7 @@ namespace Player
             if (Pos.X < 0) Pos.X = 0;
         }
 
-        public void MoveRight(Map map, float deltaTime)
+        public void MoveRight(MapEngine map, float deltaTime)
         {
             direction = Direction.Right;
 

@@ -49,21 +49,21 @@ namespace xTile.Format
         /// </summary>
         /// <param name="map">Map to analyse</param>
         /// <returns>Format compatibility report</returns>
-        CompatibilityReport DetermineCompatibility(TideMap map);
+        CompatibilityReport DetermineCompatibility(Map map);
 
         /// <summary>
         /// Loads a map from the given stream according to this format
         /// </summary>
         /// <param name="stream">Stream from which to load the map</param>
         /// <returns>Map instance loaded from the given stream</returns>
-        TideMap Load(Stream stream);
+        Map Load(Stream stream);
 
         /// <summary>
         /// Stores the given map in the given stream according to this format
         /// </summary>
         /// <param name="map">Map to store</param>
         /// <param name="stream">Output stream on which to store the map</param>
-        void Store(TideMap map, Stream stream);
+        void Store(Map map, Stream stream);
 
         #endregion
     }

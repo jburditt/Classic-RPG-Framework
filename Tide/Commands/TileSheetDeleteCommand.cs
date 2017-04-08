@@ -12,11 +12,11 @@ namespace tIDE.Commands
 {
     internal class TileSheetDeleteCommand: Command
     {
-        private TideMap m_map;
+        private Map m_map;
         private TileSheet m_tileSheet;
         private MapTreeView m_mapTreeView;
 
-        public TileSheetDeleteCommand(TideMap map, TileSheet tileSheet, MapTreeView mapTreeView)
+        public TileSheetDeleteCommand(Map map, TileSheet tileSheet, MapTreeView mapTreeView)
         {
             m_map = map;
             m_tileSheet = tileSheet;

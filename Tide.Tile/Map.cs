@@ -25,7 +25,7 @@ namespace xTile
     /// A multi-layer tile-based map implementation. The contained Layers are
     /// ordered by depth
     /// </summary>
-    public class TideMap : DescribedComponent
+    public class Map : DescribedComponent
     {
         #region Public Properties
 
@@ -88,7 +88,7 @@ namespace xTile
         /// <summary>
         /// Constructs a map with a default "Untitled Map" ID
         /// </summary>
-        public TideMap()
+        public Map()
             : base("Untilted map")
         {
             m_tileSheets = new List<TileSheet>();
@@ -100,7 +100,7 @@ namespace xTile
         /// Constructs a map with the given ID
         /// </summary>
         /// <param name="id">ID to assign to the Map</param>
-        public TideMap(string id)
+        public Map(string id)
             :base(id)
         {
             m_tileSheets = new List<TileSheet>();

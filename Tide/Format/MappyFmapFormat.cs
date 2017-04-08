@@ -19,7 +19,7 @@ namespace tIDE.Format
     {
         #region Public Methods
 
-        public CompatibilityReport DetermineCompatibility(xTile.TideMap map)
+        public CompatibilityReport DetermineCompatibility(xTile.Map map)
         {
             List<CompatibilityNote> compatibilityNotes = new List<CompatibilityNote>();
 
@@ -72,7 +72,7 @@ namespace tIDE.Format
             return compatibilityReport;
         }
 
-        public TideMap Load(Stream stream)
+        public Map Load(Stream stream)
         {
             ReadHeader(stream);
 
@@ -136,7 +136,7 @@ namespace tIDE.Format
             }
 
             // new map
-            TideMap map = new TideMap();
+            Map map = new Map();
 
             // attach ATHR lines as description
             if (authorLines != null)
@@ -233,7 +233,7 @@ namespace tIDE.Format
             return map;
         }
 
-        public void Store(TideMap map, Stream stream)
+        public void Store(Map map, Stream stream)
         {
             // main file header
             WriteHeader(stream);
@@ -675,7 +675,7 @@ namespace tIDE.Format
             return authorLines;
         }
 
-        private void WriteChunkATHR(Stream stream, TideMap map)
+        private void WriteChunkATHR(Stream stream, Map map)
         {
             // ATHR chunk
             string[] authorLines = map.Description.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
@@ -747,7 +747,7 @@ namespace tIDE.Format
             return mphdRecord;
         }
 
-        private void WriteChunkMPHD(Stream stream, TideMap map)
+        private void WriteChunkMPHD(Stream stream, Map map)
         {
             WriteSequence(stream, "MPHD");
 
@@ -852,7 +852,7 @@ namespace tIDE.Format
             return blockRecords;
         }
 
-        private void WriteChunkBKDT(Stream stream, TideMap map)
+        private void WriteChunkBKDT(Stream stream, Map map)
         {
             short blockCount = (short) map.TileSheets[0].TileCount;
 
@@ -965,7 +965,7 @@ namespace tIDE.Format
             return true;
         }
 
-        private AnimatedTile[] WriteChunkANDT(Stream stream, TideMap map)
+        private AnimatedTile[] WriteChunkANDT(Stream stream, Map map)
         {
             // build list of unique animations
             List<AnimatedTile> animatedTiles = new List<AnimatedTile>();
@@ -1176,7 +1176,7 @@ namespace tIDE.Format
             return imageSource;
         }
 
-        private void WriteChunkBGFX(Stream stream, TideMap map)
+        private void WriteChunkBGFX(Stream stream, Map map)
         {
             TileImageCache tileImageCache = TileImageCache.Instance;
             TileSheet tileSheet = map.TileSheets[0];

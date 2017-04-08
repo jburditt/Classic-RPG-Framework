@@ -10,12 +10,12 @@ namespace tIDE.Commands
 {
     internal class MapPropertiesCommand: Command
     {
-        private TideMap m_map;
+        private Map m_map;
         private string m_oldId, m_newId;
         private string m_oldDescription, m_newDescription;
         private PropertyCollection m_oldProperties, m_newProperties;
 
-        public MapPropertiesCommand(TideMap map, string newId, string newDescription,
+        public MapPropertiesCommand(Map map, string newId, string newDescription,
             PropertyCollection newProperties)
         {
             m_map = map;

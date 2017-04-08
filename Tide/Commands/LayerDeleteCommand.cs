@@ -12,12 +12,12 @@ namespace tIDE.Commands
 {
     internal class LayerDeleteCommand: Command
     {
-        private TideMap m_map;
+        private Map m_map;
         private Layer m_layer;
         private int m_layerIndex;
         private MapTreeView m_mapTreeView;
 
-        public LayerDeleteCommand(TideMap map, Layer layer, MapTreeView mapTreeView)
+        public LayerDeleteCommand(Map map, Layer layer, MapTreeView mapTreeView)
         {
             m_map = map;
             m_layer = layer;

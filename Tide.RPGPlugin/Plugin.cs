@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
-using xTile;
-using xTile.Dimensions;
-
 using tIDE.Plugin;
 using tIDE.Plugin.Interface;
-using Player;
+using xTile;
+using xTile.Dimensions;
 using xTile.Layers;
 
 namespace RPGPlugin
 {
     public class RPGPlugin : IPlugin
     {
-        private TideMap m_map;
+        private Map m_map;
         private Layer m_layer;
 
         private IMenuItem m_myDropDownMenu;
@@ -154,8 +147,6 @@ namespace RPGPlugin
 
         public void OnDrawTile(TileEventArgs e)
         {
-            var x = e.Location / m_layer.TileWidth;
-            var y = e.Location / m_layer.TileHeight;
         }
 
         #endregion

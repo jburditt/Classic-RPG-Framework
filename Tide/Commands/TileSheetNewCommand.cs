@@ -12,11 +12,11 @@ namespace tIDE.Commands
 {
     internal class TileSheetNewCommand: Command
     {
-        private TideMap m_map;
+        private Map m_map;
         private TileSheet m_newTileSheet;
         private MapTreeView m_mapTreeView;
 
-        public TileSheetNewCommand(TideMap map, TileSheet newTileSheet, MapTreeView mapTreeView)
+        public TileSheetNewCommand(Map map, TileSheet newTileSheet, MapTreeView mapTreeView)
         {
             m_map = map;
             m_newTileSheet = newTileSheet;

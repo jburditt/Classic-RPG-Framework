@@ -46,7 +46,7 @@ namespace tIDE
         private WindowMode m_windowMode;
         private System.Drawing.Rectangle m_windowBounds;
 
-        private TideMap m_map;
+        private Map m_map;
 
         private CommandHistory m_commandHistory;
         private xTile.ObjectModel.Component m_selectedComponent;
@@ -476,7 +476,7 @@ namespace tIDE
             string oldCurrentDirectory = Directory.GetCurrentDirectory();
             Directory.SetCurrentDirectory(basePath);
 
-            TideMap newMap = null;
+            Map newMap = null;
             try
             {
                 newMap = formatManager.LoadMap(filename);
@@ -646,7 +646,7 @@ namespace tIDE
             // register supported formats for xTile
             RegisterFileFormats();
 
-            m_map = new TideMap("Untitled");
+            m_map = new Map("Untitled");
             m_needsFilename = true;
             m_needsSaving = false;
             m_filename = "Untitled.tide";
@@ -798,7 +798,7 @@ namespace tIDE
             if (!HandleUnsavedChanges(sender, eventArgs))
                 return;
 
-            TideMap map = new TideMap("Untitled Map");
+            Map map = new Map("Untitled Map");
 
             MapPropertiesDialog mapPropertiesDialog = new MapPropertiesDialog(map, true);
 

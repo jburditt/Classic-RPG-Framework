@@ -14,7 +14,7 @@ namespace RPGPlugin
         private readonly IDataStore m_dataStore;
 
         private TileSheetMeta m_tileSheetMeta;
-        private TideMap m_map;
+        private Map m_map;
         private Bitmap m_bitmapImageSource;
         private string m_imageSourceErrorMessge;
         private TileCursor m_cursor;
@@ -22,7 +22,7 @@ namespace RPGPlugin
         private int m_tileWidth, m_tileHeight;
         private Bitmap m_x = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
 
-        public TileSheetForm(TideMap map)
+        public TileSheetForm(Map map)
         {
             InitializeComponent();
 

@@ -7,7 +7,7 @@ using xTile;
 
 namespace Player
 {
-    public class Map
+    public class MapEngine
     {
         private readonly EventService _eventService;
         private readonly IIconManager _iconManager;
@@ -32,7 +32,7 @@ namespace Player
 
         public int WindowColumns, WindowRows;
 
-        public Map(IDataStore dataStore, EventService eventService, IIconManager iconManager, ITilesetManager tilesetManager, string mapFilePath, string mapName)
+        public MapEngine(IDataStore dataStore, EventService eventService, IIconManager iconManager, ITilesetManager tilesetManager, string mapFilePath, string mapName)
         {
             _dataStore = dataStore;
             _eventService = eventService;

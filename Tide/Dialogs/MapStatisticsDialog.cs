@@ -19,7 +19,7 @@ namespace tIDE.Dialogs
 {
     public partial class MapStatisticsDialog : Form
     {
-        private TideMap m_map;
+        private Map m_map;
         private xTile.Dimensions.Rectangle m_viewport;
         private Font m_headerFont;
         private Font m_propertyNameFont;
@@ -378,7 +378,7 @@ namespace tIDE.Dialogs
             DisplayMapStatistics();
         }
 
-        public MapStatisticsDialog(TideMap map, xTile.Dimensions.Rectangle viewport)
+        public MapStatisticsDialog(Map map, xTile.Dimensions.Rectangle viewport)
         {
             InitializeComponent();
 

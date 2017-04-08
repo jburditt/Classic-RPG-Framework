@@ -20,7 +20,7 @@ namespace tIDE.Dialogs
 {
     public partial class TileAnimationDialog : Form
     {
-        private TideMap m_map;
+        private Map m_map;
         private Layer m_layer;
         private Location m_tileLocation;
         private TileSheet m_draggedTileSheet;
@@ -244,7 +244,7 @@ namespace tIDE.Dialogs
             graphics.DrawImage(tileImage, 0, 0);
         }
 
-        public TileAnimationDialog(TideMap map, Layer layer, Location tileLocation)
+        public TileAnimationDialog(Map map, Layer layer, Location tileLocation)
         {
             InitializeComponent();
 

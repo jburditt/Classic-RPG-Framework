@@ -37,7 +37,7 @@ namespace xTile.Layers
         /// <param name="map">map containing the new layer</param>
         /// <param name="layerSize">width and height of the layer in tiles</param>
         /// <param name="tileSize">tile width and height in pixels</param>
-        public Layer(string id, TideMap map, Size layerSize, Size tileSize)
+        public Layer(string id, Map map, Size layerSize, Size tileSize)
             : base(id)
         {
             m_map = map;
@@ -245,7 +245,7 @@ namespace xTile.Layers
         /// <summary>
         /// Map containing this layer
         /// </summary>
-        public TideMap Map { get { return m_map; } }
+        public Map Map { get { return m_map; } }
 
         /// <summary>
         /// Width and height of this layer in tiles
@@ -511,7 +511,7 @@ namespace xTile.Layers
 
         #region Private Variables
 
-        private TideMap m_map;
+        private Map m_map;
         private ReadOnlyCollection<TileSheet> m_tileSheets;
         private Size m_layerSize;
         private Size m_tileSize;

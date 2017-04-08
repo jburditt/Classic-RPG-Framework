@@ -20,7 +20,7 @@ namespace tIDE.Format
     {
         #region Public Methods
 
-        public CompatibilityReport DetermineCompatibility(TideMap map)
+        public CompatibilityReport DetermineCompatibility(Map map)
         {
             List<CompatibilityNote> compatibilityNotes = new List<CompatibilityNote>();
 
@@ -66,9 +66,9 @@ namespace tIDE.Format
             return compatibilityReport;
         }
 
-        public TideMap Load(Stream stream)
+        public Map Load(Stream stream)
         {
-            TideMap map = new TideMap("Flixel Map");
+            Map map = new Map("Flixel Map");
 
             // if using wait cursor, switch to default one during dialog
             bool useWaitCursor = Application.UseWaitCursor;
@@ -125,7 +125,7 @@ namespace tIDE.Format
             return map;
         }
 
-        public void Store(TideMap map, Stream stream)
+        public void Store(Map map, Stream stream)
         {
             Layer layer = map.Layers[0];
 

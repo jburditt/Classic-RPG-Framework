@@ -4,7 +4,7 @@ namespace xTile
 {
     public class MapLoader
     {
-        public static TideMap LoadMap(string filename)
+        public static Map LoadMap(string filename)
         {
             return FormatManager.Instance.LoadMap(filename);
         }

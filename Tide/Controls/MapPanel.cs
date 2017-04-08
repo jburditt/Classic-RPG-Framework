@@ -33,7 +33,7 @@ namespace tIDE.Controls
 
         #region Private Variables
 
-        private TideMap m_map;
+        private Map m_map;
         private Bitmap m_backBuffer = null;
 
         private CommandHistory m_commandHistory;
@@ -1120,7 +1120,7 @@ namespace tIDE.Controls
         [Description("The Map structure associated with this control"),
          Category("Data"), Browsable(true)
         ]
-        public TideMap Map
+        public Map Map
         {
             get { return m_map; }
             set
