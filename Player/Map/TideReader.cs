@@ -1,6 +1,4 @@
-﻿using Common;
-using Player.Events;
-using tIDEReader;
+﻿using Player.Events;
 using xTile;
 
 namespace Player.Maps
@@ -9,7 +7,7 @@ namespace Player.Maps
     {
         public void Load(EventService eventService, Map map, string mapFilePath)
         {
-            var TiledMap = new TideLoader(mapFilePath).m_map;
+            var TiledMap = MapLoader.LoadMap(mapFilePath);
 
             map.TileWidth = TiledMap.Layers[0].TileWidth;                 // width of tile in pixels
             map.TileHeight = TiledMap.Layers[0].TileHeight;               // height of tile

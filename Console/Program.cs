@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using TiledSharp;
 using Player.Maps;
-using tIDEReader;
+using xTile;
 
 namespace Console
 {
@@ -124,7 +124,8 @@ namespace Console
 
         private static void LoadTideTilesetMeta(string mapFilePath)
         {
-            var tiledMap = new TideLoader(mapFilePath).m_map;
+            var tiledMap = MapLoader.LoadMap(mapFilePath);
+
             foreach (var tileset in tiledMap.TileSheets)
             {
                 // TODO

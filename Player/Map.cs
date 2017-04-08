@@ -3,6 +3,7 @@ using Player.Events;
 using Player.Manager;
 using Player.Maps;
 using System.Collections.Generic;
+using xTile;
 
 namespace Player
 {

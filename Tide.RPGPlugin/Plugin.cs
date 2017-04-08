@@ -11,12 +11,14 @@ using xTile.Dimensions;
 using tIDE.Plugin;
 using tIDE.Plugin.Interface;
 using Player;
+using xTile.Layers;
 
 namespace RPGPlugin
 {
     public class RPGPlugin : IPlugin
     {
-        private Map m_map;
+        private TideMap m_map;
+        private Layer m_layer;
 
         private IMenuItem m_myDropDownMenu;
         private IMenuItem m_myMenuItem;
@@ -82,6 +84,13 @@ namespace RPGPlugin
             m_eventToolBarButton.ToolTipText = "Place Event";
             m_eventToolBarButton.EventHandler = EventAction;
 
+            m_eventToolBarButton = m_myToolBar.Buttons.Add("Button3", Properties.Resources.Action);
+            m_eventToolBarButton.ToolTipText = "TileSheets";
+            m_eventToolBarButton.EventHandler = TileSheetsAction;
+
+            m_map = application.Editor.Map;
+            m_layer = application.Editor.Layer;
+
             application.Editor.MouseDown = OnEditorMouseDown;
         }
 
@@ -108,6 +117,19 @@ namespace RPGPlugin
             m_eventToolBarButton.Checked = !m_eventToolBarButton.Checked;
         }
 
+        public void TileSheetsAction(object sender, EventArgs eventArgs)
+        {
+            using (var form = new TileSheetForm(m_map))
+            {
+                var result = form.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+
+                }
+            }
+        }
+
         public void OnEditorMouseDown(MouseEventArgs mouseEventArgs, Location tileLocation)
         {
             if (m_npcToolBarButton.Checked)
@@ -118,10 +140,10 @@ namespace RPGPlugin
 
                     if (result == DialogResult.OK)
                     {
-                        form.Selected.Pos = new Vector(tileLocation.X * m_map.TileWidth, tileLocation.Y * m_map.TileHeight);
+                        form.Selected.Pos = new Vector(tileLocation.X * m_layer.TileWidth, tileLocation.Y * m_layer.TileHeight);
 
                         // TODO Check if NPC exists before adding
-                        m_map.NPC.Add(form.Selected);
+                        //m_map.NPC.Add(form.Selected);
 
                         // TODO load image
                     }

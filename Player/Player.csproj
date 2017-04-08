@@ -99,9 +99,9 @@
       <Project>{783A98AB-A9E0-4D38-9C4D-FF83AECB8A07}</Project>
       <Name>DataStore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TideReader\Tide.Reader.csproj">
-      <Project>{5f5e5c2e-0d41-4926-b3ce-52526d3c3365}</Project>
-      <Name>Tide.Reader</Name>
+    <ProjectReference Include="..\Tide.Tile\Tide.Tile.csproj">
+      <Project>{7E023BC7-D39A-4D3B-A8A8-55CB5CAC1ABC}</Project>
+      <Name>Tide.Tile</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

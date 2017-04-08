@@ -199,8 +199,6 @@ namespace tIDE.Dialogs
             m_bitmapImageSource = null;
             m_imageSourceErrorMessge = null;
 
-            m_bitmapImageSource = null;
-            m_imageSourceErrorMessge = null;
             try
             {
                 m_bitmapImageSource = LoadUnlockedBitmap(m_tileSheet.ImageSource);

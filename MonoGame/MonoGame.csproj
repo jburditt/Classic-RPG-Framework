@@ -104,10 +104,6 @@
       <Project>{88f12e9b-d503-4ad4-a925-6a7a9a8210d3}</Project>
       <Name>Player</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TideReader\Tide.Reader.csproj">
-      <Project>{5F5E5C2E-0D41-4926-B3CE-52526D3C3365}</Project>
-      <Name>Tide.Reader</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
