@@ -92,6 +92,7 @@ namespace RPGPlugin
             m_layer = application.Editor.Layer;
 
             application.Editor.MouseDown = OnEditorMouseDown;
+            application.Editor.DrawTile = OnDrawTile;
         }
 
         public void Shutdown(IApplication application)
@@ -149,6 +150,12 @@ namespace RPGPlugin
                     }
                 }
             }
+        }
+
+        public void OnDrawTile(TileEventArgs e)
+        {
+            var x = e.Location / m_layer.TileWidth;
+            var y = e.Location / m_layer.TileHeight;
         }
 
         #endregion

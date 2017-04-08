@@ -81,6 +81,8 @@
     <Compile Include="IPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ApplicationRegistry.cs" />
+    <Compile Include="TileEventArgs.cs" />
+    <Compile Include="TileEventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\tIDE.ico" />

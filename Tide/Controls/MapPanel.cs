@@ -19,12 +19,16 @@ using xTile.Tiles;
 using tIDE.Commands;
 using tIDE.Dialogs;
 using tIDE.TileBrushes;
+using tIDE.Plugin;
+using tIDE.Plugin.Interface;
 
 namespace tIDE.Controls
 {
     [ToolboxBitmapAttribute(typeof(Panel))]
     public partial class MapPanel : UserControl, IDisplayDevice
     {
+        public event EventHandler<TileEventArgs> DrawTileEvent;
+
         private readonly float[] m_zoomFactors = new float[] { 0.01f, 0.05f, 0.1f, 0.25f, 0.5f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f};
 
         #region Private Variables
@@ -1025,9 +1029,7 @@ namespace tIDE.Controls
 
             if (tile.BlendMode == BlendMode.Alpha)
             {
-                m_graphics.DrawImage(tileBitmap, destRect,
-                    0, 0, tileSize.Width, tileSize.Height,
-                    GraphicsUnit.Pixel, m_imageAttributes);
+                m_graphics.DrawImage(tileBitmap, destRect, 0, 0, tileSize.Width, tileSize.Height, GraphicsUnit.Pixel, m_imageAttributes);
             }
             else
             {
@@ -1097,6 +1099,8 @@ namespace tIDE.Controls
                     }
                 }
             }
+
+            DrawTileEvent(this, new TileEventArgs(location));
         }
 
         public void EndScene()

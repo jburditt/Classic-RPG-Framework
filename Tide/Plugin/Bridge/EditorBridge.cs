@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 using System.Windows.Forms;
-
 using xTile;
 using xTile.Dimensions;
 using xTile.Layers;
-
 using tIDE.Controls;
 using tIDE.Plugin.Interface;
 
@@ -17,56 +12,47 @@ namespace tIDE.Plugin.Bridge
     {
         private MapPanel m_mapPanel;
 
-        private EditorHandler m_mouseDown;
-        private EditorHandler m_mouseMove;
-        private EditorHandler m_mouseUp;
+        private MouseEditorHandler m_mouseDown;
+        private MouseEditorHandler m_mouseMove;
+        private MouseEditorHandler m_mouseUp;
+        private TileEditorHandler m_drawTile;
 
         private void OnMapPanelMouseDown(object sender, MouseEventArgs mouseEventArgs)
         {
-            if (m_mouseDown == null)
+            if (m_mouseDown == null || m_mapPanel.SelectedLayer == null)
                 return;
 
-            Layer layer = m_mapPanel.SelectedLayer;
-            if (layer == null)
-                return;
-
-            Location layerDisplayLocation = layer.ConvertMapToLayerLocation(
-                new Location(mouseEventArgs.X, mouseEventArgs.Y), m_mapPanel.MapViewport.Size);
-            Location tileLocation = layer.GetTileLocation(layerDisplayLocation);
+            var tileLocation = GetTileLocation(mouseEventArgs.Location);
 
             m_mouseDown(mouseEventArgs, tileLocation);
         }
 
         private void OnMapPanelMouseMove(object sender, MouseEventArgs mouseEventArgs)
         {
-            if (m_mouseMove == null)
+            if (m_mouseMove == null || m_mapPanel.SelectedLayer == null)
                 return;
 
-            Layer layer = m_mapPanel.SelectedLayer;
-            if (layer == null)
-                return;
-
-            Location layerDisplayLocation = layer.ConvertMapToLayerLocation(
-                new Location(mouseEventArgs.X, mouseEventArgs.Y), m_mapPanel.MapViewport.Size);
-            Location tileLocation = layer.GetTileLocation(layerDisplayLocation);
+            var tileLocation = GetTileLocation(mouseEventArgs.Location);
 
             m_mouseMove(mouseEventArgs, tileLocation);
         }
 
         private void OnMapPanelMouseUp(object sender, MouseEventArgs mouseEventArgs)
         {
-            if (m_mouseUp == null)
+            if (m_mouseUp == null || m_mapPanel.SelectedLayer == null)
                 return;
 
-            Layer layer = m_mapPanel.SelectedLayer;
-            if (layer == null)
-                return;
-
-            Location layerDisplayLocation = layer.ConvertMapToLayerLocation(
-                new Location(mouseEventArgs.X, mouseEventArgs.Y), m_mapPanel.MapViewport.Size);
-            Location tileLocation = layer.GetTileLocation(layerDisplayLocation);
+            var tileLocation = GetTileLocation(mouseEventArgs.Location);
 
             m_mouseUp(mouseEventArgs, tileLocation);
+        }
+
+        private void OnDrawTile(object sender, TileEventArgs e)
+        {
+            if (m_drawTile == null)
+                return;
+
+            m_drawTile(e);
         }
 
         public EditorBridge(MapPanel mapPanel)
@@ -77,25 +63,38 @@ namespace tIDE.Plugin.Bridge
             innerPanel.MouseDown += OnMapPanelMouseDown;
             innerPanel.MouseMove += OnMapPanelMouseMove;
             innerPanel.MouseUp += OnMapPanelMouseUp;
+            mapPanel.DrawTileEvent += OnDrawTile;
+        }
+
+        private Location GetTileLocation(Point mapLocation)
+        {
+            var layer = m_mapPanel.SelectedLayer;
+            var layerDisplayLocation = layer.ConvertMapToLayerLocation(
+                new Location(mapLocation.X, mapLocation.Y), m_mapPanel.MapViewport.Size);
+            return layer.GetTileLocation(layerDisplayLocation);
         }
 
         public TideMap Map { get { return m_mapPanel.Map; } }
-
         public Layer Layer { get { return m_mapPanel.SelectedLayer; } }
 
-        public EditorHandler MouseDown
+        public MouseEditorHandler MouseDown
         {
             set { m_mouseDown = value; }
         }
 
-        public EditorHandler MouseMove
+        public MouseEditorHandler MouseMove
         {
             set { m_mouseMove = value; }
         }
 
-        public EditorHandler MouseUp
+        public MouseEditorHandler MouseUp
         {
             set { m_mouseUp = value; }
+        }
+
+        public TileEditorHandler DrawTile
+        {
+            set { m_drawTile = value; }
         }
     }
 }
