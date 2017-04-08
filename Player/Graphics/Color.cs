@@ -1,7 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace Player
 {
+    [Serializable]
     public struct ColorStruct
     {
         public int R { get; set; }

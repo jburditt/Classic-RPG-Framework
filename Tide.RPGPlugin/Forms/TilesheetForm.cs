@@ -1,5 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DataStore;
+using DataStore.DataStore;
+using Player.Maps;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -9,9 +11,16 @@ namespace RPGPlugin
 {
     public partial class TileSheetForm : Form
     {
+        private readonly IDataStore m_dataStore;
+
+        private TileSheetMeta m_tileSheetMeta;
         private TideMap m_map;
         private Bitmap m_bitmapImageSource;
         private string m_imageSourceErrorMessge;
+        private TileCursor m_cursor;
+        private Vector m_oldPos;
+        private int m_tileWidth, m_tileHeight;
+        private Bitmap m_x = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
 
         public TileSheetForm(TideMap map)
         {
@@ -28,6 +37,19 @@ namespace RPGPlugin
             if (m_map.TileSheets?.Count == 0)
                 return;
 
+            m_dataStore = new BinaryDataStore();
+            m_tileSheetMeta = m_dataStore.Load<TileSheetMeta>($"{m_map.Id}.TileSheetMeta");
+
+            m_tileWidth = m_map.TileSheets[0].TileWidth;
+            m_tileHeight = m_map.TileSheets[0].TileHeight;
+
+            m_cursor = new TileCursor
+            {
+                Size = new Size(m_tileWidth, m_tileHeight)
+            };
+
+            LoadTileSheetMeta(0);
+
             try
             {
                 m_bitmapImageSource = LoadUnlockedBitmap(m_map.TileSheets[0].ImageSource);
@@ -42,6 +64,7 @@ namespace RPGPlugin
         private Bitmap LoadUnlockedBitmap(string filename)
         {
             Bitmap unlockedBitmap = null;
+
             using (Bitmap lockedBitmap = new Bitmap(filename))
             {
                 unlockedBitmap = new Bitmap(lockedBitmap.Width, lockedBitmap.Height, lockedBitmap.PixelFormat);
@@ -52,21 +75,22 @@ namespace RPGPlugin
                     graphics.DrawImageUnscaled(lockedBitmap, 0, 0);
                 }
             }
+
             return unlockedBitmap;
         }
 
         private void panel_Paint(object sender, PaintEventArgs paintEventArgs)
         {
-            Graphics graphics = paintEventArgs.Graphics;
+            var graphics = paintEventArgs.Graphics;
 
             if (m_bitmapImageSource == null && m_imageSourceErrorMessge == null)
             {
-                graphics.DrawString("No image source selected", this.Font, SystemBrushes.ControlText, 0.0f, 0.0f);
+                //graphics.DrawString("No image source selected", this.Font, SystemBrushes.ControlText, 0.0f, 0.0f);
                 return;
             }
             else if (m_bitmapImageSource == null)
             {
-                graphics.DrawString("Error loading image source:" + m_imageSourceErrorMessge, this.Font, SystemBrushes.ControlText, 0.0f, 0.0f);
+                //graphics.DrawString("Error loading image source:" + m_imageSourceErrorMessge, this.Font, SystemBrushes.ControlText, 0.0f, 0.0f);
             }
             else
             {
@@ -80,7 +104,58 @@ namespace RPGPlugin
                 int imageHeight = m_bitmapImageSource.Height;
 
                 graphics.DrawImage(m_bitmapImageSource, 0, 0, imageWidth, imageHeight);
+
+                // draw blocked tiles
+                for (var x = 0; x < m_tileSheetMeta.Tiles.GetLength(0); x++)
+                    for (var y = 0; y < m_tileSheetMeta.Tiles.GetLength(1); y++)
+                        if (m_tileSheetMeta.Tiles[x, y].IsBlocked)
+                            graphics.DrawImage(m_x, x * m_tileWidth, y * m_tileHeight, m_tileWidth, m_tileHeight);
+
+                m_cursor.Draw(graphics);
             }
+        }
+
+        private void LoadTileSheetMeta(int index)
+        {
+            m_tileSheetMeta = new TileSheetMeta();
+            m_tileSheetMeta.Tiles = new TileSheetTile[m_map.TileSheets[0].SheetWidth, m_map.TileSheets[0].SheetHeight];
+            for (var x = 0; x < m_tileSheetMeta.Tiles.GetLength(0); x++)
+                for (var y = 0; y < m_tileSheetMeta.Tiles.GetLength(1); y++)
+                    m_tileSheetMeta.Tiles[x, y] = new TileSheetTile();
+        }
+
+        private void panel_MouseDown(object sender, MouseEventArgs e)
+        {
+            int x = e.X / m_tileWidth;
+            int y = e.Y / m_tileHeight;
+
+            m_tileSheetMeta.Tiles[x, y].IsBlocked = !m_tileSheetMeta.Tiles[x, y].IsBlocked;
+
+            panel.Invalidate();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            m_dataStore.Save(m_tileSheetMeta, $"{m_map.Id}.TileSheetMeta");
+            //_dataStore.Save(_map.Tiles, $"map\\{mapName}.Tiles");
+            //_dataStore.Save(_map.NPC, $"map\\{mapName}.NPC");
+        }
+
+        private void tilesetsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //fileIndex = filesListBox.SelectedIndex;
+
+            panel.Invalidate();
+        }
+
+        private void panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            m_oldPos = m_cursor.Pos / new Vector(m_tileWidth, m_tileHeight);
+            m_cursor.Pos = new Vector(e.X, e.Y);
+
+            // draw map only if cursor has moved
+            if (m_cursor.Pos / new Vector(m_tileWidth, m_tileHeight) != m_oldPos)
+                panel.Invalidate();
         }
     }
 }

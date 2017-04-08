@@ -50,7 +50,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Color.cs" />
     <Compile Include="EventForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,11 +62,8 @@
     <Compile Include="ImagePickerForm.Designer.cs">
       <DependentUpon>ImagePickerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Manager\IconManager.cs" />
-    <Compile Include="Manager\TilesetManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rectangle.cs" />
     <EmbeddedResource Include="EventForm.resx">
       <DependentUpon>EventForm.cs</DependentUpon>
     </EmbeddedResource>

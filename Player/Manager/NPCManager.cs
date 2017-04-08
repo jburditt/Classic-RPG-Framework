@@ -21,12 +21,18 @@ namespace Player.Manager
 
         public void Update(Map map)
         {
+            if (NPC == null)
+                return;
+
             foreach (var npc in NPC)
                 npc.Update(map);
         }
 
         public void Draw(Map map)
         {
+            if (NPC == null)
+                return;
+
             foreach (var npc in NPC)
             {
                 npc.Animation.Y = (int)npc.Direction;

@@ -47,7 +47,7 @@ namespace Player
 
         public void Load(string mapName)
         {
-            Passable = _dataStore.Load<bool[][][]>($"map\\{mapName}.passable");
+            //Passable = _dataStore.Load<bool[][][]>($"map\\{mapName}.passable");
 
             new TideReader().Load(_eventService, this, "../../../../Data/map/Untitled.tide");
 

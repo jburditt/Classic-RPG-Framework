@@ -845,6 +845,10 @@
     <None Include="Resources\MapProperties.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Player\Player.csproj">
+      <Project>{88f12e9b-d503-4ad4-a925-6a7a9a8210d3}</Project>
+      <Name>Player</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tide.Plugin\Tide.Plugin.csproj">
       <Project>{2787F0CD-8BFD-4696-AAAA-629452D05A21}</Project>
       <Name>Tide.Plugin</Name>

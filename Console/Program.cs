@@ -12,7 +12,7 @@ namespace Console
 {
     class Program
     {
-        private static SerializableDictionary<string, TilesetMeta> TilesetMetas = new SerializableDictionary<string, TilesetMeta>();
+        private static SerializableDictionary<string, TileSheetMeta> TilesetMetas = new SerializableDictionary<string, TileSheetMeta>();
 
         static void Main(string[] args)
         {
@@ -118,7 +118,7 @@ namespace Console
             var tiledMap = new TmxMap(mapFilePath);
             foreach (var tileset in tiledMap.Tilesets) {
                 var trans = tileset.Image.Trans;
-                TilesetMetas.Add(tileset.Name, new TilesetMeta { TransparencyColor = new ColorStruct(trans.R, trans.G, trans.B) });
+                TilesetMetas.Add(tileset.Name, new TileSheetMeta { TransparencyColor = new ColorStruct(trans.R, trans.G, trans.B) });
             }
         }
 
@@ -130,7 +130,7 @@ namespace Console
             {
                 // TODO
                 //var trans = tileset.
-                TilesetMetas.Add(tileset.Id, new TilesetMeta { TransparencyColor = new ColorStruct(255, 255, 255) });
+                TilesetMetas.Add(tileset.Id, new TileSheetMeta { TransparencyColor = new ColorStruct(255, 255, 255) });
             }
         }
     }

@@ -28,25 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tilesetsListBox = new System.Windows.Forms.ListBox();
             this.panel = new System.Windows.Forms.Panel();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // tableLayoutPanel
-            // 
-            this.tableLayoutPanel.AutoSize = true;
-            this.tableLayoutPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel.ColumnCount = 2;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel.Location = new System.Drawing.Point(12, 1);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 1;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(0, 0);
-            this.tableLayoutPanel.TabIndex = 0;
             // 
             // tilesetsListBox
             // 
@@ -58,6 +44,7 @@
             this.tilesetsListBox.Name = "tilesetsListBox";
             this.tilesetsListBox.Size = new System.Drawing.Size(224, 448);
             this.tilesetsListBox.TabIndex = 1;
+            this.tilesetsListBox.SelectedIndexChanged += new System.EventHandler(this.tilesetsListBox_SelectedIndexChanged);
             // 
             // panel
             // 
@@ -69,15 +56,37 @@
             this.panel.Size = new System.Drawing.Size(678, 448);
             this.panel.TabIndex = 2;
             this.panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Paint);
+            this.panel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_MouseDown);
+            this.panel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel_MouseMove);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Location = new System.Drawing.Point(797, 413);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(93, 23);
+            this.cancelButton.TabIndex = 0;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(716, 413);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 3;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // TileSheetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(902, 448);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.tilesetsListBox);
-            this.Controls.Add(this.tableLayoutPanel);
             this.Name = "TileSheetForm";
             this.Text = "TilesheetForm";
             this.ResumeLayout(false);
@@ -86,9 +95,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.ListBox tilesetsListBox;
         private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }

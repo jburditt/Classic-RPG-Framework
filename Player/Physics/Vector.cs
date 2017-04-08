@@ -31,6 +31,11 @@ public struct Vector
         return new Vector(a.X - b.X, a.Y - b.Y);
     }
 
+    public static Vector operator /(Vector a, Vector b)
+    {
+        return new Vector(a.X / b.X, a.Y / b.Y);
+    }
+
     //public override bool Equals(object obj)
     //{
     //    this.Equals(obj);

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Common;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace DataStore
@@ -12,40 +13,14 @@ namespace DataStore
             FilePath = filePath;
         }
 
-        public T Load<T>(string name)
+        public T Load<T>(string name) where T : new()
         {
-            StreamReader reader = null;
-
-            try
-            {
-                var fileName = $"{FilePath}{name}.xml";
-                if (!File.Exists(fileName))
-                    return default(T);
-
-                var serializer = new XmlSerializer(typeof(T));
-                reader = new StreamReader(fileName);
-                var obj = (T)serializer.Deserialize(reader);
-                return obj;
-            } finally
-            {
-                reader?.Close();
-            }
+            return Serializer.XmlDeserialize<T>($"{name}.xml");
         }
 
         public void Save<T>(T obj, string name)
         {
-            TextWriter writer = null;
-
-            try
-            {
-                var serializer = new XmlSerializer(typeof(T));
-                writer = new StreamWriter($"{FilePath}{name}.xml", false);
-                serializer.Serialize(writer, obj);
-            }
-            finally
-            {
-                writer?.Close();
-            }
+            Serializer.XmlSerialize(obj, $"{name}.xml");
         }
     }
 }
