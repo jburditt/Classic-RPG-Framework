@@ -94,6 +94,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettings.cs" />
     <Compile Include="AutoTiles\AutoTile.cs" />
     <Compile Include="AutoTiles\AutoTileManager.cs" />
     <Compile Include="ClipBoardManager.cs" />
@@ -845,6 +846,10 @@
     <None Include="Resources\MapProperties.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{72912467-9f1f-4eb8-9b8f-c45486ada0d9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Player\Player.csproj">
       <Project>{88f12e9b-d503-4ad4-a925-6a7a9a8210d3}</Project>
       <Name>Player</Name>

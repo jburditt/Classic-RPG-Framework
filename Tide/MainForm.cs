@@ -27,6 +27,7 @@ using System.Globalization;
 using System.Threading;
 using tIDE.Localisation;
 using System.Diagnostics;
+using Common;
 
 namespace tIDE
 {
@@ -53,6 +54,7 @@ namespace tIDE
         private bool m_needsFilename;
         private bool m_needsSaving;
         private string m_filename;
+        private AppSettings m_settings = new AppSettings();
 
         private CommandHistoryDialog m_commandHistoryDialog;
 
@@ -138,7 +140,7 @@ namespace tIDE
             // add built-in strips in reverse order
             toolStripPanel.Join(m_tileSheetToolStrip, 2);
             toolStripPanel.Join(m_layerToolStrip, 2);
-            toolStripPanel.Join(m_mapToolStrip, 2);      
+            toolStripPanel.Join(m_mapToolStrip, 2);
 
             toolStripPanel.ControlAdded += this.OnCustomToolStripAdded;
 
@@ -469,11 +471,11 @@ namespace tIDE
             FormatManager formatManager = FormatManager.Instance;
 
             StartWaitCursor();
-            
+
             string basePath = Path.GetDirectoryName(filename);
             string oldCurrentDirectory = Directory.GetCurrentDirectory();
             Directory.SetCurrentDirectory(basePath);
-            
+
             TideMap newMap = null;
             try
             {
@@ -536,7 +538,7 @@ namespace tIDE
                 if (exception.InnerException != null)
                     message += " Inner Message: " + exception.InnerException.Message;
                 m_loadErrorMessageBox.VariableDictionary["message"] = message;
-                m_loadErrorMessageBox.Show();                   
+                m_loadErrorMessageBox.Show();
             }
 
             Directory.SetCurrentDirectory(oldCurrentDirectory);
@@ -591,7 +593,7 @@ namespace tIDE
             catch (Exception exception)
             {
                 m_saveErrorMessageBox.VariableDictionary["message"] = exception.Message;
-                m_saveErrorMessageBox.Show();                   
+                m_saveErrorMessageBox.Show();
 
                 // restore paths
                 foreach (TileSheet tileSheet in m_map.TileSheets)
@@ -599,6 +601,28 @@ namespace tIDE
 
                 return false;
             }
+        }
+
+        private void LoadSettings()
+        {
+            if (m_settings.MapId != null && m_settings.FilePath != null)
+                OpenFile($"{m_settings.FilePath}\\Data\\map\\{m_settings.MapId}.tide");
+
+            this.WindowState = m_settings.WindowState;
+            if (m_settings.Location != null)
+                this.Location = m_settings.Location;
+            if (m_settings.Size != null)
+                this.Size = m_settings.Size;
+        }
+
+        private void SaveSettings()
+        {
+            m_settings.MapId = m_map.Id;
+            m_settings.FilePath = AppDomain.CurrentDomain.BaseDirectory.PathParent(4);
+            m_settings.WindowState = this.WindowState;
+            m_settings.Location = this.Location;
+            m_settings.Size = this.Size;
+            m_settings.Save();
         }
 
         private void ShowHelp(HelpMode helpMode)
@@ -639,9 +663,6 @@ namespace tIDE
 
             ArrangeToolStripLayout();
 
-            m_pluginManager = new PluginManager(m_menuStrip, m_toolStripContainer, m_mapPanel);
-            OnPluginsReload(this, EventArgs.Empty);
-
             UpdateRecentFilesMenu();
             ArrangeToolStripLayout();
 
@@ -653,6 +674,11 @@ namespace tIDE
                 if (extension == ".tide" || extension == ".tbin")
                     OpenFile(filename);
             }
+
+            LoadSettings();
+
+            m_pluginManager = new PluginManager(m_menuStrip, m_toolStripContainer, m_mapPanel);
+            OnPluginsReload(this, EventArgs.Empty);
         }
 
         private void OnMainFormResizeEnd(object sender, EventArgs eventArgs)
@@ -662,6 +688,8 @@ namespace tIDE
 
         private void OnMainFormClosing(object sender, FormClosingEventArgs formClosingEventArgs)
         {
+            SaveSettings();
+
             formClosingEventArgs.Cancel = !HandleUnsavedChanges(sender, EventArgs.Empty);
         }
 
@@ -813,6 +841,9 @@ namespace tIDE
 
             if (openFileDialog.ShowDialog(this) == DialogResult.Cancel)
                 return;
+
+            SaveSettings();
+            OnPluginsReload(this, EventArgs.Empty);
 
             OpenFile(openFileDialog.FileName);
         }

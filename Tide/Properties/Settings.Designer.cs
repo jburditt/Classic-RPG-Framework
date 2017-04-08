@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Configuration;
+
 namespace tIDE.Properties {
     
     
@@ -84,6 +87,19 @@ namespace tIDE.Properties {
             set {
                 this["ImageEditingTool"] = value;
             }
+        }
+
+        public static bool ContainsKey(Properties.Settings settings, string key)
+        {
+            foreach (SettingsProperty sp in settings.Properties)
+            {
+                if (sp.Name == key)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

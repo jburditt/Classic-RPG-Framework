@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -52,6 +53,16 @@ namespace Common
                 return 0;
 
             return i;
+        }
+
+        public static string PathParent(this string path, int dirCount = 1)
+        {
+            string n = path;
+
+            for (var i = 0; i < dirCount; i++)
+                n = Directory.GetParent(n).ToString();
+
+            return n;
         }
     }
 }
