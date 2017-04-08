@@ -8,11 +8,13 @@ namespace tIDE.Plugin
     {
         public Graphics Graphics { get; set; }
         public Location Location { get; set; }
+        public Location TileLocation { get; set; }
 
-        public TileEventArgs(Graphics graphics, Location location)
+        public TileEventArgs(Graphics graphics, Location location, Location tileLocation)
         {
             Graphics = graphics;
             Location = location;
+            TileLocation = tileLocation;
         }
     }
 }

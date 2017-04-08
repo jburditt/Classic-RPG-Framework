@@ -164,6 +164,9 @@ namespace RPGPlugin
             if (m_mapMeta?.Layers == null)
                 return;
 
+            if (e.TileLocation.X < 0 || e.TileLocation.Y < 0)
+                return;
+
             var tileWidth = m_mapMeta.Layers[0].TileSize.Width;
             var tileHeight = m_mapMeta.Layers[0].TileSize.Height;
 
@@ -172,7 +175,7 @@ namespace RPGPlugin
             System.Drawing.Rectangle destRect;
             destRect = new System.Drawing.Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
 
-            var npcs = m_mapMeta.Layers[0].Tiles[e.Location.X / tileWidth, e.Location.Y / tileHeight]?.NPCs;
+            var npcs = m_mapMeta.Layers[0].Tiles[e.TileLocation.X, e.TileLocation.Y]?.NPCs;
             if (npcs != null && npcs.Count > 0)
                 foreach (var npc in npcs)
                     e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());

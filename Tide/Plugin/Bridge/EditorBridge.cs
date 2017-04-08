@@ -71,6 +71,7 @@ namespace tIDE.Plugin.Bridge
             var layer = m_mapPanel.SelectedLayer;
             var layerDisplayLocation = layer.ConvertMapToLayerLocation(
                 new Location(mapLocation.X, mapLocation.Y), m_mapPanel.MapViewport.Size);
+
             return layer.GetTileLocation(layerDisplayLocation);
         }
 

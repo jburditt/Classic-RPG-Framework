@@ -1094,7 +1094,26 @@ namespace tIDE.Controls
                 }
             }
 
-            DrawTileEvent(this, new TileEventArgs(m_graphics, location));
+            var tileLocation = GetTileLocation(location);
+            location -= m_viewport.Location;
+            int offSetX = m_viewport.Location.X % tileSize.Width;
+            if (offSetX > 0)
+                offSetX -= tileSize.Width;
+            location.X += offSetX;
+            int offSetY = m_viewport.Location.Y % tileSize.Height;
+            if (offSetY > 0)
+                offSetY -= tileSize.Height;
+            location.Y += offSetY;
+            DrawTileEvent(this, new TileEventArgs(m_graphics, location, tileLocation));
+        }
+
+        private Location GetTileLocation(Location mapLocation)
+        {
+            var layer = this.SelectedLayer;
+            var layerDisplayLocation = layer.ConvertMapToLayerLocation(
+                new Location(mapLocation.X, mapLocation.Y), this.MapViewport.Size);
+
+            return layer.GetTileLocation(layerDisplayLocation);
         }
 
         public void EndScene()
