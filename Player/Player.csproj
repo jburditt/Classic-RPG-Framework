@@ -74,7 +74,7 @@
     <Compile Include="Manager\IIconManager.cs" />
     <Compile Include="Manager\ITilesetManager.cs" />
     <Compile Include="Manager\NPCManager.cs" />
-    <Compile Include="Map.cs" />
+    <Compile Include="Maps\MapEngine.cs" />
     <Compile Include="Maps\MapMeta.cs" />
     <Compile Include="Maps\TideReader.cs" />
     <Compile Include="Maps\TileMeta.cs" />
@@ -87,7 +87,6 @@
     <Compile Include="Rect.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="TestData.cs" />
-    <Compile Include="Tile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

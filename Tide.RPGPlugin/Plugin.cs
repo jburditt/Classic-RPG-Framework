@@ -151,7 +151,7 @@ namespace RPGPlugin
                         form.Selected.Pos = new Vector(tileLocation.X * m_layer.TileWidth, tileLocation.Y * m_layer.TileHeight);
 
                         // TODO Check if NPC exists before adding
-                        m_mapMeta.Layers[0].Tiles[tileLocation.X, tileLocation.Y].NPCs.Add(form.Selected);
+                        m_mapMeta.Layers[0].Tiles[tileLocation.X, tileLocation.Y].NPC = form.Selected;
 
                         // TODO load image
                     }
@@ -175,10 +175,9 @@ namespace RPGPlugin
             System.Drawing.Rectangle destRect;
             destRect = new System.Drawing.Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
 
-            var npcs = m_mapMeta.Layers[0].Tiles[e.TileLocation.X, e.TileLocation.Y]?.NPCs;
-            if (npcs != null && npcs.Count > 0)
-                foreach (var npc in npcs)
-                    e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
+            var npc = m_mapMeta.Layers[0].Tiles[e.TileLocation.X, e.TileLocation.Y]?.NPC;
+            if (npc != null)
+                e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
         }
 
         #endregion

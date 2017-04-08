@@ -2,8 +2,6 @@
 using Player.Events;
 using Player.Manager;
 using Player.Maps;
-using System.Collections.Generic;
-using xTile;
 
 namespace Player
 {
@@ -24,12 +22,10 @@ namespace Player
         public string MapFilePath { get; set; }
         public string MapName { get; set; }
 
-        public bool[][][] Passable { get; set; }
-        public Tile[][][] Tiles { get; set; }
-        public List<NPC> NPC { get; set; } = new List<NPC>();
+        public MapMeta MapMeta { get; set; }
+        public TileSheetMeta TileSheetMeta { get; set; }
 
         public Vector Camera, Start;
-
         public int WindowColumns, WindowRows;
 
         public MapEngine(IDataStore dataStore, EventService eventService, IIconManager iconManager, ITilesetManager tilesetManager, string mapFilePath, string mapName)
@@ -47,7 +43,7 @@ namespace Player
 
         public void Load(string mapName)
         {
-            //Passable = _dataStore.Load<bool[][][]>($"map\\{mapName}.passable");
+            TileSheetMeta = _dataStore.Load<TileSheetMeta>($"map\\{mapName}.TileSheetMeta");
 
             new TideReader().Load(_eventService, this, "../../../../Data/map/Untitled.tide");
 
@@ -88,9 +84,9 @@ namespace Player
 
             for (int layerIndex = 0; layerIndex < Layers; layerIndex++)
             {
-                var tile = Tiles[x][y][layerIndex];
+                var tile = MapMeta.Layers[layerIndex].Tiles[x, y];
 
-                if (tile != null && !tile.IsPassable)
+                if (tile != null && tile.IsBlocked)
                 {
                     var playerRect = new Rect(playerX, playerY + 8, 24, 24);
                     var tileRect = new Rect(x * TileWidth, y * TileHeight, TileWidth, TileHeight);
@@ -115,7 +111,7 @@ namespace Player
 
                     // TODO check distance of tile from player
 
-                    var eventPage = Tiles[p.X + x][p.Y + y][0].EventCollection?.Action();
+                    var eventPage = MapMeta.Layers[0].Tiles[p.X + x, p.Y + y].EventCollection?.Action();
                     if (eventPage != null)
                     {
                         Script.Execute(eventPage, player, this);
@@ -126,8 +122,8 @@ namespace Player
         public void Walk(GamePlayer player, Vector newPos, Vector oldPos)
         {
             // activate triggers
-            var eventPage1 = Tiles[newPos.X][newPos.Y][0].EventCollection?.Walk(true);
-            var eventPage2 = Tiles[oldPos.X][oldPos.Y][0].EventCollection?.Walk(false);
+            var eventPage1 = MapMeta.Layers[0].Tiles[newPos.X, newPos.Y].EventCollection?.Walk(true);
+            var eventPage2 = MapMeta.Layers[0].Tiles[oldPos.X, oldPos.Y].EventCollection?.Walk(false);
 
             // execute event
             if (eventPage1 != null)
@@ -189,7 +185,7 @@ namespace Player
                     // draw all tile layers
                     for (var layer = 0; layer < Layers; layer++)
                     {
-                        var tile = Tiles[x + playerTileX][y + playerTileY][layer];
+                        var tile = MapMeta.Layers[0].Tiles[x + playerTileX, y + playerTileY];
 
                         if (tile != null)
                         {
@@ -208,7 +204,7 @@ namespace Player
         {
             for (var layer = 0; layer < Layers; layer++)
             {
-                var tile = Tiles[x][y][layer];
+                var tile = MapMeta.Layers[layer].Tiles[x, y];
 
                 if (tile != null)
                 {

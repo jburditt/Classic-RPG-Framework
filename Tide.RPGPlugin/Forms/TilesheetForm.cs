@@ -33,6 +33,7 @@ namespace RPGPlugin
 
             m_bitmapImageSource = null;
             m_imageSourceErrorMessge = null;
+            m_x.MakeTransparent(Color.White);
 
             if (m_map.TileSheets?.Count == 0)
                 return;
@@ -53,7 +54,7 @@ namespace RPGPlugin
 
             try
             {
-                m_bitmapImageSource = LoadUnlockedBitmap(m_map.TileSheets[0].ImageSource);
+                m_bitmapImageSource = new Bitmap(m_map.TileSheets[0].ImageSource);
             }
             catch (Exception exception)
             {
@@ -62,23 +63,23 @@ namespace RPGPlugin
             }
         }
 
-        private Bitmap LoadUnlockedBitmap(string filename)
-        {
-            Bitmap unlockedBitmap = null;
+        //private Bitmap LoadUnlockedBitmap(string filename)
+        //{
+        //    Bitmap unlockedBitmap = null;
 
-            using (Bitmap lockedBitmap = new Bitmap(filename))
-            {
-                unlockedBitmap = new Bitmap(lockedBitmap.Width, lockedBitmap.Height, lockedBitmap.PixelFormat);
-                unlockedBitmap.SetResolution(lockedBitmap.HorizontalResolution, lockedBitmap.VerticalResolution);
-                using (Graphics graphics = Graphics.FromImage(unlockedBitmap))
-                {
-                    graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-                    graphics.DrawImageUnscaled(lockedBitmap, 0, 0);
-                }
-            }
+        //    using (Bitmap lockedBitmap = new Bitmap(filename))
+        //    {
+        //        unlockedBitmap = new Bitmap(lockedBitmap.Width, lockedBitmap.Height, lockedBitmap.PixelFormat);
+        //        unlockedBitmap.SetResolution(lockedBitmap.HorizontalResolution, lockedBitmap.VerticalResolution);
+        //        using (Graphics graphics = Graphics.FromImage(unlockedBitmap))
+        //        {
+        //            graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+        //            graphics.DrawImageUnscaled(lockedBitmap, 0, 0);
+        //        }
+        //    }
 
-            return unlockedBitmap;
-        }
+        //    return unlockedBitmap;
+        //}
 
         private void panel_Paint(object sender, PaintEventArgs paintEventArgs)
         {
@@ -140,6 +141,9 @@ namespace RPGPlugin
             m_dataStore.Save(m_tileSheetMeta, $"{m_map.Id}.TileSheetMeta");
             //_dataStore.Save(_map.Tiles, $"map\\{mapName}.Tiles");
             //_dataStore.Save(_map.NPC, $"map\\{mapName}.NPC");
+
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void tilesetsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -147,6 +151,12 @@ namespace RPGPlugin
             //fileIndex = filesListBox.SelectedIndex;
 
             panel.Invalidate();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void panel_MouseMove(object sender, MouseEventArgs e)

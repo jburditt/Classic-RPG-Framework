@@ -13,6 +13,7 @@ namespace MonoGame
         // menubg.png   http://opengameart.org/content/space-background
         // cursor.png   http://opengameart.org/content/iron-plague-pointercursor
         // icons.png    https://www.scirra.com/forum/pixel-art-rpg-icons_t66386
+        // dialog       http://opengameart.org/content/10-basic-message-boxes
 
         // MonoGame Framework
         GraphicsDeviceManager graphicsDeviceManager;

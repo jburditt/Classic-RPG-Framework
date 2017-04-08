@@ -22,7 +22,7 @@ namespace Player.Maps
             map.Rows = TiledMap.Layers[0].LayerHeight;
             map.Layers = TiledMap.Layers.Count;
 
-            //var tilesets = TiledMap.Tilesets;
+            var tilesets = TiledMap.TileSheets;
 
             // TODO
             // Leaving this here for now
@@ -41,16 +41,13 @@ namespace Player.Maps
 
         private void LoadTiles(Map TiledMap, MapEngine map)
         {
-            map.Tiles = new Tile[map.Rows][][];
+            map.MapMeta = new MapMeta(TiledMap);
 
+            for (var z = 0; z < TiledMap.Layers.Count; z++)
             for (var x = 0; x < map.Rows; x++)
             {
-                map.Tiles[x] = new Tile[map.Columns][];
-
                 for (var y = 0; y < map.Columns; y++)
                 {
-                    map.Tiles[x][y] = new Tile[TiledMap.Layers.Count];
-
                     for (var layer = 0; layer < TiledMap.Layers.Count; layer++)
                     {
                         //int tileIndex = x + y * map.Rows;
@@ -82,12 +79,12 @@ namespace Player.Maps
 
                         var tileWidth = TiledMap.Layers[layer].TileWidth;
                         var tileHeight = TiledMap.Layers[layer].TileHeight;
-                        
-                        map.Tiles[x][y][layer] = new Tile
+
+                        map.MapMeta.Layers[z].Tiles[x, y] = new TileMeta
                         {
                             SpriteRect = new Rect(tileWidth * column, tileHeight * row, tileWidth, tileHeight),
                             Tileset = TiledMap.Layers[layer].Tiles[x, y].TileSheet.Id,
-                            IsPassable = map.Passable == null ? true : map.Passable[tilesetIndex][column][row]
+                            IsBlocked = map.TileSheetMeta == null ? false : map.TileSheetMeta.Tiles[column, row].IsBlocked
                         };
                     }
                 }
