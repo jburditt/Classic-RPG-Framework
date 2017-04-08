@@ -48,7 +48,8 @@ namespace RPGPlugin
                 Size = new Size(m_tileWidth, m_tileHeight)
             };
 
-            LoadTileSheetMeta(0);
+            if (m_tileSheetMeta == null)
+                LoadTileSheetMeta(0);
 
             try
             {
