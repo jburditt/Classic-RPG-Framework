@@ -1,6 +1,4 @@
 ﻿using Common;
-using System.IO;
-using System.Xml.Serialization;
 
 namespace DataStore
 {
@@ -15,12 +13,12 @@ namespace DataStore
 
         public T Load<T>(string name)
         {
-            return Serializer.XmlDeserialize<T>($"{name}.xml");
+            return Serializer.XmlDeserialize<T>($"{FilePath}{name}.xml");
         }
 
         public void Save<T>(T obj, string name)
         {
-            Serializer.XmlSerialize(obj, $"{name}.xml");
+            Serializer.XmlSerialize(obj, $"{FilePath}{name}.xml");
         }
     }
 }

@@ -43,9 +43,12 @@ namespace Player
 
         public void Load(string mapName)
         {
-            TileSheetMeta = _dataStore.Load<TileSheetMeta>($"map\\{mapName}.TileSheetMeta");
+            TileSheetMeta = _dataStore.Load<TileSheetMeta>($"{mapName}.TileSheetMeta");
 
-            new TideReader().Load(_eventService, this, "../../../../Data/map/Untitled.tide");
+            //map.Tiles[x + 1][y - 1][0].EventCollection = _eventService.Find(eventId);
+
+
+            TideReader.Load(_eventService, this, $"{MapFilePath}{mapName}.tide");
 
             //new TiledReader().Load(_eventService, this, $"{MapFilePath + mapName}.tmx");
         }

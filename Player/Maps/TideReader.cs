@@ -5,7 +5,7 @@ namespace Player.Maps
 {
     public class TideReader
     {
-        public void Load(EventService eventService, MapEngine map, string mapFilePath)
+        public static void Load(EventService eventService, MapEngine map, string mapFilePath)
         {
             var TiledMap = MapLoader.LoadMap(mapFilePath);
 
@@ -36,10 +36,9 @@ namespace Player.Maps
             //_tilesetManager.Load(tilesetNames);
 
             LoadTiles(TiledMap, map);
-            LoadObjects(eventService, TiledMap, map);
         }
 
-        private void LoadTiles(Map TiledMap, MapEngine map)
+        private static void LoadTiles(Map TiledMap, MapEngine map)
         {
             map.MapMeta = new MapMeta(TiledMap);
 
@@ -89,31 +88,6 @@ namespace Player.Maps
                     }
                 }
             }
-        }
-
-        public void LoadObjects(EventService _eventService, Map TiledMap, MapEngine map)
-        {
-            if (_eventService == null)
-                return;
-
-            //foreach (var objLayer in TiledMap.ObjectGroups)
-            //{
-            //    foreach (var obj in objLayer.Objects)
-            //    {
-            //        var x = (int)obj.X / map.TileWidth;
-            //        var y = (int)obj.Y / map.TileWidth;
-
-            //        if (obj.Properties.ContainsKey("Start"))
-            //        {
-            //            map.Start = new Vector((int)obj.X, (int)obj.Y);
-            //        }
-            //        else if (obj.Properties.ContainsKey("EventId"))
-            //        {
-            //            // compensate for bug in Tiled (+1, -1)
-            //            map.Tiles[x + 1][y - 1][0].EventCollection = _eventService.Find(obj.Properties["EventId"].ToInt());
-            //        }
-            //    }
-            //}
         }
     }
 }

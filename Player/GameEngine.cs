@@ -26,7 +26,7 @@ namespace Player
         public EnemyParty EnemyParty { get; private set; }
         public GameState GameState { get; private set; } = GameState.StartMenu;
 
-        private string mapName = "Start";
+        private string mapName = "Untitled";
 
         MenuItem menuItem = MenuItem.NewGame;
 
@@ -38,10 +38,6 @@ namespace Player
             _dialogManager = dialogManager;
             _graphics = graphics;
             _songManager = songManager;
-
-            _npcManager = new NPCManager(actorManager, _dialogManager, _graphics);
-            _npcManager.NPC = dataStore.Load<List<NPC>>($"map/{mapName}.NPC");
-            _eventService = new EventService();
 
             Party = new Party
             {
@@ -59,6 +55,10 @@ namespace Player
             battle = new Battle(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, EnemyParty, Party, dialogManager);
             map = new MapEngine(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/map/", mapName);
             player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager, map.Start);
+
+            _npcManager = new NPCManager(actorManager, _dialogManager, _graphics);
+            _npcManager.NPC = map.MapMeta.Layers[0].NPCs;
+            _eventService = new EventService();
 
             //songManager.Play("01 - Namazu");
             songManager.Play("Sadness Everlasting");

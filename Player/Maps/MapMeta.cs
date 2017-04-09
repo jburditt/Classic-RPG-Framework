@@ -29,5 +29,39 @@ namespace Player.Maps
                 for (var y = 0; y < layer.LayerHeight; y++)
                     Tiles[x, y] = new TileMeta();
         }
+
+        public IEnumerable<TileMeta> TileEnumerator
+        {
+            get
+            {
+                for (var x = 0; x < Tiles.Columns(); x++)
+                    for (var y = 0; y < Tiles.Rows(); y++)
+                        if (Tiles[x, y] != null)
+                            yield return Tiles[x, y];
+            }
+        }
+
+        public IEnumerable<NPC> NPCEnumerator
+        {
+            get
+            {
+                foreach (var tile in TileEnumerator)
+                    if (tile.NPC != null)
+                        yield return tile.NPC;
+            }
+        }
+
+        public IList<NPC> NPCs
+        {
+            get
+            {
+                var list = new List<NPC>();
+
+                foreach (var npc in NPCEnumerator)
+                    list.Add(npc);
+
+                return list;
+            }
+        }
     }
 }

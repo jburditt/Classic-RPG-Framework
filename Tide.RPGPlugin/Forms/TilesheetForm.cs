@@ -39,7 +39,7 @@ namespace RPGPlugin
                 return;
 
             m_dataStore = new BinaryDataStore();
-            m_tileSheetMeta = m_dataStore.Load<TileSheetMeta>($"{m_map.Id}.TileSheetMeta");
+            m_tileSheetMeta = m_dataStore.Load<TileSheetMeta>($"..\\..\\..\\Data\\map\\{m_map.Id}.TileSheetMeta");
 
             m_tileWidth = m_map.TileSheets[0].TileWidth;
             m_tileHeight = m_map.TileSheets[0].TileHeight;
@@ -121,8 +121,8 @@ namespace RPGPlugin
         {
             m_tileSheetMeta = new TileSheetMeta();
             m_tileSheetMeta.Tiles = new TileSheetTile[m_map.TileSheets[0].SheetWidth, m_map.TileSheets[0].SheetHeight];
-            for (var x = 0; x < m_tileSheetMeta.Tiles.GetLength(0); x++)
-                for (var y = 0; y < m_tileSheetMeta.Tiles.GetLength(1); y++)
+            for (var x = 0; x < m_tileSheetMeta.Tiles.Columns(); x++)
+                for (var y = 0; y < m_tileSheetMeta.Tiles.Rows(); y++)
                     m_tileSheetMeta.Tiles[x, y] = new TileSheetTile();
         }
 
@@ -138,7 +138,7 @@ namespace RPGPlugin
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            m_dataStore.Save(m_tileSheetMeta, $"{m_map.Id}.TileSheetMeta");
+            m_dataStore.Save(m_tileSheetMeta, $"..\\..\\..\\Data\\map\\{m_map.Id}.TileSheetMeta");
             //_dataStore.Save(_map.Tiles, $"map\\{mapName}.Tiles");
             //_dataStore.Save(_map.NPC, $"map\\{mapName}.NPC");
 

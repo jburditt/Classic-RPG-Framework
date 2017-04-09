@@ -23,12 +23,12 @@ namespace DataStore
 
             public T Load<T>(string name)
             {
-                return (T)Serializer.BinaryDeserialize($"{name}.dat");
+                return (T)Serializer.BinaryDeserialize($"{FilePath}{name}.dat");
             }
 
             public void Save<T>(T obj, string name)
             {
-                Serializer.BinarySerialize(obj, $"{name}.dat");
+                Serializer.BinarySerialize(obj, $"{FilePath}{name}.dat");
             }
         }
     }

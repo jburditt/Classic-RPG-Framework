@@ -10,7 +10,7 @@ namespace Player.Manager
         private readonly IDialogManager _dialogManager;
         private readonly IGraphics _graphics;
 
-        public List<NPC> NPC { get; set; }
+        public IList<NPC> NPC { get; set; }
 
         public NPCManager(IActorManager actorManager, IDialogManager dialogManager, IGraphics graphics)
         {
