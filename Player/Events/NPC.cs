@@ -1,7 +1,9 @@
 ﻿using Common;
+using System;
 
 namespace Player
 {
+    [Serializable]
     public class NPC
     {
         public WalkAnimation Animation = new WalkAnimation();
@@ -50,8 +52,8 @@ namespace Player
         {
             _step = 0;
 
-            int x = Random.Next(-100, 100);
-            int y = Random.Next(-100, 100);
+            int x = Common.Random.Next(-100, 100);
+            int y = Common.Random.Next(-100, 100);
 
             if (x > y)
             {

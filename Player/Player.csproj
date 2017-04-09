@@ -79,12 +79,12 @@
     <Compile Include="Maps\TideReader.cs" />
     <Compile Include="Maps\TileMeta.cs" />
     <Compile Include="Maps\TileSheetMeta.cs" />
-    <Compile Include="NPC.cs" />
+    <Compile Include="Events\NPC.cs" />
     <Compile Include="Party.cs" />
     <Compile Include="Physics\Vector.cs" />
     <Compile Include="GamePlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rect.cs" />
+    <Compile Include="Physics\Rect.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="TestData.cs" />
   </ItemGroup>

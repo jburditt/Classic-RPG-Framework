@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using xTile;
 using xTile.Dimensions;
 using xTile.Layers;
 
 namespace Player.Maps
 {
+    [Serializable]
     public class MapMeta
     {
         public IList<LayerMeta> Layers { get; set; } = new List<LayerMeta>();
@@ -16,6 +18,7 @@ namespace Player.Maps
         }
     }
 
+    [Serializable]
     public class LayerMeta
     {
         public Size TileSize { get; set; }

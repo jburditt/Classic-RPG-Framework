@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Player.Events
 {
+    [Serializable]
     public class Script
     {
         public static void Execute(EventPage eventPage, GamePlayer player, MapEngine map)
@@ -26,6 +28,7 @@ namespace Player.Events
         }
     }
 
+    [Serializable]
     public class ScriptActionCollection : IEnumerable<ScriptAction>
     {
         public List<ScriptAction> ScriptActions { get; set; }
@@ -46,6 +49,7 @@ namespace Player.Events
         }
     }
 
+    [Serializable]
     public class ScriptAction
     {
         public ScriptActionType ScriptActionType { get; set; }

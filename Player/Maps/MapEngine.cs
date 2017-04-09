@@ -44,6 +44,7 @@ namespace Player
         public void Load(string mapName)
         {
             TileSheetMeta = _dataStore.Load<TileSheetMeta>($"{mapName}.TileSheetMeta");
+            MapMeta = _dataStore.Load<MapMeta>($"{mapName}.MapMeta");
 
             //map.Tiles[x + 1][y - 1][0].EventCollection = _eventService.Find(eventId);
 

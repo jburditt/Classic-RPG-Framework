@@ -76,10 +76,10 @@
     <Compile Include="Forms\TileSheetForm.Designer.cs">
       <DependentUpon>TileSheetForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NPCDialog.cs">
+    <Compile Include="Forms\NPCDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NPCDialog.Designer.cs">
+    <Compile Include="Forms\NPCDialog.Designer.cs">
       <DependentUpon>NPCDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Plugin.cs" />
@@ -120,7 +120,7 @@
     <EmbeddedResource Include="Forms\TileSheetForm.resx">
       <DependentUpon>TileSheetForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NPCDialog.resx">
+    <EmbeddedResource Include="Forms\NPCDialog.resx">
       <DependentUpon>NPCDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

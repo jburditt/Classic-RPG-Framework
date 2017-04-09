@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Player.Events
 {
+    [Serializable]
     public class EventCollection : IEnumerable<Event>
     {
         public int Id { get; set; }
@@ -49,11 +50,13 @@ namespace Player.Events
         }
     }
 
+    [Serializable]
     public class Event
     {
         public List<EventPage> EventPages { get; set; }
     }
 
+    [Serializable]
     public class EventPage
     {
         public SerializableDictionary<string, int> Switch { get; set; } = new SerializableDictionary<string, int>();

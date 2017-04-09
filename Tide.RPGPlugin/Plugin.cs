@@ -1,5 +1,6 @@
 ﻿using DataStore;
 using DataStore.DataStore;
+using Player;
 using Player.Maps;
 using System;
 using System.Drawing;
@@ -18,7 +19,7 @@ namespace RPGPlugin
         private MapMeta m_mapMeta;
         private Layer m_layer;
 
-        private IDataStore m_dataStore = new BinaryDataStore();
+        private IDataStore m_dataStore = new BinaryDataStore("..\\..\\..\\Data\\map\\");
 
         private IMenuItem m_myDropDownMenu;
         private IMenuItem m_myMenuItem;
@@ -150,10 +151,9 @@ namespace RPGPlugin
                     {
                         form.Selected.Pos = new Vector(tileLocation.X * m_layer.TileWidth, tileLocation.Y * m_layer.TileHeight);
 
-                        // TODO Check if NPC exists before adding
                         m_mapMeta.Layers[0].Tiles[tileLocation.X, tileLocation.Y].NPC = form.Selected;
 
-                        // TODO load image
+                        m_dataStore.Save(m_mapMeta, $"{m_map.Id}.MapMeta");
                     }
                 }
             }

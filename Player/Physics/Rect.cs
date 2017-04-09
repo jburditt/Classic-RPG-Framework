@@ -2,6 +2,7 @@
 
 namespace Player
 {
+    [Serializable]
     public struct Rect
     {
         public int X { get; set; }

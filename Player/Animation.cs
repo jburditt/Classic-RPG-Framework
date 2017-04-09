@@ -1,5 +1,8 @@
-﻿namespace Player
+﻿using System;
+
+namespace Player
 {
+    [Serializable]
     public class Animation
     {
         public virtual int X { get; set; }
@@ -25,6 +28,7 @@
         }
     }
 
+    [Serializable]
     public class WalkAnimation : Animation
     {
         public int frame { get; set; }

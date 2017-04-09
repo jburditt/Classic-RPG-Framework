@@ -40,7 +40,8 @@ namespace Player.Maps
 
         private static void LoadTiles(Map TiledMap, MapEngine map)
         {
-            map.MapMeta = new MapMeta(TiledMap);
+            if (map.MapMeta == null)
+                map.MapMeta = new MapMeta(TiledMap);
 
             for (var z = 0; z < TiledMap.Layers.Count; z++)
             for (var x = 0; x < map.Rows; x++)
@@ -49,8 +50,6 @@ namespace Player.Maps
                 {
                     for (var layer = 0; layer < TiledMap.Layers.Count; layer++)
                     {
-                        //int tileIndex = x + y * map.Rows;
-
                         int gid = TiledMap.Layers[layer].Tiles[x, y].TileIndex;
                         if (gid == 0)
                             continue;
@@ -83,7 +82,8 @@ namespace Player.Maps
                         {
                             SpriteRect = new Rect(tileWidth * column, tileHeight * row, tileWidth, tileHeight),
                             Tileset = TiledMap.Layers[layer].Tiles[x, y].TileSheet.Id,
-                            IsBlocked = map.TileSheetMeta == null ? false : map.TileSheetMeta.Tiles[column, row].IsBlocked
+                            IsBlocked = map.TileSheetMeta == null ? false : map.TileSheetMeta.Tiles[column, row].IsBlocked,
+                            NPC = map.MapMeta.Layers[z].Tiles[x, y].NPC
                         };
                     }
                 }
