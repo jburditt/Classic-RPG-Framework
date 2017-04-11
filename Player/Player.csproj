@@ -47,7 +47,8 @@
   <ItemGroup>
     <Compile Include="Actor.cs" />
     <Compile Include="Animation.cs" />
-    <Compile Include="Battle\Battle.cs" />
+    <Compile Include="StateStack\BattleState.cs" />
+    <Compile Include="Core\ProjectSettings.cs" />
     <Compile Include="Graphics\Color.cs" />
     <Compile Include="Effect\DialogEffect.cs" />
     <Compile Include="Effect\HpEffect.cs" />
@@ -58,7 +59,7 @@
     <Compile Include="Events\EventService.cs" />
     <Compile Include="Events\Script.cs" />
     <Compile Include="Events\Trigger.cs" />
-    <Compile Include="GameEngine.cs" />
+    <Compile Include="StateStack\WorldState.cs" />
     <Compile Include="Graphics\Dialog.cs" />
     <Compile Include="Graphics\IDialogManager.cs" />
     <Compile Include="Graphics\IGraphics.cs" />
@@ -86,6 +87,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Physics\Rect.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="StateStack\IStack.cs" />
+    <Compile Include="StateStack\MenuState.cs" />
+    <Compile Include="StateStack\StateStack.cs" />
     <Compile Include="TestData.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +108,9 @@
       <Project>{7E023BC7-D39A-4D3B-A8A8-55CB5CAC1ABC}</Project>
       <Name>Tide.Tile</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Battle\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

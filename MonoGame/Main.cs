@@ -1,10 +1,11 @@
 ﻿using DataStore;
-using DataStore.DataStore;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Manager;
 using Player;
+using Player.StateStack;
+using System.Collections.Generic;
 
 namespace MonoGame
 {
@@ -35,7 +36,8 @@ namespace MonoGame
         InputManager inputManager;
 
         // Game
-        GameEngine gameEngine;
+        StateStack stateStack = new StateStack();
+        SerializableDictionary<State, IState> states = new SerializableDictionary<State, IState>();
 
         // DataStore
         private IDataStore _dataStore;
@@ -88,7 +90,17 @@ namespace MonoGame
 
             _dataStore = new BinaryDataStore("../../../../Data/map/");
 
-            gameEngine = new GameEngine(_dataStore, songManager, graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, tilesetManager, dialogManager);
+            var worldState = new WorldState(_dataStore, songManager, graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, tilesetManager, dialogManager);
+            states.Add(State.World, worldState);
+
+            var menuState = new MenuState(graphics, dialogManager, inputManager, songManager);
+            states.Add(State.StartMenu, menuState);
+
+            var battleState = new BattleState(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, dialogManager, worldState);
+            states.Add(State.Battle, battleState);
+
+            stateStack.Push(worldState);
+            stateStack.Push(menuState);
         }
 
         /// <summary>
@@ -108,7 +120,7 @@ namespace MonoGame
         protected override void Update(GameTime gameTime)
         {
             // Exit
-            if (gameEngine.GameState == GameState.Exit)
+            if (stateStack.Empty())
                 Exit();
 
             // Alt-Enter
@@ -120,7 +132,12 @@ namespace MonoGame
 
             var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            gameEngine.Update(deltaTime);
+            stateStack.Update(deltaTime);
+
+            if (inputManager.JustPressedKey((int)Keys.B))
+            {
+                stateStack.Push(states[State.Battle]);
+            }
 
             base.Update(gameTime);
         }
@@ -135,7 +152,7 @@ namespace MonoGame
 
             GraphicsDevice.Clear(Color.Black);
 
-            gameEngine.Draw();
+            stateStack.Draw();
 
             spriteBatch.End();
 

@@ -4,9 +4,9 @@ namespace DataStore
 {
     public class XmlDataStore : IDataStore
     {
-        private string FilePath { get; set; }
+        public string FilePath { get; set; }
 
-        public XmlDataStore(string filePath = "../../../Data/")
+        public XmlDataStore(string filePath)
         {
             FilePath = filePath;
         }

@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
 using xTile;
 using xTile.Dimensions;
 using xTile.Format;
 using xTile.Layers;
-using xTile.ObjectModel;
 using xTile.Tiles;
-
 using tIDE.AutoTiles;
 using tIDE.Commands;
 using tIDE.Controls;
@@ -23,11 +17,10 @@ using tIDE.Format;
 using tIDE.Help;
 using tIDE.Plugin;
 using tIDE.TileBrushes;
-using System.Globalization;
-using System.Threading;
 using tIDE.Localisation;
 using System.Diagnostics;
 using Common;
+using TilePC;
 
 namespace tIDE
 {
@@ -38,6 +31,8 @@ namespace tIDE
             Windowed,
             Fullscreen
         }
+
+        public AppSettings AppSettings = new AppSettings();     // persist settings form window state, position, project and map
 
         #region Private Variables
 
@@ -54,7 +49,6 @@ namespace tIDE
         private bool m_needsFilename;
         private bool m_needsSaving;
         private string m_filename;
-        private AppSettings m_settings = new AppSettings();
 
         private CommandHistoryDialog m_commandHistoryDialog;
 
@@ -126,21 +120,21 @@ namespace tIDE
 
             // add strips in reverse order (for some odd reason)
 
-            toolStripPanel.Join(m_menuStrip);
+            //toolStripPanel.Join(m_viewToolStrip, 1);
+            //toolStripPanel.Join(m_editToolStrip, 1);
+            //toolStripPanel.Join(m_fileToolStrip, 1);
 
-            toolStripPanel.Join(m_viewToolStrip, 1);
-            toolStripPanel.Join(m_editToolStrip, 1);
-            toolStripPanel.Join(m_fileToolStrip, 1);
-
-            // add in custom toolstrips in reverse order
+            //// add in custom toolstrips in reverse order
             customToolStrips.Reverse();
             foreach (ToolStrip toolStrip in customToolStrips)
                 toolStripPanel.Join(toolStrip, 2);
 
-            // add built-in strips in reverse order
-            toolStripPanel.Join(m_tileSheetToolStrip, 2);
-            toolStripPanel.Join(m_layerToolStrip, 2);
-            toolStripPanel.Join(m_mapToolStrip, 2);
+            //// add built-in strips in reverse order
+            //toolStripPanel.Join(m_tileSheetToolStrip, 2);
+            //toolStripPanel.Join(m_layerToolStrip, 2);
+            //toolStripPanel.Join(m_mapToolStrip, 2);
+
+            toolStripPanel.Join(m_menuStrip);
 
             toolStripPanel.ControlAdded += this.OnCustomToolStripAdded;
 
@@ -468,6 +462,9 @@ namespace tIDE
 
         private void OpenFile(string filename)
         {
+            if (!Directory.Exists(filename))
+                return;
+
             FormatManager formatManager = FormatManager.Instance;
 
             StartWaitCursor();
@@ -605,24 +602,24 @@ namespace tIDE
 
         private void LoadSettings()
         {
-            if (m_settings.MapId != null && m_settings.FilePath != null)
-                OpenFile($"{m_settings.FilePath}\\Data\\map\\{m_settings.MapId}.tide");
+            if (AppSettings.MapId != null && AppSettings.FilePath != null && AppSettings.ProjectId != null)
+                OpenFile($"{AppSettings.FilePath}\\Data\\{AppSettings.ProjectId}\\map\\{AppSettings.MapId}.tide");
 
-            this.WindowState = m_settings.WindowState;
-            if (m_settings.Location != null)
-                this.Location = m_settings.Location;
-            if (m_settings.Size != null)
-                this.Size = m_settings.Size;
+            this.WindowState = AppSettings.WindowState;
+            if (AppSettings.Location != null)
+                this.Location = AppSettings.Location;
+            if (AppSettings.Size != null)
+                this.Size = AppSettings.Size;
         }
 
         private void SaveSettings()
         {
-            m_settings.MapId = m_map.Id;
-            m_settings.FilePath = AppDomain.CurrentDomain.BaseDirectory.PathParent(4);
-            m_settings.WindowState = this.WindowState;
-            m_settings.Location = this.Location;
-            m_settings.Size = this.Size;
-            m_settings.Save();
+            AppSettings.MapId = m_map.Id;
+            AppSettings.FilePath = AppDomain.CurrentDomain.BaseDirectory.PathParent(4);
+            AppSettings.WindowState = this.WindowState;
+            AppSettings.Location = this.Location;
+            AppSettings.Size = this.Size;
+            AppSettings.Save();
         }
 
         private void ShowHelp(HelpMode helpMode)
@@ -793,14 +790,24 @@ namespace tIDE
             }
         }
 
+        private void OnProjectNew(object sender, EventArgs eventArgs)
+        {
+            var projectName = Prompt.ShowDialog("Project Name", "New Project");
+
+            if (!Directory.Exists($"{Settings.ProjectFilePath}{projectName}"))
+                Directory.CreateDirectory($"{Settings.ProjectFilePath}{projectName}");
+
+            AppSettings.ProjectId = projectName;
+        }
+
         private void OnFileNew(object sender, EventArgs eventArgs)
         {
             if (!HandleUnsavedChanges(sender, eventArgs))
                 return;
 
-            Map map = new Map("Untitled Map");
+            var map = new Map("Untitled Map");
 
-            MapPropertiesDialog mapPropertiesDialog = new MapPropertiesDialog(map, true);
+            var mapPropertiesDialog = new MapPropertiesDialog(map, true);
 
             if (mapPropertiesDialog.ShowDialog(this) == DialogResult.OK)
             {
@@ -1796,6 +1803,5 @@ namespace tIDE
         }
 
         #endregion
-
     }
 }

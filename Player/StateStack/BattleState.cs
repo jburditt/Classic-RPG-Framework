@@ -5,9 +5,9 @@ using Player.Manager;
 using Player.Effect;
 using Player.Inputs;
 
-namespace Player
+namespace Player.StateStack
 {
-    public class Battle
+    public class BattleState : IState
     {
         private Party Party { get; set; }
         private EnemyParty EnemyParty;
@@ -21,12 +21,14 @@ namespace Player
         private IIconManager _iconManager;
         private IInputManager _inputManager;
         private ISongManager _songManager;
-        private BattleState battleState = BattleState.Running;
+
+        private WorldState _worldState;
+        private BattleStateEnum battleState = BattleStateEnum.Running;
         private int timeIncrement = 1;
 
-        public Battle(
+        public BattleState(
             IGraphics graphics, IBattleManager battleManager, IActorManager actorManager, IEnemyManager enemyManager, 
-            IIconManager iconManager, IInputManager inputManager, ISongManager songManager, EnemyParty enemyParty, Party party, IDialogManager dialog)
+            IIconManager iconManager, IInputManager inputManager, ISongManager songManager, IDialogManager dialog, WorldState worldState)
         {
             _graphics = graphics;
             _battleManager = battleManager;
@@ -35,14 +37,15 @@ namespace Player
             _iconManager = iconManager;
             _inputManager = inputManager;
             _songManager = songManager;
-            EnemyParty = enemyParty;
-            Party = party;
             _dialog = dialog;
+            _worldState = worldState;
         }
 
-        public void Load()
+        public void OnLoad()
         {
             _songManager.Play("Battle of the Mind");
+
+            Party = _worldState.Party;
 
             for (var i = 0; i < Party.Actors.Count; i++)
             {
@@ -54,11 +57,18 @@ namespace Player
             EnemyParty.Init();
         }
 
-        public bool Update()
+        public void OnClose()
+        {
+            _songManager.Stop();
+
+            EnemyParty = null;
+        }
+
+        public bool Update(float elapsedTime)
         {          
             switch (battleState)
             {
-                case BattleState.Running:
+                case BattleStateEnum.Running:
 
                     foreach (var enemy in EnemyParty.Enemies)
                         if (enemy.TimeLapse(timeIncrement))
@@ -72,14 +82,14 @@ namespace Player
                     {
                         if (actor.TimeLapse(timeIncrement))
                         {
-                            battleState = BattleState.Idle;
+                            battleState = BattleStateEnum.Idle;
                             Party.ActivePlayer = actor;
                             break;
                         }
                     }
                     break;
 
-                case BattleState.Idle:
+                case BattleStateEnum.Idle:
 
                     if (_inputManager.JustPressedInput((int)Input.FaceButtonDown, (int)Input.Up))
                     {
@@ -89,15 +99,15 @@ namespace Player
 
                         Party.ActivePlayer = null;
 
-                        battleState = BattleState.Running;
+                        battleState = BattleStateEnum.Running;
 
                         if (EnemyParty.IsDead())
-                            return true;
+                            return false;
                     }
                     break;
             }
 
-            return false;
+            return true;
         }
 
         public void Draw()
@@ -105,7 +115,7 @@ namespace Player
             _battleManager.Draw("02doukutsu");
             _dialog.Draw(new Rect(200, 330, 440, 150));
 
-            if (battleState == BattleState.Idle)
+            if (battleState == BattleStateEnum.Idle)
             {
                 _iconManager.Draw("attack", new Vector(50, 350), ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Up) ? 1f : 0.7f));
                 _iconManager.Draw("magic", new Vector(20, 380), ColorStruct.White * (_inputManager.IsPressedKey((int)Keys.Left) ? 1f : 0.7f));

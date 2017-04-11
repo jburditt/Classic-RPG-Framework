@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BinaryDataStore.cs" />
     <Compile Include="IDataStore.cs" />
+    <Compile Include="IModified.cs" />
     <Compile Include="XmlDataStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

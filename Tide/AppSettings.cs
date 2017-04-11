@@ -7,6 +7,20 @@ namespace tIDE
     public class AppSettings : ApplicationSettingsBase
     {
         [UserScopedSetting()]
+        [DefaultSettingValue("Game")]
+        public string ProjectId
+        {
+            get
+            {
+                return ((string)this["ProjectId"]);
+            }
+            set
+            {
+                this["ProjectId"] = value;
+            }
+        }
+
+        [UserScopedSetting()]
         [DefaultSettingValue(null)]
         public string MapId
         {

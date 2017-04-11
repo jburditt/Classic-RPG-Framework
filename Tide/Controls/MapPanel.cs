@@ -22,6 +22,7 @@ namespace tIDE.Controls
     public partial class MapPanel : UserControl, IDisplayDevice
     {
         public event EventHandler<TileEventArgs> DrawTileEvent;
+        public string ProjectId { get { return ((MainForm)this.ParentForm).AppSettings.ProjectId; } }
 
         private readonly float[] m_zoomFactors = new float[] { 0.01f, 0.05f, 0.1f, 0.25f, 0.5f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f};
 
@@ -1094,22 +1095,26 @@ namespace tIDE.Controls
                 }
             }
 
-            var tileLocation = GetTileLocation(location);
-            location -= m_viewport.Location;
-            int offSetX = m_viewport.Location.X % tileSize.Width;
-            if (offSetX > 0)
-                offSetX -= tileSize.Width;
-            location.X += offSetX;
-            int offSetY = m_viewport.Location.Y % tileSize.Height;
-            if (offSetY > 0)
-                offSetY -= tileSize.Height;
-            location.Y += offSetY;
-            DrawTileEvent(this, new TileEventArgs(m_graphics, location, tileLocation));
+            if (SelectedLayer != null)
+            {   // get tile location relative to map
+                var tileLocation = GetTileLocation(location);
+                location -= m_viewport.Location;
+                int offSetX = m_viewport.Location.X % tileSize.Width;
+                if (offSetX > 0)
+                    offSetX -= tileSize.Width;
+                location.X += offSetX;
+                int offSetY = m_viewport.Location.Y % tileSize.Height;
+                if (offSetY > 0)
+                    offSetY -= tileSize.Height;
+                location.Y += offSetY;
+                DrawTileEvent(this, new TileEventArgs(m_graphics, location, tileLocation));
+            }
         }
 
         private Location GetTileLocation(Location mapLocation)
         {
             var layer = this.SelectedLayer;
+
             var layerDisplayLocation = layer.ConvertMapToLayerLocation(
                 new Location(mapLocation.X, mapLocation.Y), this.MapViewport.Size);
 

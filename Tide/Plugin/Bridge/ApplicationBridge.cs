@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 using tIDE.Commands;
 using tIDE.Controls;
 using tIDE.Plugin.Interface;
@@ -22,7 +18,7 @@ namespace tIDE.Plugin.Bridge
 
         private void PopulateToolBars(ToolStripPanel toolStripPanel)
         {
-            foreach (System.Windows.Forms.Control control in toolStripPanel.Controls)
+            foreach (var control in toolStripPanel.Controls)
             {
                 if (!(control is ToolStrip))
                     continue;
@@ -30,9 +26,7 @@ namespace tIDE.Plugin.Bridge
             }
         }
 
-        public ApplicationBridge(MenuStrip menuStrip,
-            ToolStripContainer toolStripContainer, MapPanel mapPanel)
-            : base(false)
+        public ApplicationBridge(MenuStrip menuStrip, ToolStripContainer toolStripContainer, MapPanel mapPanel) : base(false)
         {
             m_commandHistory = CommandHistory.Instance;
 
@@ -88,8 +82,7 @@ namespace tIDE.Plugin.Bridge
             ToolBarBridge toolBarBridge = (ToolBarBridge)toolBar;
 
             if (!m_toolBars.Contains(toolBarBridge))
-                throw new Exception(
-                    "Cannot remove a toolbar that is not in the tool strip container");
+                throw new Exception("Cannot remove a toolbar that is not in the tool strip container");
 
             if (toolBar.ReadOnly)
                 throw new Exception("Cannot remove a built-in toolbar");
@@ -98,6 +91,12 @@ namespace tIDE.Plugin.Bridge
             toolStrip.Parent.Controls.Remove(toolStrip);
 
             m_toolBars.Remove(toolBarBridge);
+        }
+
+        public void Clear()
+        {
+            ToolStripPanel toolStripPanel = m_toolStripContainer.TopToolStripPanel;
+            toolStripPanel.Controls.Clear();
         }
 
         public IToolBar this[string id]

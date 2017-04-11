@@ -15,15 +15,15 @@ namespace Common
             }
         }
 
-        public static object BinaryDeserialize(string filePath)
+        public static T BinaryDeserialize<T>(string filePath)
         {
             if (!File.Exists(filePath))
-                return null;
+                return default(T);
 
             using (var stream = File.Open(filePath, FileMode.Open))
             {
                 var bformatter = new BinaryFormatter();
-                return bformatter.Deserialize(stream);
+                return (T)bformatter.Deserialize(stream);
             }
         }
 

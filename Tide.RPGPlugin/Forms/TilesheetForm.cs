@@ -1,5 +1,4 @@
 ﻿using DataStore;
-using DataStore.DataStore;
 using Player;
 using Player.Maps;
 using System;
@@ -12,7 +11,7 @@ namespace RPGPlugin
 {
     public partial class TileSheetForm : Form
     {
-        private readonly IDataStore m_dataStore = new BinaryDataStore("../../../Data/map/");
+        private readonly IDataStore m_dataStore;
 
         private TileSheetMeta m_tileSheetMeta;
         private Map m_map;
@@ -23,10 +22,11 @@ namespace RPGPlugin
         private int m_tileWidth, m_tileHeight;
         private Bitmap m_x = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
 
-        public TileSheetForm(Map map)
+        public TileSheetForm(IDataStore dataStore, Map map)
         {
             InitializeComponent();
 
+            m_dataStore = dataStore;
             m_map = map;
 
             foreach (var tileSheet in m_map.TileSheets)

@@ -70,6 +70,12 @@
     <Compile Include="Forms\ImagePickerForm.Designer.cs">
       <DependentUpon>ImagePickerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProjectSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProjectSettingsForm.Designer.cs">
+      <DependentUpon>ProjectSettingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TileSheetForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,7 +88,7 @@
     <Compile Include="Forms\NPCDialog.Designer.cs">
       <DependentUpon>NPCDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugin.cs" />
+    <Compile Include="RPGPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -116,6 +122,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\ImagePickerForm.resx">
       <DependentUpon>ImagePickerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProjectSettingsForm.resx">
+      <DependentUpon>ProjectSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TileSheetForm.resx">
       <DependentUpon>TileSheetForm.cs</DependentUpon>

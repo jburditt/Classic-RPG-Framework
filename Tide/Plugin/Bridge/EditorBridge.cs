@@ -82,6 +82,7 @@ namespace tIDE.Plugin.Bridge
 
         public Map Map { get { return m_mapPanel.Map; } }
         public Layer Layer { get { return m_mapPanel.SelectedLayer; } }
+        public string ProjectId { get { return m_mapPanel.ProjectId; } }
 
         public MouseEditorHandler MouseDown
         {

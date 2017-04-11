@@ -9,6 +9,7 @@ namespace tIDE.Plugin.Interface
     {
         Map Map { get; }
         Layer Layer { get; }
+        string ProjectId { get; }
 
         MouseEditorHandler MouseDown { set; }
         MouseEditorHandler MouseMove { set; }

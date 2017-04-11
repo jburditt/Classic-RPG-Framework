@@ -137,11 +137,17 @@
   <data name="m_splitContainerLeftRight.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="m_splitContainerLeftRight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="m_splitContainerVertical.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="m_splitContainerVertical.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
+  </data>
+  <data name="m_splitContainerVertical.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="m_splitContainerVertical.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
@@ -152,8 +158,11 @@
   <data name="m_mapTreeView.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="m_mapTreeView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
   <data name="m_mapTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 153</value>
+    <value>201, 292</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_mapTreeView.TabIndex" type="System.Int32, mscorlib">
@@ -189,6 +198,9 @@
   <data name="m_tilePicker.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="m_tilePicker.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
   <data name="m_tilePicker.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 231</value>
   </data>
@@ -220,10 +232,13 @@
     <value>1</value>
   </data>
   <data name="m_splitContainerVertical.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 388</value>
+    <value>201, 528</value>
   </data>
   <data name="m_splitContainerVertical.SplitterDistance" type="System.Int32, mscorlib">
-    <value>153</value>
+    <value>292</value>
+  </data>
+  <data name="m_splitContainerVertical.SplitterWidth" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="m_splitContainerVertical.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -259,25 +274,25 @@
     <value>None</value>
   </data>
   <data name="m_tileLocationStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 17</value>
+    <value>31, 20</value>
   </data>
   <data name="m_tileLocationStatusLabel.Text" xml:space="preserve">
     <value>Pos</value>
   </data>
   <data name="m_tileSheetStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 17</value>
+    <value>30, 20</value>
   </data>
   <data name="m_tileSheetStatusLabel.Text" xml:space="preserve">
     <value>Tsh</value>
   </data>
   <data name="m_tileIndexStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 17</value>
+    <value>29, 20</value>
   </data>
   <data name="m_tileIndexStatusLabel.Text" xml:space="preserve">
     <value>Idx</value>
   </data>
   <data name="m_tilePropertiesStatusLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 17</value>
+    <value>20, 20</value>
   </data>
   <data name="m_tilePropertiesStatusLabel.ToolTipText" xml:space="preserve">
     <value>This tile has custom properties</value>
@@ -289,7 +304,7 @@
     <value>0, 0</value>
   </data>
   <data name="m_statusStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 22</value>
+    <value>839, 25</value>
   </data>
   <data name="m_statusStrip.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -327,8 +342,11 @@
   <data name="m_mapPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="m_mapPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 5, 5, 5</value>
+  </data>
   <data name="m_mapPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>546, 366</value>
+    <value>799, 503</value>
   </data>
   <data name="m_mapPanel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -345,8 +363,11 @@
   <data name="&gt;&gt;m_mapPanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_toolStripContainerInner.ContentPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="m_toolStripContainerInner.ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>546, 366</value>
+    <value>799, 503</value>
   </data>
   <data name="&gt;&gt;m_toolStripContainerInner.ContentPanel.Name" xml:space="preserve">
     <value>m_toolStripContainerInner.ContentPanel</value>
@@ -378,6 +399,9 @@
   <data name="m_toolStripContainerInner.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="m_toolStripContainerInner.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <metadata name="m_toolsToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>0, 3</value>
   </metadata>
@@ -388,7 +412,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_toolsSelectButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+    <value>38, 24</value>
   </data>
   <data name="m_toolsSelectButton.Text" xml:space="preserve">
     <value>toolStripButton1</value>
@@ -400,7 +424,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_toolsSingleTileButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+    <value>38, 24</value>
   </data>
   <data name="m_toolsSingleTileButton.Text" xml:space="preserve">
     <value>toolStripButton1</value>
@@ -412,7 +436,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_toolsTileBlockButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+    <value>38, 24</value>
   </data>
   <data name="m_toolsTileBlockButton.Text" xml:space="preserve">
     <value>toolStripButton2</value>
@@ -424,7 +448,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_toolsFloodFillButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+    <value>38, 24</value>
   </data>
   <data name="m_toolsFloodFillButton.Text" xml:space="preserve">
     <value>toolStripButton1</value>
@@ -436,7 +460,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_toolsEraserButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+    <value>38, 24</value>
   </data>
   <data name="m_toolsEraserButton.Text" xml:space="preserve">
     <value>toolStripButton3</value>
@@ -448,7 +472,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_toolsDropperButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+    <value>38, 24</value>
   </data>
   <data name="m_toolsDropperButton.Text" xml:space="preserve">
     <value>toolStripButton4</value>
@@ -460,7 +484,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_toolsTextureButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+    <value>38, 24</value>
   </data>
   <data name="m_toolsTextureButton.Text" xml:space="preserve">
     <value>toolStripButton1</value>
@@ -472,7 +496,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_toolsTileBrushButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 20</value>
+    <value>38, 24</value>
   </data>
   <data name="m_toolsTileBrushButton.Text" xml:space="preserve">
     <value>toolStripSplitButton1</value>
@@ -484,7 +508,7 @@
     <value>0, 3</value>
   </data>
   <data name="m_toolsToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 214</value>
+    <value>40, 227</value>
   </data>
   <data name="m_toolsToolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -514,7 +538,7 @@
     <value>2</value>
   </data>
   <data name="m_toolStripContainerInner.Size" type="System.Drawing.Size, System.Drawing">
-    <value>579, 388</value>
+    <value>839, 528</value>
   </data>
   <data name="m_toolStripContainerInner.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -559,10 +583,13 @@
     <value>1</value>
   </data>
   <data name="m_splitContainerLeftRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 388</value>
+    <value>1045, 528</value>
   </data>
   <data name="m_splitContainerLeftRight.SplitterDistance" type="System.Int32, mscorlib">
     <value>201</value>
+  </data>
+  <data name="m_splitContainerLeftRight.SplitterWidth" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="m_splitContainerLeftRight.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -579,8 +606,11 @@
   <data name="&gt;&gt;m_splitContainerLeftRight.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="m_toolStripContainer.ContentPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="m_toolStripContainer.ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 388</value>
+    <value>1045, 528</value>
   </data>
   <data name="&gt;&gt;m_toolStripContainer.ContentPanel.Name" xml:space="preserve">
     <value>m_toolStripContainer.ContentPanel</value>
@@ -612,6 +642,9 @@
   <data name="m_toolStripContainer.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="m_toolStripContainer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="&gt;&gt;m_toolStripContainer.RightToolStripPanel.Name" xml:space="preserve">
     <value>m_toolStripContainer.RightToolStripPanel</value>
   </data>
@@ -625,7 +658,7 @@
     <value>2</value>
   </data>
   <data name="m_toolStripContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 562</value>
+    <value>1045, 692</value>
   </data>
   <data name="m_toolStripContainer.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -646,7 +679,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editUndoButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editUndoButton.Text" xml:space="preserve">
     <value>Undo</value>
@@ -658,7 +691,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editRedoButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editRedoButton.Text" xml:space="preserve">
     <value>Redo</value>
@@ -670,7 +703,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editHistoryButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editHistoryButton.Text" xml:space="preserve">
     <value>Command History</value>
@@ -679,7 +712,7 @@
     <value>Access the command undo / redo history</value>
   </data>
   <data name="m_editToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_editCutButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -688,7 +721,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editCutButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editCutButton.Text" xml:space="preserve">
     <value>Cut</value>
@@ -703,7 +736,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editCopyButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editCopyButton.Text" xml:space="preserve">
     <value>Copy</value>
@@ -718,7 +751,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editPasteButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editPasteButton.Text" xml:space="preserve">
     <value>Paste</value>
@@ -730,7 +763,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editDeleteButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editDeleteButton.Text" xml:space="preserve">
     <value>Delete</value>
@@ -739,13 +772,13 @@
     <value>Delete selected area</value>
   </data>
   <data name="m_editToolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_editSelectAllButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="m_editSelectAllButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editSelectAllButton.Text" xml:space="preserve">
     <value>Select All</value>
@@ -757,7 +790,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editClearSelectionButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editClearSelectionButton.Text" xml:space="preserve">
     <value>Clear Selection</value>
@@ -769,7 +802,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editInvertSelectionButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editInvertSelectionButton.Text" xml:space="preserve">
     <value>Invert Selection</value>
@@ -778,7 +811,7 @@
     <value>Invert selection</value>
   </data>
   <data name="m_editToolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_editMakeTileBrushButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -787,7 +820,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editMakeTileBrushButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editMakeTileBrushButton.Text" xml:space="preserve">
     <value>Make Tile Brush</value>
@@ -802,7 +835,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_editManageTileBrushesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_editManageTileBrushesButton.Text" xml:space="preserve">
     <value>Manage Tile Brushes</value>
@@ -811,10 +844,10 @@
     <value>Manage tile brushes</value>
   </data>
   <data name="m_editToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+    <value>195, 0</value>
   </data>
   <data name="m_editToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>306, 25</value>
+    <value>318, 27</value>
   </data>
   <data name="m_editToolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -841,7 +874,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_tileSheetNewButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_tileSheetNewButton.Text" xml:space="preserve">
     <value>New Tile Sheet</value>
@@ -853,7 +886,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_tileSheetPropertiesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_tileSheetPropertiesButton.Text" xml:space="preserve">
     <value>Tile Sheet Properties</value>
@@ -865,7 +898,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_tileSheetAutoTilesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_tileSheetAutoTilesButton.Text" xml:space="preserve">
     <value>Auto Tiles</value>
@@ -874,13 +907,13 @@
     <value>Manage tile sheet auto tiles</value>
   </data>
   <data name="m_tileSheetToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_tileSheetAutoUpdateEnableButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="m_tileSheetAutoUpdateEnableButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_tileSheetAutoUpdateEnableButton.Text" xml:space="preserve">
     <value>Enable Auto Update</value>
@@ -892,7 +925,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_tileSheetAutoUpdateDisableButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_tileSheetAutoUpdateDisableButton.Text" xml:space="preserve">
     <value>Disable Auto Update</value>
@@ -910,7 +943,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_tileSheetEditImageSourceButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_tileSheetEditImageSourceButton.Text" xml:space="preserve">
     <value>Edit Image Source</value>
@@ -919,7 +952,7 @@
     <value>Open the tile sheet's image source in a paint application</value>
   </data>
   <data name="m_tileSheetToolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_tileSheetRemoveDependenciesButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -928,7 +961,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_tileSheetRemoveDependenciesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_tileSheetRemoveDependenciesButton.Text" xml:space="preserve">
     <value>toolStripButton1</value>
@@ -943,16 +976,16 @@
     <value>Magenta</value>
   </data>
   <data name="m_tileSheetDeleteButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_tileSheetDeleteButton.Text" xml:space="preserve">
     <value>Delete Tile Sheet</value>
   </data>
   <data name="m_tileSheetToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 25</value>
+    <value>3, 0</value>
   </data>
   <data name="m_tileSheetToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 25</value>
+    <value>192, 27</value>
   </data>
   <data name="m_tileSheetToolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -976,7 +1009,7 @@
     <value>None</value>
   </data>
   <data name="m_viewZoomLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 22</value>
+    <value>20, 25</value>
   </data>
   <data name="m_viewZoomLabel.ToolTipText" xml:space="preserve">
     <value>Zooming factor</value>
@@ -1012,13 +1045,13 @@
     <value>500%</value>
   </data>
   <data name="m_viewZoomComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 25</value>
+    <value>75, 28</value>
   </data>
   <data name="m_viewZoomInButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="m_viewZoomInButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 25</value>
   </data>
   <data name="m_viewZoomInButton.Text" xml:space="preserve">
     <value>Zoom In</value>
@@ -1030,19 +1063,19 @@
     <value>Magenta</value>
   </data>
   <data name="m_viewZoomOutButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 25</value>
   </data>
   <data name="m_viewZoomOutButton.Text" xml:space="preserve">
     <value>Zoom Out</value>
   </data>
   <data name="m_viewSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 28</value>
   </data>
   <data name="m_viewFullScreenButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="m_viewFullScreenButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 25</value>
   </data>
   <data name="m_viewFullScreenButton.Text" xml:space="preserve">
     <value>Full Screen</value>
@@ -1054,7 +1087,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_viewWindowedButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 25</value>
   </data>
   <data name="m_viewWindowedButton.Text" xml:space="preserve">
     <value>Windowed</value>
@@ -1066,13 +1099,13 @@
     <value>False</value>
   </data>
   <data name="m_viewSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 28</value>
   </data>
   <data name="m_viewLayersShowAllButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="m_viewLayersShowAllButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 25</value>
   </data>
   <data name="m_viewLayersShowAllButton.Text" xml:space="preserve">
     <value>Layer Mode</value>
@@ -1084,7 +1117,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_viewLayersHighlightSelectedButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 25</value>
   </data>
   <data name="m_viewLayersHighlightSelectedButton.Text" xml:space="preserve">
     <value>Highlight Selected Layer Only</value>
@@ -1099,7 +1132,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_viewShowTileGuidesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 25</value>
   </data>
   <data name="m_viewShowTileGuidesButton.Text" xml:space="preserve">
     <value>Show Tile Guides</value>
@@ -1111,7 +1144,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_viewHideTileGuidesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 25</value>
   </data>
   <data name="m_viewHideTileGuidesButton.Text" xml:space="preserve">
     <value>Hide Tile Guides</value>
@@ -1123,10 +1156,10 @@
     <value>False</value>
   </data>
   <data name="m_viewToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 50</value>
+    <value>3, 27</value>
   </data>
   <data name="m_viewToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>232, 25</value>
+    <value>241, 28</value>
   </data>
   <data name="m_viewToolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1153,7 +1186,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_mapPropertiesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_mapPropertiesButton.Text" xml:space="preserve">
     <value>Map properties</value>
@@ -1162,16 +1195,16 @@
     <value>Magenta</value>
   </data>
   <data name="m_mapStatisticsButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_mapStatisticsButton.Text" xml:space="preserve">
     <value>Map statistics</value>
   </data>
   <data name="m_mapToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 75</value>
+    <value>90, 55</value>
   </data>
   <data name="m_mapToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 25</value>
+    <value>60, 27</value>
   </data>
   <data name="m_mapToolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1198,7 +1231,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_fileNewButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_fileNewButton.Text" xml:space="preserve">
     <value>New Map</value>
@@ -1210,7 +1243,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_fileOpenButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_fileOpenButton.Text" xml:space="preserve">
     <value>Open Map</value>
@@ -1219,7 +1252,7 @@
     <value>Open map</value>
   </data>
   <data name="m_fileToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_fileSaveButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1228,7 +1261,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_fileSaveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_fileSaveButton.Text" xml:space="preserve">
     <value>Save Map</value>
@@ -1240,7 +1273,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_fileSaveAsButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_fileSaveAsButton.Text" xml:space="preserve">
     <value>Save Map As</value>
@@ -1249,13 +1282,13 @@
     <value>Save map as...</value>
   </data>
   <data name="m_fileToolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_filePageSetupButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
   <data name="m_filePageSetupButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_filePageSetupButton.Text" xml:space="preserve">
     <value>Page Setup</value>
@@ -1267,7 +1300,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_filePrintPreviewButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_filePrintPreviewButton.Text" xml:space="preserve">
     <value>Print Preview</value>
@@ -1279,7 +1312,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_filePrintButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_filePrintButton.Text" xml:space="preserve">
     <value>Print</value>
@@ -1288,7 +1321,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_fileOptionsButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_fileOptionsButton.Text" xml:space="preserve">
     <value>Options</value>
@@ -1297,10 +1330,10 @@
     <value>Access general options</value>
   </data>
   <data name="m_fileToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 100</value>
+    <value>3, 82</value>
   </data>
   <data name="m_fileToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 25</value>
+    <value>216, 27</value>
   </data>
   <data name="m_fileToolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1326,6 +1359,18 @@
   <data name="m_menuStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
   </data>
+  <data name="m_newProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 26</value>
+  </data>
+  <data name="m_newProjectMenuItem.Text" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="m_newMapMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 26</value>
+  </data>
+  <data name="m_newMapMenuItem.Text" xml:space="preserve">
+    <value>Map</value>
+  </data>
   <data name="m_fileNewMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -1333,7 +1378,7 @@
     <value>Ctrl+N</value>
   </data>
   <data name="m_fileNewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_fileNewMenuItem.Text" xml:space="preserve">
     <value>&amp;New...</value>
@@ -1345,7 +1390,7 @@
     <value>Ctrl+O</value>
   </data>
   <data name="m_fileOpenMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_fileOpenMenuItem.Text" xml:space="preserve">
     <value>&amp;Open...</value>
@@ -1354,7 +1399,7 @@
     <value>False</value>
   </metadata>
   <data name="m_fileSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>179, 6</value>
   </data>
   <data name="m_fileSaveMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1366,13 +1411,13 @@
     <value>Ctrl+S</value>
   </data>
   <data name="m_fileSaveMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_fileSaveMenuItem.Text" xml:space="preserve">
     <value>&amp;Save</value>
   </data>
   <data name="m_fileSaveAsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_fileSaveAsMenuItem.Text" xml:space="preserve">
     <value>Save &amp;As...</value>
@@ -1381,16 +1426,16 @@
     <value>False</value>
   </metadata>
   <data name="m_fileSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>179, 6</value>
   </data>
   <data name="m_filePageSetupMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_filePageSetupMenuItem.Text" xml:space="preserve">
     <value>Page Setup...</value>
   </data>
   <data name="m_filePrintPreviewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_filePrintPreviewMenuItem.Text" xml:space="preserve">
     <value>Print Preview...</value>
@@ -1399,16 +1444,16 @@
     <value>Ctrl+P</value>
   </data>
   <data name="m_filePrintMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_filePrintMenuItem.Text" xml:space="preserve">
     <value>Print...</value>
   </data>
   <data name="m_fileSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>179, 6</value>
   </data>
   <data name="m_fileOptionsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_fileOptionsMenuItem.Text" xml:space="preserve">
     <value>Options...</value>
@@ -1417,13 +1462,13 @@
     <value>False</value>
   </metadata>
   <data name="m_fileSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>179, 6</value>
   </data>
   <data name="m_fileRecentFilesMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="m_fileRecentFilesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_fileRecentFilesMenuItem.Text" xml:space="preserve">
     <value>Recent Files</value>
@@ -1432,16 +1477,16 @@
     <value>False</value>
   </metadata>
   <data name="m_fileSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>179, 6</value>
   </data>
   <data name="m_fileExitMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>182, 26</value>
   </data>
   <data name="m_fileExitMenuItem.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
   <data name="m_fileMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
+    <value>64, 24</value>
   </data>
   <data name="m_fileMenuItem.Text" xml:space="preserve">
     <value>&amp;File</value>
@@ -1453,7 +1498,7 @@
     <value>Ctrl+Z</value>
   </data>
   <data name="m_editUndoMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editUndoMenuItem.Text" xml:space="preserve">
     <value>&amp;Undo</value>
@@ -1465,7 +1510,7 @@
     <value>Ctrl+Y</value>
   </data>
   <data name="m_editRedoMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editRedoMenuItem.Text" xml:space="preserve">
     <value>&amp;Redo</value>
@@ -1474,13 +1519,13 @@
     <value>False</value>
   </data>
   <data name="m_editHistoryMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editHistoryMenuItem.Text" xml:space="preserve">
     <value>Command History</value>
   </data>
   <data name="m_editMenuSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>229, 6</value>
   </data>
   <data name="m_editCutMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1492,7 +1537,7 @@
     <value>Ctrl+X</value>
   </data>
   <data name="m_editCutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editCutMenuItem.Text" xml:space="preserve">
     <value>Cu&amp;t</value>
@@ -1507,7 +1552,7 @@
     <value>Ctrl+C</value>
   </data>
   <data name="m_editCopyMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editCopyMenuItem.Text" xml:space="preserve">
     <value>&amp;Copy</value>
@@ -1522,7 +1567,7 @@
     <value>Ctrl+V</value>
   </data>
   <data name="m_editPasteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editPasteMenuItem.Text" xml:space="preserve">
     <value>&amp;Paste</value>
@@ -1534,13 +1579,13 @@
     <value>Del</value>
   </data>
   <data name="m_editDeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editDeleteMenuItem.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="m_editMenuSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>229, 6</value>
   </data>
   <data name="m_editSelectAllMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1549,7 +1594,7 @@
     <value>Ctrl+A</value>
   </data>
   <data name="m_editSelectAllMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editSelectAllMenuItem.Text" xml:space="preserve">
     <value>Select &amp;All</value>
@@ -1558,7 +1603,7 @@
     <value>False</value>
   </data>
   <data name="m_editClearSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editClearSelectionMenuItem.Text" xml:space="preserve">
     <value>Clear Selection</value>
@@ -1570,19 +1615,19 @@
     <value>Ctrl+I</value>
   </data>
   <data name="m_editInvertSelectionMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editInvertSelectionMenuItem.Text" xml:space="preserve">
     <value>Invert Selection</value>
   </data>
   <data name="m_editMenuSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>229, 6</value>
   </data>
   <data name="m_editMakeTileBrushMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="m_editMakeTileBrushMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editMakeTileBrushMenuItem.Text" xml:space="preserve">
     <value>Make Tile Brush</value>
@@ -1591,43 +1636,43 @@
     <value>False</value>
   </data>
   <data name="m_editManageTileBrushesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 22</value>
+    <value>232, 26</value>
   </data>
   <data name="m_editManageTileBrushesMenuItem.Text" xml:space="preserve">
     <value>Manage Tile Brushes...</value>
   </data>
   <data name="m_editMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 20</value>
+    <value>67, 24</value>
   </data>
   <data name="m_editMenuItem.Text" xml:space="preserve">
     <value>&amp;Edit</value>
   </data>
   <data name="m_viewZoomBy1MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy1MenuItem.Text" xml:space="preserve">
     <value>1%</value>
   </data>
   <data name="m_viewZoomBy2MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy2MenuItem.Text" xml:space="preserve">
     <value>5%</value>
   </data>
   <data name="m_viewZoomBy3MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy3MenuItem.Text" xml:space="preserve">
     <value>10%</value>
   </data>
   <data name="m_viewZoomBy4MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy4MenuItem.Text" xml:space="preserve">
     <value>25%</value>
   </data>
   <data name="m_viewZoomBy5MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy5MenuItem.Text" xml:space="preserve">
     <value>50%</value>
@@ -1636,37 +1681,37 @@
     <value>Ctrl+0</value>
   </data>
   <data name="m_viewZoomBy6MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy6MenuItem.Text" xml:space="preserve">
     <value>100%</value>
   </data>
   <data name="m_viewZoomBy7MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy7MenuItem.Text" xml:space="preserve">
     <value>200%</value>
   </data>
   <data name="m_viewZoomBy8MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy8MenuItem.Text" xml:space="preserve">
     <value>300%</value>
   </data>
   <data name="m_viewZoomBy9MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy9MenuItem.Text" xml:space="preserve">
     <value>400%</value>
   </data>
   <data name="m_viewZoomBy10MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>142, 22</value>
+    <value>170, 26</value>
   </data>
   <data name="m_viewZoomBy10MenuItem.Text" xml:space="preserve">
     <value>500%</value>
   </data>
   <data name="m_viewZoomMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewZoomMenuItem.Text" xml:space="preserve">
     <value>Zoom</value>
@@ -1678,7 +1723,7 @@
     <value>Ctrl+Oemplus</value>
   </data>
   <data name="m_viewZoomInMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewZoomInMenuItem.Text" xml:space="preserve">
     <value>Zoom In</value>
@@ -1690,19 +1735,19 @@
     <value>Ctrl+OemMinus</value>
   </data>
   <data name="m_viewZoomOutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewZoomOutMenuItem.Text" xml:space="preserve">
     <value>Zoom Out</value>
   </data>
   <data name="m_viewMenuSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 6</value>
+    <value>277, 6</value>
   </data>
   <data name="m_viewFullScreenMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>F11</value>
   </data>
   <data name="m_viewFullScreenMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewFullScreenMenuItem.Text" xml:space="preserve">
     <value>Full Screen</value>
@@ -1711,7 +1756,7 @@
     <value>F11</value>
   </data>
   <data name="m_viewWindowedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewWindowedMenuItem.Text" xml:space="preserve">
     <value>Windowed</value>
@@ -1720,16 +1765,16 @@
     <value>False</value>
   </data>
   <data name="m_viewMenuSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 6</value>
+    <value>277, 6</value>
   </data>
   <data name="m_viewLayersShowAllMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewLayersShowAllMenuItem.Text" xml:space="preserve">
     <value>Show All Layers</value>
   </data>
   <data name="m_viewLayersHighlightSelectedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewLayersHighlightSelectedMenuItem.Text" xml:space="preserve">
     <value>Highlight Selected Layer Only</value>
@@ -1741,7 +1786,7 @@
     <value>Ctrl+G</value>
   </data>
   <data name="m_viewShowTileGuidesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewShowTileGuidesMenuItem.Text" xml:space="preserve">
     <value>Show Tile Guides</value>
@@ -1750,7 +1795,7 @@
     <value>Ctrl+G</value>
   </data>
   <data name="m_viewHideTileGuidesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewHideTileGuidesMenuItem.Text" xml:space="preserve">
     <value>Hide Tile Guides</value>
@@ -1759,115 +1804,115 @@
     <value>False</value>
   </data>
   <data name="m_viewViewportScaleToWindowMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewportScaleToWindowMenuItem.Text" xml:space="preserve">
     <value>Scale To Window</value>
   </data>
   <data name="m_viewViewport320x200MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport320x200MenuItem.Text" xml:space="preserve">
     <value>320 x 200 (CGA)</value>
   </data>
   <data name="m_viewViewport320x240MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport320x240MenuItem.Text" xml:space="preserve">
     <value>320 x 240 (QVGA)</value>
   </data>
   <data name="m_viewViewport640x480MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport640x480MenuItem.Text" xml:space="preserve">
     <value>640 x 480 (VGA)</value>
   </data>
   <data name="m_viewViewport800x600MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport800x600MenuItem.Text" xml:space="preserve">
     <value>800 x 600 (SVGA)</value>
   </data>
   <data name="m_viewViewport848x480MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport848x480MenuItem.Text" xml:space="preserve">
     <value>848 x 480 (WVGA)</value>
   </data>
   <data name="m_viewViewport1024x768MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport1024x768MenuItem.Text" xml:space="preserve">
     <value>1024 x 768 (XGA)</value>
   </data>
   <data name="m_viewViewport1280x720MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport1280x720MenuItem.Text" xml:space="preserve">
     <value>1280 x 720 (720p)</value>
   </data>
   <data name="m_viewViewport1280x768MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport1280x768MenuItem.Text" xml:space="preserve">
     <value>1280 x 768 (WXGA)</value>
   </data>
   <data name="m_viewViewport1280x1024MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport1280x1024MenuItem.Text" xml:space="preserve">
     <value>1280 x 1024 (SXGA)</value>
   </data>
   <data name="m_viewViewport1600x1200MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport1600x1200MenuItem.Text" xml:space="preserve">
     <value>1600 x 1200 (UXGA)</value>
   </data>
   <data name="m_viewViewport1920x1080MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport1920x1080MenuItem.Text" xml:space="preserve">
     <value>1920 x 1080 (1080p)</value>
   </data>
   <data name="m_viewViewport1920x1200MenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 22</value>
+    <value>230, 26</value>
   </data>
   <data name="m_viewViewport1920x1200MenuItem.Text" xml:space="preserve">
     <value>1920 x 1200 (WUXGA)</value>
   </data>
   <data name="m_viewViewportMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>230, 22</value>
+    <value>280, 26</value>
   </data>
   <data name="m_viewViewportMenuItem.Text" xml:space="preserve">
     <value>Viewport</value>
   </data>
   <data name="m_viewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
+    <value>73, 24</value>
   </data>
   <data name="m_viewMenuItem.Text" xml:space="preserve">
     <value>&amp;View</value>
   </data>
   <data name="m_mapPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>160, 26</value>
   </data>
   <data name="m_mapPropertiesMenuItem.Text" xml:space="preserve">
     <value>Properties...</value>
   </data>
   <data name="m_mapStatisticsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>160, 26</value>
   </data>
   <data name="m_mapStatisticsMenuItem.Text" xml:space="preserve">
     <value>Statistics...</value>
   </data>
   <data name="m_mapMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
+    <value>71, 24</value>
   </data>
   <data name="m_mapMenuItem.Text" xml:space="preserve">
     <value>&amp;Map</value>
   </data>
   <data name="m_layerNewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>229, 26</value>
   </data>
   <data name="m_layerNewMenuItem.Text" xml:space="preserve">
     <value>&amp;New...</value>
@@ -1876,7 +1921,7 @@
     <value>False</value>
   </data>
   <data name="m_layerPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>229, 26</value>
   </data>
   <data name="m_layerPropertiesMenuItem.Text" xml:space="preserve">
     <value>Properties...</value>
@@ -1885,7 +1930,7 @@
     <value>False</value>
   </data>
   <data name="m_layerOffsetMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>229, 26</value>
   </data>
   <data name="m_layerOffsetMenuItem.Text" xml:space="preserve">
     <value>Offset...</value>
@@ -1894,7 +1939,7 @@
     <value>False</value>
   </metadata>
   <data name="m_layerSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 6</value>
+    <value>226, 6</value>
   </data>
   <data name="m_layerMakeInvisibleMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1903,7 +1948,7 @@
     <value>Alt+V</value>
   </data>
   <data name="m_layerMakeInvisibleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>229, 26</value>
   </data>
   <data name="m_layerMakeInvisibleMenuItem.Text" xml:space="preserve">
     <value>Make Invisibile</value>
@@ -1915,7 +1960,7 @@
     <value>Alt+V</value>
   </data>
   <data name="m_layerMakeVisibleMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>229, 26</value>
   </data>
   <data name="m_layerMakeVisibleMenuItem.Text" xml:space="preserve">
     <value>Make Visible</value>
@@ -1927,13 +1972,13 @@
     <value>False</value>
   </metadata>
   <data name="m_layerSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 6</value>
+    <value>226, 6</value>
   </data>
   <data name="m_layerBringForwardMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="m_layerBringForwardMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>229, 26</value>
   </data>
   <data name="m_layerBringForwardMenuItem.Text" xml:space="preserve">
     <value>Bring Forward</value>
@@ -1942,7 +1987,7 @@
     <value>False</value>
   </data>
   <data name="m_layerSendBackwardMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>229, 26</value>
   </data>
   <data name="m_layerSendBackwardMenuItem.Text" xml:space="preserve">
     <value>Send Backward</value>
@@ -1951,25 +1996,25 @@
     <value>False</value>
   </metadata>
   <data name="m_layerSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 6</value>
+    <value>226, 6</value>
   </data>
   <data name="m_layerDeleteMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="m_layerDeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 22</value>
+    <value>229, 26</value>
   </data>
   <data name="m_layerDeleteMenuItem.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="m_layerMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
+    <value>76, 24</value>
   </data>
   <data name="m_layerMenuItem.Text" xml:space="preserve">
     <value>&amp;Layer</value>
   </data>
   <data name="m_tileSheetNewMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="m_tileSheetNewMenuItem.Text" xml:space="preserve">
     <value>New...</value>
@@ -1978,7 +2023,7 @@
     <value>False</value>
   </data>
   <data name="m_tileSheetPropertiesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="m_tileSheetPropertiesMenuItem.Text" xml:space="preserve">
     <value>Properties...</value>
@@ -1987,22 +2032,22 @@
     <value>False</value>
   </data>
   <data name="m_tileSheetAutoTilesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="m_tileSheetAutoTilesMenuItem.Text" xml:space="preserve">
     <value>Auto Tiles...</value>
   </data>
   <data name="m_tileSheetSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="m_tileSheetAutoUpdateEnableMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="m_tileSheetAutoUpdateEnableMenuItem.Text" xml:space="preserve">
     <value>Enable Auto Update</value>
   </data>
   <data name="m_tileSheetAutoUpdateDisableMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="m_tileSheetAutoUpdateDisableMenuItem.Text" xml:space="preserve">
     <value>Disable Auto Update</value>
@@ -2014,19 +2059,19 @@
     <value>False</value>
   </data>
   <data name="m_tileSheetEditImageSourceMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="m_tileSheetEditImageSourceMenuItem.Text" xml:space="preserve">
     <value>Edit Image Source...</value>
   </data>
   <data name="m_tileSheetSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 6</value>
+    <value>233, 6</value>
   </data>
   <data name="m_tileSheetRemoveDependenciesMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="m_tileSheetRemoveDependenciesMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="m_tileSheetRemoveDependenciesMenuItem.Text" xml:space="preserve">
     <value>Remove Dependencies</value>
@@ -2035,37 +2080,37 @@
     <value>False</value>
   </data>
   <data name="m_tileSheetDeleteMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 22</value>
+    <value>236, 26</value>
   </data>
   <data name="m_tileSheetDeleteMenuItem.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="m_tileSheetMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 20</value>
+    <value>106, 24</value>
   </data>
   <data name="m_tileSheetMenuItem.Text" xml:space="preserve">
     <value>&amp;Tile Sheet</value>
   </data>
   <data name="m_pluginReloadMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>209, 26</value>
   </data>
   <data name="m_pluginReloadMenuItem.Text" xml:space="preserve">
     <value>Reload Plugins</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 6</value>
+    <value>206, 6</value>
   </data>
   <data name="m_pluginNoneLoadedMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="m_pluginNoneLoadedMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>209, 26</value>
   </data>
   <data name="m_pluginNoneLoadedMenuItem.Text" xml:space="preserve">
     <value>No Plugins Loaded</value>
   </data>
   <data name="m_pluginMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 20</value>
+    <value>82, 24</value>
   </data>
   <data name="m_pluginMenuItem.Text" xml:space="preserve">
     <value>&amp;Plugin</value>
@@ -2074,7 +2119,7 @@
     <value>F1</value>
   </data>
   <data name="m_helpContentsMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 22</value>
+    <value>166, 26</value>
   </data>
   <data name="m_helpContentsMenuItem.Text" xml:space="preserve">
     <value>&amp;Contents</value>
@@ -2083,7 +2128,7 @@
     <value>F2</value>
   </data>
   <data name="m_helpIndexMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 22</value>
+    <value>166, 26</value>
   </data>
   <data name="m_helpIndexMenuItem.Text" xml:space="preserve">
     <value>&amp;Index</value>
@@ -2092,31 +2137,31 @@
     <value>F3</value>
   </data>
   <data name="m_helpSearchMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 22</value>
+    <value>166, 26</value>
   </data>
   <data name="m_helpSearchMenuItem.Text" xml:space="preserve">
     <value>&amp;Search</value>
   </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 6</value>
+    <value>163, 6</value>
   </data>
   <data name="m_helpAboutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 22</value>
+    <value>166, 26</value>
   </data>
   <data name="m_helpAboutMenuItem.Text" xml:space="preserve">
     <value>&amp;About</value>
   </data>
   <data name="m_helpMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 20</value>
+    <value>73, 24</value>
   </data>
   <data name="m_helpMenuItem.Text" xml:space="preserve">
     <value>&amp;Help</value>
   </data>
   <data name="m_menuStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 125</value>
+    <value>0, 109</value>
   </data>
   <data name="m_menuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>784, 24</value>
+    <value>1045, 28</value>
   </data>
   <data name="m_menuStrip.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2146,7 +2191,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_layerNewButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_layerNewButton.Text" xml:space="preserve">
     <value>New Layer</value>
@@ -2161,7 +2206,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_layerPropertiesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_layerPropertiesButton.Text" xml:space="preserve">
     <value>Layer Properties</value>
@@ -2176,7 +2221,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_layerOffsetButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_layerOffsetButton.Text" xml:space="preserve">
     <value>Layer Offset</value>
@@ -2188,7 +2233,7 @@
     <value>False</value>
   </metadata>
   <data name="m_layerToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_layerMakeInvisibileButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2197,7 +2242,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_layerMakeInvisibileButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_layerMakeInvisibileButton.Text" xml:space="preserve">
     <value>Make Layer Invisible</value>
@@ -2212,7 +2257,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_layerMakeVisibileButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_layerMakeVisibileButton.Text" xml:space="preserve">
     <value>Make Layer Visible</value>
@@ -2227,7 +2272,7 @@
     <value>False</value>
   </metadata>
   <data name="m_layerToolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_layerBringForwardButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2236,7 +2281,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_layerBringForwardButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_layerBringForwardButton.Text" xml:space="preserve">
     <value>Bring Forward</value>
@@ -2251,7 +2296,7 @@
     <value>Magenta</value>
   </data>
   <data name="m_layerSendBackwardButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_layerSendBackwardButton.Text" xml:space="preserve">
     <value>Send Backward</value>
@@ -2263,7 +2308,7 @@
     <value>False</value>
   </metadata>
   <data name="m_layerToolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 25</value>
+    <value>6, 27</value>
   </data>
   <data name="m_layerDeleteButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2272,16 +2317,16 @@
     <value>Magenta</value>
   </data>
   <data name="m_layerDeleteButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>23, 22</value>
+    <value>24, 24</value>
   </data>
   <data name="m_layerDeleteButton.Text" xml:space="preserve">
     <value>Delete Layer</value>
   </data>
   <data name="m_layerToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 149</value>
+    <value>3, 137</value>
   </data>
   <data name="m_layerToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 25</value>
+    <value>198, 27</value>
   </data>
   <data name="m_layerToolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2335,10 +2380,10 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>8, 16</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>784, 562</value>
+    <value>1045, 692</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3103,8 +3148,8 @@
         +B+sQfgPrEHgB6xBwAOsQYABrEGAAKxBgACsQcABrEHgA6xB+A+sQfgPrEH8H6xB/j+sQf//rEE=
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -3154,6 +3199,12 @@
   <data name="&gt;&gt;m_toolsTileBlockButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;m_toolsFloodFillButton.Name" xml:space="preserve">
+    <value>m_toolsFloodFillButton</value>
+  </data>
+  <data name="&gt;&gt;m_toolsFloodFillButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;m_toolsEraserButton.Name" xml:space="preserve">
     <value>m_toolsEraserButton</value>
   </data>
@@ -3172,71 +3223,11 @@
   <data name="&gt;&gt;m_toolsTextureButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_layerNewButton.Name" xml:space="preserve">
-    <value>m_layerNewButton</value>
+  <data name="&gt;&gt;m_toolsTileBrushButton.Name" xml:space="preserve">
+    <value>m_toolsTileBrushButton</value>
   </data>
-  <data name="&gt;&gt;m_layerNewButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerPropertiesButton.Name" xml:space="preserve">
-    <value>m_layerPropertiesButton</value>
-  </data>
-  <data name="&gt;&gt;m_layerPropertiesButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerOffsetButton.Name" xml:space="preserve">
-    <value>m_layerOffsetButton</value>
-  </data>
-  <data name="&gt;&gt;m_layerOffsetButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerToolStripSeparator1.Name" xml:space="preserve">
-    <value>m_layerToolStripSeparator1</value>
-  </data>
-  <data name="&gt;&gt;m_layerToolStripSeparator1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerMakeInvisibileButton.Name" xml:space="preserve">
-    <value>m_layerMakeInvisibileButton</value>
-  </data>
-  <data name="&gt;&gt;m_layerMakeInvisibileButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerMakeVisibileButton.Name" xml:space="preserve">
-    <value>m_layerMakeVisibileButton</value>
-  </data>
-  <data name="&gt;&gt;m_layerMakeVisibileButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerToolStripSeparator2.Name" xml:space="preserve">
-    <value>m_layerToolStripSeparator2</value>
-  </data>
-  <data name="&gt;&gt;m_layerToolStripSeparator2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerBringForwardButton.Name" xml:space="preserve">
-    <value>m_layerBringForwardButton</value>
-  </data>
-  <data name="&gt;&gt;m_layerBringForwardButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerSendBackwardButton.Name" xml:space="preserve">
-    <value>m_layerSendBackwardButton</value>
-  </data>
-  <data name="&gt;&gt;m_layerSendBackwardButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerToolStripSeparator3.Name" xml:space="preserve">
-    <value>m_layerToolStripSeparator3</value>
-  </data>
-  <data name="&gt;&gt;m_layerToolStripSeparator3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_layerDeleteButton.Name" xml:space="preserve">
-    <value>m_layerDeleteButton</value>
-  </data>
-  <data name="&gt;&gt;m_layerDeleteButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;m_toolsTileBrushButton.Type" xml:space="preserve">
+    <value>tIDE.Controls.CustomToolStripSplitButton, tIDE, Version=2.0.7.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;m_editUndoButton.Name" xml:space="preserve">
     <value>m_editUndoButton</value>
@@ -3328,16 +3319,64 @@
   <data name="&gt;&gt;m_editManageTileBrushesButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_mapPropertiesButton.Name" xml:space="preserve">
-    <value>m_mapPropertiesButton</value>
+  <data name="&gt;&gt;m_tileSheetNewButton.Name" xml:space="preserve">
+    <value>m_tileSheetNewButton</value>
   </data>
-  <data name="&gt;&gt;m_mapPropertiesButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_tileSheetNewButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_mapStatisticsButton.Name" xml:space="preserve">
-    <value>m_mapStatisticsButton</value>
+  <data name="&gt;&gt;m_tileSheetPropertiesButton.Name" xml:space="preserve">
+    <value>m_tileSheetPropertiesButton</value>
   </data>
-  <data name="&gt;&gt;m_mapStatisticsButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_tileSheetPropertiesButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetAutoTilesButton.Name" xml:space="preserve">
+    <value>m_tileSheetAutoTilesButton</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetAutoTilesButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetToolStripSeparator1.Name" xml:space="preserve">
+    <value>m_tileSheetToolStripSeparator1</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetToolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetAutoUpdateEnableButton.Name" xml:space="preserve">
+    <value>m_tileSheetAutoUpdateEnableButton</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetAutoUpdateEnableButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetAutoUpdateDisableButton.Name" xml:space="preserve">
+    <value>m_tileSheetAutoUpdateDisableButton</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetAutoUpdateDisableButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetEditImageSourceButton.Name" xml:space="preserve">
+    <value>m_tileSheetEditImageSourceButton</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetEditImageSourceButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetToolStripSeparator2.Name" xml:space="preserve">
+    <value>m_tileSheetToolStripSeparator2</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetToolStripSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetRemoveDependenciesButton.Name" xml:space="preserve">
+    <value>m_tileSheetRemoveDependenciesButton</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetRemoveDependenciesButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetDeleteButton.Name" xml:space="preserve">
+    <value>m_tileSheetDeleteButton</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetDeleteButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_viewZoomLabel.Name" xml:space="preserve">
@@ -3410,6 +3449,78 @@
     <value>m_viewHideTileGuidesButton</value>
   </data>
   <data name="&gt;&gt;m_viewHideTileGuidesButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_mapPropertiesButton.Name" xml:space="preserve">
+    <value>m_mapPropertiesButton</value>
+  </data>
+  <data name="&gt;&gt;m_mapPropertiesButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_mapStatisticsButton.Name" xml:space="preserve">
+    <value>m_mapStatisticsButton</value>
+  </data>
+  <data name="&gt;&gt;m_mapStatisticsButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_fileNewButton.Name" xml:space="preserve">
+    <value>m_fileNewButton</value>
+  </data>
+  <data name="&gt;&gt;m_fileNewButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_fileOpenButton.Name" xml:space="preserve">
+    <value>m_fileOpenButton</value>
+  </data>
+  <data name="&gt;&gt;m_fileOpenButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_fileToolStripSeparator1.Name" xml:space="preserve">
+    <value>m_fileToolStripSeparator1</value>
+  </data>
+  <data name="&gt;&gt;m_fileToolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_fileSaveButton.Name" xml:space="preserve">
+    <value>m_fileSaveButton</value>
+  </data>
+  <data name="&gt;&gt;m_fileSaveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_fileSaveAsButton.Name" xml:space="preserve">
+    <value>m_fileSaveAsButton</value>
+  </data>
+  <data name="&gt;&gt;m_fileSaveAsButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_fileToolStripSeparator2.Name" xml:space="preserve">
+    <value>m_fileToolStripSeparator2</value>
+  </data>
+  <data name="&gt;&gt;m_fileToolStripSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_filePageSetupButton.Name" xml:space="preserve">
+    <value>m_filePageSetupButton</value>
+  </data>
+  <data name="&gt;&gt;m_filePageSetupButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_filePrintPreviewButton.Name" xml:space="preserve">
+    <value>m_filePrintPreviewButton</value>
+  </data>
+  <data name="&gt;&gt;m_filePrintPreviewButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_filePrintButton.Name" xml:space="preserve">
+    <value>m_filePrintButton</value>
+  </data>
+  <data name="&gt;&gt;m_filePrintButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_fileOptionsButton.Name" xml:space="preserve">
+    <value>m_fileOptionsButton</value>
+  </data>
+  <data name="&gt;&gt;m_fileOptionsButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;m_fileMenuItem.Name" xml:space="preserve">
@@ -4036,137 +4147,71 @@
   <data name="&gt;&gt;m_helpAboutMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetNewButton.Name" xml:space="preserve">
-    <value>m_tileSheetNewButton</value>
+  <data name="&gt;&gt;m_layerNewButton.Name" xml:space="preserve">
+    <value>m_layerNewButton</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetNewButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerNewButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetPropertiesButton.Name" xml:space="preserve">
-    <value>m_tileSheetPropertiesButton</value>
+  <data name="&gt;&gt;m_layerPropertiesButton.Name" xml:space="preserve">
+    <value>m_layerPropertiesButton</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetPropertiesButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerPropertiesButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetAutoTilesButton.Name" xml:space="preserve">
-    <value>m_tileSheetAutoTilesButton</value>
+  <data name="&gt;&gt;m_layerOffsetButton.Name" xml:space="preserve">
+    <value>m_layerOffsetButton</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetAutoTilesButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerOffsetButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetToolStripSeparator1.Name" xml:space="preserve">
-    <value>m_tileSheetToolStripSeparator1</value>
+  <data name="&gt;&gt;m_layerToolStripSeparator1.Name" xml:space="preserve">
+    <value>m_layerToolStripSeparator1</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetToolStripSeparator1.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerToolStripSeparator1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetAutoUpdateEnableButton.Name" xml:space="preserve">
-    <value>m_tileSheetAutoUpdateEnableButton</value>
+  <data name="&gt;&gt;m_layerMakeInvisibileButton.Name" xml:space="preserve">
+    <value>m_layerMakeInvisibileButton</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetAutoUpdateEnableButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerMakeInvisibileButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetAutoUpdateDisableButton.Name" xml:space="preserve">
-    <value>m_tileSheetAutoUpdateDisableButton</value>
+  <data name="&gt;&gt;m_layerMakeVisibileButton.Name" xml:space="preserve">
+    <value>m_layerMakeVisibileButton</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetAutoUpdateDisableButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerMakeVisibileButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetEditImageSourceButton.Name" xml:space="preserve">
-    <value>m_tileSheetEditImageSourceButton</value>
+  <data name="&gt;&gt;m_layerToolStripSeparator2.Name" xml:space="preserve">
+    <value>m_layerToolStripSeparator2</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetEditImageSourceButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_tileSheetToolStripSeparator2.Name" xml:space="preserve">
-    <value>m_tileSheetToolStripSeparator2</value>
-  </data>
-  <data name="&gt;&gt;m_tileSheetToolStripSeparator2.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerToolStripSeparator2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetRemoveDependenciesButton.Name" xml:space="preserve">
-    <value>m_tileSheetRemoveDependenciesButton</value>
+  <data name="&gt;&gt;m_layerBringForwardButton.Name" xml:space="preserve">
+    <value>m_layerBringForwardButton</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetRemoveDependenciesButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerBringForwardButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetDeleteButton.Name" xml:space="preserve">
-    <value>m_tileSheetDeleteButton</value>
+  <data name="&gt;&gt;m_layerSendBackwardButton.Name" xml:space="preserve">
+    <value>m_layerSendBackwardButton</value>
   </data>
-  <data name="&gt;&gt;m_tileSheetDeleteButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerSendBackwardButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_fileNewButton.Name" xml:space="preserve">
-    <value>m_fileNewButton</value>
+  <data name="&gt;&gt;m_layerToolStripSeparator3.Name" xml:space="preserve">
+    <value>m_layerToolStripSeparator3</value>
   </data>
-  <data name="&gt;&gt;m_fileNewButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_fileOpenButton.Name" xml:space="preserve">
-    <value>m_fileOpenButton</value>
-  </data>
-  <data name="&gt;&gt;m_fileOpenButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_fileToolStripSeparator1.Name" xml:space="preserve">
-    <value>m_fileToolStripSeparator1</value>
-  </data>
-  <data name="&gt;&gt;m_fileToolStripSeparator1.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerToolStripSeparator3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;m_fileSaveButton.Name" xml:space="preserve">
-    <value>m_fileSaveButton</value>
+  <data name="&gt;&gt;m_layerDeleteButton.Name" xml:space="preserve">
+    <value>m_layerDeleteButton</value>
   </data>
-  <data name="&gt;&gt;m_fileSaveButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;m_layerDeleteButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_fileSaveAsButton.Name" xml:space="preserve">
-    <value>m_fileSaveAsButton</value>
-  </data>
-  <data name="&gt;&gt;m_fileSaveAsButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_fileToolStripSeparator2.Name" xml:space="preserve">
-    <value>m_fileToolStripSeparator2</value>
-  </data>
-  <data name="&gt;&gt;m_fileToolStripSeparator2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_filePageSetupButton.Name" xml:space="preserve">
-    <value>m_filePageSetupButton</value>
-  </data>
-  <data name="&gt;&gt;m_filePageSetupButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_filePrintPreviewButton.Name" xml:space="preserve">
-    <value>m_filePrintPreviewButton</value>
-  </data>
-  <data name="&gt;&gt;m_filePrintPreviewButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_filePrintButton.Name" xml:space="preserve">
-    <value>m_filePrintButton</value>
-  </data>
-  <data name="&gt;&gt;m_filePrintButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_fileOptionsButton.Name" xml:space="preserve">
-    <value>m_fileOptionsButton</value>
-  </data>
-  <data name="&gt;&gt;m_fileOptionsButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_toolsFloodFillButton.Name" xml:space="preserve">
-    <value>m_toolsFloodFillButton</value>
-  </data>
-  <data name="&gt;&gt;m_toolsFloodFillButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_toolsTileBrushButton.Name" xml:space="preserve">
-    <value>m_toolsTileBrushButton</value>
-  </data>
-  <data name="&gt;&gt;m_toolsTileBrushButton.Type" xml:space="preserve">
-    <value>tIDE.Controls.CustomToolStripSplitButton, tIDE, Version=2.0.7.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;m_loadErrorMessageBox.Name" xml:space="preserve">
     <value>m_loadErrorMessageBox</value>
@@ -4197,6 +4242,18 @@
   </data>
   <data name="&gt;&gt;m_dependencyRemovedMessageBox.Type" xml:space="preserve">
     <value>tIDE.Controls.CustomMessageBox, tIDE, Version=2.0.7.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;m_newProjectMenuItem.Name" xml:space="preserve">
+    <value>m_newProjectMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_newProjectMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_newMapMenuItem.Name" xml:space="preserve">
+    <value>m_newMapMenuItem</value>
+  </data>
+  <data name="&gt;&gt;m_newMapMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

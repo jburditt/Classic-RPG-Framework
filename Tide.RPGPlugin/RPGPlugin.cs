@@ -1,12 +1,13 @@
 ﻿using DataStore;
-using DataStore.DataStore;
 using Player;
 using Player.Maps;
+using RPGPlugin.Forms;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 using tIDE.Plugin;
 using tIDE.Plugin.Interface;
+using TilePC;
 using xTile;
 using xTile.Dimensions;
 using xTile.Layers;
@@ -18,13 +19,13 @@ namespace RPGPlugin
         private Map m_map;
         private MapMeta m_mapMeta;
         private Layer m_layer;
+        private string m_projectId;
 
-        private IDataStore m_dataStore = new BinaryDataStore("..\\..\\..\\Data\\map\\");
-
+        private IDataStore m_dataStore;
         private IMenuItem m_myDropDownMenu;
         private IMenuItem m_myMenuItem;
         private IToolBar m_myToolBar;
-        private IToolBarButton m_npcToolBarButton, m_eventToolBarButton;
+        private IToolBarButton m_npcToolBarButton, m_eventToolBarButton, m_projectSettingsToolBarButton;
 
         #region IPlugin Members
 
@@ -56,7 +57,7 @@ namespace RPGPlugin
             }
         }
 
-        public System.Drawing.Bitmap LargeIcon
+        public Bitmap LargeIcon
         {
             get
             {
@@ -66,6 +67,8 @@ namespace RPGPlugin
 
         public void Initialise(IApplication application)
         {
+            application.ToolBars.Clear();
+
             m_myDropDownMenu = application.MenuStrip.DropDownMenus.Add("RPG");
             m_myDropDownMenu.Image = Properties.Resources.Menu;
 
@@ -76,9 +79,12 @@ namespace RPGPlugin
 
             m_myToolBar = application.ToolBars.Add("RPG ToolBar");
 
+            m_projectSettingsToolBarButton = m_myToolBar.Buttons.Add("projectSettingsButton", Properties.Resources.Action);
+            m_projectSettingsToolBarButton.ToolTipText = "Project Settings";
+            m_projectSettingsToolBarButton.EventHandler = ProjectSettings;
+
             m_npcToolBarButton = m_myToolBar.Buttons.Add("Button1", Properties.Resources.Action);
             m_npcToolBarButton.ToolTipText = "Place NPC";
-            m_npcToolBarButton.Checked = true;
             m_npcToolBarButton.EventHandler = NPCAction;
 
             m_eventToolBarButton = m_myToolBar.Buttons.Add("Button2", Properties.Resources.Action);
@@ -92,8 +98,13 @@ namespace RPGPlugin
             // pass application map to plugin
             m_map = application.Editor.Map;
             m_layer = application.Editor.Layer;
+            m_projectId = application.Editor.ProjectId;
+
+            if (string.IsNullOrEmpty(m_projectId))
+                m_projectId = Prompt.ShowDialog("Project Name", "New Project");
 
             // load map meta data
+            m_dataStore = new BinaryDataStore($"{Settings.ProjectFilePath}{m_projectId}\\");
             m_mapMeta = m_dataStore.Load<MapMeta>($"{m_map.Id}.MapMeta");
             if (m_mapMeta == null)
                 m_mapMeta = new MapMeta(m_map);
@@ -116,19 +127,34 @@ namespace RPGPlugin
             m_myDropDownMenu = null;
         }
 
+        public void ProjectSettings(object sender, EventArgs eventArgs)
+        {
+            using (var form = new ProjectSettingsForm(m_dataStore, m_projectId))
+            {
+                var result = form.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    m_dataStore.Save(form.ProjectSettings, $"{form.ProjectSettings.Name}.Settings");
+                }
+            }
+        }
+
         public void NPCAction(object sender, EventArgs eventArgs)
         {
             m_npcToolBarButton.Checked = !m_npcToolBarButton.Checked;
+            m_eventToolBarButton.Checked = false;
         }
 
         public void EventAction(object sender, EventArgs eventArgs)
         {
             m_eventToolBarButton.Checked = !m_eventToolBarButton.Checked;
+            m_npcToolBarButton.Checked = false;
         }
 
         public void TileSheetsAction(object sender, EventArgs eventArgs)
         {
-            using (var form = new TileSheetForm(m_map))
+            using (var form = new TileSheetForm(m_dataStore, m_map))
             {
                 var result = form.ShowDialog();
 
@@ -161,7 +187,7 @@ namespace RPGPlugin
 
         public void OnDrawTile(TileEventArgs e)
         {
-            if (m_mapMeta?.Layers == null)
+            if (m_mapMeta?.Layers == null || m_mapMeta.Layers.Count == 0)
                 return;
 
             if (e.TileLocation.X < 0 || e.TileLocation.Y < 0)

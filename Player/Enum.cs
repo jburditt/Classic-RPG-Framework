@@ -8,13 +8,12 @@
         Left
     };
 
-    public enum GameState
+    public enum State
     {
         StartMenu,
         World,
         Battle,
-        WorldMenu,
-        Exit
+        WorldMenu
     }
 
     public enum MenuItem
@@ -24,7 +23,7 @@
         Exit
     }
 
-    public enum BattleState
+    public enum BattleStateEnum
     {
         Running,
         Idle
