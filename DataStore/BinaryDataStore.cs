@@ -13,6 +13,7 @@ namespace DataStore
 
         public T Load<T>(string name)
         {
+            return Serializer.BinaryDeserialize<T>($"{FilePath}{name}.dat");
         }
 
         public void Save<T>(T obj, string name)
