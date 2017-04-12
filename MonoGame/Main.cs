@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Manager;
 using Player;
+using Player.Core;
 using Player.StateStack;
-using System.Collections.Generic;
 
 namespace MonoGame
 {
@@ -35,12 +35,8 @@ namespace MonoGame
         IconManager iconManager;
         InputManager inputManager;
 
-        // Game
-        StateStack stateStack = new StateStack();
-        SerializableDictionary<State, IState> states = new SerializableDictionary<State, IState>();
-
-        // DataStore
         private IDataStore _dataStore;
+        private IState _gameState;
 
         public Main()
         {
@@ -89,18 +85,8 @@ namespace MonoGame
             battleManager = new BattleManager(Content, spriteBatch);
 
             _dataStore = new BinaryDataStore("../../../../Data/map/");
-
-            var worldState = new WorldState(_dataStore, songManager, graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, tilesetManager, dialogManager);
-            states.Add(State.World, worldState);
-
-            var menuState = new MenuState(graphics, dialogManager, inputManager, songManager);
-            states.Add(State.StartMenu, menuState);
-
-            var battleState = new BattleState(graphics, battleManager, actorManager, enemyManager, iconManager, inputManager, songManager, dialogManager, worldState);
-            states.Add(State.Battle, battleState);
-
-            stateStack.Push(worldState);
-            stateStack.Push(menuState);
+            _gameState = new GameState(actorManager, battleManager, _dataStore, dialogManager, enemyManager, graphics, iconManager, inputManager, songManager, tilesetManager);
+            _gameState.OnLoad();
         }
 
         /// <summary>
@@ -110,6 +96,7 @@ namespace MonoGame
         protected override void UnloadContent()
         {
             Content.Unload();
+            _gameState.OnClose();
         }
 
         /// <summary>
@@ -119,8 +106,9 @@ namespace MonoGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Exit
-            if (stateStack.Empty())
+            var elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            
+            if (!_gameState.Update(elapsedTime))
                 Exit();
 
             // Alt-Enter
@@ -128,15 +116,6 @@ namespace MonoGame
             {
                 graphicsDeviceManager.IsFullScreen = !graphicsDeviceManager.IsFullScreen;
                 graphicsDeviceManager.ApplyChanges();
-            }
-
-            var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            stateStack.Update(deltaTime);
-
-            if (inputManager.JustPressedKey((int)Keys.B))
-            {
-                stateStack.Push(states[State.Battle]);
             }
 
             base.Update(gameTime);
@@ -152,7 +131,7 @@ namespace MonoGame
 
             GraphicsDevice.Clear(Color.Black);
 
-            stateStack.Draw();
+            _gameState.Draw();
 
             spriteBatch.End();
 

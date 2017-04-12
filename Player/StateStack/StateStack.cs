@@ -2,7 +2,7 @@
 
 namespace Player.StateStack
 {
-    public class StateStack
+    public class StateMachine
     {
         private Stack<IState> mStack = new Stack<IState>();
 

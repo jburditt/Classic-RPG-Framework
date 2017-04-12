@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Actor.cs" />
     <Compile Include="Animation.cs" />
+    <Compile Include="Core\GameState.cs" />
     <Compile Include="StateStack\BattleState.cs" />
     <Compile Include="Core\ProjectSettings.cs" />
     <Compile Include="Graphics\Color.cs" />
