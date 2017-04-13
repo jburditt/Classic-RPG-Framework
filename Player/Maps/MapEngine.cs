@@ -103,27 +103,6 @@ namespace Player
             return false;
         }
 
-        public void Action(GamePlayer player)
-        {
-            var p = (player.Pos / new VectorF(TileWidth, TileHeight)).ToVector();
-
-            for (var x = -1; x <= 1; x++)
-                for (var y = -1; y <= 1; y++)
-                {
-                    if (OutBounds(x, y))
-                        continue;
-
-                    // TODO check distance of tile from player
-
-                    var eventPage = MapMeta.Layers[0].Tiles[p.X + x, p.Y + y].EventCollection?.Action();
-                    if (eventPage != null)
-                    {
-                        Script.Execute(eventPage, player, this);
-                    }
-                }
-        }
-
-
         public void Draw(Vector pos)
         {
             for (var y = 0; y <= WindowRows; y++)
@@ -277,7 +256,7 @@ namespace Player
                 Camera.Y = pos.Y - Screen.HalfHeight;
         }
 
-        private bool OutBounds(int x, int y)
+        public bool OutBounds(int x, int y)
         {
             return x < 0 || x >= Columns || y < 0 || y >= Rows;
         }

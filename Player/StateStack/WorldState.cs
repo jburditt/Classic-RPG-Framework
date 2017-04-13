@@ -17,9 +17,7 @@ namespace Player
 
         private EventService _eventService;
         private NPCManager _npcManager;
-
-        private BattleState battle;
-        private GamePlayer player;
+        private GamePlayer gamePlayer;
         private MapEngine map;
         private List<IEffect> _effects { get; set; } = new List<IEffect>();
 
@@ -47,11 +45,10 @@ namespace Player
                 }
             };
 
-            //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
-            //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
-
             map = new MapEngine(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/map/", mapName);
-            player = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager, map.Start);
+            gamePlayer = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager, map.Start);
+            gamePlayer.WalkOnTile += new GamePlayer.MoveEventHandler(OnWalkOnTile);
+            gamePlayer.Action += new GamePlayer.PlayerEventHandler(OnAction);
 
             _npcManager = new NPCManager(actorManager, _dialogManager, _graphics);
             _npcManager.NPC = map.MapMeta.Layers[0].NPCs;
@@ -76,17 +73,10 @@ namespace Player
                
             _npcManager.Update(map);
 
-            if (_inputManager.IsPressedInput((int)Input.FaceButtonDown))
+            gamePlayer.Update(map, elapsedTime);
+            if (gamePlayer.step >= 3)
             {
-                map.Action(player);
-
-                _effects.AddRange(_npcManager.CheckTalk(map, player.Pos));
-            }
-
-            player.Update(map, elapsedTime);
-            if (player.step >= 3)
-            {
-                player.step = 0;
+                gamePlayer.step = 0;
                 //GameState = GameState.Battle;
                 //battle.Load();
             }
@@ -96,15 +86,50 @@ namespace Player
 
         public void Draw()
         {
-            map.Draw(player.Pos.ToVector());
+            map.Draw(gamePlayer.Pos.ToVector());
             _npcManager.Draw(map);
-            player.Draw(map);
+            gamePlayer.Draw(map);
             //_graphics.DrawString($"Step: {player.step} FPS: " + /*(int) (1/deltaTime) +*/ " X: " + player.x/32 + " Y: " + player.y/32, 10, 10);
 
             foreach (var effect in _effects)
             {
                 effect.Draw();
             }
+        }
+
+        public void OnWalkOnTile(MoveEventArgs e)
+        {
+            // activate triggers
+            var eventPage1 = map.MapMeta.Layers[0].Tiles[e.NewPos.X, e.NewPos.Y].EventCollection?.Walk(true);
+            var eventPage2 = map.MapMeta.Layers[0].Tiles[e.OldPos.X, e.OldPos.Y].EventCollection?.Walk(false);
+
+            // execute event
+            if (eventPage1 != null)
+                Script.Execute(eventPage1, gamePlayer, map);
+            if (eventPage2 != null)
+                Script.Execute(eventPage2, gamePlayer, map);
+        }
+
+        public void OnAction()
+        {
+            _effects.AddRange(_npcManager.CheckTalk(map, gamePlayer.Pos));
+
+            var p = (gamePlayer.Pos / new VectorF(map.TileWidth, map.TileHeight)).ToVector();
+
+            for (var x = -1; x <= 1; x++)
+                for (var y = -1; y <= 1; y++)
+                {
+                    if (map.OutBounds(x, y))
+                        continue;
+
+                    // TODO check distance of tile from player
+
+                    var eventPage = map.MapMeta.Layers[0].Tiles[p.X + x, p.Y + y].EventCollection?.Action();
+                    if (eventPage != null)
+                    {
+                        Script.Execute(eventPage, gamePlayer, map);
+                    }
+                }
         }
     }
 }

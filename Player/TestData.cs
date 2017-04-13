@@ -7,6 +7,9 @@ namespace Player
     {
         public Chest()
         {
+            //var darktroll = new Enemy { Name = "Dark Troll", Hp = 10, MaxHp = 10, SpriteName = "DarkTroll", Dexterity = 5 };
+            //Common.Serializer.XmlSerialize<Enemy>(darktroll, "DarkTroll.xml");
+
             EventPages = new List<EventPage> {
                 new EventPage {
                     Id = 1,

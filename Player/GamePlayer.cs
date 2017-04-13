@@ -1,6 +1,7 @@
 ﻿using Player.Events;
 using Player.Inputs;
 using Player.Manager;
+using System;
 using System.Collections.Generic;
 
 namespace Player
@@ -9,6 +10,8 @@ namespace Player
     {
         public event MoveEventHandler WalkOnTile;
         public delegate void MoveEventHandler(MoveEventArgs e);
+        public event PlayerEventHandler Action;
+        public delegate void PlayerEventHandler();
 
         public Dictionary<int, Item> Inventory { get; set; } = new Dictionary<int, Item>();
         public bool IsMoving { get; set; }
@@ -78,7 +81,13 @@ namespace Player
             var newPos = (Pos / new VectorF(map.TileWidth, map.TileHeight)).ToVector();
             if (newPos != oldPos)
             {
-                WalkOnTile(new MoveEventArgs(this, oldPos, newPos));
+                WalkOnTile(new MoveEventArgs(oldPos, newPos));
+            }
+
+            // action button pressed
+            if (_inputManager.IsPressedInput((int)Input.FaceButtonDown))
+            {
+                Action();
             }
         }
 
