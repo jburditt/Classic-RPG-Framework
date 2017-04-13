@@ -18,22 +18,21 @@ namespace MonoGame
         // dialog       http://opengameart.org/content/10-basic-message-boxes
 
         // MonoGame Framework
-        GraphicsDeviceManager graphicsDeviceManager;
-        SpriteBatch spriteBatch;
-        SpriteFont font;
-        Texture2D menu;
+        private GraphicsDeviceManager graphicsDeviceManager;
+        private SpriteBatch spriteBatch;
+        private SpriteFont font;
 
         // MonoGame Managers
-        Graphics graphics;
-        DialogManager dialogManager;
-        TilesetManager tilesetManager;
-        SongManager songManager;
-        SoundManager soundManager;
-        BattleManager battleManager;
-        ActorManager actorManager;
-        EnemyManager enemyManager;
-        IconManager iconManager;
-        InputManager inputManager;
+        private Graphics graphics;
+        private DialogManager dialogManager;
+        private TilesetManager tilesetManager;
+        private SongManager songManager;
+        private SoundManager soundManager;
+        private BattleManager battleManager;
+        private ActorManager actorManager;
+        private EnemyManager enemyManager;
+        private IconManager iconManager;
+        private InputManager inputManager;
 
         private IDataStore _dataStore;
         private IState _gameState;

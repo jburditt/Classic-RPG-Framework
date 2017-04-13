@@ -123,18 +123,6 @@ namespace Player
                 }
         }
 
-        public void Walk(GamePlayer player, Vector newPos, Vector oldPos)
-        {
-            // activate triggers
-            var eventPage1 = MapMeta.Layers[0].Tiles[newPos.X, newPos.Y].EventCollection?.Walk(true);
-            var eventPage2 = MapMeta.Layers[0].Tiles[oldPos.X, oldPos.Y].EventCollection?.Walk(false);
-
-            // execute event
-            if (eventPage1 != null)
-                Script.Execute(eventPage1, player, this);
-            if (eventPage2 != null)
-                Script.Execute(eventPage2, player, this);
-        }
 
         public void Draw(Vector pos)
         {
