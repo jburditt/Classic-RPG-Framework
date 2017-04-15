@@ -9,12 +9,24 @@ namespace Player.Maps
     [Serializable]
     public class MapMeta
     {
+        public IList<NPC> NPCs { get; set; } = new List<NPC>();
         public IList<LayerMeta> Layers { get; set; } = new List<LayerMeta>();
 
         public MapMeta(Map map)
         {
             foreach (var layer in map.Layers)
                 Layers.Add(new LayerMeta(layer));
+        }
+
+        public NPC GetNPC(Vector pos)
+        {
+            foreach (var n in NPCs)
+            {
+                if (n.Pos == pos)
+                    return n;
+            }
+
+            return null;
         }
     }
 
@@ -41,29 +53,6 @@ namespace Player.Maps
                     for (var y = 0; y < Tiles.Rows(); y++)
                         if (Tiles[x, y] != null)
                             yield return Tiles[x, y];
-            }
-        }
-
-        public IEnumerable<NPC> NPCEnumerator
-        {
-            get
-            {
-                foreach (var tile in TileEnumerator)
-                    if (tile.NPC != null)
-                        yield return tile.NPC;
-            }
-        }
-
-        public IList<NPC> NPCs
-        {
-            get
-            {
-                var list = new List<NPC>();
-
-                foreach (var npc in NPCEnumerator)
-                    list.Add(npc);
-
-                return list;
             }
         }
     }

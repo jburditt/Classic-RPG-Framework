@@ -462,7 +462,7 @@ namespace tIDE
 
         private void OpenFile(string filename)
         {
-            if (!Directory.Exists(filename))
+            if (!File.Exists(filename))
                 return;
 
             FormatManager formatManager = FormatManager.Instance;

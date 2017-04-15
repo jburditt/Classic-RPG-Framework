@@ -75,6 +75,7 @@
     <Compile Include="Interface\IToolBarButtonCollection.cs" />
     <Compile Include="Interface\IToolBarCollection.cs" />
     <Compile Include="IPlugin.cs" />
+    <Compile Include="MapEventArgs.cs" />
     <Compile Include="Prompt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ApplicationRegistry.cs" />

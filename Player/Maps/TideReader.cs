@@ -83,7 +83,6 @@ namespace Player.Maps
                             SpriteRect = new Rect(tileWidth * column, tileHeight * row, tileWidth, tileHeight),
                             Tileset = TiledMap.Layers[layer].Tiles[x, y].TileSheet.Id,
                             IsBlocked = map.TileSheetMeta == null ? false : map.TileSheetMeta.Tiles[column, row].IsBlocked,
-                            NPC = map.MapMeta.Layers[z].Tiles[x, y].NPC
                         };
                     }
                 }

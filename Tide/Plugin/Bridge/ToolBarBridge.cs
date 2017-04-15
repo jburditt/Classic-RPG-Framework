@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
+using tIDE.Controls;
 using tIDE.Plugin.Interface;
 
 namespace tIDE.Plugin.Bridge
@@ -13,21 +11,23 @@ namespace tIDE.Plugin.Bridge
     {
         private ToolStrip m_toolStrip;
         private List<ToolBarButtonBridge> m_toolBarButtons;
+        private MapPanel m_mapPanel;
 
         internal ToolStrip ToolStrip { get { return m_toolStrip; } }
 
-        public ToolBarBridge(ToolStrip toolStrip, bool readOnly)
+        public ToolBarBridge(ToolStrip toolStrip, MapPanel mapPanel, bool readOnly)
             :base(readOnly)
         {
             m_toolStrip = toolStrip;
             m_toolBarButtons = new List<ToolBarButtonBridge>();
+            m_mapPanel = mapPanel;
 
             foreach (ToolStripItem toolStripItem in m_toolStrip.Items)
             {
                 if (!(toolStripItem is ToolStripButton))
                     continue;
                 m_toolBarButtons.Add(
-                    new ToolBarButtonBridge((ToolStripButton) toolStripItem , readOnly));
+                    new ToolBarButtonBridge((ToolStripButton)toolStripItem, mapPanel, readOnly));
             }
         }
 
@@ -60,7 +60,7 @@ namespace tIDE.Plugin.Bridge
         {
             ToolStripButton toolStripButton = new ToolStripButton(image);
             m_toolStrip.Items.Add(toolStripButton);
-            ToolBarButtonBridge toolBarButton = new ToolBarButtonBridge(toolStripButton, false);
+            ToolBarButtonBridge toolBarButton = new ToolBarButtonBridge(toolStripButton, m_mapPanel, false);
             m_toolBarButtons.Add(toolBarButton);
             return toolBarButton;
         }

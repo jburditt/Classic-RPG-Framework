@@ -3,6 +3,7 @@ using System;
 
 namespace Player.Core
 {
+    [Serializable]
     public struct ProjectSettings : IModified
     {
         public string Name { get; set; }

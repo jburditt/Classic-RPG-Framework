@@ -15,14 +15,17 @@ namespace tIDE.Plugin.Bridge
         private List<ToolBarBridge> m_toolBars;
 
         private EditorBridge m_editorBridge;
+        private MapPanel m_mapPanel;
 
-        private void PopulateToolBars(ToolStripPanel toolStripPanel)
+        private void PopulateToolBars(ToolStripPanel toolStripPanel, MapPanel mapPanel)
         {
+            m_mapPanel = mapPanel;
+
             foreach (var control in toolStripPanel.Controls)
             {
                 if (!(control is ToolStrip))
                     continue;
-                m_toolBars.Add(new ToolBarBridge((ToolStrip)control, false));
+                m_toolBars.Add(new ToolBarBridge((ToolStrip)control, m_mapPanel, false));
             }
         }
 
@@ -34,10 +37,10 @@ namespace tIDE.Plugin.Bridge
 
             m_toolStripContainer = toolStripContainer;
             m_toolBars = new List<ToolBarBridge>();
-            PopulateToolBars(toolStripContainer.TopToolStripPanel);
-            PopulateToolBars(toolStripContainer.BottomToolStripPanel);
-            PopulateToolBars(toolStripContainer.LeftToolStripPanel);
-            PopulateToolBars(toolStripContainer.RightToolStripPanel);
+            PopulateToolBars(toolStripContainer.TopToolStripPanel, mapPanel);
+            PopulateToolBars(toolStripContainer.BottomToolStripPanel, mapPanel);
+            PopulateToolBars(toolStripContainer.LeftToolStripPanel, mapPanel);
+            PopulateToolBars(toolStripContainer.RightToolStripPanel, mapPanel);
 
             m_editorBridge = new EditorBridge(mapPanel);
         }
@@ -71,7 +74,7 @@ namespace tIDE.Plugin.Bridge
 
             toolStripPanel.Controls.Add(toolStrip);
 
-            ToolBarBridge toolBarBridge = new ToolBarBridge(toolStrip, false);
+            ToolBarBridge toolBarBridge = new ToolBarBridge(toolStrip, m_mapPanel, false);
 
             m_toolBars.Add(toolBarBridge);
             return toolBarBridge;

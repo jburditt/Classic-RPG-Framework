@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-
 
 namespace tIDE.Plugin.Interface
 {
-    public interface IToolBarButton: IElement
+    public interface IToolBarButton : IElement
     {
         string Id { get; set; }
 
@@ -22,5 +18,8 @@ namespace tIDE.Plugin.Interface
         object Tag { get; set; }
 
         EventHandler EventHandler { set; }
+        ToolBarButtonHandler ToolBarButtonHandler { set; }
     }
+
+    public delegate void ToolBarButtonHandler(object sender, MapEventArgs e);
 }

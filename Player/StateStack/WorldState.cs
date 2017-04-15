@@ -51,7 +51,6 @@ namespace Player
             gamePlayer.Action += new GamePlayer.PlayerEventHandler(OnAction);
 
             _npcManager = new NPCManager(actorManager, _dialogManager, _graphics);
-            _npcManager.NPC = map.MapMeta.Layers[0].NPCs;
             _eventService = new EventService();
         }
 
@@ -100,8 +99,8 @@ namespace Player
         public void OnWalkOnTile(MoveEventArgs e)
         {
             // activate triggers
-            var eventPage1 = map.MapMeta.Layers[0].Tiles[e.NewPos.X, e.NewPos.Y].EventCollection?.Walk(true);
-            var eventPage2 = map.MapMeta.Layers[0].Tiles[e.OldPos.X, e.OldPos.Y].EventCollection?.Walk(false);
+            var eventPage1 = _eventService.Get(e.NewPos.X, e.NewPos.Y)?.Walk(true);
+            var eventPage2 = _eventService.Get(e.NewPos.X, e.NewPos.Y)?.Walk(false);
 
             // execute event
             if (eventPage1 != null)
@@ -124,7 +123,7 @@ namespace Player
 
                     // TODO check distance of tile from player
 
-                    var eventPage = map.MapMeta.Layers[0].Tiles[p.X + x, p.Y + y].EventCollection?.Action();
+                    var eventPage = _eventService.Get(p.X + x, p.Y + y)?.Action();
                     if (eventPage != null)
                     {
                         Script.Execute(eventPage, gamePlayer, map);

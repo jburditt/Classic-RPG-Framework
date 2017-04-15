@@ -1,26 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
+using tIDE.Controls;
 using tIDE.Plugin.Interface;
+using xTile.Dimensions;
 
 namespace tIDE.Plugin.Bridge
 {
     internal class ToolBarButtonBridge: ElementBridge, IToolBarButton
     {
         private ToolStripButton m_toolStripButton;
+        private MapPanel m_mapPanel;
+        private ToolBarButtonHandler m_toolBarButtonHandler;
 
         internal ToolStripButton ToolStripButton
         {
             get { return m_toolStripButton; }
         }
 
-        public ToolBarButtonBridge(ToolStripButton toolStripButton, bool readOnly)
+        public ToolBarButtonBridge(ToolStripButton toolStripButton, MapPanel mapPanel, bool readOnly)
             : base(readOnly)
         {
             m_toolStripButton = toolStripButton;
+            m_mapPanel = mapPanel;
+            m_toolStripButton.Click += (sender, EventArgs) => { OnToolStripButtonClick(sender, new MapEventArgs(m_mapPanel.Map, m_mapPanel.SelectedLayer, new Location(m_mapPanel.Location.X, m_mapPanel.Location.Y))); };
         }
 
         public string Id
@@ -86,6 +88,19 @@ namespace tIDE.Plugin.Bridge
         public EventHandler EventHandler
         {
             set { m_toolStripButton.Click += value; }
+        }
+
+        public ToolBarButtonHandler ToolBarButtonHandler
+        {
+            set { m_toolBarButtonHandler += value; }
+        }
+
+        private void OnToolStripButtonClick(object sender, MapEventArgs e)
+        {
+            if (m_mapPanel == null)
+                return;
+
+            m_toolBarButtonHandler(sender, e);
         }
     }
 }

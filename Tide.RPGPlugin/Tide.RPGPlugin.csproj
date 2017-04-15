@@ -88,6 +88,7 @@
     <Compile Include="Forms\NPCDialog.Designer.cs">
       <DependentUpon>NPCDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocationExtensions.cs" />
     <Compile Include="RPGPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

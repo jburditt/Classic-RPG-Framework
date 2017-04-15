@@ -9,9 +9,6 @@ namespace Player.Maps
         public Rect SpriteRect { get; set; }
         public string Tileset { get; set; }
         public bool IsBlocked { get; set; }
-
-        public EventCollection EventCollection { get; set; } = new EventCollection();
-        public NPC NPC { get; set; }
     }
 
     public static class TileExtensions

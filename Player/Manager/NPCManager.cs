@@ -10,8 +10,6 @@ namespace Player.Manager
         private readonly IDialogManager _dialogManager;
         private readonly IGraphics _graphics;
 
-        public IList<NPC> NPC { get; set; }
-
         public NPCManager(IActorManager actorManager, IDialogManager dialogManager, IGraphics graphics)
         {
             _actorManager = actorManager;
@@ -21,19 +19,19 @@ namespace Player.Manager
 
         public void Update(MapEngine map)
         {
-            if (NPC == null)
+            if (map.MapMeta.NPCs == null)
                 return;
 
-            foreach (var npc in NPC)
+            foreach (var npc in map.MapMeta.NPCs)
                 npc.Update(map);
         }
 
         public void Draw(MapEngine map)
         {
-            if (NPC == null)
+            if (map.MapMeta.NPCs == null)
                 return;
 
-            foreach (var npc in NPC)
+            foreach (var npc in map.MapMeta.NPCs)
             {
                 npc.Animation.Y = (int)npc.Direction;
 
@@ -47,7 +45,7 @@ namespace Player.Manager
         {
             var effects = new List<IEffect>();
 
-            foreach (var npc in NPC)
+            foreach (var npc in map.MapMeta.NPCs)
             {
                 if (Vector.Distance(npc.Pos, pos.ToVector()) < map.TileWidth + map.TileHeight)
                      effects.Add(new DialogEffect(_graphics, _dialogManager, npc.Dialog));

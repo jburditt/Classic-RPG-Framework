@@ -8,24 +8,19 @@ using System.Windows.Forms;
 using tIDE.Plugin;
 using tIDE.Plugin.Interface;
 using TilePC;
-using xTile;
-using xTile.Dimensions;
-using xTile.Layers;
 
 namespace RPGPlugin
 {
     public class RPGPlugin : IPlugin
     {
-        private Map m_map;
         private MapMeta m_mapMeta;
-        private Layer m_layer;
         private string m_projectId;
 
         private IDataStore m_dataStore;
         private IMenuItem m_myDropDownMenu;
         private IMenuItem m_myMenuItem;
         private IToolBar m_myToolBar;
-        private IToolBarButton m_npcToolBarButton, m_eventToolBarButton, m_projectSettingsToolBarButton;
+        private IToolBarButton m_npcToolBarButton, m_eventToolBarButton, m_projectSettingsToolBarButton, m_tilesheetToolBarButton;
 
         #region IPlugin Members
 
@@ -65,6 +60,10 @@ namespace RPGPlugin
             }
         }
 
+        #endregion
+
+        #region plugin methods
+
         public void Initialise(IApplication application)
         {
             application.ToolBars.Clear();
@@ -91,23 +90,22 @@ namespace RPGPlugin
             m_eventToolBarButton.ToolTipText = "Place Event";
             m_eventToolBarButton.EventHandler = EventAction;
 
-            m_eventToolBarButton = m_myToolBar.Buttons.Add("Button3", Properties.Resources.Action);
-            m_eventToolBarButton.ToolTipText = "TileSheets";
-            m_eventToolBarButton.EventHandler = TileSheetsAction;
+            m_tilesheetToolBarButton = m_myToolBar.Buttons.Add("Button3", Properties.Resources.Action);
+            m_tilesheetToolBarButton.ToolTipText = "TileSheets";
+            m_tilesheetToolBarButton.ToolBarButtonHandler = TileSheetsAction;
 
             // pass application map to plugin
-            m_map = application.Editor.Map;
-            m_layer = application.Editor.Layer;
             m_projectId = application.Editor.ProjectId;
 
             if (string.IsNullOrEmpty(m_projectId))
                 m_projectId = Prompt.ShowDialog("Project Name", "New Project");
 
             // load map meta data
+            var map = application.Editor.Map;
             m_dataStore = new BinaryDataStore($"{Settings.ProjectFilePath}{m_projectId}\\");
-            m_mapMeta = m_dataStore.Load<MapMeta>($"{m_map.Id}.MapMeta");
+            m_mapMeta = m_dataStore.Load<MapMeta>($"{map.Id}.MapMeta");
             if (m_mapMeta == null)
-                m_mapMeta = new MapMeta(m_map);
+                m_mapMeta = new MapMeta(map);
 
             // add plugin events to application
             application.Editor.MouseDown = OnEditorMouseDown;
@@ -116,6 +114,7 @@ namespace RPGPlugin
 
         public void Shutdown(IApplication application)
         {
+            // TODO
             m_npcToolBarButton = m_eventToolBarButton = null;
 
             application.ToolBars.Remove(m_myToolBar);
@@ -152,9 +151,10 @@ namespace RPGPlugin
             m_npcToolBarButton.Checked = false;
         }
 
-        public void TileSheetsAction(object sender, EventArgs eventArgs)
+        public void TileSheetsAction(object sender, MapEventArgs e)
         {
-            using (var form = new TileSheetForm(m_dataStore, m_map))
+            //// TODO m_map is only as recent as when plugin was Initialized
+            using (var form = new TileSheetForm(m_dataStore, e.Map, e.Layer))
             {
                 var result = form.ShowDialog();
 
@@ -165,7 +165,7 @@ namespace RPGPlugin
             }
         }
 
-        public void OnEditorMouseDown(MouseEventArgs mouseEventArgs, Location tileLocation)
+        public void OnEditorMouseDown(MouseEventArgs mouseEventArgs, MapEventArgs mapEventArgs)
         {
             if (m_npcToolBarButton.Checked)
             {
@@ -175,11 +175,11 @@ namespace RPGPlugin
 
                     if (result == DialogResult.OK)
                     {
-                        form.Selected.Pos = new Vector(tileLocation.X * m_layer.TileWidth, tileLocation.Y * m_layer.TileHeight);
+                        form.Selected.Pos = new Vector(mapEventArgs.Location.X * mapEventArgs.Layer.TileWidth, mapEventArgs.Location.Y * mapEventArgs.Layer.TileHeight);
 
-                        m_mapMeta.Layers[0].Tiles[tileLocation.X, tileLocation.Y].NPC = form.Selected;
+                        m_mapMeta.NPCs.Add(form.Selected);
 
-                        m_dataStore.Save(m_mapMeta, $"{m_map.Id}.MapMeta");
+                        m_dataStore.Save(m_mapMeta, $"{mapEventArgs.Map.Id}.MapMeta");
                     }
                 }
             }
@@ -201,7 +201,7 @@ namespace RPGPlugin
             System.Drawing.Rectangle destRect;
             destRect = new System.Drawing.Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
 
-            var npc = m_mapMeta.Layers[0].Tiles[e.TileLocation.X, e.TileLocation.Y]?.NPC;
+            var npc = m_mapMeta.GetNPC(e.TileLocation.ToVector());
             if (npc != null)
                 e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
         }

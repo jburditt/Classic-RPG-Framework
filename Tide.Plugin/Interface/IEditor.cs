@@ -1,6 +1,5 @@
 ﻿using System.Windows.Forms;
 using xTile;
-using xTile.Dimensions;
 using xTile.Layers;
 
 namespace tIDE.Plugin.Interface
@@ -17,6 +16,6 @@ namespace tIDE.Plugin.Interface
         TileEditorHandler DrawTile { set; }
     }
 
-    public delegate void MouseEditorHandler(MouseEventArgs mouseEventArgs, Location tileLocation);
+    public delegate void MouseEditorHandler(MouseEventArgs mouseEventArgs, MapEventArgs mapEventArgs);
     public delegate void TileEditorHandler(TileEventArgs eventArgs);
 }

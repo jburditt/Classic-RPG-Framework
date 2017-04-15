@@ -24,7 +24,7 @@ namespace tIDE.Plugin.Bridge
 
             var tileLocation = GetTileLocation(mouseEventArgs.Location);
 
-            m_mouseDown(mouseEventArgs, tileLocation);
+            m_mouseDown(mouseEventArgs, new MapEventArgs(m_mapPanel.Map, m_mapPanel.SelectedLayer, tileLocation));
         }
 
         private void OnMapPanelMouseMove(object sender, MouseEventArgs mouseEventArgs)
@@ -34,7 +34,7 @@ namespace tIDE.Plugin.Bridge
 
             var tileLocation = GetTileLocation(mouseEventArgs.Location);
 
-            m_mouseMove(mouseEventArgs, tileLocation);
+            m_mouseMove(mouseEventArgs, new MapEventArgs(m_mapPanel.Map, m_mapPanel.SelectedLayer, tileLocation));
         }
 
         private void OnMapPanelMouseUp(object sender, MouseEventArgs mouseEventArgs)
@@ -44,7 +44,7 @@ namespace tIDE.Plugin.Bridge
 
             var tileLocation = GetTileLocation(mouseEventArgs.Location);
 
-            m_mouseUp(mouseEventArgs, tileLocation);
+            m_mouseUp(mouseEventArgs, new MapEventArgs(m_mapPanel.Map, m_mapPanel.SelectedLayer, tileLocation));
         }
 
         private void OnDrawTile(object sender, TileEventArgs e)

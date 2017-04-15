@@ -1,25 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using Common;
+using System.Collections.Generic;
 
 namespace Player.Events
 {
     public class EventService
     {
-        private List<EventCollection> EventCollections { get; set; } = new List<EventCollection>();
+        private Dictionary<int, EventCollection> EventCollections { get; set; } = new Dictionary<int, EventCollection>();
+        private SparseMatrix<int> Events { get; set; }
 
         public EventService()
         {
             var chest = new EventCollection { new Chest() };
-            chest.Id = 1;
-            EventCollections.Add(chest);
+            EventCollections.Add(1, chest);
 
             var warp = new EventCollection { new Warp() };
-            warp.Id = 2;
-            EventCollections.Add(warp);
+            EventCollections.Add(2, warp);
 
             var e3 = new EventCollection { new TentWarp() };
-            e3.Id = 3;
-            EventCollections.Add(e3);
+            EventCollections.Add(3, e3);
 
             ItemManager.Items.Add(
                 1,
@@ -38,9 +36,9 @@ namespace Player.Events
             );
         }
 
-        public EventCollection Find(int i)
+        public EventCollection Get(int x, int y)
         {
-            return EventCollections.Where(n => n.Id == i).FirstOrDefault();
+            return EventCollections[Events[x, y]];
         }
     }
 }

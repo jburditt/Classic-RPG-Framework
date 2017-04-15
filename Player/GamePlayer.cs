@@ -1,7 +1,6 @@
 ﻿using Player.Events;
 using Player.Inputs;
 using Player.Manager;
-using System;
 using System.Collections.Generic;
 
 namespace Player

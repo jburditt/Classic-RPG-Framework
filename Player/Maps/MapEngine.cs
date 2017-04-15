@@ -156,7 +156,7 @@ namespace Player
                     // draw all tile layers
                     for (var layer = 0; layer < Layers; layer++)
                     {
-                        var tile = MapMeta.Layers[0].Tiles[x + playerTileX, y + playerTileY];
+                        var tile = MapMeta.Layers[layer].Tiles[x + playerTileX, y + playerTileY];
 
                         if (tile != null)
                         {
@@ -165,7 +165,7 @@ namespace Player
                             _tilesetManager.Draw(tile.Tileset, drawRect, tile.SpriteRect);
 
                             if (layer == 0)
-                                DrawEventCollection(tile.EventCollection, new Vector(x * TileWidth - offsetX, y * TileHeight - offsetY));
+                                DrawEventCollection(_eventService.Get(x + playerTileX, y + playerTileY), new Vector(x * TileWidth - offsetX, y * TileHeight - offsetY));
                         }
                     }
                 }
