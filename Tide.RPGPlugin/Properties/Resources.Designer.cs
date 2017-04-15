@@ -63,9 +63,9 @@ namespace RPGPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Action {
+        internal static System.Drawing.Bitmap Event_16 {
             get {
-                object obj = ResourceManager.GetObject("Action", resourceCulture);
+                object obj = ResourceManager.GetObject("Event_16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace RPGPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LargeIcon {
+        internal static System.Drawing.Bitmap Event_32 {
             get {
-                object obj = ResourceManager.GetObject("LargeIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("Event_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,39 @@ namespace RPGPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Menu {
+        internal static System.Drawing.Bitmap NPC_16 {
             get {
-                object obj = ResourceManager.GetObject("Menu", resourceCulture);
+                object obj = ResourceManager.GetObject("NPC_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NPC_32 {
+            get {
+                object obj = ResourceManager.GetObject("NPC_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ProjectSettings_16 {
+            get {
+                object obj = ResourceManager.GetObject("ProjectSettings_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Prototype_32 {
+            get {
+                object obj = ResourceManager.GetObject("Prototype_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,6 +126,46 @@ namespace RPGPlugin.Properties {
         internal static System.Drawing.Bitmap SmallIcon {
             get {
                 object obj = ResourceManager.GetObject("SmallIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sword_16 {
+            get {
+                object obj = ResourceManager.GetObject("Sword_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sword_32 {
+            get {
+                object obj = ResourceManager.GetObject("Sword_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TileSheetMeta_16 {
+            get {
+                object obj = ResourceManager.GetObject("TileSheetMeta_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TileSheetMeta_32 {
+            get {
+                object obj = ResourceManager.GetObject("TileSheetMeta_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

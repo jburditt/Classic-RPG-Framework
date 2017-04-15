@@ -48,7 +48,7 @@ namespace RPGPlugin
         {
             get
             {
-                return Properties.Resources.SmallIcon;
+                return Properties.Resources.Sword_16;
             }
         }
 
@@ -56,7 +56,7 @@ namespace RPGPlugin
         {
             get
             {
-                return Properties.Resources.LargeIcon;
+                return Properties.Resources.Sword_32;
             }
         }
 
@@ -69,28 +69,31 @@ namespace RPGPlugin
             application.ToolBars.Clear();
 
             m_myDropDownMenu = application.MenuStrip.DropDownMenus.Add("RPG");
-            m_myDropDownMenu.Image = Properties.Resources.Menu;
+            m_myDropDownMenu.Image = Properties.Resources.Sword_32;
 
-            m_myMenuItem = application.MenuStrip.DropDownMenus["RPG"].SubItems.Add("NPC");
-            m_myMenuItem.Image = Properties.Resources.Action;
-            m_myMenuItem.ShortcutKeys = Keys.Control | Keys.N;
+            m_myMenuItem = application.MenuStrip.DropDownMenus["RPG"].SubItems.Add("Place NPC");
+            m_myMenuItem.Image = Properties.Resources.NPC_32;
             m_myMenuItem.EventHandler = NPCAction;
+
+            m_myMenuItem = application.MenuStrip.DropDownMenus["RPG"].SubItems.Add("Place Event");
+            m_myMenuItem.Image = Properties.Resources.Event_32;
+            m_myMenuItem.EventHandler = EventAction;
 
             m_myToolBar = application.ToolBars.Add("RPG ToolBar");
 
-            m_projectSettingsToolBarButton = m_myToolBar.Buttons.Add("projectSettingsButton", Properties.Resources.Action);
+            m_projectSettingsToolBarButton = m_myToolBar.Buttons.Add("projectSettingsButton", Properties.Resources.ProjectSettings_16);
             m_projectSettingsToolBarButton.ToolTipText = "Project Settings";
             m_projectSettingsToolBarButton.EventHandler = ProjectSettings;
 
-            m_npcToolBarButton = m_myToolBar.Buttons.Add("Button1", Properties.Resources.Action);
+            m_npcToolBarButton = m_myToolBar.Buttons.Add("Button1", Properties.Resources.NPC_16);
             m_npcToolBarButton.ToolTipText = "Place NPC";
             m_npcToolBarButton.EventHandler = NPCAction;
 
-            m_eventToolBarButton = m_myToolBar.Buttons.Add("Button2", Properties.Resources.Action);
+            m_eventToolBarButton = m_myToolBar.Buttons.Add("Button2", Properties.Resources.Event_16);
             m_eventToolBarButton.ToolTipText = "Place Event";
             m_eventToolBarButton.EventHandler = EventAction;
 
-            m_tilesheetToolBarButton = m_myToolBar.Buttons.Add("Button3", Properties.Resources.Action);
+            m_tilesheetToolBarButton = m_myToolBar.Buttons.Add("Button3", Properties.Resources.TileSheetMeta_16);
             m_tilesheetToolBarButton.ToolTipText = "TileSheets";
             m_tilesheetToolBarButton.ToolBarButtonHandler = TileSheetsAction;
 

@@ -157,6 +157,36 @@
   <ItemGroup>
     <Folder Include="Manager\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProjectSettings_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Prototype_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Event_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Event_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NPC_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NPC_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TileSheetMeta_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TileSheetMeta_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sword_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sword_32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
