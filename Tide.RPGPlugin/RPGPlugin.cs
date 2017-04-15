@@ -26,7 +26,7 @@ namespace RPGPlugin
 
         public string Name
         {
-            get { return "MonoRPG Plugin"; }
+            get { return "RPG Editor"; }
         }
 
         public Version Version
@@ -41,7 +41,7 @@ namespace RPGPlugin
 
         public string Description
         {
-            get {return "MonoRPG plugin"; }
+            get {return "RPG Editor"; }
         }
 
         public System.Drawing.Bitmap SmallIcon
@@ -71,6 +71,10 @@ namespace RPGPlugin
             m_myDropDownMenu = application.MenuStrip.DropDownMenus.Add("RPG");
             m_myDropDownMenu.Image = Properties.Resources.Sword_32;
 
+            m_myMenuItem = application.MenuStrip.DropDownMenus["RPG"].SubItems.Add("Project Settings");
+            m_myMenuItem.Image = Properties.Resources.ProjectSettings_32;
+            m_myMenuItem.EventHandler = ProjectSettings;
+
             m_myMenuItem = application.MenuStrip.DropDownMenus["RPG"].SubItems.Add("Place NPC");
             m_myMenuItem.Image = Properties.Resources.NPC_32;
             m_myMenuItem.EventHandler = NPCAction;
@@ -78,6 +82,10 @@ namespace RPGPlugin
             m_myMenuItem = application.MenuStrip.DropDownMenus["RPG"].SubItems.Add("Place Event");
             m_myMenuItem.Image = Properties.Resources.Event_32;
             m_myMenuItem.EventHandler = EventAction;
+
+            //m_myMenuItem = application.MenuStrip.DropDownMenus["RPG"].SubItems.Add("TileSheet Meta");
+            //m_myMenuItem.Image = Properties.Resources.TileSheetMeta_32;
+            //m_myMenuItem.ToolBarButtonHandler = TileSheetsAction;
 
             m_myToolBar = application.ToolBars.Add("RPG ToolBar");
 

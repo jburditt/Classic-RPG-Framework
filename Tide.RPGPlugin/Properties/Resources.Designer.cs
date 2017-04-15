@@ -113,9 +113,9 @@ namespace RPGPlugin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Prototype_32 {
+        internal static System.Drawing.Bitmap ProjectSettings_32 {
             get {
-                object obj = ResourceManager.GetObject("Prototype_32", resourceCulture);
+                object obj = ResourceManager.GetObject("ProjectSettings_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
