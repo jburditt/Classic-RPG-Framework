@@ -18,6 +18,9 @@ namespace DataStore
 
         public void Save<T>(T obj, string name)
         {
+            if (obj == null)
+                return;
+
             Serializer.BinarySerialize(obj, $"{FilePath}{name}.dat");
         }
     }

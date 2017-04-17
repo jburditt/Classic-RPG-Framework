@@ -1029,6 +1029,7 @@
             resources.ApplyResources(this.m_fileSaveMenuItem, "m_fileSaveMenuItem");
             this.m_fileSaveMenuItem.Image = global::tIDE.Properties.Resources.FileSave;
             this.m_fileSaveMenuItem.Name = "m_fileSaveMenuItem";
+            this.m_fileSaveMenuItem.Click += new System.EventHandler(this.OnFileSave);
             // 
             // m_fileSaveAsMenuItem
             // 

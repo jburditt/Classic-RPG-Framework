@@ -17,9 +17,11 @@ namespace tIDE.Plugin.Interface
         LayerEditorHandler LayerNew { set; }
         LayerEditorHandler LayerProperties { set; }
         LayerEditorHandler LayerDelete { set; }
+        MapEditorHandler Save { set; }
     }
 
     public delegate void MouseEditorHandler(MouseEventArgs mouseEventArgs, MapEventArgs mapEventArgs);
     public delegate void TileEditorHandler(TileEventArgs eventArgs);
     public delegate void LayerEditorHandler(LayerEventArgs eventArgs);
+    public delegate void MapEditorHandler(MapEventArgs eventArgs);
 }

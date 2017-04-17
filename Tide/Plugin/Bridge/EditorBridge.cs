@@ -19,6 +19,7 @@ namespace tIDE.Plugin.Bridge
         private LayerEditorHandler m_layerProperties;
         private LayerEditorHandler m_layerNew;
         private LayerEditorHandler m_layerDelete;
+        private MapEditorHandler m_save;
 
         private void OnMapPanelMouseDown(object sender, MouseEventArgs mouseEventArgs)
         {
@@ -82,6 +83,14 @@ namespace tIDE.Plugin.Bridge
             m_layerDelete(e);
         }
 
+        private void OnSave(object sender, MapEventArgs e)
+        {
+            if (m_save == null)
+                return;
+
+            m_save(e);
+        }
+
         public EditorBridge(MapPanel mapPanel, MapTreeView mapTreeView)
             : base(false)
         {
@@ -93,6 +102,7 @@ namespace tIDE.Plugin.Bridge
             innerPanel.MouseMove += OnMapPanelMouseMove;
             innerPanel.MouseUp += OnMapPanelMouseUp;
             m_mapPanel.DrawTileEvent += OnDrawTile;
+            m_mapPanel.SaveEvent += OnSave;
             m_mapTreeView.LayerNewAction += OnLayerNew;
             m_mapTreeView.LayerPropertiesAction += OnLayerProperties;
             m_mapTreeView.LayerDeleteAction += OnLayerDelete;
@@ -149,6 +159,11 @@ namespace tIDE.Plugin.Bridge
         public LayerEditorHandler LayerDelete
         {
             set { m_layerDelete = value; }
+        }
+
+        public MapEditorHandler Save
+        {
+            set { m_save = value; }
         }
     }
 }

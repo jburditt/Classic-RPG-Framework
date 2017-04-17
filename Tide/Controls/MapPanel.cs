@@ -964,6 +964,11 @@ namespace tIDE.Controls
             this.MouseWheel += new MouseEventHandler(OnMouseWheel);
         }
 
+        public void Save(Map map)
+        {
+            SaveEvent(this, new MapEventArgs(map));
+        }
+
         public Image GenerateImage(Layer layer)
         {
             Bitmap bitmap = new Bitmap(m_map.DisplayWidth, m_map.DisplayHeight);
@@ -1369,6 +1374,7 @@ namespace tIDE.Controls
         public event EventHandler ZoomChanged;
 
         public event EventHandler<TileEventArgs> DrawTileEvent;
+        public event EventHandler<MapEventArgs> SaveEvent;
 
         #endregion
     }

@@ -4,7 +4,7 @@ namespace Common
 {
     public static class MultidimensionalArrayExtensions
     {
-        public static T[,] Resize<T>(T[,] original, int x, int y)
+        public static T[,] Resize<T>(this T[,] original, int x, int y)
         {
             T[,] newArray = new T[x, y];
             int minX = Math.Min(original.GetLength(0), newArray.GetLength(0));

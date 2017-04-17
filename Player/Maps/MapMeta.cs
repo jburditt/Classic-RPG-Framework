@@ -43,6 +43,20 @@ namespace Player.Maps
         //        if (Layers[i].Id )
         //}
 
+        public LayerMeta FindLayer(Layer layer)
+        {
+            foreach (var layerMeta in Layers)
+                if (layerMeta.Id == layer.Id)
+                    return layerMeta;
+
+            return null;
+        }
+
+        public void DeleteLayer(Layer layer)
+        {
+            Layers.Remove(FindLayer(layer));
+        }
+
         public NPC GetNPC(Vector pos)
         {
             foreach (var n in NPCs)

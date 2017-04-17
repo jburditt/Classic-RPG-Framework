@@ -585,6 +585,8 @@ namespace tIDE
                 m_needsSaving = false;
                 RecentFilesManager.StoreFilename(filename);
                 UpdateFileControls();
+                m_mapPanel.Save(m_map);
+
                 return true;
             }
             catch (Exception exception)

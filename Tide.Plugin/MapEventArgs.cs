@@ -10,6 +10,11 @@ namespace tIDE.Plugin
         public Layer Layer { get; set; }
         public Location Location { get; set; }
 
+        public MapEventArgs(Map map)
+        {
+            Map = map;
+        }
+
         public MapEventArgs(Map map, Layer layer, Location location)
         {
             Map = map;

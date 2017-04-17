@@ -125,6 +125,7 @@ namespace RPGPlugin
             application.Editor.LayerNew = OnLayerNew;
             application.Editor.LayerDelete = OnLayerDelete;
             application.Editor.LayerProperties = OnLayerProperties;
+            application.Editor.Save = OnSave;
         }
 
         public void Shutdown(IApplication application)
@@ -141,8 +142,14 @@ namespace RPGPlugin
             m_myDropDownMenu = null;
         }
 
+        public void OnSave(MapEventArgs mapEventArgs)
+        {
+            m_dataStore.Save(m_mapMeta, $"{mapEventArgs.Map.Id}.MapMeta");
+        }
+
         public void ProjectSettings(object sender, EventArgs eventArgs)
         {
+            // TODO should load from datastore on save and load of map only, otherwise store in plugin
             using (var form = new ProjectSettingsForm(m_dataStore, m_projectId))
             {
                 var result = form.ShowDialog();
@@ -193,9 +200,7 @@ namespace RPGPlugin
                         form.Selected.Pos = new Vector(mapEventArgs.Location.X * mapEventArgs.Layer.TileWidth, mapEventArgs.Location.Y * mapEventArgs.Layer.TileHeight);
 
                         //m_mapMeta.Resize(mapEventArgs.Map);
-                        m_mapMeta.NPCs.Add(form.Selected);
-                        
-                        m_dataStore.Save(m_mapMeta, $"{mapEventArgs.Map.Id}.MapMeta");
+                        m_mapMeta.NPCs.Add(form.Selected);                      
                     }
                 }
             }
@@ -223,17 +228,17 @@ namespace RPGPlugin
 
         private void OnLayerNew(LayerEventArgs e)
         {
-
+            m_mapMeta.Layers.Add(new LayerMeta(e.Layer));
         }
 
         private void OnLayerProperties(LayerEventArgs e)
         {
-
+            m_mapMeta.FindLayer(e.Layer).Resize(e.Layer);
         }
 
         private void OnLayerDelete(LayerEventArgs e)
         {
-
+            m_mapMeta.DeleteLayer(e.Layer);
         }
 
         #endregion
