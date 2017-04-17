@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Resources;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
 using xTile;
-using xTile.ObjectModel;
 using xTile.Layers;
 using xTile.Tiles;
-using tIDE.Localisation;
 
 namespace tIDE.Controls
 {
@@ -131,6 +124,21 @@ namespace tIDE.Controls
             }
         }
 
+        public void LayerDeleteCallEvent(Layer layer)
+        {
+            LayerDeleteAction(this, new LayerEventArgs(layer));
+        }
+
+        public void LayerPropertiesCallEvent(Layer layer)
+        {
+            LayerPropertiesAction(this, new LayerEventArgs(layer));
+        }
+
+        public void LayerNewCallEvent(Layer layer)
+        {
+            LayerNewAction(this, new LayerEventArgs(layer));
+        }
+
         #endregion
 
         #region Public Properties
@@ -187,9 +195,11 @@ namespace tIDE.Controls
 
         [Category("Behavior"), Description("Occurs when a new layer is requested from the context menu")]
         public event EventHandler NewLayer;
+        public event EventHandler<LayerEventArgs> LayerNewAction;
 
         [Category("Behavior"), Description("Occurs when layer properties are requested from the context menu")]
         public event EventHandler LayerProperties;
+        public event EventHandler<LayerEventArgs> LayerPropertiesAction;
 
         [Category("Behavior"), Description("Occurs when layer visibility toggling is requested from the context menu")]
         public event EventHandler LayerVisibility;
@@ -202,6 +212,7 @@ namespace tIDE.Controls
 
         [Category("Behavior"), Description("Occurs when a layer deletion is requested from the context menu")]
         public event EventHandler DeleteLayer;
+        public event EventHandler<LayerEventArgs> LayerDeleteAction;
 
         [Category("Behavior"), Description("Occurs when a new tile sheet is requested from the context menu")]
         public event EventHandler NewTileSheet;

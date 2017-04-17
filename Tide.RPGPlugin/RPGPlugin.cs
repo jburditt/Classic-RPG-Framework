@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using tIDE.Plugin;
 using tIDE.Plugin.Interface;
 using TilePC;
+using xTile.Layers;
 
 namespace RPGPlugin
 {
@@ -112,15 +113,18 @@ namespace RPGPlugin
                 m_projectId = Prompt.ShowDialog("Project Name", "New Project");
 
             // load map meta data
-            var map = application.Editor.Map;
+            //var map = application.Editor.Map;
             m_dataStore = new BinaryDataStore($"{Settings.ProjectFilePath}{m_projectId}\\");
-            m_mapMeta = m_dataStore.Load<MapMeta>($"{map.Id}.MapMeta");
-            if (m_mapMeta == null)
-                m_mapMeta = new MapMeta(map);
+            //m_mapMeta = m_dataStore.Load<MapMeta>($"{map.Id}.MapMeta");
+            //if (m_mapMeta == null)
+            //    m_mapMeta = new MapMeta(map);
 
             // add plugin events to application
             application.Editor.MouseDown = OnEditorMouseDown;
             application.Editor.DrawTile = OnDrawTile;
+            application.Editor.LayerNew = OnLayerNew;
+            application.Editor.LayerDelete = OnLayerDelete;
+            application.Editor.LayerProperties = OnLayerProperties;
         }
 
         public void Shutdown(IApplication application)
@@ -165,7 +169,7 @@ namespace RPGPlugin
         public void TileSheetsAction(object sender, MapEventArgs e)
         {
             //// TODO m_map is only as recent as when plugin was Initialized
-            using (var form = new TileSheetForm(m_dataStore, e.Map, e.Layer))
+            using (var form = new TileSheetForm(m_dataStore, e.Map))
             {
                 var result = form.ShowDialog();
 
@@ -188,15 +192,16 @@ namespace RPGPlugin
                     {
                         form.Selected.Pos = new Vector(mapEventArgs.Location.X * mapEventArgs.Layer.TileWidth, mapEventArgs.Location.Y * mapEventArgs.Layer.TileHeight);
 
+                        //m_mapMeta.Resize(mapEventArgs.Map);
                         m_mapMeta.NPCs.Add(form.Selected);
-
+                        
                         m_dataStore.Save(m_mapMeta, $"{mapEventArgs.Map.Id}.MapMeta");
                     }
                 }
             }
         }
 
-        public void OnDrawTile(TileEventArgs e)
+        private void OnDrawTile(TileEventArgs e)
         {
             if (m_mapMeta?.Layers == null || m_mapMeta.Layers.Count == 0)
                 return;
@@ -207,14 +212,28 @@ namespace RPGPlugin
             var tileWidth = m_mapMeta.Layers[0].TileSize.Width;
             var tileHeight = m_mapMeta.Layers[0].TileSize.Height;
 
-            Bitmap tileBitmap = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
+            var tileBitmap = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
 
-            System.Drawing.Rectangle destRect;
-            destRect = new System.Drawing.Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
+            var destRect = new Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
 
             var npc = m_mapMeta.GetNPC(e.TileLocation.ToVector());
             if (npc != null)
                 e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
+        }
+
+        private void OnLayerNew(LayerEventArgs e)
+        {
+
+        }
+
+        private void OnLayerProperties(LayerEventArgs e)
+        {
+
+        }
+
+        private void OnLayerDelete(LayerEventArgs e)
+        {
+
         }
 
         #endregion

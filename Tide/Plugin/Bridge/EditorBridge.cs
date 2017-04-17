@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using xTile;
 using xTile.Dimensions;
 using xTile.Layers;
 using tIDE.Controls;
@@ -11,11 +10,15 @@ namespace tIDE.Plugin.Bridge
     class EditorBridge : ElementBridge, IEditor
     {
         private MapPanel m_mapPanel;
+        private MapTreeView m_mapTreeView;
 
         private MouseEditorHandler m_mouseDown;
         private MouseEditorHandler m_mouseMove;
         private MouseEditorHandler m_mouseUp;
         private TileEditorHandler m_drawTile;
+        private LayerEditorHandler m_layerProperties;
+        private LayerEditorHandler m_layerNew;
+        private LayerEditorHandler m_layerDelete;
 
         private void OnMapPanelMouseDown(object sender, MouseEventArgs mouseEventArgs)
         {
@@ -55,15 +58,44 @@ namespace tIDE.Plugin.Bridge
             m_drawTile(e);
         }
 
-        public EditorBridge(MapPanel mapPanel)
+        private void OnLayerProperties(object sender, LayerEventArgs e)
+        {
+            if (m_layerProperties == null)
+                return;
+
+            m_layerProperties(e);
+        }
+
+        private void OnLayerNew(object sender, LayerEventArgs e)
+        {
+            if (m_layerNew == null)
+                return;
+
+            m_layerNew(e);
+        }
+
+        private void OnLayerDelete(object sender, LayerEventArgs e)
+        {
+            if (m_layerDelete == null)
+                return;
+
+            m_layerDelete(e);
+        }
+
+        public EditorBridge(MapPanel mapPanel, MapTreeView mapTreeView)
             : base(false)
         {
             m_mapPanel = mapPanel;
+            m_mapTreeView = mapTreeView;
+
             Panel innerPanel = m_mapPanel.InnerPanel;
             innerPanel.MouseDown += OnMapPanelMouseDown;
             innerPanel.MouseMove += OnMapPanelMouseMove;
             innerPanel.MouseUp += OnMapPanelMouseUp;
-            mapPanel.DrawTileEvent += OnDrawTile;
+            m_mapPanel.DrawTileEvent += OnDrawTile;
+            m_mapTreeView.LayerNewAction += OnLayerNew;
+            m_mapTreeView.LayerPropertiesAction += OnLayerProperties;
+            m_mapTreeView.LayerDeleteAction += OnLayerDelete;
         }
 
         private Location GetTileLocation(Point mapLocation)
@@ -80,8 +112,8 @@ namespace tIDE.Plugin.Bridge
             return layer.GetTileLocation(layerDisplayLocation);
         }
 
-        public Map Map { get { return m_mapPanel.Map; } }
-        public Layer Layer { get { return m_mapPanel.SelectedLayer; } }
+        //public Map Map { get { return m_mapPanel.Map; } }
+        //public Layer Layer { get { return m_mapPanel.SelectedLayer; } }
         public string ProjectId { get { return m_mapPanel.ProjectId; } }
 
         public MouseEditorHandler MouseDown
@@ -102,6 +134,21 @@ namespace tIDE.Plugin.Bridge
         public TileEditorHandler DrawTile
         {
             set { m_drawTile = value; }
+        }
+
+        public LayerEditorHandler LayerNew
+        {
+            set { m_layerNew = value; }
+        }
+
+        public LayerEditorHandler LayerProperties
+        {
+            set { m_layerProperties = value; }
+        }
+
+        public LayerEditorHandler LayerDelete
+        {
+            set { m_layerDelete = value; }
         }
     }
 }

@@ -674,7 +674,7 @@ namespace tIDE
 
             LoadSettings();
 
-            m_pluginManager = new PluginManager(m_menuStrip, m_toolStripContainer, m_mapPanel);
+            m_pluginManager = new PluginManager(m_menuStrip, m_toolStripContainer, m_mapPanel, m_mapTreeView);
             OnPluginsReload(this, EventArgs.Empty);
         }
 
@@ -1281,6 +1281,7 @@ namespace tIDE
 
             m_mapTreeView.UpdateTree();
             m_mapTreeView.SelectedComponent = layer;
+            m_mapTreeView.LayerNewCallEvent(layer);
 
             m_needsSaving = true;
             UpdateFileControls();
@@ -1303,6 +1304,7 @@ namespace tIDE
             if (layerPropertiesDialog.ShowDialog(this) == DialogResult.OK)
             {
                 m_mapTreeView.UpdateTree();
+                m_mapTreeView.LayerPropertiesCallEvent(layer);
 
                 m_needsSaving = true;
                 UpdateFileControls();

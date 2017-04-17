@@ -2,6 +2,7 @@
 using Player;
 using Player.Maps;
 using System;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -16,7 +17,6 @@ namespace RPGPlugin
 
         private TileSheetMeta m_tileSheetMeta;
         private Map m_map;
-        private Layer m_layer;
         private Bitmap m_bitmapImageSource;
         private string m_imageSourceErrorMessge;
         private TileCursor m_cursor;
@@ -24,13 +24,15 @@ namespace RPGPlugin
         private int m_tileWidth, m_tileHeight;
         private Bitmap m_x = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
 
-        public TileSheetForm(IDataStore dataStore, Map map, Layer layer)
+        public TileSheetForm(IDataStore dataStore, Map map)
         {
+            if (map.Layers.Count == 0)
+                return;
+
             InitializeComponent();
 
             m_dataStore = dataStore;
-            m_map = map;
-            m_layer = layer;
+            m_map = map;     
 
             foreach (var tileSheet in m_map.TileSheets)
                 tilesetsListBox.Items.Add(tileSheet);
@@ -44,7 +46,7 @@ namespace RPGPlugin
 
             m_tileSheetMeta = m_dataStore.Load<TileSheetMeta>($"{m_map.Id}.TileSheetMeta");
 
-            m_tileWidth = m_layer.TileWidth;
+            m_tileWidth = m_map.TileSheets[0].TileWidth;
             m_tileHeight = m_map.TileSheets[0].TileHeight;
 
             m_cursor = new TileCursor

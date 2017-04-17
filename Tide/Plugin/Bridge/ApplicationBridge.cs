@@ -29,7 +29,7 @@ namespace tIDE.Plugin.Bridge
             }
         }
 
-        public ApplicationBridge(MenuStrip menuStrip, ToolStripContainer toolStripContainer, MapPanel mapPanel) : base(false)
+        public ApplicationBridge(MenuStrip menuStrip, ToolStripContainer toolStripContainer, MapPanel mapPanel, MapTreeView mapTreeView) : base(false)
         {
             m_commandHistory = CommandHistory.Instance;
 
@@ -42,7 +42,7 @@ namespace tIDE.Plugin.Bridge
             PopulateToolBars(toolStripContainer.LeftToolStripPanel, mapPanel);
             PopulateToolBars(toolStripContainer.RightToolStripPanel, mapPanel);
 
-            m_editorBridge = new EditorBridge(mapPanel);
+            m_editorBridge = new EditorBridge(mapPanel, mapTreeView);
         }
 
         public void Execute(ICommand command)

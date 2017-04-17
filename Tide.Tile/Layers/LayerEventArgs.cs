@@ -39,6 +39,11 @@ namespace xTile.Layers
 
         #region Public Methods
 
+        public LayerEventArgs(Layer layer)
+        {
+            m_layer = layer;
+        }
+
         /// <summary>
         /// Constructs a new Layer arguments structure
         /// </summary>

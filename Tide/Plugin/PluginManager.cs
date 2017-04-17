@@ -170,10 +170,10 @@ namespace tIDE.Plugin
             m_plugins.Clear();
         }
 
-        public PluginManager(MenuStrip menuStrip, ToolStripContainer toolStripContainer, MapPanel mapPanel)
+        public PluginManager(MenuStrip menuStrip, ToolStripContainer toolStripContainer, MapPanel mapPanel, MapTreeView mapTreeView)
         {
             m_plugins = new Dictionary<string, IPlugin>();
-            m_applicationBridge = new ApplicationBridge(menuStrip, toolStripContainer, mapPanel);
+            m_applicationBridge = new ApplicationBridge(menuStrip, toolStripContainer, mapPanel, mapTreeView);
             //PurgePluginDomain();
         }
 

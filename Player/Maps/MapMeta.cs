@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using xTile;
-using xTile.Dimensions;
 using xTile.Layers;
 
 namespace Player.Maps
@@ -18,6 +17,32 @@ namespace Player.Maps
                 Layers.Add(new LayerMeta(layer));
         }
 
+        //public void Resize(Map map)
+        //{
+        //    // add any missing layers
+        //    if (map.Layers.Count < Layers.Count)
+        //        Layers.Add(FindMissingLayer(map));
+
+        //    // reorder layers to match
+        //    for (var i = 0; i < map.Layers.Count; i++)
+        //    {
+        //        if (map.Layers[i].Id != Layers[i].Id)
+        //        {
+
+        //        }
+        //    }
+
+        //    // delete any extra layers
+
+        //    // resize all layers
+        //}
+
+        //private Layer FindMissingLayer(Map map)
+        //{
+        //    for (var i = 0; i < Layers.Count)
+        //        if (Layers[i].Id )
+        //}
+
         public NPC GetNPC(Vector pos)
         {
             foreach (var n in NPCs)
@@ -27,33 +52,6 @@ namespace Player.Maps
             }
 
             return null;
-        }
-    }
-
-    [Serializable]
-    public class LayerMeta
-    {
-        public Size TileSize { get; set; }
-        public TileMeta[,] Tiles { get; set; }
-
-        public LayerMeta(Layer layer)
-        {
-            TileSize = layer.TileSize;
-            Tiles = new TileMeta[layer.LayerWidth, layer.LayerHeight];
-            for (var x = 0; x < layer.LayerWidth; x++)
-                for (var y = 0; y < layer.LayerHeight; y++)
-                    Tiles[x, y] = new TileMeta();
-        }
-
-        public IEnumerable<TileMeta> TileEnumerator
-        {
-            get
-            {
-                for (var x = 0; x < Tiles.Columns(); x++)
-                    for (var y = 0; y < Tiles.Rows(); y++)
-                        if (Tiles[x, y] != null)
-                            yield return Tiles[x, y];
-            }
         }
     }
 }

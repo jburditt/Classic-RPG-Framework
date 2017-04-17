@@ -1,5 +1,4 @@
-﻿using Player.Events;
-using System;
+﻿using System;
 
 namespace Player.Maps
 {

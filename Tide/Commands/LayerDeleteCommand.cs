@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using xTile;
+﻿using xTile;
 using xTile.Layers;
-
 using tIDE.Controls;
 
 namespace tIDE.Commands
@@ -31,6 +25,8 @@ namespace tIDE.Commands
             m_map.RemoveLayer(m_layer);
 
             m_mapTreeView.UpdateTree();
+
+            m_mapTreeView.LayerDeleteCallEvent(m_layer);
         }
 
         public override void Undo()
@@ -39,6 +35,8 @@ namespace tIDE.Commands
 
             m_mapTreeView.UpdateTree();
             m_mapTreeView.SelectedComponent = m_layer;
+
+            m_mapTreeView.LayerNewCallEvent(m_layer);
         }
     }
 }

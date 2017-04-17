@@ -21,7 +21,6 @@ namespace tIDE.Controls
     [ToolboxBitmap(typeof(Panel))]
     public partial class MapPanel : UserControl, IDisplayDevice
     {
-        public event EventHandler<TileEventArgs> DrawTileEvent;
         public string ProjectId { get { return ((MainForm)this.ParentForm).AppSettings.ProjectId; } }
 
         private readonly float[] m_zoomFactors = new float[] { 0.01f, 0.05f, 0.1f, 0.25f, 0.5f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f};
@@ -1368,6 +1367,8 @@ namespace tIDE.Controls
 
         [Category("Behavior"), Description("Occurs when zooming factor is changed from within the map panel")]
         public event EventHandler ZoomChanged;
+
+        public event EventHandler<TileEventArgs> DrawTileEvent;
 
         #endregion
     }
