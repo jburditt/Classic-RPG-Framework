@@ -19,8 +19,6 @@ using tIDE.Plugin;
 using tIDE.TileBrushes;
 using tIDE.Localisation;
 using System.Diagnostics;
-using Common;
-using TilePC;
 
 namespace tIDE
 {
@@ -474,8 +472,8 @@ namespace tIDE
             Directory.SetCurrentDirectory(basePath);
 
             Map newMap = null;
-            try
-            {
+            //try
+            //{
                 newMap = formatManager.LoadMap(filename);
 
                 RecentFilesManager.StoreFilename(filename);
@@ -528,15 +526,17 @@ namespace tIDE
                 RecentFilesManager.StoreFilename(filename);
 
                 UpdateAllControls();
-            }
-            catch (Exception exception)
-            {
-                string message = exception.Message;
-                if (exception.InnerException != null)
-                    message += " Inner Message: " + exception.InnerException.Message;
-                m_loadErrorMessageBox.VariableDictionary["message"] = message;
-                m_loadErrorMessageBox.Show();
-            }
+
+                m_mapPanel.Load(m_map, filename);
+            //}
+            //catch (Exception exception)
+            //{
+            //    string message = exception.Message;
+            //    if (exception.InnerException != null)
+            //        message += " Inner Message: " + exception.InnerException.Message;
+            //    m_loadErrorMessageBox.VariableDictionary["message"] = message;
+            //    m_loadErrorMessageBox.Show();
+            //}
 
             Directory.SetCurrentDirectory(oldCurrentDirectory);
 
@@ -585,7 +585,9 @@ namespace tIDE
                 m_needsSaving = false;
                 RecentFilesManager.StoreFilename(filename);
                 UpdateFileControls();
-                m_mapPanel.Save(m_map);
+
+                AppSettings.FilePath = filename;
+                m_mapPanel.Save(m_map, filename);
 
                 return true;
             }
@@ -604,8 +606,8 @@ namespace tIDE
 
         private void LoadSettings()
         {
-            if (AppSettings.MapId != null && AppSettings.FilePath != null && AppSettings.ProjectId != null)
-                OpenFile($"{AppSettings.FilePath}\\Data\\{AppSettings.ProjectId}\\map\\{AppSettings.MapId}.tide");
+            if (AppSettings.FilePath != null)
+                OpenFile($"{AppSettings.FilePath}");
 
             this.WindowState = AppSettings.WindowState;
             if (AppSettings.Location != null)
@@ -617,7 +619,6 @@ namespace tIDE
         private void SaveSettings()
         {
             AppSettings.MapId = m_map.Id;
-            AppSettings.FilePath = AppDomain.CurrentDomain.BaseDirectory.PathParent(4);
             AppSettings.WindowState = this.WindowState;
             AppSettings.Location = this.Location;
             AppSettings.Size = this.Size;
@@ -674,10 +675,10 @@ namespace tIDE
                     OpenFile(filename);
             }
 
-            LoadSettings();
-
             m_pluginManager = new PluginManager(m_menuStrip, m_toolStripContainer, m_mapPanel, m_mapTreeView);
             OnPluginsReload(this, EventArgs.Empty);
+
+            LoadSettings();
         }
 
         private void OnMainFormResizeEnd(object sender, EventArgs eventArgs)
@@ -794,12 +795,12 @@ namespace tIDE
 
         private void OnProjectNew(object sender, EventArgs eventArgs)
         {
-            var projectName = Prompt.ShowDialog("Project Name", "New Project");
+            //var projectName = Prompt.ShowDialog("Project Name", "New Project");
 
-            if (!Directory.Exists($"{Settings.ProjectFilePath}{projectName}"))
-                Directory.CreateDirectory($"{Settings.ProjectFilePath}{projectName}");
+            //if (!Directory.Exists($"{Settings.ProjectFilePath}{projectName}"))
+            //    Directory.CreateDirectory($"{Settings.ProjectFilePath}{projectName}");
 
-            AppSettings.ProjectId = projectName;
+            //AppSettings.ProjectId = projectName;
         }
 
         private void OnFileNew(object sender, EventArgs eventArgs)
@@ -851,7 +852,6 @@ namespace tIDE
             if (openFileDialog.ShowDialog(this) == DialogResult.Cancel)
                 return;
 
-            SaveSettings();
             OnPluginsReload(this, EventArgs.Empty);
 
             OpenFile(openFileDialog.FileName);

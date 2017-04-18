@@ -96,6 +96,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="TileCursor.cs" />
   </ItemGroup>
   <ItemGroup>

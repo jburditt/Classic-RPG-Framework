@@ -11,6 +11,11 @@ namespace Player.Maps
         public IList<NPC> NPCs { get; set; } = new List<NPC>();
         public IList<LayerMeta> Layers { get; set; } = new List<LayerMeta>();
 
+        public MapMeta(Layer layer)
+        {
+            Layers.Add(new LayerMeta(layer));
+        }
+
         public MapMeta(Map map)
         {
             foreach (var layer in map.Layers)

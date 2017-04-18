@@ -23,7 +23,7 @@ namespace tIDE.Plugin.Bridge
             m_toolStripButton = toolStripButton;
             m_mapPanel = mapPanel;
             m_toolStripButton.Click += (sender, EventArgs) => {
-                OnToolStripButtonClick(sender, new MapEventArgs(m_mapPanel.Map, m_mapPanel.SelectedLayer, new Location(m_mapPanel.Location.X, m_mapPanel.Location.Y)));
+                OnToolStripButtonClick(sender, new MapEventArgs(m_mapPanel.Map, m_mapPanel.SelectedLayer, m_mapPanel.Location.X, m_mapPanel.Location.Y));
             };
         }
 
@@ -99,7 +99,7 @@ namespace tIDE.Plugin.Bridge
 
         private void OnToolStripButtonClick(object sender, MapEventArgs e)
         {
-            if (m_mapPanel == null)
+            if (m_toolBarButtonHandler == null)
                 return;
 
             m_toolBarButtonHandler(sender, e);

@@ -162,7 +162,7 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_mapTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 292</value>
+    <value>201, 318</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="m_mapTreeView.TabIndex" type="System.Int32, mscorlib">
@@ -202,7 +202,7 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_tilePicker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 231</value>
+    <value>201, 232</value>
   </data>
   <data name="m_tilePicker.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -232,10 +232,10 @@
     <value>1</value>
   </data>
   <data name="m_splitContainerVertical.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 528</value>
+    <value>201, 555</value>
   </data>
   <data name="m_splitContainerVertical.SplitterDistance" type="System.Int32, mscorlib">
-    <value>292</value>
+    <value>318</value>
   </data>
   <data name="m_splitContainerVertical.SplitterWidth" type="System.Int32, mscorlib">
     <value>5</value>
@@ -346,7 +346,7 @@
     <value>5, 5, 5, 5</value>
   </data>
   <data name="m_mapPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>799, 503</value>
+    <value>799, 530</value>
   </data>
   <data name="m_mapPanel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -367,7 +367,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_toolStripContainerInner.ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>799, 503</value>
+    <value>799, 530</value>
   </data>
   <data name="&gt;&gt;m_toolStripContainerInner.ContentPanel.Name" xml:space="preserve">
     <value>m_toolStripContainerInner.ContentPanel</value>
@@ -538,7 +538,7 @@
     <value>2</value>
   </data>
   <data name="m_toolStripContainerInner.Size" type="System.Drawing.Size, System.Drawing">
-    <value>839, 528</value>
+    <value>839, 555</value>
   </data>
   <data name="m_toolStripContainerInner.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -583,7 +583,7 @@
     <value>1</value>
   </data>
   <data name="m_splitContainerLeftRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1045, 528</value>
+    <value>1045, 555</value>
   </data>
   <data name="m_splitContainerLeftRight.SplitterDistance" type="System.Int32, mscorlib">
     <value>201</value>
@@ -610,7 +610,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="m_toolStripContainer.ContentPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1045, 528</value>
+    <value>1045, 555</value>
   </data>
   <data name="&gt;&gt;m_toolStripContainer.ContentPanel.Name" xml:space="preserve">
     <value>m_toolStripContainer.ContentPanel</value>
@@ -665,6 +665,144 @@
   </data>
   <data name="m_toolStripContainer.Text" xml:space="preserve">
     <value>toolStripContainer1</value>
+  </data>
+  <metadata name="m_tileSheetToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>3, 25</value>
+  </metadata>
+  <data name="m_tileSheetToolStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="m_tileSheetNewButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="m_tileSheetNewButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="m_tileSheetNewButton.Text" xml:space="preserve">
+    <value>New Tile Sheet</value>
+  </data>
+  <data name="m_tileSheetPropertiesButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_tileSheetPropertiesButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="m_tileSheetPropertiesButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="m_tileSheetPropertiesButton.Text" xml:space="preserve">
+    <value>Tile Sheet Properties</value>
+  </data>
+  <data name="m_tileSheetAutoTilesButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_tileSheetAutoTilesButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="m_tileSheetAutoTilesButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="m_tileSheetAutoTilesButton.Text" xml:space="preserve">
+    <value>Auto Tiles</value>
+  </data>
+  <data name="m_tileSheetAutoTilesButton.ToolTipText" xml:space="preserve">
+    <value>Manage tile sheet auto tiles</value>
+  </data>
+  <data name="m_tileSheetToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 27</value>
+  </data>
+  <data name="m_tileSheetAutoUpdateEnableButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="m_tileSheetAutoUpdateEnableButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="m_tileSheetAutoUpdateEnableButton.Text" xml:space="preserve">
+    <value>Enable Auto Update</value>
+  </data>
+  <data name="m_tileSheetAutoUpdateEnableButton.ToolTipText" xml:space="preserve">
+    <value>Enable automatic update of tile sheets from disk</value>
+  </data>
+  <data name="m_tileSheetAutoUpdateDisableButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="m_tileSheetAutoUpdateDisableButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="m_tileSheetAutoUpdateDisableButton.Text" xml:space="preserve">
+    <value>Disable Auto Update</value>
+  </data>
+  <data name="m_tileSheetAutoUpdateDisableButton.ToolTipText" xml:space="preserve">
+    <value>Disable automatic update of tile sheets from disk</value>
+  </data>
+  <data name="m_tileSheetAutoUpdateDisableButton.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_tileSheetEditImageSourceButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_tileSheetEditImageSourceButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="m_tileSheetEditImageSourceButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="m_tileSheetEditImageSourceButton.Text" xml:space="preserve">
+    <value>Edit Image Source</value>
+  </data>
+  <data name="m_tileSheetEditImageSourceButton.ToolTipText" xml:space="preserve">
+    <value>Open the tile sheet's image source in a paint application</value>
+  </data>
+  <data name="m_tileSheetToolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 27</value>
+  </data>
+  <data name="m_tileSheetRemoveDependenciesButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_tileSheetRemoveDependenciesButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="m_tileSheetRemoveDependenciesButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="m_tileSheetRemoveDependenciesButton.Text" xml:space="preserve">
+    <value>toolStripButton1</value>
+  </data>
+  <data name="m_tileSheetRemoveDependenciesButton.ToolTipText" xml:space="preserve">
+    <value>Remove dependencies on this Tile Sheet</value>
+  </data>
+  <data name="m_tileSheetDeleteButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="m_tileSheetDeleteButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="m_tileSheetDeleteButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="m_tileSheetDeleteButton.Text" xml:space="preserve">
+    <value>Delete Tile Sheet</value>
+  </data>
+  <data name="m_tileSheetToolStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>244, 27</value>
+  </data>
+  <data name="m_tileSheetToolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 27</value>
+  </data>
+  <data name="m_tileSheetToolStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetToolStrip.Name" xml:space="preserve">
+    <value>m_tileSheetToolStrip</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetToolStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetToolStrip.Parent" xml:space="preserve">
+    <value>m_toolStripContainer.TopToolStripPanel</value>
+  </data>
+  <data name="&gt;&gt;m_tileSheetToolStrip.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="m_editToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>3, 25</value>
@@ -844,7 +982,7 @@
     <value>Manage tile brushes</value>
   </data>
   <data name="m_editToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 0</value>
+    <value>3, 0</value>
   </data>
   <data name="m_editToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>318, 27</value>
@@ -862,144 +1000,6 @@
     <value>m_toolStripContainer.TopToolStripPanel</value>
   </data>
   <data name="&gt;&gt;m_editToolStrip.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="m_tileSheetToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>3, 25</value>
-  </metadata>
-  <data name="m_tileSheetToolStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="m_tileSheetNewButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="m_tileSheetNewButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
-  <data name="m_tileSheetNewButton.Text" xml:space="preserve">
-    <value>New Tile Sheet</value>
-  </data>
-  <data name="m_tileSheetPropertiesButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_tileSheetPropertiesButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="m_tileSheetPropertiesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
-  <data name="m_tileSheetPropertiesButton.Text" xml:space="preserve">
-    <value>Tile Sheet Properties</value>
-  </data>
-  <data name="m_tileSheetAutoTilesButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_tileSheetAutoTilesButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="m_tileSheetAutoTilesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
-  <data name="m_tileSheetAutoTilesButton.Text" xml:space="preserve">
-    <value>Auto Tiles</value>
-  </data>
-  <data name="m_tileSheetAutoTilesButton.ToolTipText" xml:space="preserve">
-    <value>Manage tile sheet auto tiles</value>
-  </data>
-  <data name="m_tileSheetToolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 27</value>
-  </data>
-  <data name="m_tileSheetAutoUpdateEnableButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="m_tileSheetAutoUpdateEnableButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
-  <data name="m_tileSheetAutoUpdateEnableButton.Text" xml:space="preserve">
-    <value>Enable Auto Update</value>
-  </data>
-  <data name="m_tileSheetAutoUpdateEnableButton.ToolTipText" xml:space="preserve">
-    <value>Enable automatic update of tile sheets from disk</value>
-  </data>
-  <data name="m_tileSheetAutoUpdateDisableButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="m_tileSheetAutoUpdateDisableButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
-  <data name="m_tileSheetAutoUpdateDisableButton.Text" xml:space="preserve">
-    <value>Disable Auto Update</value>
-  </data>
-  <data name="m_tileSheetAutoUpdateDisableButton.ToolTipText" xml:space="preserve">
-    <value>Disable automatic update of tile sheets from disk</value>
-  </data>
-  <data name="m_tileSheetAutoUpdateDisableButton.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_tileSheetEditImageSourceButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_tileSheetEditImageSourceButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="m_tileSheetEditImageSourceButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
-  <data name="m_tileSheetEditImageSourceButton.Text" xml:space="preserve">
-    <value>Edit Image Source</value>
-  </data>
-  <data name="m_tileSheetEditImageSourceButton.ToolTipText" xml:space="preserve">
-    <value>Open the tile sheet's image source in a paint application</value>
-  </data>
-  <data name="m_tileSheetToolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 27</value>
-  </data>
-  <data name="m_tileSheetRemoveDependenciesButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_tileSheetRemoveDependenciesButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="m_tileSheetRemoveDependenciesButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
-  <data name="m_tileSheetRemoveDependenciesButton.Text" xml:space="preserve">
-    <value>toolStripButton1</value>
-  </data>
-  <data name="m_tileSheetRemoveDependenciesButton.ToolTipText" xml:space="preserve">
-    <value>Remove dependencies on this Tile Sheet</value>
-  </data>
-  <data name="m_tileSheetDeleteButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="m_tileSheetDeleteButton.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="m_tileSheetDeleteButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
-  </data>
-  <data name="m_tileSheetDeleteButton.Text" xml:space="preserve">
-    <value>Delete Tile Sheet</value>
-  </data>
-  <data name="m_tileSheetToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
-  </data>
-  <data name="m_tileSheetToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 27</value>
-  </data>
-  <data name="m_tileSheetToolStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;m_tileSheetToolStrip.Name" xml:space="preserve">
-    <value>m_tileSheetToolStrip</value>
-  </data>
-  <data name="&gt;&gt;m_tileSheetToolStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_tileSheetToolStrip.Parent" xml:space="preserve">
-    <value>m_toolStripContainer.TopToolStripPanel</value>
-  </data>
-  <data name="&gt;&gt;m_tileSheetToolStrip.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <metadata name="m_viewToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -1201,7 +1201,7 @@
     <value>Map statistics</value>
   </data>
   <data name="m_mapToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 55</value>
+    <value>219, 55</value>
   </data>
   <data name="m_mapToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 27</value>
@@ -1330,7 +1330,7 @@
     <value>Access general options</value>
   </data>
   <data name="m_fileToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 82</value>
+    <value>3, 55</value>
   </data>
   <data name="m_fileToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 27</value>
@@ -1358,18 +1358,6 @@
   </data>
   <data name="m_menuStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="m_newProjectMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 26</value>
-  </data>
-  <data name="m_newProjectMenuItem.Text" xml:space="preserve">
-    <value>Project</value>
-  </data>
-  <data name="m_newMapMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 26</value>
-  </data>
-  <data name="m_newMapMenuItem.Text" xml:space="preserve">
-    <value>Map</value>
   </data>
   <data name="m_fileNewMenuItem.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
@@ -2158,7 +2146,7 @@
     <value>&amp;Help</value>
   </data>
   <data name="m_menuStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 109</value>
+    <value>0, 82</value>
   </data>
   <data name="m_menuStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>1045, 28</value>
@@ -2323,7 +2311,7 @@
     <value>Delete Layer</value>
   </data>
   <data name="m_layerToolStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 137</value>
+    <value>3, 110</value>
   </data>
   <data name="m_layerToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>198, 27</value>
@@ -4242,18 +4230,6 @@
   </data>
   <data name="&gt;&gt;m_dependencyRemovedMessageBox.Type" xml:space="preserve">
     <value>tIDE.Controls.CustomMessageBox, tIDE, Version=2.0.7.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;m_newProjectMenuItem.Name" xml:space="preserve">
-    <value>m_newProjectMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_newProjectMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;m_newMapMenuItem.Name" xml:space="preserve">
-    <value>m_newMapMenuItem</value>
-  </data>
-  <data name="&gt;&gt;m_newMapMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

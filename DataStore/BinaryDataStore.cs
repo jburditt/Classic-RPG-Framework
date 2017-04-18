@@ -6,6 +6,8 @@ namespace DataStore
     {
         public string FilePath { get; set; }
 
+        public BinaryDataStore() { }
+
         public BinaryDataStore(string filePath)
         {
             FilePath = filePath;

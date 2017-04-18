@@ -3,7 +3,6 @@ using Player.Core;
 using System;
 using System.IO;
 using System.Windows.Forms;
-using TilePC;
 
 namespace RPGPlugin.Forms
 {

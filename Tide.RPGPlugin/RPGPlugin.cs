@@ -4,10 +4,10 @@ using Player.Maps;
 using RPGPlugin.Forms;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using tIDE.Plugin;
 using tIDE.Plugin.Interface;
-using TilePC;
 using xTile.Layers;
 
 namespace RPGPlugin
@@ -114,7 +114,8 @@ namespace RPGPlugin
 
             // load map meta data
             //var map = application.Editor.Map;
-            m_dataStore = new BinaryDataStore($"{Settings.ProjectFilePath}{m_projectId}\\");
+            //m_dataStore = new BinaryDataStore($"{Settings.ProjectFilePath}{m_projectId}\\");
+            m_dataStore = new BinaryDataStore();
             //m_mapMeta = m_dataStore.Load<MapMeta>($"{map.Id}.MapMeta");
             //if (m_mapMeta == null)
             //    m_mapMeta = new MapMeta(map);
@@ -126,6 +127,7 @@ namespace RPGPlugin
             application.Editor.LayerDelete = OnLayerDelete;
             application.Editor.LayerProperties = OnLayerProperties;
             application.Editor.Save = OnSave;
+            application.Editor.Load = OnLoad;
         }
 
         public void Shutdown(IApplication application)
@@ -142,9 +144,20 @@ namespace RPGPlugin
             m_myDropDownMenu = null;
         }
 
-        public void OnSave(MapEventArgs mapEventArgs)
+        public void OnLoad(MapEventArgs e)
         {
-            m_dataStore.Save(m_mapMeta, $"{mapEventArgs.Map.Id}.MapMeta");
+            e.Map.FileName = Path.GetFileNameWithoutExtension(e.FilePath);
+            string filePath = Directory.GetParent(e.FilePath).ToString();
+
+            m_mapMeta = m_dataStore.Load<MapMeta>($"{filePath}\\{e.Map.FileName}.MapMeta");
+        }
+
+        public void OnSave(MapEventArgs e)
+        {
+            e.Map.FileName = Path.GetFileNameWithoutExtension(e.FilePath);
+            string filePath = Directory.GetParent(e.FilePath).ToString();
+
+            m_dataStore.Save(m_mapMeta, $"{filePath}\\{e.Map.FileName}.MapMeta");
         }
 
         public void ProjectSettings(object sender, EventArgs eventArgs)
@@ -197,7 +210,7 @@ namespace RPGPlugin
 
                     if (result == DialogResult.OK)
                     {
-                        form.Selected.Pos = new Vector(mapEventArgs.Location.X * mapEventArgs.Layer.TileWidth, mapEventArgs.Location.Y * mapEventArgs.Layer.TileHeight);
+                        form.Selected.Pos = new Vector(mapEventArgs.X * mapEventArgs.Layer.TileWidth, mapEventArgs.Y * mapEventArgs.Layer.TileHeight);
 
                         //m_mapMeta.Resize(mapEventArgs.Map);
                         m_mapMeta.NPCs.Add(form.Selected);                      
@@ -228,6 +241,9 @@ namespace RPGPlugin
 
         private void OnLayerNew(LayerEventArgs e)
         {
+            if (m_mapMeta == null)
+                m_mapMeta = new MapMeta(e.Layer);
+
             m_mapMeta.Layers.Add(new LayerMeta(e.Layer));
         }
 

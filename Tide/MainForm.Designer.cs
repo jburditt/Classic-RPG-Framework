@@ -227,8 +227,6 @@
             this.m_unsavedMessageBox = new tIDE.Controls.CustomMessageBox(this.components);
             this.m_hasDependencyMessageBox = new tIDE.Controls.CustomMessageBox(this.components);
             this.m_dependencyRemovedMessageBox = new tIDE.Controls.CustomMessageBox(this.components);
-            this.m_newProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.m_newMapMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             m_fileSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             m_fileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             m_fileSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -279,8 +277,8 @@
             // 
             // m_toolStripContainer.TopToolStripPanel
             // 
-            this.m_toolStripContainer.TopToolStripPanel.Controls.Add(this.m_editToolStrip);
             this.m_toolStripContainer.TopToolStripPanel.Controls.Add(this.m_tileSheetToolStrip);
+            this.m_toolStripContainer.TopToolStripPanel.Controls.Add(this.m_editToolStrip);
             this.m_toolStripContainer.TopToolStripPanel.Controls.Add(this.m_viewToolStrip);
             this.m_toolStripContainer.TopToolStripPanel.Controls.Add(this.m_mapToolStrip);
             this.m_toolStripContainer.TopToolStripPanel.Controls.Add(this.m_fileToolStrip);
@@ -1003,14 +1001,10 @@
             // 
             // m_fileNewMenuItem
             // 
-            this.m_fileNewMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.m_newProjectMenuItem,
-            this.m_newMapMenuItem});
             this.m_fileNewMenuItem.Image = global::tIDE.Properties.Resources.FileNew;
             resources.ApplyResources(this.m_fileNewMenuItem, "m_fileNewMenuItem");
             this.m_fileNewMenuItem.Name = "m_fileNewMenuItem";
-            this.m_newMapMenuItem.Click += new System.EventHandler(this.OnFileNew);
-            this.m_newProjectMenuItem.Click += new System.EventHandler(this.OnProjectNew);
+            this.m_fileNewMenuItem.Click += new System.EventHandler(this.OnFileNew);
             // 
             // m_fileOpenMenuItem
             // 
@@ -1901,16 +1895,6 @@
             this.m_dependencyRemovedMessageBox.Icon = tIDE.Controls.MessageIcon.Information;
             this.m_dependencyRemovedMessageBox.Owner = this;
             // 
-            // m_newProjectMenuItem
-            // 
-            this.m_newProjectMenuItem.Name = "m_newProjectMenuItem";
-            resources.ApplyResources(this.m_newProjectMenuItem, "m_newProjectMenuItem");
-            // 
-            // m_newMapMenuItem
-            // 
-            this.m_newMapMenuItem.Name = "m_newMapMenuItem";
-            resources.ApplyResources(this.m_newMapMenuItem, "m_newMapMenuItem");
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2156,7 +2140,5 @@
         private System.Windows.Forms.ToolStripMenuItem m_tileSheetEditImageSourceMenuItem;
         private System.Windows.Forms.ToolStripButton m_tileSheetEditImageSourceButton;
         private System.Windows.Forms.ToolStripButton m_toolsFloodFillButton;
-        private System.Windows.Forms.ToolStripMenuItem m_newProjectMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem m_newMapMenuItem;
     }
 }

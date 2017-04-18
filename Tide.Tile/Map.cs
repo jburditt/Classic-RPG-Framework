@@ -29,6 +29,8 @@ namespace xTile
     {
         #region Public Properties
 
+        public string FileName { get; set; }
+
         /// <summary>
         /// Display size of the map in pixels. Corresponds to the size of
         /// the largest layer

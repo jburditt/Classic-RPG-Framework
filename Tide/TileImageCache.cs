@@ -24,14 +24,13 @@ namespace tIDE
 
         public void Refresh(TileSheet tileSheet)
         {
-            try
-            {
+            //try
+            //{
                 System.Drawing.Bitmap tileSheetBitmap = null;
 
                 // copy bitmap in memory, otherwise Clone() method forces
                 // a reload of the image on every call!
-                using (System.Drawing.Bitmap tileSheetBitmapDisk
-                    = new System.Drawing.Bitmap(tileSheet.ImageSource))
+                using (var tileSheetBitmapDisk = new System.Drawing.Bitmap(tileSheet.ImageSource))
                 {
                     tileSheetBitmap = new System.Drawing.Bitmap(tileSheetBitmapDisk);
                 }
@@ -61,14 +60,14 @@ namespace tIDE
                 }
 
                 m_bitmapCache[tileSheet] = tileBitmaps;
-            }
-            catch (Exception innerException)
-            {
-                Exception exception = new Exception(
-                    "Unable to load tile sheet '" + tileSheet.Id + "' with image source '" + tileSheet.ImageSource + "'",
-                    innerException);
-                throw exception;
-            }
+            //}
+            //catch (Exception innerException)
+            //{
+            //    Exception exception = new Exception(
+            //        "Unable to load tile sheet '" + tileSheet.Id + "' with image source '" + tileSheet.ImageSource + "'",
+            //        innerException);
+            //    throw exception;
+            //}
         }
 
         public void Clear(TileSheet tileSheet)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
+//using System.Collections.Generic;
+//using System.Text.RegularExpressions;
 
 namespace tIDE.Format
 {
@@ -58,14 +58,31 @@ namespace tIDE.Format
                 basePath += Path.DirectorySeparatorChar;
 
             // combine base and relative paths with unprocessed parent directory references
-            string absolutePath = basePath + relativePath;
+            //string absolutePath = basePath + relativePath;
+
+            //// consume every instance of directory - parent reference pairs e.g. a\b\..\c -> a\c
+            //Regex regex = new Regex(@"\\[^\\]+\\\.\.");
+            //while (absolutePath.Contains(".."))
+            //    absolutePath = regex.Replace(absolutePath, @"");
+
+            string absolutePath = basePath;
+
+            // remove \\ from end of path
+            if (absolutePath.EndsWith("\\"))
+                absolutePath = Directory.GetParent(absolutePath).ToString();
 
             // consume every instance of directory - parent reference pairs e.g. a\b\..\c -> a\c
-            Regex regex = new Regex(@"\\[^\\]+\\\.\.");
-            while (absolutePath.Contains(".."))
-                absolutePath = regex.Replace(absolutePath, @"");
+            while (relativePath.Contains("..\\"))
+            {
+                absolutePath = Directory.GetParent(absolutePath).ToString();
+                relativePath = relativePath.Substring(3);
+            }
 
-            return absolutePath;
+            // ensure base path has an ending separator
+            if (!absolutePath.EndsWith("" + Path.DirectorySeparatorChar))
+                absolutePath += Path.DirectorySeparatorChar;
+
+            return absolutePath + relativePath;
         }
     }
 }

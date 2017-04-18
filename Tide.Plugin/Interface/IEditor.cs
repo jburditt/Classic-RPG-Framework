@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using xTile;
 using xTile.Layers;
 
 namespace tIDE.Plugin.Interface
@@ -18,6 +17,7 @@ namespace tIDE.Plugin.Interface
         LayerEditorHandler LayerProperties { set; }
         LayerEditorHandler LayerDelete { set; }
         MapEditorHandler Save { set; }
+        MapEditorHandler Load { set; }
     }
 
     public delegate void MouseEditorHandler(MouseEventArgs mouseEventArgs, MapEventArgs mapEventArgs);

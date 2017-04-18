@@ -964,9 +964,14 @@ namespace tIDE.Controls
             this.MouseWheel += new MouseEventHandler(OnMouseWheel);
         }
 
-        public void Save(Map map)
+        public void Load(Map map, string filePath)
         {
-            SaveEvent(this, new MapEventArgs(map));
+            LoadEvent(this, new MapEventArgs(map, filePath));
+        }
+
+        public void Save(Map map, string filePath)
+        {
+            SaveEvent(this, new MapEventArgs(map, filePath));
         }
 
         public Image GenerateImage(Layer layer)
@@ -1375,6 +1380,7 @@ namespace tIDE.Controls
 
         public event EventHandler<TileEventArgs> DrawTileEvent;
         public event EventHandler<MapEventArgs> SaveEvent;
+        public event EventHandler<MapEventArgs> LoadEvent;
 
         #endregion
     }
