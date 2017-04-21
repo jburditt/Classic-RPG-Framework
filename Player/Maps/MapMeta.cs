@@ -34,5 +34,10 @@ namespace Player.Maps
 
             return null;
         }
+
+        public void RemoveNPC(NPC npc)
+        {
+            NPCs.Remove(npc);
+        }
     }
 }

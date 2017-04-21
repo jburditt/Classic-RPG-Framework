@@ -22,6 +22,7 @@ namespace RPGPlugin
         private IMenuItem m_myMenuItem;
         private IToolBar m_myToolBar;
         private IToolBarButton m_npcToolBarButton, m_eventToolBarButton, m_projectSettingsToolBarButton, m_tilesheetToolBarButton;
+        private IToolBarButton m_eraserToolBarButton;
 
         #region IPlugin Members
 
@@ -84,6 +85,10 @@ namespace RPGPlugin
             m_myMenuItem.Image = Properties.Resources.Event_32;
             m_myMenuItem.EventHandler = EventAction;
 
+            m_myMenuItem = application.MenuStrip.DropDownMenus["RPG"].SubItems.Add("Eraser");
+            m_myMenuItem.Image = Properties.Resources.Eraser_32;
+            m_myMenuItem.EventHandler = EventAction;
+
             //m_myMenuItem = application.MenuStrip.DropDownMenus["RPG"].SubItems.Add("TileSheet Meta");
             //m_myMenuItem.Image = Properties.Resources.TileSheetMeta_32;
             //m_myMenuItem.ToolBarButtonHandler = TileSheetsAction;
@@ -105,6 +110,10 @@ namespace RPGPlugin
             m_tilesheetToolBarButton = m_myToolBar.Buttons.Add("Button3", Properties.Resources.TileSheetMeta_16);
             m_tilesheetToolBarButton.ToolTipText = "TileSheets";
             m_tilesheetToolBarButton.ToolBarButtonHandler = TileSheetsAction;
+
+            m_eraserToolBarButton = m_myToolBar.Buttons.Add("eraserButton", Properties.Resources.Eraser_16);
+            m_eraserToolBarButton.ToolTipText = "TileSheets";
+            m_eraserToolBarButton.ToolBarButtonHandler = EraserAction;
 
             // pass application map to plugin
             m_projectId = application.Editor.ProjectId;
@@ -178,12 +187,21 @@ namespace RPGPlugin
         {
             m_npcToolBarButton.Checked = !m_npcToolBarButton.Checked;
             m_eventToolBarButton.Checked = false;
+            m_eraserToolBarButton.Checked = false;
         }
 
         public void EventAction(object sender, EventArgs eventArgs)
         {
             m_eventToolBarButton.Checked = !m_eventToolBarButton.Checked;
             m_npcToolBarButton.Checked = false;
+            m_eraserToolBarButton.Checked = false;
+        }
+
+        public void EraserAction(object sender, EventArgs e)
+        {
+            m_eraserToolBarButton.Checked = !m_eraserToolBarButton.Checked;
+            m_npcToolBarButton.Checked = false;
+            m_eventToolBarButton.Checked = false;
         }
 
         public void TileSheetsAction(object sender, MapEventArgs e)
@@ -202,6 +220,8 @@ namespace RPGPlugin
 
         public void OnEditorMouseDown(MouseEventArgs mouseEventArgs, MapEventArgs mapEventArgs)
         {
+            var selectedPos = new Vector(mapEventArgs.X * mapEventArgs.Layer.TileWidth, mapEventArgs.Y * mapEventArgs.Layer.TileHeight);
+
             if (m_npcToolBarButton.Checked)
             {
                 using (var form = new NPCDialog())
@@ -210,12 +230,18 @@ namespace RPGPlugin
 
                     if (result == DialogResult.OK)
                     {
-                        form.Selected.Pos = new Vector(mapEventArgs.X * mapEventArgs.Layer.TileWidth, mapEventArgs.Y * mapEventArgs.Layer.TileHeight);
+                        form.Selected.Pos = selectedPos;
 
                         //m_mapMeta.Resize(mapEventArgs.Map);
                         m_mapMeta.NPCs.Add(form.Selected);                      
                     }
                 }
+            } else if (m_eraserToolBarButton.Checked)
+            {
+                var npc = m_mapMeta.GetNPC(selectedPos);
+
+                if (npc != null)
+                    m_mapMeta.RemoveNPC(npc);
             }
         }
 
