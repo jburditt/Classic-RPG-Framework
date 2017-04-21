@@ -88,7 +88,7 @@ namespace Player
 
             for (int layerIndex = 0; layerIndex < Layers; layerIndex++)
             {
-                var tile = MapMeta.Layers[layerIndex].Tiles[x, y];
+                var tile = MapMeta.Tiles[x, y];
 
                 if (tile != null && tile.IsBlocked)
                 {
@@ -156,7 +156,7 @@ namespace Player
                     // draw all tile layers
                     for (var layer = 0; layer < Layers; layer++)
                     {
-                        var tile = MapMeta.Layers[layer].Tiles[x + playerTileX, y + playerTileY];
+                        var tile = MapMeta.Tiles[x + playerTileX, y + playerTileY];
 
                         if (tile != null)
                         {
@@ -175,7 +175,7 @@ namespace Player
         {
             for (var layer = 0; layer < Layers; layer++)
             {
-                var tile = MapMeta.Layers[layer].Tiles[x, y];
+                var tile = MapMeta.Tiles[x, y];
 
                 if (tile != null)
                 {

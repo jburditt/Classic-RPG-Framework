@@ -9,12 +9,14 @@ namespace tIDE.Plugin
         public Graphics Graphics { get; set; }
         public Location Location { get; set; }
         public Location TileLocation { get; set; }
+        public xTile.Dimensions.Size TileSize { get; set; }
 
-        public TileEventArgs(Graphics graphics, Location location, Location tileLocation)
+        public TileEventArgs(Graphics graphics, Location location, Location tileLocation, xTile.Dimensions.Size tileSize)
         {
             Graphics = graphics;
             Location = location;
             TileLocation = tileLocation;
+            TileSize = tileSize;
         }
     }
 }

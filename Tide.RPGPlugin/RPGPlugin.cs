@@ -221,40 +221,28 @@ namespace RPGPlugin
 
         private void OnDrawTile(TileEventArgs e)
         {
-            if (m_mapMeta?.Layers == null || m_mapMeta.Layers.Count == 0)
-                return;
-
-            if (e.TileLocation.X < 0 || e.TileLocation.Y < 0)
-                return;
-
-            var tileWidth = m_mapMeta.Layers[0].TileSize.Width;
-            var tileHeight = m_mapMeta.Layers[0].TileSize.Height;
+            var tileWidth = e.TileSize.Width;
+            var tileHeight = e.TileSize.Height;
 
             var tileBitmap = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
 
             var destRect = new Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
 
-            var npc = m_mapMeta.GetNPC(e.TileLocation.ToVector());
+            var npc = m_mapMeta.GetNPC(e.TileLocation.ToVector() * new Vector(tileWidth, tileHeight));
             if (npc != null)
                 e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
         }
 
         private void OnLayerNew(LayerEventArgs e)
         {
-            if (m_mapMeta == null)
-                m_mapMeta = new MapMeta(e.Layer);
-
-            m_mapMeta.Layers.Add(new LayerMeta(e.Layer));
         }
 
         private void OnLayerProperties(LayerEventArgs e)
         {
-            m_mapMeta.FindLayer(e.Layer).Resize(e.Layer);
         }
 
         private void OnLayerDelete(LayerEventArgs e)
         {
-            m_mapMeta.DeleteLayer(e.Layer);
         }
 
         #endregion

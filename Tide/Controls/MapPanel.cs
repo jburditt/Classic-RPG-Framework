@@ -1116,7 +1116,7 @@ namespace tIDE.Controls
                 if (offSetY > 0)
                     offSetY -= tileSize.Height;
                 location.Y += offSetY;
-                DrawTileEvent(this, new TileEventArgs(m_graphics, location, tileLocation));
+                DrawTileEvent(this, new TileEventArgs(m_graphics, location, tileLocation, m_map.Layers[0].TileSize));
             }
         }
 
