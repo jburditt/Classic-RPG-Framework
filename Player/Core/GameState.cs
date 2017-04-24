@@ -1,8 +1,10 @@
 ﻿using DataStore;
+using Player.Events;
 using Player.Graphics;
 using Player.Inputs;
 using Player.Manager;
 using Player.StateStack;
+using System.Collections.Generic;
 
 namespace Player.Core
 {
@@ -15,6 +17,7 @@ namespace Player.Core
         private IDataStore _dataStore;
         private IDialogManager _dialogManager;
         private IEnemyManager _enemyManager;
+        private IEventService _eventService;
         private IGraphics _graphics;
         private IIconManager _iconManager;
         private IInputManager _inputManager;
@@ -22,11 +25,11 @@ namespace Player.Core
         private ITilesetManager _tilesetManager;
 
         private StateMachine stateMachine = new StateMachine();
-        private SerializableDictionary<State, IState> states = new SerializableDictionary<State, IState>();
+        private Dictionary<State, IState> states = new Dictionary<State, IState>();
 
         public GameState(
             IActorManager actorManager, IBattleManager battleManager, IDataStore dataStore, IDialogManager dialogManager, 
-            IEnemyManager enemyManager, IGraphics graphics, IIconManager iconManager, IInputManager inputManager, ISongManager songManager,
+            IEnemyManager enemyManager, IEventService eventService, IGraphics graphics, IIconManager iconManager, IInputManager inputManager, ISongManager songManager,
             ITilesetManager tilesetManager)
         {
             _actorManager = actorManager;
@@ -34,6 +37,7 @@ namespace Player.Core
             _dataStore = dataStore;
             _dialogManager = dialogManager;
             _enemyManager = enemyManager;
+            _eventService = eventService;
             _graphics = graphics;
             _iconManager = iconManager;
             _inputManager = inputManager;
@@ -53,7 +57,7 @@ namespace Player.Core
 
         public void OnLoad()
         {
-            var worldState = new WorldState(_dataStore, _songManager, _graphics, _battleManager, _actorManager, _enemyManager, _iconManager, _inputManager, _tilesetManager, _dialogManager);
+            var worldState = new WorldState(_dataStore, _eventService, _songManager, _graphics, _battleManager, _actorManager, _enemyManager, _iconManager, _inputManager, _tilesetManager, _dialogManager);
             states.Add(State.World, worldState);
 
             var menuState = new MenuState(_graphics, _dialogManager, _inputManager, _songManager);

@@ -48,6 +48,8 @@
     <Compile Include="Actor.cs" />
     <Compile Include="Animation.cs" />
     <Compile Include="Core\GameState.cs" />
+    <Compile Include="Events\EventId.cs" />
+    <Compile Include="Events\IEventService.cs" />
     <Compile Include="Events\MoveEventArgs.cs" />
     <Compile Include="Maps\LayerMeta.cs" />
     <Compile Include="StateStack\BattleState.cs" />

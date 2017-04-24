@@ -129,11 +129,12 @@ namespace tIDE.Plugin.Bridge
             else if (m_mapPanel.Zoom < 1.0f)
                 layerDisplayLocation *= (int)(1.0f / m_mapPanel.Zoom);
 
+            // add the scroll offset
+            layerDisplayLocation += m_mapPanel.MapViewport.Location;
+
             return layer.GetTileLocation(layerDisplayLocation);
         }
 
-        //public Map Map { get { return m_mapPanel.Map; } }
-        //public Layer Layer { get { return m_mapPanel.SelectedLayer; } }
         public string ProjectId { get { return m_mapPanel.ProjectId; } }
 
         public MouseEditorHandler MouseDown

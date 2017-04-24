@@ -5,7 +5,7 @@ namespace Player.Maps
 {
     public class TideReader
     {
-        public static void Load(EventService eventService, MapEngine map, string mapFilePath)
+        public static void Load(IEventService eventService, MapEngine map, string mapFilePath)
         {
             var TiledMap = MapLoader.LoadMap(mapFilePath);
 
@@ -44,9 +44,9 @@ namespace Player.Maps
                 map.MapMeta = new MapMeta(TiledMap.Layers[0]);
 
             for (var z = 0; z < TiledMap.Layers.Count; z++)
-            for (var x = 0; x < map.Rows; x++)
+            for (var x = 0; x < map.Columns; x++)
             {
-                for (var y = 0; y < map.Columns; y++)
+                for (var y = 0; y < map.Rows; y++)
                 {
                     for (var layer = 0; layer < TiledMap.Layers.Count; layer++)
                     {

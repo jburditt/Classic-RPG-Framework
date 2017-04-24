@@ -7,7 +7,7 @@ namespace Player
 {
     public class MapEngine
     {
-        private readonly EventService _eventService;
+        private readonly IEventService _eventService;
         private readonly IIconManager _iconManager;
         private readonly ITilesetManager _tilesetManager;
         private readonly IDataStore _dataStore;
@@ -28,7 +28,7 @@ namespace Player
         public Vector Camera, Start;
         public int WindowColumns, WindowRows;
 
-        public MapEngine(IDataStore dataStore, EventService eventService, IIconManager iconManager, ITilesetManager tilesetManager, string mapFilePath, string mapName)
+        public MapEngine(IDataStore dataStore, IEventService eventService, IIconManager iconManager, ITilesetManager tilesetManager, string mapFilePath, string mapName)
         {
             _dataStore = dataStore;
             _eventService = eventService;
@@ -43,11 +43,10 @@ namespace Player
 
         public void Load(string mapName)
         {
-            TileSheetMeta = _dataStore.Load<TileSheetMeta>($"{mapName}.TileSheetMeta");
-            MapMeta = _dataStore.Load<MapMeta>($"{mapName}.MapMeta");
+            TileSheetMeta = _dataStore.Load<TileSheetMeta>($"{MapFilePath}{mapName}.TileSheetMeta");
+            MapMeta = _dataStore.Load<MapMeta>($"{MapFilePath}{mapName}.MapMeta");
 
             //map.Tiles[x + 1][y - 1][0].EventCollection = _eventService.Find(eventId);
-
 
             TideReader.Load(_eventService, this, $"{MapFilePath}{mapName}.tide");
 
@@ -165,7 +164,7 @@ namespace Player
                             _tilesetManager.Draw(tile.Tileset, drawRect, tile.SpriteRect);
 
                             if (layer == 0)
-                                DrawEventCollection(_eventService.Get(x + playerTileX, y + playerTileY), new Vector(x * TileWidth - offsetX, y * TileHeight - offsetY));
+                                DrawEventCollection(MapMeta.GetEventId(new Vector(x + playerTileX, y + playerTileY)), new Vector(x * TileWidth - offsetX, y * TileHeight - offsetY));
                         }
                     }
                 }
@@ -187,14 +186,16 @@ namespace Player
         }
 
         // TODO IsTriggered is calculated every screen update when in view. Could be optimized by adding listeners instead.
-        public void DrawEventCollection(EventCollection n, Vector pos)
+        public void DrawEventCollection(EventId n, Vector pos)
         {
             if (n == null)
                 return;
 
-            foreach (var e in n)
-            {
-                foreach (var eventPage in e.EventPages)
+            var e = _eventService.Get(n.Id);
+
+            if (e != null) {
+                foreach (var ev in e.Events)
+                foreach (var eventPage in ev.EventPages)
                 {
                     if (eventPage.TriggerCollection == null || eventPage.TriggerCollection.IsTriggered(eventPage))
                         DrawEvent(eventPage, pos);

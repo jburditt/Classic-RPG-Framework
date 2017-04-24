@@ -118,7 +118,7 @@ namespace xTile.Layers
         }
 
         /// <summary>
-        /// Convers the map location given in pixels to a layer location in
+        /// Converts the map location given in pixels to a layer location in
         /// pixels taking into account parallax effects given the viewport size
         /// </summary>
         /// <param name="mapDisplayLocation">Location in map pixel coordinates</param>

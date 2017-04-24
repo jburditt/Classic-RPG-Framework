@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 namespace Player.Events
 {
-    public class EventService
+    public class EventService : IEventService
     {
         private Dictionary<int, EventCollection> EventCollections { get; set; } = new Dictionary<int, EventCollection>();
-        private SparseMatrix<int> Events { get; set; }
 
         public EventService()
         {
@@ -36,9 +35,9 @@ namespace Player.Events
             );
         }
 
-        public EventCollection Get(int x, int y)
+        public EventCollection Get(int id)
         {
-            return EventCollections[Events[x, y]];
+            return EventCollections[id];
         }
     }
 }

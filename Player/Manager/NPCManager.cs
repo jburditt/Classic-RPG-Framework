@@ -43,9 +43,13 @@ namespace Player.Manager
 
         public List<IEffect> CheckTalk(MapEngine map, VectorF pos)
         {
+            var npcs = map.MapMeta.NPCs;
+            if (npcs == null)
+                return null;
+
             var effects = new List<IEffect>();
 
-            foreach (var npc in map.MapMeta.NPCs)
+            foreach (var npc in npcs)
             {
                 if (Vector.Distance(npc.Pos, pos.ToVector()) < map.TileWidth + map.TileHeight)
                      effects.Add(new DialogEffect(_graphics, _dialogManager, npc.Dialog));

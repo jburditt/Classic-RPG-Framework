@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Manager;
 using Player;
 using Player.Core;
+using Player.Events;
 using Player.StateStack;
 
 namespace MonoGame
@@ -24,14 +25,6 @@ namespace MonoGame
 
         // MonoGame Managers
         private Graphics graphics;
-        private DialogManager dialogManager;
-        private TilesetManager tilesetManager;
-        private SongManager songManager;
-        private SoundManager soundManager;
-        private BattleManager battleManager;
-        private ActorManager actorManager;
-        private EnemyManager enemyManager;
-        private IconManager iconManager;
         private InputManager inputManager;
 
         private IDataStore _dataStore;
@@ -73,18 +66,19 @@ namespace MonoGame
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Menu");
 
+            var eventService = new EventService();
             graphics = new Graphics(Content, spriteBatch, font);
-            tilesetManager = new TilesetManager(Content, spriteBatch);
-            dialogManager = new DialogManager(Content, spriteBatch);
-            songManager = new SongManager(Content);
-            soundManager = new SoundManager(Content);
-            actorManager = new ActorManager(Content, spriteBatch);
-            enemyManager = new EnemyManager(Content, spriteBatch);
-            iconManager = new IconManager(Content, spriteBatch);
-            battleManager = new BattleManager(Content, spriteBatch);
+            var tilesetManager = new TilesetManager(Content, spriteBatch);
+            var dialogManager = new DialogManager(Content, spriteBatch);
+            var songManager = new SongManager(Content);
+            var soundManager = new SoundManager(Content);
+            var actorManager = new ActorManager(Content, spriteBatch);
+            var enemyManager = new EnemyManager(Content, spriteBatch);
+            var iconManager = new IconManager(Content, spriteBatch);
+            var battleManager = new BattleManager(Content, spriteBatch);
 
-            _dataStore = new BinaryDataStore("../../../../Data/map/");
-            _gameState = new GameState(actorManager, battleManager, _dataStore, dialogManager, enemyManager, graphics, iconManager, inputManager, songManager, tilesetManager);
+            _dataStore = new BinaryDataStore();
+            _gameState = new GameState(actorManager, battleManager, _dataStore, dialogManager, enemyManager, eventService, graphics, iconManager, inputManager, songManager, tilesetManager);
             _gameState.OnLoad();
         }
 

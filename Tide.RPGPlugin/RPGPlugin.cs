@@ -1,5 +1,7 @@
-﻿using DataStore;
+﻿using Common;
+using DataStore;
 using Player;
+using Player.Events;
 using Player.Maps;
 using RPGPlugin.Forms;
 using System;
@@ -159,6 +161,10 @@ namespace RPGPlugin
             string filePath = Directory.GetParent(e.FilePath).ToString();
 
             m_mapMeta = m_dataStore.Load<MapMeta>($"{filePath}\\{e.Map.FileName}.MapMeta");
+
+            // no file was found, create new map
+            if (m_mapMeta == null)
+                m_mapMeta = new MapMeta(e.Map.Layers[0]);
         }
 
         public void OnSave(MapEventArgs e)
@@ -220,7 +226,7 @@ namespace RPGPlugin
 
         public void OnEditorMouseDown(MouseEventArgs mouseEventArgs, MapEventArgs mapEventArgs)
         {
-            var selectedPos = new Vector(mapEventArgs.X * mapEventArgs.Layer.TileWidth, mapEventArgs.Y * mapEventArgs.Layer.TileHeight);
+            var selectedPos = new Vector(mapEventArgs.X, mapEventArgs.Y);
 
             if (m_npcToolBarButton.Checked)
             {
@@ -233,10 +239,20 @@ namespace RPGPlugin
                         form.Selected.Pos = selectedPos;
 
                         //m_mapMeta.Resize(mapEventArgs.Map);
-                        m_mapMeta.NPCs.Add(form.Selected);                      
+                        m_mapMeta.AddNPC(form.Selected);
                     }
                 }
-            } else if (m_eraserToolBarButton.Checked)
+            }
+            else if (m_eventToolBarButton.Checked)
+            {
+
+                var input = Prompt.ShowDialog("Event Id", "Enter an event id");
+                var eventId = input.ToInt();
+                if (eventId > 0)
+                    m_mapMeta.AddEvent(new EventId { Id = eventId, Pos = selectedPos });
+
+            }
+            else if (m_eraserToolBarButton.Checked)
             {
                 var npc = m_mapMeta.GetNPC(selectedPos);
 
@@ -249,13 +265,18 @@ namespace RPGPlugin
         {
             var tileWidth = e.TileSize.Width;
             var tileHeight = e.TileSize.Height;
+            var tilePos = e.TileLocation.ToVector();
 
             var tileBitmap = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
 
             var destRect = new Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
 
-            var npc = m_mapMeta.GetNPC(e.TileLocation.ToVector() * new Vector(tileWidth, tileHeight));
+            var npc = m_mapMeta?.GetNPC(tilePos);
             if (npc != null)
+                e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
+
+            var eventId = m_mapMeta?.GetEventId(tilePos);
+            if (eventId != null)
                 e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
         }
 

@@ -135,6 +135,11 @@ namespace xTile.Dimensions
             return new Location(location.X / divisor, location.Y / divisor);
         }
 
+        public static Location operator /(Location location, Size size)
+        {
+            return new Location(location.X / size.Width, location.Y / size.Height);
+        }
+
         #endregion
 
         #region Public Methods

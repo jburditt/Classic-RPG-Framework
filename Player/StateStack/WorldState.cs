@@ -12,10 +12,10 @@ namespace Player
     {
         private IInputManager _inputManager;
         private IDialogManager _dialogManager;
+        private IEventService _eventService;
         private IGraphics _graphics;
         private ISongManager _songManager;
 
-        private EventService _eventService;
         private NPCManager _npcManager;
         private GamePlayer gamePlayer;
         private MapEngine map;
@@ -24,14 +24,16 @@ namespace Player
         public Party Party { get; private set; }
         public EnemyParty EnemyParty { get; private set; }
 
-        private string mapName = "Untitled";
+        private string mapName = "World";
 
         public WorldState(
-            IDataStore dataStore, ISongManager songManager, IGraphics graphics, IBattleManager battleManager, IActorManager actorManager,
-            IEnemyManager enemyManager, IIconManager iconManager, IInputManager inputManager, ITilesetManager tilesetManager, IDialogManager dialogManager)
+            IDataStore dataStore, IEventService eventService, ISongManager songManager, IGraphics graphics, IBattleManager battleManager, IActorManager actorManager,
+            IEnemyManager enemyManager, IIconManager iconManager, IInputManager inputManager, ITilesetManager tilesetManager, 
+            IDialogManager dialogManager)
         {
             _inputManager = inputManager;
             _dialogManager = dialogManager;
+            _eventService = eventService;
             _graphics = graphics;
             _songManager = songManager;
 
@@ -45,13 +47,12 @@ namespace Player
                 }
             };
 
-            map = new MapEngine(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/map/", mapName);
+            map = new MapEngine(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/Game/map/", mapName);
             gamePlayer = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager, map.Start);
             gamePlayer.WalkOnTile += new GamePlayer.MoveEventHandler(OnWalkOnTile);
             gamePlayer.Action += new GamePlayer.PlayerEventHandler(OnAction);
 
             _npcManager = new NPCManager(actorManager, _dialogManager, _graphics);
-            _eventService = new EventService();
         }
 
         public void OnLoad()
@@ -99,8 +100,13 @@ namespace Player
         public void OnWalkOnTile(MoveEventArgs e)
         {
             // activate triggers
-            var eventPage1 = _eventService.Get(e.NewPos.X, e.NewPos.Y)?.Walk(true);
-            var eventPage2 = _eventService.Get(e.NewPos.X, e.NewPos.Y)?.Walk(false);
+            var ev = map.MapMeta.GetEventId(new Vector(e.NewPos.X, e.NewPos.Y));
+            if (ev == null)
+                return;
+
+            var eventId = ev.Id;
+            var eventPage1 = _eventService.Get(eventId)?.Walk(true);
+            var eventPage2 = _eventService.Get(eventId)?.Walk(false);
 
             // execute event
             if (eventPage1 != null)
@@ -122,8 +128,12 @@ namespace Player
                         continue;
 
                     // TODO check distance of tile from player
+                    var e = map.MapMeta.GetEventId(new Vector(p.X + x, p.Y + y));
+                    if (e == null)
+                        continue;
 
-                    var eventPage = _eventService.Get(p.X + x, p.Y + y)?.Action();
+                    var eventId = e.Id;
+                    var eventPage = _eventService.Get(eventId)?.Action();
                     if (eventPage != null)
                     {
                         Script.Execute(eventPage, gamePlayer, map);
