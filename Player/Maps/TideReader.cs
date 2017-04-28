@@ -50,7 +50,7 @@ namespace Player.Maps
                 {
                     for (var layer = 0; layer < TiledMap.Layers.Count; layer++)
                     {
-                        int gid = TiledMap.Layers[layer].Tiles[x, y].TileIndex;
+                        int gid = TiledMap.Layers[layer].Tiles[x, y]?.TileIndex ?? 0;
                         if (gid == 0)
                             continue;
 

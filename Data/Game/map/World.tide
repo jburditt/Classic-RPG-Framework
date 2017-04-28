@@ -1452,7 +1452,7 @@
           <Static Index="72" BlendMode="Alpha" />
           <Static Index="72" BlendMode="Alpha" />
           <Static Index="72" BlendMode="Alpha" />
-          <Static Index="72" BlendMode="Alpha" />
+          <Static Index="70" BlendMode="Alpha" />
           <Static Index="72" BlendMode="Alpha" />
           <Static Index="72" BlendMode="Alpha" />
           <Static Index="72" BlendMode="Alpha" />
@@ -2564,6 +2564,219 @@
           <Static Index="72" BlendMode="Alpha" />
           <Static Index="72" BlendMode="Alpha" />
           <Static Index="72" BlendMode="Alpha" />
+        </Row>
+      </TileArray>
+      <Properties />
+    </Layer>
+    <Layer Id="Floor Overlap" Visible="True">
+      <Description><![CDATA[]]></Description>
+      <Dimensions LayerSize="100 x 25" TileSize="32 x 32" />
+      <TileArray>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="4" />
+          <TileSheet Ref="Mack-Complete" />
+          <Static Index="514" BlendMode="Alpha" />
+          <Static Index="515" BlendMode="Alpha" />
+          <Null Count="94" />
+        </Row>
+        <Row>
+          <Null Count="4" />
+          <Static Index="546" BlendMode="Alpha" />
+          <Static Index="547" BlendMode="Alpha" />
+          <Null Count="94" />
+        </Row>
+        <Row>
+          <Null Count="14" />
+          <Static Index="514" BlendMode="Alpha" />
+          <Static Index="515" BlendMode="Alpha" />
+          <Null Count="4" />
+          <Static Index="550" BlendMode="Alpha" />
+          <Null Count="79" />
+        </Row>
+        <Row>
+          <Null Count="14" />
+          <Static Index="546" BlendMode="Alpha" />
+          <Static Index="547" BlendMode="Alpha" />
+          <Null Count="4" />
+          <Static Index="582" BlendMode="Alpha" />
+          <Null Count="79" />
+        </Row>
+        <Row>
+          <Null Count="5" />
+          <Static Index="482" BlendMode="Alpha" />
+          <Null Count="14" />
+          <Static Index="614" BlendMode="Alpha" />
+          <Null Count="79" />
+        </Row>
+        <Row>
+          <Null Count="20" />
+          <Static Index="647" BlendMode="Alpha" />
+          <Null Count="79" />
+        </Row>
+        <Row>
+          <Null Count="12" />
+          <Static Index="482" BlendMode="Alpha" />
+          <Null Count="87" />
+        </Row>
+        <Row>
+          <Null Count="16" />
+          <Static Index="276" BlendMode="Alpha" />
+          <Static Index="277" BlendMode="Alpha" />
+          <Null Count="82" />
+        </Row>
+        <Row>
+          <Null Count="7" />
+          <Static Index="1464" BlendMode="Alpha" />
+          <Static Index="1465" BlendMode="Alpha" />
+          <Static Index="1466" BlendMode="Alpha" />
+          <Static Index="1467" BlendMode="Alpha" />
+          <Null Count="5" />
+          <Static Index="308" BlendMode="Alpha" />
+          <Static Index="309" BlendMode="Alpha" />
+          <Null Count="82" />
+        </Row>
+        <Row>
+          <Null Count="7" />
+          <Static Index="1496" BlendMode="Alpha" />
+          <Static Index="1497" BlendMode="Alpha" />
+          <Static Index="1498" BlendMode="Alpha" />
+          <Static Index="1499" BlendMode="Alpha" />
+          <Null Count="89" />
+        </Row>
+        <Row>
+          <Null Count="7" />
+          <Static Index="1528" BlendMode="Alpha" />
+          <Static Index="1529" BlendMode="Alpha" />
+          <Static Index="1530" BlendMode="Alpha" />
+          <Static Index="1531" BlendMode="Alpha" />
+          <Null Count="89" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+      </TileArray>
+      <Properties />
+    </Layer>
+    <Layer Id="Roof" Visible="True">
+      <Description><![CDATA[]]></Description>
+      <Dimensions LayerSize="100 x 25" TileSize="32 x 32" />
+      <TileArray>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="8" />
+          <TileSheet Ref="Mack-Complete" />
+          <Static Index="705" BlendMode="Alpha" />
+          <Null Count="91" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
+        </Row>
+        <Row>
+          <Null Count="100" />
         </Row>
       </TileArray>
       <Properties />

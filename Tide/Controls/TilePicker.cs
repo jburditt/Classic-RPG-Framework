@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using xTile.Tiles;
 using xTile;
@@ -17,7 +14,7 @@ namespace tIDE.Controls
 {
     public partial class TilePicker : UserControl
     {
-        private enum OrderMode
+        public enum OrderModeEnum
         {
             Indexed,
             MRU,
@@ -33,7 +30,7 @@ namespace tIDE.Controls
             m_autoUpdate = false;
             m_watchers = new Dictionary<TileSheet, FileSystemWatcher>();
             m_selectedTileIndex = -1;
-            m_orderMode = OrderMode.Indexed;
+            m_orderMode = OrderModeEnum.Indexed;
 
             m_selectionBrush = new SolidBrush(Color.FromArgb(128, Color.SkyBlue));
 
@@ -102,6 +99,13 @@ namespace tIDE.Controls
         #endregion
 
         #region Public Properties
+
+        public OrderModeEnum OrderMode { get { return m_orderMode; }
+            set {
+                m_orderMode = value;
+                UpdateTilePicker();
+            }
+        }
 
         public Map Map
         {
@@ -231,12 +235,12 @@ namespace tIDE.Controls
 
             switch (m_orderMode)
             {
-                case OrderMode.Indexed:
-                case OrderMode.MRU:
+                case OrderModeEnum.Indexed:
+                case OrderModeEnum.MRU:
                     m_requiredSize.Width = m_visibleSize.Width;
                     m_requiredSize.Height = (tileCount * slotWidth * slotHeight) / m_visibleSize.Width;
                     break;
-                case OrderMode.Image:
+                case OrderModeEnum.Image:
                     m_requiredSize.Width = m_tileSheet.SheetSize.Width * slotWidth;
                     m_requiredSize.Height = m_tileSheet.SheetSize.Height * slotHeight;
                     break;
@@ -331,9 +335,9 @@ namespace tIDE.Controls
 
         private void UpdateOrderButtons()
         {
-            m_indexOrderButton.Checked = m_orderMode == OrderMode.Indexed;
-            m_mruOrderButton.Checked = m_orderMode == OrderMode.MRU;
-            m_imageOrderButton.Checked = m_orderMode == OrderMode.Image;
+            m_indexOrderButton.Checked = m_orderMode == OrderModeEnum.Indexed;
+            m_mruOrderButton.Checked = m_orderMode == OrderModeEnum.MRU;
+            m_imageOrderButton.Checked = m_orderMode == OrderModeEnum.Image;
         }
 
         private void UpdateWatchers()
@@ -399,7 +403,7 @@ namespace tIDE.Controls
                     m_hoverTileIndex = newHoverTileIndex;
 
                     int tileIndex = m_hoverTileIndex;
-                    if (m_orderMode == OrderMode.MRU)
+                    if (m_orderMode == OrderModeEnum.MRU)
                         tileIndex = m_hoverTileIndex < 0 ? m_hoverTileIndex : m_indexToMru[tileIndex];
                     m_lblIdxValue.Text = m_hoverTileIndex < 0
                         ? ""
@@ -457,12 +461,12 @@ namespace tIDE.Controls
                 m_selectedTileIndex = GetTileIndex(mouseEventArgs.Location);
                 if (m_selectedTileIndex >= 0)
                 {
-                    if (m_orderMode == OrderMode.MRU)
+                    if (m_orderMode == OrderModeEnum.MRU)
                         m_selectedTileIndex = m_indexToMru[m_selectedTileIndex];
 
                     UpdateMru(m_selectedTileIndex);
 
-                    if (m_orderMode == OrderMode.MRU)
+                    if (m_orderMode == OrderModeEnum.MRU)
                         m_focusOnTile = true;
 
                     if (TileSelected != null)
@@ -491,7 +495,7 @@ namespace tIDE.Controls
                             int tileIndex = tileY * tilesAcross + tileX;
                             if (tileIndex >= tileCount)
                                 continue;
-                            if (m_orderMode == OrderMode.MRU)
+                            if (m_orderMode == OrderModeEnum.MRU)
                                 tileIndex = m_indexToMru[tileIndex];
                             tileBrushElements.Add(new TileBrushElement(
                                 new StaticTile(dummyLayer, m_tileSheet, BlendMode.Alpha, tileIndex),
@@ -512,29 +516,24 @@ namespace tIDE.Controls
 
         private void OnOrderIndexed(object sender, EventArgs eventArgs)
         {
-            m_orderMode = OrderMode.Indexed;
-            UpdateOrderButtons();
-            m_horizontalScrollBar.Visible = m_verticalScrollBar.Visible = false;
-            m_horizontalScrollBar.Value = m_verticalScrollBar.Value = 0;
-            UpdateInternalDimensions();
-            m_tilePanel.Invalidate();
-            SelectedTileIndex = SelectedTileIndex;
+            m_orderMode = OrderModeEnum.Indexed;
+            UpdateTilePicker();
         }
 
         private void OnOrderMru(object sender, EventArgs eventArgs)
         {
-            m_orderMode = OrderMode.MRU;
-            UpdateOrderButtons();
-            m_horizontalScrollBar.Visible = m_verticalScrollBar.Visible = false;
-            m_horizontalScrollBar.Value = m_verticalScrollBar.Value = 0;
-            UpdateInternalDimensions();
-            m_tilePanel.Invalidate();
-            SelectedTileIndex = SelectedTileIndex;
+            m_orderMode = OrderModeEnum.MRU;
+            UpdateTilePicker();
         }
 
         private void OnOrderImage(object sender, EventArgs eventArgs)
         {
-            m_orderMode = OrderMode.Image;
+            m_orderMode = OrderModeEnum.Image;
+            UpdateTilePicker();
+        }
+
+        private void UpdateTilePicker()
+        {
             UpdateOrderButtons();
             m_horizontalScrollBar.Visible = m_verticalScrollBar.Visible = false;
             m_horizontalScrollBar.Value = m_verticalScrollBar.Value = 0;
@@ -621,7 +620,7 @@ namespace tIDE.Controls
                     if (tileIndex >= m_tileSheet.TileCount)
                         break;
 
-                    int drawTileIndex = m_orderMode == OrderMode.MRU
+                    int drawTileIndex = m_orderMode == OrderModeEnum.MRU
                         ? m_indexToMru[tileIndex]
                         : tileIndex;
 
@@ -704,7 +703,7 @@ namespace tIDE.Controls
 
         private Map m_map;
         private TileSheet m_tileSheet;
-        private OrderMode m_orderMode;
+        private OrderModeEnum m_orderMode;
         private bool m_autoUpdate;
         private bool m_allowTileDragging;
         private Dictionary<TileSheet, FileSystemWatcher> m_watchers;

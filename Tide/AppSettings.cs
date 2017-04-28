@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Drawing;
 using System.Windows.Forms;
+using static tIDE.Controls.TilePicker;
 
 namespace tIDE
 {
@@ -97,5 +98,9 @@ namespace tIDE
         [UserScopedSetting()]
         [DefaultSettingValue(null)]
         public int SplitVertical { get { return (int)(this["SplitVertical"] ?? 0); } set { this["SplitVertical"] = value; } }
+
+        [UserScopedSetting()]
+        [DefaultSettingValue(null)]
+        public OrderModeEnum OrderMode { get { return (OrderModeEnum)(this["OrderMode"] ?? OrderModeEnum.Indexed); } set { this["OrderMode"] = value; } }
     }
 }

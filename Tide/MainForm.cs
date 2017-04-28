@@ -615,6 +615,8 @@ namespace tIDE
                 this.m_splitContainerLeftRight.SplitterDistance = AppSettings.SplitHorizontal;
             if (AppSettings.SplitVertical > 0)
                 this.m_splitContainerVertical.SplitterDistance = AppSettings.SplitVertical;
+            if (AppSettings.OrderMode > 0)
+                this.m_tilePicker.OrderMode = AppSettings.OrderMode;            
         }
 
         private void SaveSettings()
@@ -625,6 +627,7 @@ namespace tIDE
             AppSettings.Size = this.Size;
             AppSettings.SplitHorizontal = this.m_splitContainerLeftRight.SplitterDistance;
             AppSettings.SplitVertical = this.m_splitContainerVertical.SplitterDistance;
+            AppSettings.OrderMode = this.m_tilePicker.OrderMode;
             AppSettings.Save();
         }
 
