@@ -10,9 +10,8 @@ namespace MonoGame.Manager
     {
         private readonly SpriteBatch _spriteBatch;
 
-        // TODO no Texture2D should be public...
-        public Dictionary<string, Texture2D> Charsets { get; set; } = new Dictionary<string, Texture2D>();
-        public Dictionary<string, Texture2D> BattleChars { get; set; } = new Dictionary<string, Texture2D>();
+        private Dictionary<string, Texture2D> Charsets { get; set; } = new Dictionary<string, Texture2D>();
+        private Dictionary<string, Texture2D> BattleChars { get; set; } = new Dictionary<string, Texture2D>();
 
         public ActorManager(ContentManager contentManager, SpriteBatch spriteBatch)
         {

@@ -1,7 +1,7 @@
 ﻿using Player;
 using System.Drawing;
 
-namespace Editor
+namespace RPGPlugin
 {
     public static class RectangleExtensions
     {

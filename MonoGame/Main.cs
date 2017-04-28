@@ -24,7 +24,6 @@ namespace MonoGame
         private SpriteFont font;
 
         // MonoGame Managers
-        private Graphics graphics;
         private InputManager inputManager;
 
         private IDataStore _dataStore;
@@ -67,7 +66,7 @@ namespace MonoGame
             font = Content.Load<SpriteFont>("Menu");
 
             var eventService = new EventService();
-            graphics = new Graphics(Content, spriteBatch, font);
+            var graphics = new Graphics(Content, spriteBatch, font);
             var tilesetManager = new TilesetManager(Content, spriteBatch);
             var dialogManager = new DialogManager(Content, spriteBatch);
             var songManager = new SongManager(Content);

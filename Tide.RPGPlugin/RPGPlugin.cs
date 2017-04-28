@@ -2,8 +2,10 @@
 using DataStore;
 using Player;
 using Player.Events;
+using Player.Manager;
 using Player.Maps;
 using RPGPlugin.Forms;
+using RPGPlugin.Manager;
 using System;
 using System.Drawing;
 using System.IO;
@@ -17,9 +19,13 @@ namespace RPGPlugin
     public class RPGPlugin : IPlugin
     {
         private MapMeta m_mapMeta;
+
+        private ActorManager m_actorManager;
+
         private string m_projectId;
 
         private IDataStore m_dataStore;
+
         private IMenuItem m_myDropDownMenu;
         private IMenuItem m_myMenuItem;
         private IToolBar m_myToolBar;
@@ -130,6 +136,7 @@ namespace RPGPlugin
             //m_mapMeta = m_dataStore.Load<MapMeta>($"{map.Id}.MapMeta");
             //if (m_mapMeta == null)
             //    m_mapMeta = new MapMeta(map);
+            m_actorManager = new ActorManager($"../../../MonoGame/Content/charset/");
 
             // add plugin events to application
             application.Editor.MouseDown = OnEditorMouseDown;
@@ -212,7 +219,6 @@ namespace RPGPlugin
 
         public void TileSheetsAction(object sender, MapEventArgs e)
         {
-            //// TODO m_map is only as recent as when plugin was Initialized
             using (var form = new TileSheetForm(m_dataStore, e.Map))
             {
                 var result = form.ShowDialog();
@@ -238,19 +244,16 @@ namespace RPGPlugin
                     {
                         form.Selected.Pos = selectedPos;
 
-                        //m_mapMeta.Resize(mapEventArgs.Map);
                         m_mapMeta.AddNPC(form.Selected);
                     }
                 }
             }
             else if (m_eventToolBarButton.Checked)
             {
-
                 var input = Prompt.ShowDialog("Event Id", "Enter an event id");
                 var eventId = input.ToInt();
                 if (eventId > 0)
                     m_mapMeta.AddEvent(new EventId { Id = eventId, Pos = selectedPos });
-
             }
             else if (m_eraserToolBarButton.Checked)
             {
@@ -267,17 +270,22 @@ namespace RPGPlugin
             var tileHeight = e.TileSize.Height;
             var tilePos = e.TileLocation.ToVector();
 
-            var tileBitmap = (Bitmap)Image.FromFile("../../../Tide.RPGPlugin/Resources/x.png");
-
-            var destRect = new Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
 
             var npc = m_mapMeta?.GetNPC(tilePos);
             if (npc != null)
-                e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
+            {
+                var destRect = new Rectangle(e.Location.X - npc.Animation.spriteWidth + tileWidth, e.Location.Y - npc.Animation.spriteHeight + tileHeight, npc.Animation.spriteWidth, npc.Animation.spriteHeight);
+                m_actorManager.Graphics = e.Graphics;
+                e.Graphics.DrawImage(m_actorManager.Actors[npc.CharSet], destRect, npc.Animation.SourceRect.X, npc.Animation.SourceRect.Y, npc.Animation.spriteWidth, npc.Animation.spriteHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
+            }
 
             var eventId = m_mapMeta?.GetEventId(tilePos);
             if (eventId != null)
+            {
+                var destRect = new Rectangle(e.Location.X, e.Location.Y, tileWidth, tileHeight);
+                var tileBitmap = Properties.Resources.Event_32;
                 e.Graphics.DrawImage(tileBitmap, destRect, 0, 0, tileWidth, tileHeight, GraphicsUnit.Pixel, new System.Drawing.Imaging.ImageAttributes());
+            }
         }
 
         private void OnLayerNew(LayerEventArgs e)
