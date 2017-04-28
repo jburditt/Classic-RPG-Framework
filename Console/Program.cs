@@ -17,7 +17,7 @@ namespace Console
         static void Main(string[] args)
         {
             //LoadTilesetMeta("../../../Data/map/Start.tmx");
-            LoadTideTilesetMeta("../../../Data/map/Untitled.tide");
+            LoadTideTilesetMeta("../../../Data/Game/map/World.tide");
 
             var filepaths = FileManager.GetFilepaths("../../../MonoGame/Content");
 
@@ -111,7 +111,6 @@ namespace Console
             return pixelColor.ToStruct();
         }
 
-
         // TODO Move to TileReader or something
         private static void LoadTiledTilesetMeta(string mapFilePath)
         {
@@ -129,8 +128,11 @@ namespace Console
             foreach (var tileset in tiledMap.TileSheets)
             {
                 // TODO
-                //var trans = tileset.
-                TilesetMetas.Add(tileset.Id, new TileSheetMeta { TransparencyColor = new ColorStruct(255, 255, 255) });
+                //var bitmap = (Bitmap)Image.FromFile(tileset.ImageSource);
+                //bitmap.MakeTransparent();
+
+                var trans = Color.White;
+                TilesetMetas.Add(tileset.Id, new TileSheetMeta { TransparencyColor = new ColorStruct(trans.R, trans.G, trans.B) });
             }
         }
     }

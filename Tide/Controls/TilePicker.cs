@@ -100,7 +100,8 @@ namespace tIDE.Controls
 
         #region Public Properties
 
-        public OrderModeEnum OrderMode { get { return m_orderMode; }
+        public OrderModeEnum OrderMode {
+            get { return m_orderMode; }
             set {
                 m_orderMode = value;
                 UpdateTilePicker();

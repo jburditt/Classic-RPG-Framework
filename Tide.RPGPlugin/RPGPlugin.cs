@@ -171,7 +171,7 @@ namespace RPGPlugin
 
             // no file was found, create new map
             if (m_mapMeta == null)
-                m_mapMeta = new MapMeta(e.Map.Layers[0]);
+                m_mapMeta = new MapMeta();
         }
 
         public void OnSave(MapEventArgs e)

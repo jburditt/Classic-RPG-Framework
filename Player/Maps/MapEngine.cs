@@ -18,10 +18,10 @@ namespace Player
         public int Height { get; set; }
         public int Columns { get; set; }
         public int Rows { get; set; }
-        public int Layers { get; set; }
         public string MapFilePath { get; set; }
         public string MapName { get; set; }
 
+        public LayerMeta[] Layers { get; set; }
         public MapMeta MapMeta { get; set; }
         public TileSheetMeta TileSheetMeta { get; set; }
 
@@ -85,9 +85,9 @@ namespace Player
             if (OutBounds(x, y))
                 return true;
 
-            for (int layerIndex = 0; layerIndex < Layers; layerIndex++)
+            for (int layerIndex = 0; layerIndex < Layers.Length; layerIndex++)
             {
-                var tile = MapMeta.Tiles[x, y];
+                var tile = Layers[layerIndex].Tiles[x, y];
 
                 if (tile != null && tile.IsBlocked)
                 {
@@ -153,11 +153,11 @@ namespace Player
                     }
 
                     // draw all tile layers
-                    for (var layer = 0; layer < Layers; layer++)
+                    for (var layer = 0; layer < Layers.Length; layer++)
                     {
-                        var tile = MapMeta.Tiles[x + playerTileX, y + playerTileY];
+                        var tile = Layers[layer].Tiles[x + playerTileX, y + playerTileY];
 
-                        if (tile != null)
+                        if (tile?.Tileset != null)
                         {
                             var drawRect = new Rect(x * TileWidth - offsetX, y * TileHeight - offsetY, TileWidth, TileHeight);
 
@@ -172,9 +172,9 @@ namespace Player
 
         public void DrawTile(int x, int y)
         {
-            for (var layer = 0; layer < Layers; layer++)
+            for (var layer = 0; layer < Layers.Length; layer++)
             {
-                var tile = MapMeta.Tiles[x, y];
+                var tile = Layers[layer].Tiles[x, y];
 
                 if (tile != null)
                 {

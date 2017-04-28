@@ -20,7 +20,6 @@ namespace Player.Maps
 
             map.Columns = TiledMap.Layers[0].LayerWidth;
             map.Rows = TiledMap.Layers[0].LayerHeight;
-            map.Layers = TiledMap.Layers.Count;
 
             var tilesets = TiledMap.TileSheets;
 
@@ -41,8 +40,15 @@ namespace Player.Maps
         private static void LoadTiles(Map TiledMap, MapEngine map)
         {
             if (map.MapMeta == null)
-                map.MapMeta = new MapMeta(TiledMap.Layers[0]);
+                map.MapMeta = new MapMeta();
 
+            // add layers
+            map.Layers = new LayerMeta[TiledMap.Layers.Count];
+
+            for (var i = 0; i < map.Layers.Length; i++)
+                map.Layers[i] = new LayerMeta(TiledMap.Layers[i]);
+
+            // load layers
             for (var z = 0; z < TiledMap.Layers.Count; z++)
             for (var x = 0; x < map.Columns; x++)
             {
@@ -78,7 +84,7 @@ namespace Player.Maps
                         var tileWidth = TiledMap.Layers[layer].TileWidth;
                         var tileHeight = TiledMap.Layers[layer].TileHeight;
 
-                        map.MapMeta.Tiles[x, y] = new TileMeta
+                        map.Layers[layer].Tiles[x, y] = new TileMeta
                         {
                             SpriteRect = new Rect(tileWidth * column, tileHeight * row, tileWidth, tileHeight),
                             Tileset = TiledMap.Layers[layer].Tiles[x, y].TileSheet.Id,
