@@ -547,11 +547,9 @@ namespace tIDE
         {
             FormatManager formatManager = FormatManager.Instance;
 
-            string fileExtension
-                = Path.GetExtension(filename).Replace(".", "");
+            string fileExtension = Path.GetExtension(filename).Replace(".", "");
 
-            IMapFormat selectedMapFormat
-                = formatManager.GetMapFormatByExtension(fileExtension);
+            IMapFormat selectedMapFormat = formatManager.GetMapFormatByExtension(fileExtension);
 
             // check format compatibility
             CompatibilityReport compatibilityReport = selectedMapFormat.DetermineCompatibility(m_map);
@@ -560,8 +558,7 @@ namespace tIDE
             CompatibilityLevel compatibilityLevel = compatibilityReport.CompatibilityLevel;
             if (compatibilityLevel != CompatibilityLevel.Full)
             {
-                FormatCompatibilityDialog formatCompatibilityDialog
-                    = new FormatCompatibilityDialog(compatibilityReport);
+                FormatCompatibilityDialog formatCompatibilityDialog = new FormatCompatibilityDialog(compatibilityReport);
                 if (formatCompatibilityDialog.ShowDialog(this) == DialogResult.Cancel)
                     return false;
             }
@@ -614,6 +611,10 @@ namespace tIDE
                 this.Location = AppSettings.Location;
             if (AppSettings.Size != null)
                 this.Size = AppSettings.Size;
+            if (AppSettings.SplitHorizontal > 0)
+                this.m_splitContainerLeftRight.SplitterDistance = AppSettings.SplitHorizontal;
+            if (AppSettings.SplitVertical > 0)
+                this.m_splitContainerVertical.SplitterDistance = AppSettings.SplitVertical;
         }
 
         private void SaveSettings()
@@ -622,6 +623,8 @@ namespace tIDE
             AppSettings.WindowState = this.WindowState;
             AppSettings.Location = this.Location;
             AppSettings.Size = this.Size;
+            AppSettings.SplitHorizontal = this.m_splitContainerLeftRight.SplitterDistance;
+            AppSettings.SplitVertical = this.m_splitContainerVertical.SplitterDistance;
             AppSettings.Save();
         }
 

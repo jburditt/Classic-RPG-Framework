@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Player.Effect;
+using Player.Graphics;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,21 +9,23 @@ namespace Player.Events
     [Serializable]
     public class Script
     {
-        public static void Execute(EventPage eventPage, GamePlayer player, MapEngine map)
+        public static void Execute(EventPage eventPage, GamePlayer player, WorldState worldState, IGraphics graphics, IDialogManager dialog)
         {
             foreach (var script in eventPage.ScriptActionCollection)
             {
                 switch (script.ScriptActionType) {
 
                     case ScriptActionType.ChangeItem:
-                        player.ChangeItem((int)script.Params[0], (int)script.Params[1]);
+                        var itemId = (int)script.Params[0];
+                        player.ChangeItem(itemId, (int)script.Params[1]);
+                        worldState.Effects.Add(new DialogEffect(graphics, dialog, $"Item {ItemManager.Items[itemId].Name} acquired."));
                         break;
                     case ScriptActionType.ChangeSelfSwitch:
                         eventPage.Switch.Set(script.Params[0].ToString(), (int)script.Params[1]);
                         break;
                     case ScriptActionType.ChangeMap:
-                        map.Load(script.Params[0].ToString());
-                        player.Pos = new VectorF((int)script.Params[1] * map.TileWidth, (int)script.Params[2] * map.TileHeight);
+                        worldState.Map.Load(script.Params[0].ToString());
+                        player.Pos = new VectorF((int)script.Params[1] * worldState.Map.TileWidth, (int)script.Params[2] * worldState.Map.TileHeight);
                         break;
                 }
             }

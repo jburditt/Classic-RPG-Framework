@@ -18,13 +18,12 @@ namespace Player
 
         private NPCManager _npcManager;
         private GamePlayer gamePlayer;
-        private MapEngine map;
-        private List<IEffect> _effects { get; set; } = new List<IEffect>();
+        private string mapName = "World";
 
+        public MapEngine Map { get; set; }
         public Party Party { get; private set; }
         public EnemyParty EnemyParty { get; private set; }
-
-        private string mapName = "World";
+        public List<IEffect> Effects { get; set; } = new List<IEffect>();
 
         public WorldState(
             IDataStore dataStore, IEventService eventService, ISongManager songManager, IGraphics graphics, IBattleManager battleManager, IActorManager actorManager,
@@ -47,8 +46,8 @@ namespace Player
                 }
             };
 
-            map = new MapEngine(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/Game/map/", mapName);
-            gamePlayer = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager, map.Start);
+            Map = new MapEngine(dataStore, _eventService, iconManager, tilesetManager, $"../../../../Data/Game/map/", mapName);
+            gamePlayer = new GamePlayer(Party.Actors[0].CharSet, inputManager, actorManager, Map.Start);
             gamePlayer.WalkOnTile += new GamePlayer.MoveEventHandler(OnWalkOnTile);
             gamePlayer.Action += new GamePlayer.PlayerEventHandler(OnAction);
 
@@ -71,9 +70,9 @@ namespace Player
             if (_inputManager.IsPressedInput((int)Input.Back) || _inputManager.IsPressedKey((int)Keys.Escape))
                 return false;
                
-            _npcManager.Update(map);
+            _npcManager.Update(Map);
 
-            gamePlayer.Update(map, elapsedTime);
+            gamePlayer.Update(Map, elapsedTime);
             if (gamePlayer.step >= 3)
             {
                 gamePlayer.step = 0;
@@ -86,13 +85,19 @@ namespace Player
 
         public void Draw()
         {
-            map.Draw(gamePlayer.Pos.ToVector());
-            _npcManager.Draw(map);
-            gamePlayer.Draw(map);
+            Map.Draw(gamePlayer.Pos.ToVector());
+            _npcManager.Draw(Map);
+            gamePlayer.Draw(Map);
             //_graphics.DrawString($"Step: {player.step} FPS: " + /*(int) (1/deltaTime) +*/ " X: " + player.x/32 + " Y: " + player.y/32, 10, 10);
 
-            foreach (var effect in _effects)
+            foreach (var effect in Effects)
             {
+                effect.Update();
+                if (effect.Lifespan <= 0)
+                {
+                    Effects.Remove(effect);
+                    break;
+                }
                 effect.Draw();
             }
         }
@@ -100,7 +105,7 @@ namespace Player
         public void OnWalkOnTile(MoveEventArgs e)
         {
             // activate triggers
-            var ev = map.MapMeta.GetEventId(new Vector(e.NewPos.X, e.NewPos.Y));
+            var ev = Map.MapMeta.GetEventId(new Vector(e.NewPos.X, e.NewPos.Y));
             if (ev == null)
                 return;
 
@@ -110,25 +115,25 @@ namespace Player
 
             // execute event
             if (eventPage1 != null)
-                Script.Execute(eventPage1, gamePlayer, map);
+                Script.Execute(eventPage1, gamePlayer, this, _graphics, _dialogManager);
             if (eventPage2 != null)
-                Script.Execute(eventPage2, gamePlayer, map);
+                Script.Execute(eventPage2, gamePlayer, this, _graphics, _dialogManager);
         }
 
         public void OnAction()
         {
-            _effects.AddRange(_npcManager.CheckTalk(map, gamePlayer.Pos));
+            Effects.AddRange(_npcManager.CheckTalk(Map, gamePlayer.Pos));
 
-            var p = (gamePlayer.Pos / new VectorF(map.TileWidth, map.TileHeight)).ToVector();
+            var p = (gamePlayer.Pos / new VectorF(Map.TileWidth, Map.TileHeight)).ToVector();
 
             for (var x = -1; x <= 1; x++)
                 for (var y = -1; y <= 1; y++)
                 {
-                    if (map.OutBounds(x, y))
+                    if (Map.OutBounds(x, y))
                         continue;
 
                     // TODO check distance of tile from player
-                    var e = map.MapMeta.GetEventId(new Vector(p.X + x, p.Y + y));
+                    var e = Map.MapMeta.GetEventId(new Vector(p.X + x, p.Y + y));
                     if (e == null)
                         continue;
 
@@ -136,7 +141,7 @@ namespace Player
                     var eventPage = _eventService.Get(eventId)?.Action();
                     if (eventPage != null)
                     {
-                        Script.Execute(eventPage, gamePlayer, map);
+                        Script.Execute(eventPage, gamePlayer, this, _graphics, _dialogManager);
                     }
                 }
         }

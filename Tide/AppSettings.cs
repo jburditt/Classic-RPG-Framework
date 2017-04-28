@@ -89,5 +89,13 @@ namespace tIDE
                 this["Size"] = value;
             }
         }
+
+        [UserScopedSetting()]
+        [DefaultSettingValue(null)]
+        public int SplitHorizontal { get { return (int)(this["SplitHorizontal"] ?? 0); } set { this["SplitHorizontal"] = value; } }
+
+        [UserScopedSetting()]
+        [DefaultSettingValue(null)]
+        public int SplitVertical { get { return (int)(this["SplitVertical"] ?? 0); } set { this["SplitVertical"] = value; } }
     }
 }
